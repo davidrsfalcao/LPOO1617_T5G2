@@ -1,5 +1,21 @@
+import java.util.Scanner;
+
 public class DungeonKeep {
 
+	public static void draw(char[][] matriz)
+	{
+		 for(char[] mat: matriz)
+		 {
+			 for (char mat1: mat)
+			 {
+				 System.out.print(mat1);
+			 }
+			 System.out.print('\n');
+			 
+		 }
+		
+	}
+	
 
 	public static void main(String[] args)
 	{
@@ -16,13 +32,61 @@ public class DungeonKeep {
 			 {'X','X','X','X','X','X','X','X','X','X'}
 	 };
 	 
-	 for(char[] mat: matriz)
+	 int position[] = {1,1};
+	 int position_temp[] = position;
+	 
+	 boolean fim = false;
+	 
+	 while(!fim)
 	 {
-		 for (char mat1: mat)
+		 draw(matriz);
+		 
+		 Scanner sc = new Scanner(System.in);
+		 char option = sc.next().charAt(0);
+		 
+		 if ('w' == option)
 		 {
-			 System.out.print(mat1);
+			 position_temp[1] = position_temp[1] - 1;
 		 }
-		 System.out.print('\n');
+		 
+		 if ('s' == option)
+		 {
+			 position_temp[1] = position_temp[1] + 1;
+		 }
+		 
+		 if ('a' == option)
+		 {
+			 position_temp[0] = position_temp[0] - 1;
+		 }
+		 
+		 if ('d' == option)
+		 {
+			 position_temp[0] = position_temp[0] + 1;
+		 }
+		 
+		 if ((0 <= position_temp[0]) && (position_temp[0]<=9) && (0 <= position_temp[1]) && (position_temp[1]<=9))
+		 {
+			int x = position_temp[0];
+			int y = position_temp[1];
+			
+			if (matriz[x][y] == 'X')
+			{
+				position_temp = position;
+			}
+			
+			 
+			 
+		 }
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
 		 
 	 }
 	 

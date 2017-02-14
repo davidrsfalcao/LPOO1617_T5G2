@@ -33,12 +33,13 @@ public class DungeonKeep {
 	 };
 	 
 	 int position[] = {1,1};
-	 int position_temp[] = position;
 	 
 	 boolean fim = false;
 	 
 	 while(!fim)
 	 {
+		 int x1 = position[0];
+		 int y1 = position[1];
 		 draw(matriz);
 		 
 		 Scanner sc = new Scanner(System.in);
@@ -46,36 +47,74 @@ public class DungeonKeep {
 		 
 		 if ('w' == option)
 		 {
-			 position_temp[1] = position_temp[1] - 1;
+			 x1 = x1 - 1;
 		 }
 		 
 		 if ('s' == option)
 		 {
-			 position_temp[1] = position_temp[1] + 1;
+			 x1 = x1 + 1;
 		 }
 		 
 		 if ('a' == option)
 		 {
-			 position_temp[0] = position_temp[0] - 1;
+			 y1 = y1 - 1;
 		 }
 		 
 		 if ('d' == option)
 		 {
-			 position_temp[0] = position_temp[0] + 1;
+			y1 = y1 + 1;
 		 }
 		 
-		 if ((0 <= position_temp[0]) && (position_temp[0]<=9) && (0 <= position_temp[1]) && (position_temp[1]<=9))
+		 if ((0 <= x1) && (x1<=9) && (0 <= y1) && (y1<=9))
 		 {
-			int x = position_temp[0];
-			int y = position_temp[1];
-			
-			if (matriz[x][y] == 'X')
-			{
-				position_temp = position;
-			}
-			
-			 
-			 
+				
+				int x = position[0];
+				int y = position[1];
+				
+
+				if (matriz[x1][y1] == ' ') {
+					matriz[x][y] = ' ';
+					matriz[x1][y1] = 'H';
+					position[0] = x1;
+					position[1] = y1;
+
+				}
+
+				else if (matriz[x1][y1] == 'X') {
+					// não faz nada
+				}
+				
+				else if (matriz[x1][y1] == 'I')
+				{
+					// não faz nada
+				}
+				
+				else if (matriz[x1][y1] == 'G')
+				{
+					System.out.println("\n\n\n\n\n\n\n\n\nPERDEU");
+					fim = true;
+					
+				}
+				
+				else if (matriz[x1][y1] == 'k')
+				{
+					 for(int k = 0; k<=9; k++)
+					 {
+						 for (int h=0; h<=9;h++)
+						 {
+							 if (matriz[k][h] == 'I')
+							 {
+								 matriz[k][h] = 'S';
+							 }
+						 }
+					 }
+				}
+				else if (matriz[x1][y1] == 'S')
+				{
+					System.out.println("\n\n\n\n\n\n\n\n\nGANHOU");
+					fim = true;
+				}
+
 		 }
 		 
 		 

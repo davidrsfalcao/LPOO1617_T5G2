@@ -6,11 +6,13 @@ public class Hero {
 	public int cordY;
 	public int cordX_temp;
 	public int cordY_temp;
+	public boolean have_key;
+	private Scanner sc;
 	
 	
 	public void movement()
 	{
-		Scanner sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		char option = sc.next().charAt(0);
 
 		if ('w' == option) {
@@ -37,6 +39,7 @@ public class Hero {
 		cordY = 1;
 		cordX_temp = 1;
 		cordY_temp = 1;
+		have_key = false;
 		
 	}
 

@@ -191,7 +191,7 @@ public class DungeonKeep {
 		heroi.cordX = 1;
 		heroi.cordY = 7;
 		heroi.cordX_temp = 1;
-		heroi.cordX_temp = 7;
+		heroi.cordY_temp = 7;
 		
 		boolean fim = false;
 

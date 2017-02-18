@@ -110,28 +110,28 @@ public class DungeonKeep {
 		// verficar se a posição temp se encontra dentro do tabuleiro
 		// em princípio seria desnecessária
 
-		if ((heroi.cordX_temp >= 0) && (heroi.cordX_temp < 10) && (heroi.cordY_temp >= 0) && (heroi.cordY_temp < 10)) {
+		if ((heroi.cordX_temp >= 0) && (heroi.cordX_temp < 9) && (heroi.cordY_temp >= 0) && (heroi.cordY_temp < 9)) {
 
-			if (matriz[heroi.cordY_temp][heroi.cordX_temp] == ' ') {
-				matriz[heroi.cordY][heroi.cordX] = ' '; // atualiza o tabuleiro
-				matriz[heroi.cordY_temp][heroi.cordX_temp] = 'H'; // atualiza o
+			if (matriz1[heroi.cordY_temp][heroi.cordX_temp] == ' ') {
+				matriz1[heroi.cordY][heroi.cordX] = ' '; // atualiza o tabuleiro
+				matriz1[heroi.cordY_temp][heroi.cordX_temp] = 'H'; // atualiza o
 																	// tabuleiro
 				heroi.cordX = heroi.cordX_temp; // atualiza a cord X
 				heroi.cordY = heroi.cordY_temp; // atualiza a cord Y
 			}
 
-			else if (matriz[heroi.cordY_temp][heroi.cordX_temp] == 'X') {
+			else if (matriz1[heroi.cordY_temp][heroi.cordX_temp] == 'X') {
 				heroi.cordX_temp = heroi.cordX; // não há movimento
 				heroi.cordY_temp = heroi.cordY; // X,Y-temp invalidos
 			}
 
-			else if (matriz[heroi.cordY_temp][heroi.cordX_temp] == 'I') {
+			else if (matriz1[heroi.cordY_temp][heroi.cordX_temp] == 'I') {
 				heroi.cordX_temp = heroi.cordX; // não há movimento
 				heroi.cordY_temp = heroi.cordY; // X,Y-temp invalidos
 			}
 
-			else if (matriz[heroi.cordY_temp][heroi.cordX_temp] == 'k') {
-				matriz[heroi.cordY_temp][heroi.cordX_temp] = ' ';
+			else if (matriz1[heroi.cordY_temp][heroi.cordX_temp] == 'k') {
+				matriz1[heroi.cordY_temp][heroi.cordX_temp] = ' ';
 				for (int k = 0; k <= 9; k++) {
 					for (int h = 0; h <= 9; h++) {
 						if (matriz[k][h] == 'I') {
@@ -139,8 +139,8 @@ public class DungeonKeep {
 						}
 					}
 				}
-				matriz[heroi.cordY][heroi.cordX] = ' '; // atualiza o tabuleiro
-				matriz[heroi.cordY_temp][heroi.cordX_temp] = 'H'; // atualiza o
+				matriz1[heroi.cordY][heroi.cordX] = ' '; // atualiza o tabuleiro
+				matriz1[heroi.cordY_temp][heroi.cordX_temp] = 'H'; // atualiza o
 																	// tabuleiro
 				heroi.cordX = heroi.cordX_temp; // atualiza a cord X
 				heroi.cordY = heroi.cordY_temp; // atualiza a cord Y

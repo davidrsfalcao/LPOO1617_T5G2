@@ -53,7 +53,15 @@ public class DungeonKeep {
 	{
 		ogre.movement();
 		
-		if (matriz1[ogre.cordY_temp][ogre.cordX_temp] == ' ') {
+		if ((matriz1[ogre.cordY_temp][ogre.cordX_temp] == ' ') && (matriz1[ogre.cordY][ogre.cordX] == '$') ) {
+			matriz1[ogre.cordY][ogre.cordX] = 'k'; // atualiza o tabuleiro
+			matriz1[ogre.cordY_temp][ogre.cordX_temp] = 'O'; // atualiza o tabuleiro
+														
+			ogre.cordX = ogre.cordX_temp; // atualiza a cord X
+			ogre.cordY = ogre.cordY_temp; // atualiza a cord Y
+		}
+		
+		else if (matriz1[ogre.cordY_temp][ogre.cordX_temp] == ' ' ) {
 			matriz1[ogre.cordY][ogre.cordX] = ' '; // atualiza o tabuleiro
 			matriz1[ogre.cordY_temp][ogre.cordX_temp] = 'O'; // atualiza o tabuleiro
 														
@@ -64,6 +72,17 @@ public class DungeonKeep {
 		else if (matriz1[ogre.cordY_temp][ogre.cordX_temp] == 'X') {
 			ogre.cordX_temp = ogre.cordX; // não há movimento
 			ogre.cordY_temp = ogre.cordY; // X,Y-temp invalidos
+		}
+		else if (matriz1[ogre.cordY_temp][ogre.cordX_temp] == 'I') {
+			ogre.cordX_temp = ogre.cordX; // não há movimento
+			ogre.cordY_temp = ogre.cordY; // X,Y-temp invalidos
+		}
+		else if (matriz1[ogre.cordY_temp][ogre.cordX_temp] == 'k') {
+			matriz1[ogre.cordY][ogre.cordX] = ' '; // atualiza o tabuleiro
+			matriz1[ogre.cordY_temp][ogre.cordX_temp] = '$'; // atualiza o tabuleiro
+														
+			ogre.cordX = ogre.cordX_temp; // atualiza a cord X
+			ogre.cordY = ogre.cordY_temp; // atualiza a cord Y
 		}
 		
 	}
@@ -96,12 +115,22 @@ public class DungeonKeep {
 				heroi.cordX_temp = heroi.cordX; // não há movimento
 				heroi.cordY_temp = heroi.cordY; // X,Y-temp invalidos
 			}
+			else if ((matriz1[heroi.cordY_temp][heroi.cordX_temp] == 'I') && (matriz1[heroi.cordY][heroi.cordX] == 'K') ) {
+				matriz1[heroi.cordY_temp][heroi.cordX_temp] = 'S';
+				heroi.cordX_temp = heroi.cordX; // não há movimento
+				heroi.cordY_temp = heroi.cordY; // X,Y-temp invalidos
+			}
 
 			else if (matriz1[heroi.cordY_temp][heroi.cordX_temp] == 'I') {
 				heroi.cordX_temp = heroi.cordX; // não há movimento
 				heroi.cordY_temp = heroi.cordY; // X,Y-temp invalidos
 			}
-
+			
+			else if (matriz1[heroi.cordY_temp][heroi.cordX_temp] == 'S') {
+				heroi.cordX_temp = heroi.cordX; // não há movimento
+				heroi.cordY_temp = heroi.cordY; // X,Y-temp invalidos
+			}
+			
 			else if (matriz1[heroi.cordY_temp][heroi.cordX_temp] == 'k') {
 				matriz1[heroi.cordY_temp][heroi.cordX_temp] = ' ';
 				matriz1[heroi.cordY][heroi.cordX] = ' '; // atualiza o tabuleiro
@@ -119,6 +148,26 @@ public class DungeonKeep {
 		return false;
 	}
 	
+	public int colisionHO() {
+		int capture = 0; // 1 for yes and 0 for no
+		// zona de captura do guarda
+
+		int[][] catch_zone = { { ogre.cordX - 1, ogre.cordY - 1 }, { ogre.cordX - 1, ogre.cordY },
+				{ ogre.cordX - 1, ogre.cordY + 1 }, { ogre.cordX, ogre.cordY - 1 },
+				{ ogre.cordX + 1, ogre.cordY - 1 }, { ogre.cordX + 1, ogre.cordY },
+				{ ogre.cordX + 1, ogre.cordY + 1 }, { ogre.cordX, ogre.cordY + 1 },
+				{ ogre.cordX, ogre.cordY }, };
+
+		for (int[] cords : catch_zone) {
+			if ((cords[0] == heroi.cordX) && (cords[1] == heroi.cordY)) {
+				capture = 1;
+				break;
+			}
+
+		}
+
+		return capture;
+	}
 	public int level2() {
 		
 		heroi.cordX = 1;
@@ -133,14 +182,17 @@ public class DungeonKeep {
 			draw(matriz1);
 
 			if (movementH_lvl2()) {
-				return 0;
+				return 1;
 			}
 			movementO();
+			if (colisionHO() == 1) {
+				return 0;
+			}
 
 
 		}
 
-		return 1;
+		return 0;
 	}
 
 	
@@ -274,6 +326,11 @@ public class DungeonKeep {
 				game.clearScreen();
 				System.out.println("\t\tPERDEU");
 
+			}
+			else
+			{
+				game.clearScreen();
+				System.out.println("\t\tGANHOU");
 			}
 		} else {
 			game.clearScreen();

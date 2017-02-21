@@ -55,7 +55,6 @@ public class Ogre {
 		
 	}
 
-	
 	private void movement(){
 		
 		Random gerador = new Random();

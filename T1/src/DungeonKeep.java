@@ -173,6 +173,5 @@ public class DungeonKeep {
 
 	}
 	
-	MassiveClub a = new MassiveClub();
 
 }

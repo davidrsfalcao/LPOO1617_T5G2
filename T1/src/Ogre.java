@@ -7,7 +7,54 @@ public class Ogre {
 	public int cordX_temp;
 	public int cordY_temp;
 	boolean have_key;
-	MassiveClub club;
+	public int x_club;
+	public int y_club;
+	
+	public void moviment_club(char [][] matriz)
+	{
+		Random gerador = new Random();
+		int numero = gerador.nextInt(4);
+		matriz[y_club][x_club] = ' ';
+		int x_temp = x_club;
+		int y_temp = y_club;
+		
+		switch(numero)
+		{
+		case 0:
+			x_temp = cordX - 1; // left
+			y_temp = cordY;
+			break;
+			
+		case 1:
+			x_temp = cordX + 1;
+			y_temp = cordY; // right
+			break;
+			
+		case 2:
+			x_temp = cordX;
+			y_temp = cordY + 1; // down
+			break;
+			
+		case 3:
+			x_temp = cordX;
+			y_temp = cordY - 1; // up
+			
+		}
+		
+		if (matriz[y_temp][x_temp] == ' ')
+		{
+			matriz[y_temp][x_temp] = '*';
+			
+			if (matriz[y_club][x_club] == '*'){
+				matriz[y_club][x_club] = ' ';
+			}
+			
+			x_club = x_temp;
+			y_club = y_temp;
+		}
+		
+	}
+
 	
 	private void movement(){
 		
@@ -70,7 +117,7 @@ public class Ogre {
 			cordX = cordX_temp; // atualiza a cord X
 			cordY = cordY_temp; // atualiza a cord Y
 		}
-		club.moviment(cordX, cordY, matriz1);
+		moviment_club(matriz1);
 		
 	}
 		
@@ -81,10 +128,11 @@ public class Ogre {
 		cordX_temp = 4;
 		cordY_temp = 1;
 		have_key = false;
-		club = new MassiveClub();
+		x_club = 7;
+		y_club = 7;
+		
 		
 	}
-	
 	
 	
 }

@@ -1,5 +1,6 @@
 public class DungeonKeep {
-
+	
+	
 	char[][] matriz = 
 		   { {'X','X','X','X','X','X','X','X','X','X'},
 			 {'X','H',' ',' ','I',' ','X',' ','G','X'},

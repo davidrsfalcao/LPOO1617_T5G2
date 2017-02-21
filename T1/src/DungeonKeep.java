@@ -43,7 +43,6 @@ public class DungeonKeep {
 				System.out.print(mat1);
 			}
 			System.out.println();
-
 		}
 	}
 
@@ -54,7 +53,8 @@ public class DungeonKeep {
 		int capture = 0; // 1 for yes and 0 for no
 		// zona de captura do ogre
 
-		int[][] catch_zone = { { ogre.cordX - 1, ogre.cordY - 1 }, { ogre.cordX - 1, ogre.cordY },
+		int[][] catch_zone = { 
+				{ ogre.cordX - 1, ogre.cordY - 1 }, { ogre.cordX - 1, ogre.cordY },
 				{ ogre.cordX - 1, ogre.cordY + 1 }, { ogre.cordX, ogre.cordY - 1 },
 				{ ogre.cordX + 1, ogre.cordY - 1 }, { ogre.cordX + 1, ogre.cordY },
 				{ ogre.cordX + 1, ogre.cordY + 1 }, { ogre.cordX, ogre.cordY + 1 },
@@ -65,8 +65,9 @@ public class DungeonKeep {
 				capture = 1;
 				break;
 			}
-
 		}
+		
+		
 
 		return capture;
 	}
@@ -148,27 +149,24 @@ public class DungeonKeep {
 	// função inicial
 	public static void main(String[] args) {
 		DungeonKeep game = new DungeonKeep();
-		Hero H = new Hero(); // inicialização
-		game.heroi = H; // do heroi
-		Guard G = new Guard(); // inicialização
-		game.guarda = G; // do guarda
-		Ogre ogre = new Ogre();
-		game.ogre = ogre;
+		game.heroi = new Hero();; // inicialização do heroi
+		game.guarda = new Guard();  // inicialização do guarda
+		game.ogre = new Ogre(); // inicialização do ogre
 
 		if (game.level1() == 0) {
 			if (game.level2() == 0) {
 				game.clearScreen();
-				System.out.println("\t\tPERDEU");
+				System.out.println("\n\n\t\tPERDEU\n\n");
 
 			}
 			else
 			{
 				game.clearScreen();
-				System.out.println("\t\tGANHOU");
+				System.out.println("\n\n\t\tGANHOU\n\n");
 			}
 		} else {
 			game.clearScreen();
-			System.out.println("\t\tPERDEU");
+			System.out.println("\t\tPERDEU\n\n");
 		}
 
 	}

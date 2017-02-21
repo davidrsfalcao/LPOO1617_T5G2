@@ -33,7 +33,6 @@ public class DungeonKeep {
 	public void clearScreen() {
 		for (int i = 0; i < 100; ++i)
 			System.out.println();
-
 	}
 
 	void draw(char[][] matriz) {
@@ -45,7 +44,6 @@ public class DungeonKeep {
 			System.out.println();
 		}
 	}
-
 	
 	// funções nível 2
 	

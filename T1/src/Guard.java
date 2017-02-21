@@ -15,5 +15,23 @@ public class Guard {
 		
 	}
 	
+	public void movement(char [][] matriz) {
+		matriz[cordY][cordX] = ' ';
+
+		position++;
+		if (position > 23) {
+			position = 0;
+		}
+
+		int[] moveTo = path[position];
+		int x = moveTo[0];
+		int y = moveTo[1];
+
+		matriz[y][x] = 'G';
+		cordX = x;
+		cordY = y;
+
+	}
+
 
 }

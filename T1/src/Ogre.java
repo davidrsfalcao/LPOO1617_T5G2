@@ -7,13 +7,13 @@ public class Ogre {
 	public int cordX_temp;
 	public int cordY_temp;
 	boolean have_key;
+	MassiveClub club;
 	
 	private void movement(){
 		
 		Random gerador = new Random();
 		int numero = gerador.nextInt(4);
 		
-		System.out.println(numero);
 		
 		switch(numero)
 		{
@@ -39,7 +39,6 @@ public class Ogre {
 	public void movement(char[][] matriz1)
 	{
 		movement();
-		
 		if ((matriz1[cordY_temp][cordX_temp] == ' ') && (matriz1[cordY][cordX] == '$') ) {
 			matriz1[cordY][cordX] = 'k'; // atualiza o tabuleiro
 			matriz1[cordY_temp][cordX_temp] = 'O'; // atualiza o tabuleiro
@@ -71,9 +70,10 @@ public class Ogre {
 			cordX = cordX_temp; // atualiza a cord X
 			cordY = cordY_temp; // atualiza a cord Y
 		}
+		club.moviment(cordX, cordY, matriz1);
 		
 	}
-	
+		
 	public Ogre()
 	{
 		cordX = 4;
@@ -81,6 +81,7 @@ public class Ogre {
 		cordX_temp = 4;
 		cordY_temp = 1;
 		have_key = false;
+		club = new MassiveClub();
 		
 	}
 	

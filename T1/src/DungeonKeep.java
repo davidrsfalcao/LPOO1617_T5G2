@@ -24,7 +24,7 @@ public class DungeonKeep {
 			 {'X','H',' ',' ',' ',' ',' ',' ','X'},
 			 {'X','X','X','X','X','X','X','X','X'},
 	 };
-	
+
 	Hero heroi;
 	Guard guarda;
 	Ogre ogre;
@@ -172,5 +172,7 @@ public class DungeonKeep {
 		}
 
 	}
+	
+	MassiveClub a = new MassiveClub();
 
 }

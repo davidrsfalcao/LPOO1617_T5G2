@@ -21,5 +21,4 @@ public class Character {
 		position.setY(y);
 	}
 	
-	
 }

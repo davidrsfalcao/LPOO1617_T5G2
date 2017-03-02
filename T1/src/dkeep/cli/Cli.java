@@ -38,6 +38,7 @@ public class Cli {
 		return op;
 		
 	}
+	
 	private void game()
 	{
 		do{

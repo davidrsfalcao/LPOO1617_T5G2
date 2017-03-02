@@ -4,17 +4,20 @@ public class Position {
 
 	private int x;
 	private int y;
+	private String representation;
 	
 	/**
-	 * Constructor of Position with initialization of x and y 
+	 * Constructor of Position with initialization of x and y and representation
 	 * 
 	 * @param x
 	 * @param y
+	 * @param representation
 	 */
-	public Position (int x, int y)
+	public Position(int x, int y, String representation)
 	{
 		this.x = x;
 		this.y = y;
+		this.representation = representation;
 	}
 	
 	/**
@@ -48,6 +51,24 @@ public class Position {
 	}
 
 	/**
+	 * Increase x
+	 * 
+	 */
+	public void increaseX()
+	{
+		x++;
+	}
+	
+	/**
+	 * Decrease x
+	 * 
+	 */
+	public void decreaseX()
+	{
+		x--;
+	}
+	
+	/**
 	 * Redefines y coordinate 
 	 * 
 	 * @param y
@@ -55,6 +76,56 @@ public class Position {
 	public void setY(int y)
 	{
 		this.y = y;
+	}
+	
+	/**
+	 * Increase y
+	 * 
+	 */
+	public void increaseY()
+	{
+		y++;
+	}
+	
+	/**
+	 * Decrease y
+	 * 
+	 */
+	public void decreaseY()
+	{
+		y--;
+	}
+	
+	/**
+	 * Redefines x and y coordinates
+	 * 
+	 * @param x
+	 * @param y
+	 */
+	public void changeTo(int x, int y)
+	{
+		this.x = x;
+		this.y = y;
+	}
+	
+	/**
+	 * Redefines representation
+	 * 
+	 * @param representation
+	 */
+	public void setRepresentation(String representation)
+	{
+		this.representation = representation;
+	}
+	
+	/**
+	 * Returns the representation
+	 * 
+	 * @return representation
+	 */
+	public String getRepresentation()
+	{	
+		return representation;
 	}
 	
 }

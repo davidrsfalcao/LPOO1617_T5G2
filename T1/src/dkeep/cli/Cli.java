@@ -47,7 +47,7 @@ public class Cli {
 			game.movementV();
 			
 		}while(!game.wonGame() && !game.isOver());
-		returnMap(game.getMap().getMap(), game.getLevel());
+		printMap(game.getMap().getMap(), game.getLevel());
 		if(game.wonGame())
 			System.out.println("    Congratulations!!   \n");
 		else
@@ -55,7 +55,7 @@ public class Cli {
 		
 	}
 	
-	private void returnMap(char[][] map,int level)
+	private void printMap(char[][] map,int level)
 	{
 		ClearScreen();
 		for(Character ch : game.getAllCharacters())

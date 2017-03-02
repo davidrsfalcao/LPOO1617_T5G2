@@ -20,6 +20,9 @@ public class Maze2 extends Map{
 			this.map[i] = c;
 			i++;
 		}
+		
+		Position t1 = new Position(0,1,'S');
+		endPositions.add(t1);
 	}
 	
 	public void openDoors(){

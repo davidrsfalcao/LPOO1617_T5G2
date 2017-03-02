@@ -4,7 +4,7 @@ public class Position {
 
 	private int x;
 	private int y;
-	private String representation;
+	private char representation;
 	
 	/**
 	 * Constructor of Position with initialization of x and y and representation
@@ -13,7 +13,7 @@ public class Position {
 	 * @param y
 	 * @param representation
 	 */
-	public Position(int x, int y, String representation)
+	public Position(int x, int y, char representation)
 	{
 		this.x = x;
 		this.y = y;
@@ -113,7 +113,7 @@ public class Position {
 	 * 
 	 * @param representation
 	 */
-	public void setRepresentation(String representation)
+	public void setRepresentation(char representation)
 	{
 		this.representation = representation;
 	}
@@ -123,9 +123,27 @@ public class Position {
 	 * 
 	 * @return representation
 	 */
-	public String getRepresentation()
+	public char getRepresentation()
 	{	
 		return representation;
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (obj == null) {
+			return false;
+		}
+		
+		Position pos = (Position)obj;
+		
+		if (x != pos.getX())
+			return false;
+		else if(y != pos.getY())
+			return false;
+		
+		return true;
+		
 	}
 	
 }

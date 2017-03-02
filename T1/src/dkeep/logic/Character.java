@@ -5,7 +5,7 @@ public abstract class Character {
 	
 	protected Position position;
 	
-	public String getRepresentation()
+	public char getRepresentation()
 	{
 		return position.getRepresentation();
 	}

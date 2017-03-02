@@ -1,8 +1,10 @@
 package dkeep.logic;
+import java.util.ArrayList;
 
 public abstract class Map {
 	protected int MAP_SIZE;
 	protected char[][] map = new char[10][];
+	protected ArrayList<Position> endPositions;
 
 	public char[][] getMap(){
 		char[][] temp = new char[this.MAP_SIZE][];

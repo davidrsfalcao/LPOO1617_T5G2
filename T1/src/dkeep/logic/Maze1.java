@@ -3,7 +3,7 @@ package dkeep.logic;
 public class Maze1 extends Map{
 
 	public Maze1(){
-		this.MAP_SIZE = 10;
+		MAP_SIZE = 10;
 		char[][]temp={{'X','X','X','X','X','X','X','X','X','X'} ,
 					  {'X',' ',' ',' ','I',' ','X',' ',' ','X'} ,
 					  {'X','X','X',' ','X','X','X',' ',' ','X'} ,
@@ -19,6 +19,11 @@ public class Maze1 extends Map{
 			this.map[i] = (char[])c.clone();
 			i++;
 		}
+		
+		Position t1 = new Position(0,5,'S');
+		endPositions.add(t1);
+		Position t2 = new Position(0,6,'S');
+		endPositions.add(t1);
 		
 	}
 	

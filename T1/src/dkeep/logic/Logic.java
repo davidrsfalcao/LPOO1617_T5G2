@@ -54,4 +54,16 @@ public class Logic {
 		return level;
 	}
 	
+	public ArrayList<Character> getAllCharacters(){ //gathers all characters (hero,guard,ogre) in an ArrayList
+		ArrayList<Character> temp = new ArrayList<Character>();
+		temp.add(this.hero);
+		if(0 == this.level)
+			temp.add(this.guard);
+		else if (1 == this.level){
+			for(Ogre o : this.ogres)
+				temp.add(o);
+		}
+		
+		return temp;
+	}
 }

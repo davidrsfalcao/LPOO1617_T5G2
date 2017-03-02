@@ -58,9 +58,10 @@ public class Cli {
 	private void returnMap(char[][] map,int level)
 	{
 		ClearScreen();
-		for(Character p : game.getCharacters())
-			for(Pair<int[],String> c : p.getPrint())
-				map[c.getFirst()[0]][c.getFirst()[1]] = c.getSecond().charAt(0);
+		for(Character ch : game.getAllCharacters())
+		{
+			map[ch.getPosition().getY()][ch.getPosition().getX()] = ch.getRepresentation();
+		}
 		
 		for (int i=0;i < map.length ; i++)
 		{

@@ -7,7 +7,7 @@ import pair.Pair;
 
 public class Cli {
 	
-	Logic log;
+	Logic game;
 	
 	public static void main (String[] args)
 	{
@@ -15,9 +15,10 @@ public class Cli {
 		cl.game();
 		
 	}
+	
 	public Cli()
 	{
-		log=new Logic(0);
+		game = new Logic(0);
 		
 	}
 	
@@ -29,7 +30,7 @@ public class Cli {
 		}
 	}
 	
-	private char UserImput()
+	private char UserInput()
 	{
 		
 		Scanner sc = new Scanner(System.in);
@@ -40,13 +41,13 @@ public class Cli {
 	private void game()
 	{
 		do{
-			returnMap(log.getMap().getMap(),log.getLevel());
-			log = log.movementH(UserImput());
-			log.movementV();
+			returnMap(game.getMap().getMap(),game.getLevel());
+			game = game.movementH(UserInput());
+			game.movementV();
 			
-		}while(!log.wonGame() && !this.log.isOver());
-		returnMap(log.getMap().getMap(),log.getLevel());
-		if(log.wonGame())
+		}while(!game.wonGame() && !game.isOver());
+		returnMap(game.getMap().getMap(), game.getLevel());
+		if(game.wonGame())
 			System.out.println("    Congratulations!!   \n");
 		else
 			System.out.println("    Game Over!!   \n");
@@ -56,13 +57,13 @@ public class Cli {
 	private void returnMap(char[][] map,int level)
 	{
 		ClearScreen();
-		for(Character p : log.getCharacters())
+		for(Character p : game.getCharacters())
 			for(Pair<int[],String> c : p.getPrint())
 				map[c.getFirst()[0]][c.getFirst()[1]] = c.getSecond().charAt(0);
 		
-		for (int i=0;i < map.lenght ; i++)
+		for (int i=0;i < map.length ; i++)
 		{
-			for(int k=0;k < map[i].lenght;k++)
+			for(int k=0;k < map[i].length;k++)
 			{
 				System.out.print(map[i][k] + " ");
 			}
@@ -70,7 +71,6 @@ public class Cli {
 		
 		
 	}
-	
 	
 
 }

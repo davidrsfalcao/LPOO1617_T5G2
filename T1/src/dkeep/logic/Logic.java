@@ -66,4 +66,50 @@ public class Logic {
 		
 		return temp;
 	}
+
+	public Logic moveHero(char direction){ //moves hero, returns an object of GameLogic, either next level or same level
+		Position temp;
+		
+		if	   ('w' == direction)
+			temp = hero.moveCharacter(this.map.getMapSize() , 4);
+		else if('a' == direction)
+			temp = hero.moveCharacter(this.map.getMapSize() , 3);		
+		else if('s' == direction)
+			temp = hero.moveCharacter(this.map.getMapSize() , 2);
+		else if('d' == direction)
+			temp = hero.moveCharacter(this.map.getMapSize() , 1);
+		else
+			return this;
+		
+		if (checkTriggers(temp)) //check if level up
+			return (this.level == 0) ? new Logic(++this.level) : this;
+		
+		if( this.map.isFree(temp[0],temp[1]))
+			this.hero.setPos(temp[0], temp[1], this.map.getMapSize());
+		
+		return this;
+	}
+
+	private boolean checkTriggers(Position pos){ //checks if hero is in a key/lever or entered a door/stairs
+		
+		if(level == 0 && pos[0] == this.key[0] && pos[1] == this.key[1] )
+			this.map.openDoors();
+		else if (level == 1 && this.map.getMap()[pos[0]][pos[1]] == 'I' && this.hero.hasKey()){
+			this.map.openDoors();
+			pos[1]++; //stop hero from going inside stairs at first attempt
+		}
+		else if (level == 1 && pos[0] == this.key[0] && pos[1] == this.key[1] && !this.hero.hasKey()){
+			this.hero.setKey(true);
+			this.map.pickUpKey();
+		}
+		else if (this.map.getMap()[pos[0]][pos[1]] == 'S'){
+			this.hero.setPos(pos[0], pos[1], this.map.getMapSize());
+			return true;
+		}
+			
+		
+		return false;
+	}
+
+
 }

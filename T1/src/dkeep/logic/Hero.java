@@ -25,10 +25,38 @@ public class Hero extends Character{
 	}
 	
 	public Position moveCharacter(int MAP_SIZE){
-		
 		return null;
 	}
 
+	public Position moveCharacter(int MAP_SIZE,int dir){
+		Position temp =  new Position(position.getX(), position.getY(), position.getRepresentation());
+
+		switch (dir) {
+		case 1: // move right
+			if (position.getX() + 1 < MAP_SIZE)
+				position.increaseX();
+			break;
+
+		case 2: // move down
+			if (position.getY() + 1 < MAP_SIZE)
+				position.increaseY();
+			break;
+
+		case 3: // move left
+			if (position.getX() - 1 <= 0)
+				position.decreaseX();
+			break;
+
+		case 4: // move up
+			if (position.getY() - 1 <= 0)
+				position.decreaseY();
+			break;
+
+		}
+		
+		return temp;
+	}	
+	
 	public ArrayList<Position> getPrintable()
 	{
 		ArrayList<Position> temp = new ArrayList<Position>();

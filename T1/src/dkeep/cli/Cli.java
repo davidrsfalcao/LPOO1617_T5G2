@@ -2,7 +2,6 @@ package dkeep.cli;
 import java.util.*;
 import dkeep.logic.Logic;
 import dkeep.logic.Character;
-import pair.Pair;
 
 
 public class Cli {

@@ -42,7 +42,7 @@ public class Cli {
 	private void game()
 	{
 		do{
-			returnMap(game.getMap().getMap(),game.getLevel());
+			printMap(game.getMap().getMap(),game.getLevel());
 			game = game.movementH(UserInput());
 			game.movementV();
 			

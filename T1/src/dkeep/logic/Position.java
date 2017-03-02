@@ -71,6 +71,7 @@ public class Position {
 	/**
 	 * Redefines y coordinate 
 	 * 
+	 * 
 	 * @param y
 	 */
 	public void setY(int y)

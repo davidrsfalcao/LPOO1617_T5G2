@@ -23,7 +23,7 @@ public class Maze1 extends Map{
 		Position t1 = new Position(0,5,'S');
 		endPositions.add(t1);
 		Position t2 = new Position(0,6,'S');
-		endPositions.add(t1);
+		endPositions.add(t2);
 		
 	}
 	

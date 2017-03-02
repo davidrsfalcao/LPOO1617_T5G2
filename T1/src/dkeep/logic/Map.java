@@ -29,4 +29,9 @@ public abstract class Map {
 	public abstract Map nextMap();
 	
 	public abstract void pickUpKey();
+	
+	public ArrayList<Position> getEndPositions()
+	{
+		return endPositions;
+	}
 }

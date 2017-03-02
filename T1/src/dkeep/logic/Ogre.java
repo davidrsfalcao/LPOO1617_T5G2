@@ -4,6 +4,10 @@ import java.util.Random;
 
 public class Ogre extends Character {
 	
+	public Ogre(int x, int y) {
+		position = new Position(x, y, 'O');
+	}
+	
 	public Position moveCharacter(int MAP_SIZE) {
 		Random rand = new Random();
 		Position temp = new Position(position.getX(), position.getY(), position.getRepresentation());

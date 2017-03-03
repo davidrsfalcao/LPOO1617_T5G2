@@ -1,0 +1,80 @@
+package dkeep.cli;
+import java.util.*;
+import dkeep.logic.Logic;
+import dkeep.logic.Character;
+
+
+public class Cli {
+	
+	Logic game;
+	
+	public static void main (String[] args)
+	{
+		Cli cl= new Cli();
+		cl.game();
+		
+	}
+	
+	public Cli()
+	{
+		game = new Logic(0);
+		
+	}
+	
+	private void ClearScreen()
+	{
+		for(int i=0;i < 20;i++)
+		{
+			System.out.println();
+		}
+	}
+	
+	private char UserInput()
+	{
+		
+		Scanner sc = new Scanner(System.in);
+		char op = sc.next().charAt(0);
+		return op;
+		
+	}
+	
+	private void game() {
+		do {
+			printMap(game.getMap().getMap(), game.getLevel());
+			game = game.moveHero(UserInput());
+			game.moveAllVillains();
+
+		} while (!game.wonGame() /* && !game.isOver() */);
+		printMap(game.getMap().getMap(), game.getLevel());
+		if (game.wonGame())
+			System.out.println("    Congratulations!!   \n");
+		else
+			System.out.println("    Game Over!!   \n");
+
+	}
+	
+	private void printMap(char[][] map,int level)
+	{
+		ClearScreen();	
+		int tam = game.getAllCharacters().size();
+		ArrayList<Character> temp = game.getAllCharacters();
+		
+		for(int k = 0; k < tam; k++)
+		{
+			map[temp.get(k).getPosition().getY()][temp.get(k).getPosition().getX()] = temp.get(k).getRepresentation();
+		}
+		
+		for (int i=0;i < map.length ; i++)
+		{
+			for(int k=0;k < map[i].length;k++)
+			{
+				System.out.print(map[i][k] + " ");
+			}
+			System.out.println();
+		}
+		
+		
+	}
+	
+
+}

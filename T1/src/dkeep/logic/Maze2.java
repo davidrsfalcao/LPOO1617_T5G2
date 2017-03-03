@@ -25,10 +25,6 @@ public class Maze2 extends Map{
 		endPositions.add(t1);
 	}
 	
-	public void openDoors(){
-		this.map[1][0] = 'S';
-	}
-	
 	public Map nextMap(){
 		return null;
 	}

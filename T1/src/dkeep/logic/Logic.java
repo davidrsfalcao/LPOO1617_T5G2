@@ -71,13 +71,13 @@ public class Logic {
 		Position temp;
 		
 		if	   ('w' == direction)
-			temp = hero.moveCharacter(this.map.getMapSize() , 4);
+			temp = hero.moveCharacter(map.getMapSize() , 4);
 		else if('a' == direction)
-			temp = hero.moveCharacter(this.map.getMapSize() , 3);		
+			temp = hero.moveCharacter(map.getMapSize() , 3);		
 		else if('s' == direction)
-			temp = hero.moveCharacter(this.map.getMapSize() , 2);
+			temp = hero.moveCharacter(map.getMapSize() , 2);
 		else if('d' == direction)
-			temp = hero.moveCharacter(this.map.getMapSize() , 1);
+			temp = hero.moveCharacter(map.getMapSize() , 1);
 		else
 			return this;
 		
@@ -93,7 +93,7 @@ public class Logic {
 	private boolean checkTriggers(Position pos){ //checks if hero is in a key/lever or entered a door/stairs
 		
 		if(level == 0 && pos[0] == this.key[0] && pos[1] == this.key[1] )
-			this.map.openDoors();
+			map.openDoors();
 		else if (level == 1 && this.map.getMap()[pos[0]][pos[1]] == 'I' && this.hero.hasKey()){
 			this.map.openDoors();
 			pos[1]++; //stop hero from going inside stairs at first attempt

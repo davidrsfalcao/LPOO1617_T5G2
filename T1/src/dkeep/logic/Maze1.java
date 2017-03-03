@@ -27,11 +27,7 @@ public class Maze1 extends Map{
 		
 	}
 	
-	public void openDoors(){
-		this.map[5][0] = 'S';
-		this.map[6][0] = 'S';
-	}
-	
+
 	public Map nextMap(){
 		return new Maze2();
 	}

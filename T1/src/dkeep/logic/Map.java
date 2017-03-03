@@ -21,10 +21,19 @@ public abstract class Map {
 	}
 
 	public boolean isFree(int x , int y){
-		return (this.map[x][y] == ' ' || this.map[x][y] == 'K' || this.map[x][y] == 'S');
+		return (map[y][x] == ' ' || map[y][x] == 'K' || map[y][x] == 'S');
 	}
 	
-	public abstract void openDoors();
+	public void openDoors()
+	{
+		for (int i = 0; i < MAP_SIZE; i++)
+			for (int k = 0; k < MAP_SIZE; k++)
+			{
+				if (map[i][k] == 'I')
+					map[i][k] = 'S';
+			}
+		
+	}
 	
 	public abstract Map nextMap();
 	

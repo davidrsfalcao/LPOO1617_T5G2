@@ -38,28 +38,30 @@ public class Cli {
 		
 	}
 	
-	private void game()
-	{
-		do{
-			printMap(game.getMap().getMap(),game.getLevel());
-			game = game.movementH(UserInput());
-			game.movementV();
-			
-		}while(!game.wonGame() && !game.isOver());
+	private void game() {
+		do {
+			printMap(game.getMap().getMap(), game.getLevel());
+			game = game.moveHero(UserInput());
+			game.moveAllVillains();
+
+		} while (!game.wonGame() /* && !game.isOver() */);
 		printMap(game.getMap().getMap(), game.getLevel());
-		if(game.wonGame())
+		if (game.wonGame())
 			System.out.println("    Congratulations!!   \n");
 		else
 			System.out.println("    Game Over!!   \n");
-		
+
 	}
 	
 	private void printMap(char[][] map,int level)
 	{
-		ClearScreen();
-		for(Character ch : game.getAllCharacters())
+		ClearScreen();	
+		int tam = game.getAllCharacters().size();
+		ArrayList<Character> temp = game.getAllCharacters();
+		
+		for(int k = 0; k < tam; k++)
 		{
-			map[ch.getPosition().getY()][ch.getPosition().getX()] = ch.getRepresentation();
+			map[temp.get(k).getPosition().getY()][temp.get(k).getPosition().getX()] = temp.get(k).getRepresentation();
 		}
 		
 		for (int i=0;i < map.length ; i++)
@@ -68,6 +70,7 @@ public class Cli {
 			{
 				System.out.print(map[i][k] + " ");
 			}
+			System.out.println();
 		}
 		
 		

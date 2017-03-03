@@ -4,23 +4,23 @@ import java.util.ArrayList;
 
 public class Hero extends Character{
 	
-	private boolean have_key;
+	private boolean has_key;
 	private boolean is_armed;
 	
 	public Hero(int level){
 		
-		if (level == 1)
+		if (level == 0)
 		{
 			position = new Position(1, 1, 'H');
 			is_armed = false;
 		}
-		else if (level == 2)
+		else if (level == 1)
 		{
 			position = new Position(1, 7, 'A');
 			is_armed = true;
 		}
 		
-		have_key = false;
+		has_key = false;
 	
 	}
 	
@@ -30,29 +30,30 @@ public class Hero extends Character{
 
 	public Position moveCharacter(int MAP_SIZE,int dir){
 		Position temp =  new Position(position.getX(), position.getY(), position.getRepresentation());
-
+		
 		switch (dir) {
 		case 1: // move right
 			if (position.getX() + 1 < MAP_SIZE)
-				position.increaseX();
+				temp.increaseX();
 			break;
 
 		case 2: // move down
 			if (position.getY() + 1 < MAP_SIZE)
-				position.increaseY();
+				temp.increaseY();
 			break;
 
 		case 3: // move left
-			if (position.getX() - 1 <= 0)
-				position.decreaseX();
+			if (position.getX() - 1 >= 0)
+				temp.decreaseX();
 			break;
 
 		case 4: // move up
-			if (position.getY() - 1 <= 0)
-				position.decreaseY();
+			if (position.getY() - 1 >= 0)
+				temp.decreaseY();
 			break;
 
 		}
+		
 		
 		return temp;
 	}	
@@ -63,5 +64,16 @@ public class Hero extends Character{
 		temp.add(position);
 		return temp;
 	}
+	
+	public boolean hasKey()
+	{
+		return has_key;
+	}
+	
+	public void pickUpKey()
+	{
+		has_key = true;
+	}
+	
 	
 }

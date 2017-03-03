@@ -21,7 +21,7 @@ public abstract class Map {
 	}
 
 	public boolean isFree(int x , int y){
-		return (map[y][x] == ' ' || map[y][x] == 'K' || map[y][x] == 'S');
+		return (map[y][x] == ' ' || map[y][x] == 'k' || map[y][x] == 'S');
 	}
 	
 	public void openDoors()

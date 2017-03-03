@@ -1,5 +1,7 @@
 package dkeep.logic;
 
+import java.util.ArrayList;
+
 public class Maze1 extends Map{
 
 	public Maze1(){
@@ -12,7 +14,7 @@ public class Maze1 extends Map{
 					  {'I',' ',' ',' ',' ',' ',' ',' ',' ','X'} ,
 					  {'I',' ',' ',' ',' ',' ',' ',' ',' ','X'} ,
 					  {'X','X','X',' ','X','X','X','X',' ','X'} ,
-					  {'X',' ','I',' ','I',' ','X','K',' ','X'} ,
+					  {'X',' ','I',' ','I',' ','X','k',' ','X'} ,
 					  {'X','X','X','X','X','X','X','X','X','X'} };
 		int i = 0;
 		for( char[] c : temp){
@@ -21,6 +23,7 @@ public class Maze1 extends Map{
 		}
 		
 		Position t1 = new Position(0,5,'S');
+		endPositions = new ArrayList<Position>();
 		endPositions.add(t1);
 		Position t2 = new Position(0,6,'S');
 		endPositions.add(t2);

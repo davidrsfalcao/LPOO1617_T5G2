@@ -1,5 +1,7 @@
 package dkeep.logic;
 
+import java.util.ArrayList;
+
 public class Maze2 extends Map{
 	
 	public Maze2(){
@@ -20,7 +22,7 @@ public class Maze2 extends Map{
 			this.map[i] = c;
 			i++;
 		}
-		
+		endPositions = new ArrayList<Position>();
 		Position t1 = new Position(0,1,'S');
 		endPositions.add(t1);
 	}

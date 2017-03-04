@@ -91,16 +91,18 @@ public class Logic {
 		else
 			return this;
 
-		if (checkTriggers(temp)) // check if level up
-			return (level == 0) ? new Logic(++level) : this;
+		checkTriggers(temp);
 
 		if (map.isFree(temp.getX(), temp.getY()) && positionClear(temp))
 			hero.setPos(temp.getX(), temp.getY(), map.getMapSize());
+		
+		if (levelUp())
+			return new Logic(++level);
 
 		return this;
 	}
 
-	private boolean checkTriggers(Position pos) {
+	private void checkTriggers(Position pos) {
 
 		if (level == 0 && pos.getX() == key.getX() && pos.getY() == key.getY())
 			map.openDoors();
@@ -111,12 +113,8 @@ public class Logic {
 		} else if (level == 1 && pos.getX() == key.getX() && pos.getY() == key.getY() && !hero.hasKey()) {
 			hero.pickUpKey();
 			map.pickUpKey();
-		} else if (map.getMap()[pos.getY()][pos.getX()] == 'S') {
-			this.hero.setPos(pos.getX(), pos.getY(), this.map.getMapSize());
-			return true;
 		}
-
-		return false;
+		
 	}
 
 	public void moveAllVillains() { // move all villains based on current level
@@ -214,6 +212,18 @@ public class Logic {
 				
 			}
 			
+			
+		}
+		
+		return false;
+	}
+
+	private boolean levelUp()
+	{
+		for (Position end : map.getEndPositions())
+		{
+			if (hero.getPosition().equals(end))
+				return true;
 			
 		}
 		

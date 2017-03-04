@@ -21,7 +21,7 @@ public class Cli {
 		
 	}
 	
-	private void ClearScreen()
+	private void clearScreen()
 	{
 		for(int i=0;i < 20;i++)
 		{
@@ -44,18 +44,24 @@ public class Cli {
 			game = game.moveHero(UserInput());
 			game.moveAllVillains();
 
-		} while (!game.wonGame() /* && !game.isOver() */);
+		} while (!game.wonGame()  && !game.Over() );
 		printMap(game.getMap().getMap(), game.getLevel());
 		if (game.wonGame())
+		{
+			clearScreen();
 			System.out.println("    Congratulations!!   \n");
+		}
 		else
+		{
+			clearScreen();
 			System.out.println("    Game Over!!   \n");
+		}
 
 	}
 	
 	private void printMap(char[][] map,int level)
 	{
-		ClearScreen();	
+		clearScreen();	
 		int tam = game.getAllCharacters().size();
 		ArrayList<Character> temp = game.getAllCharacters();
 		

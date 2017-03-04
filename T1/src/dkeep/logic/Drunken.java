@@ -1,14 +1,48 @@
 package dkeep.logic;
 
+import java.util.Random;
+
 public class Drunken extends Guard{
 
+	private int counter; // Counter of sleepy rounds and awake rounds
+	private Random rand = new Random();
+	
 	public Drunken()
 	{
 		super();
+		counter = rand.nextInt(5) + 3;
 	}
 	
 	public Position moveCharacter(int MAP_SIZE)
 	{
+		
+		if (counter == 0)
+		{
+			awake = !awake;
+			
+			if (awake)
+			{
+				position.setRepresentation('G');
+				counter = rand.nextInt(5) + 3;	
+			}
+			else {
+				position.setRepresentation('g');
+				counter = rand.nextInt(3) + 1;	
+			}
+				
+			
+		}
+		else if (awake)
+		{
+			position.changeTo(patch[index][0] , patch[index][1]);
+			increaseIndex();
+			counter--;
+		}
+		else {
+			// stay in the same position
+			counter--;
+		}
+		
 		return position;
 	}
 	

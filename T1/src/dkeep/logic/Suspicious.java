@@ -18,14 +18,14 @@ public class Suspicious extends Guard {
 
 	public Position moveCharacter(int MAP_SIZE) {
 		if (front) {
-			increaseIndex();
 			position.changeTo(patch[index][0], patch[index][1]);
 			steps_front--;
+			increaseIndex();
 
 		} else {
-			decreaseIndex();
 			position.changeTo(patch[index][0], patch[index][1]);
 			steps_back--;
+			decreaseIndex();
 		}
 
 		if (steps_front == 0) {

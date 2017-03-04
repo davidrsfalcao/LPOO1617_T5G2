@@ -35,13 +35,17 @@ public abstract class Guard extends Character {
 			index = patch.length - 1;
 	}
 	
-	
 	public abstract Position moveCharacter(int MAP_SIZE);
 	
 	public ArrayList<Position> getPrintable() {
 		ArrayList<Position> temp = new ArrayList<Position>();
 		temp.add(position);
 		return temp;
+	}
+	
+	public boolean isAwake()
+	{
+		return awake;
 	}
 	
 }

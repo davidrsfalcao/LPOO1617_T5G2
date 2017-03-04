@@ -4,6 +4,16 @@ import java.util.Random;
 
 public class Ogre extends Character {
 	
+	public Ogre(int posX, int posY, boolean playing)
+	{
+		this.playing = playing;
+		
+		if(!playing)
+			position = new Position(-10,-10,'O');
+		else position = new Position(posX, posY,'O');
+		
+	}
+	
 	public Ogre(int x, int y) {
 		playing = true;
 		position = new Position(x, y, 'O');

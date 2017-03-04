@@ -40,4 +40,8 @@ public abstract class Character {
 		setPosition(-10,-10);
 	}
 
+	public boolean isPlaying()
+	{
+		return playing;
+	}
 }

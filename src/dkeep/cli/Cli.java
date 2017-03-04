@@ -2,6 +2,7 @@ package dkeep.cli;
 import java.util.*;
 import dkeep.logic.Logic;
 import dkeep.logic.Character;
+import dkeep.logic.Maze1;
 
 
 public class Cli {
@@ -17,7 +18,7 @@ public class Cli {
 	
 	public Cli()
 	{
-		game = new Logic(0);
+		game = new Logic(0, new Maze1());
 		
 	}
 	

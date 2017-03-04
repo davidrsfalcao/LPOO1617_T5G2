@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Hero extends Character{
 	
+	private Position last_position;
 	private boolean has_key;
 	private boolean is_armed;
 	
@@ -23,7 +24,25 @@ public class Hero extends Character{
 		}
 		
 		has_key = false;
+		last_position = new Position(position.getX(), position.getY(), position.getRepresentation());
 	
+	}
+	
+	public Hero(int posX, int posY, boolean has_key, boolean is_armed)
+	{
+		playing = true;
+		this.has_key = has_key;
+		this.is_armed = is_armed;
+		
+		position = new Position(posX, posY, 'H');
+		
+		if (is_armed)
+			position.setRepresentation('A');
+
+		if (has_key)
+			position.setRepresentation('K');
+		
+		last_position = new Position(posX, posY, position.getRepresentation());
 	}
 	
 	public Position moveCharacter(int MAP_SIZE){

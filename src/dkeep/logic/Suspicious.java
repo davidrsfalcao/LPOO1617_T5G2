@@ -8,6 +8,16 @@ public class Suspicious extends Guard {
 	private int steps_back;
 	private Random rand = new Random();
 	
+	public Suspicious(int posX, int posY, boolean playing)
+	{
+		this.playing = playing;
+		steps_front = rand.nextInt(5) + 3;
+		steps_back = rand.nextInt(3) + 1;
+		
+		if(!playing)
+			position = new Position(-10,-10,'G');
+		else position = new Position(posX, posY, 'G');
+	}
 	
 	public Suspicious() {
 		super();

@@ -7,6 +7,18 @@ public class Drunken extends Guard{
 	private int counter; // Counter of sleepy rounds and awake rounds
 	private Random rand = new Random();
 	
+	public Drunken(int posX, int posY, boolean playing)
+	{
+		this.playing = playing;
+		counter = rand.nextInt(5) + 3;
+		
+		if(!playing)
+			position = new Position(-10,-10,'G');
+		else position = new Position(posX, posY, 'G');
+			
+	}
+	
+	
 	public Drunken()
 	{
 		super();

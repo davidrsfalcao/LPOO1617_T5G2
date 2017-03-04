@@ -8,8 +8,28 @@ public class Maze2 extends Map{
 		MAP_SIZE = 9;
 		map = new char[MAP_SIZE][MAP_SIZE];
 		
+		ArrayList<Integer> hero = new ArrayList<Integer>();
+		hero.add(1); //posX
+		hero.add(7); //posY
+		hero.add(0); //has_key
+		hero.add(1); //is_armed
+		
+		ArrayList<Integer> guard = new ArrayList<Integer>();
+		guard.add(0); //posX
+		guard.add(0); //posY
+		guard.add(0); //playing
+		
+		ArrayList<Integer> ogre = new ArrayList<Integer>();
+		ogre.add(1); //playing
+		
+		initValues.add(hero);
+		initValues.add(guard);
+		initValues.add(ogre);
+		
+		key = new Position(7,1,'k');
+		
 		char[][]temp={{'X','X','X','X','X','X','X','X','X'} ,
-					  {'I',' ',' ',' ',' ',' ',' ','K','X'} ,
+					  {'I',' ',' ',' ',' ',' ',' ','k','X'} ,
 					  {'X',' ',' ',' ',' ',' ',' ',' ','X'} ,
 					  {'X',' ',' ',' ',' ',' ',' ',' ','X'} ,
 					  {'X',' ',' ',' ',' ',' ',' ',' ','X'} ,
@@ -29,7 +49,7 @@ public class Maze2 extends Map{
 	}
 	
 	public Map nextMap(){
-		return new Maze2();
+		return null;
 	}
 
 	public void pickUpKey(){

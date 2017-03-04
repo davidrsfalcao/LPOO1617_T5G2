@@ -5,6 +5,21 @@ public abstract class Map {
 	protected int MAP_SIZE;
 	protected char[][] map;
 	protected ArrayList<Position> endPositions;
+	protected Position key;
+	
+	/**
+	 *  { {hero}, {guard}, {ogres}} 
+	 *  
+	 *  {hero} = {posX, posY, has_key(*), is_armed(*)}
+	 *   
+	 *  {guard} = {posX, posY, playing(*)}
+	 * 
+	 *  {ogre} = {playing(*)}
+	 *  
+	 * 		  (*) 1 for true and 0 for false
+	 * 
+	 */
+	protected ArrayList<ArrayList<Integer>> initValues = new ArrayList<ArrayList<Integer>>();
 
 	public char[][] getMap(){
 		char[][] temp = new char[MAP_SIZE][];
@@ -46,5 +61,15 @@ public abstract class Map {
 	public ArrayList<Position> getEndPositions()
 	{
 		return endPositions;
+	}
+	
+	public Position getKey()
+	{
+		return key;
+	}
+
+	public ArrayList<ArrayList<Integer>> getInitValues()
+	{
+		return initValues;
 	}
 }

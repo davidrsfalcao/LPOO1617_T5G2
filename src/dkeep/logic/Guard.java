@@ -13,7 +13,7 @@ public abstract class Guard extends Character {
 		playing = true;
 		position = new Position(8,1,'G');
 	}
-	
+		
 	/**
 	 * Increase index 
 	 * 

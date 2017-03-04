@@ -10,6 +10,7 @@ public abstract class Guard extends Character {
 
 	public Guard()
 	{
+		playing = true;
 		position = new Position(8,1,'G');
 	}
 	
@@ -47,5 +48,6 @@ public abstract class Guard extends Character {
 	{
 		return awake;
 	}
+	
 	
 }

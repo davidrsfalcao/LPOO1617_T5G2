@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public abstract class Character {
 	
 	protected Position position;
+	protected boolean playing;
 	
 	public char getRepresentation()
 	{
@@ -32,5 +33,11 @@ public abstract class Character {
 	public abstract Position moveCharacter(int MAP_SIZE);
 	
 	public abstract ArrayList<Position> getPrintable();
+	
+	public void takeOff()
+	{
+		playing = false;
+		setPosition(-10,-10);
+	}
 
 }

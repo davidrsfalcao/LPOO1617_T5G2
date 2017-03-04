@@ -24,15 +24,15 @@ public class Logic {
 
 			switch (res) {
 			case 0:
-				guard = new Rookie();
-				break;
-
-			case 1:
 				guard = new Drunken();
 				break;
 
-			case 2:
+			case 1:
 				guard = new Suspicious();
+				break;
+				
+			case 2:
+				guard = new Rookie();
 				break;
 
 			}
@@ -40,6 +40,7 @@ public class Logic {
 		} else if (1 == level) {
 			map = new Maze2();
 			hero = new Hero(this.level);
+			guard = null;
 			key = new Position(8, 1, 'k');
 			int res = rand.nextInt(3) + 1;
 			for (int i = 0; i < res; i++)
@@ -96,9 +97,12 @@ public class Logic {
 		if (map.isFree(temp.getX(), temp.getY()) && positionClear(temp))
 			hero.setPos(temp.getX(), temp.getY(), map.getMapSize());
 		
-		if (levelUp())
-			return new Logic(++level);
-
+		if (levelUp()){		
+			if (map.nextMap() != null)
+				return new Logic(++level);
+			
+		}
+		
 		return this;
 	}
 

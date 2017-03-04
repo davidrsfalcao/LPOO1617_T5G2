@@ -5,10 +5,11 @@ import java.util.ArrayList;
 public class Maze2 extends Map{
 	
 	public Maze2(){
-		this.MAP_SIZE = 9;
+		MAP_SIZE = 9;
+		map = new char[MAP_SIZE][MAP_SIZE];
+		
 		char[][]temp={{'X','X','X','X','X','X','X','X','X'} ,
 					  {'I',' ',' ',' ',' ',' ',' ','K','X'} ,
-					  {'X',' ',' ',' ',' ',' ',' ',' ','X'} ,
 					  {'X',' ',' ',' ',' ',' ',' ',' ','X'} ,
 					  {'X',' ',' ',' ',' ',' ',' ',' ','X'} ,
 					  {'X',' ',' ',' ',' ',' ',' ',' ','X'} ,
@@ -19,7 +20,7 @@ public class Maze2 extends Map{
 		
 		int i = 0;
 		for( char[] c : temp){
-			this.map[i] = c;
+			map[i] = c;
 			i++;
 		}
 		endPositions = new ArrayList<Position>();
@@ -28,7 +29,7 @@ public class Maze2 extends Map{
 	}
 	
 	public Map nextMap(){
-		return null;
+		return new Maze2();
 	}
 
 	public void pickUpKey(){

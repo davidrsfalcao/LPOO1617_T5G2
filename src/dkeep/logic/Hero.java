@@ -9,6 +9,8 @@ public class Hero extends Character{
 	
 	public Hero(int level){
 		
+		playing = false;
+		
 		if (level == 0)
 		{
 			position = new Position(1, 1, 'H');

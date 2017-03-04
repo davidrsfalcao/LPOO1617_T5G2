@@ -15,6 +15,8 @@ public class Drunken extends Guard{
 	
 	public Position moveCharacter(int MAP_SIZE)
 	{
+		if (!playing)
+			return position;
 		
 		if (counter == 0)
 		{

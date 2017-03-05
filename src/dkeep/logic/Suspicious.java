@@ -19,13 +19,6 @@ public class Suspicious extends Guard {
 		else position = new Position(posX, posY, 'G');
 	}
 	
-	public Suspicious() {
-		super();
-		steps_front = rand.nextInt(5) + 3;
-		steps_back = rand.nextInt(3) + 1;
-
-	}
-
 	public Position moveCharacter(int MAP_SIZE) {
 		if (front) {
 			position.changeTo(patch[index][0], patch[index][1]);

@@ -18,13 +18,6 @@ public class Drunken extends Guard{
 			
 	}
 	
-	
-	public Drunken()
-	{
-		super();
-		counter = rand.nextInt(5) + 3;
-	}
-	
 	public Position moveCharacter(int MAP_SIZE)
 	{
 		if (!playing)

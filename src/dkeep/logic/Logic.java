@@ -95,6 +95,8 @@ public class Logic {
 			for (int i = 0; i < res1; i++)
 				ogres.add(new Ogre(rand.nextInt(map.getMapSize() - 3) + 1, rand.nextInt(map.getMapSize() - 3) + 1));
 		}
+		
+		
 	}
 	
 	/**
@@ -117,63 +119,26 @@ public class Logic {
 	 * @return true or false
 	 */
 	public boolean Over() {
-		Position posH = new Position(hero.getPosition().getX(), hero.getPosition().getY(),
-				hero.getPosition().getRepresentation());
 
-		Position posG = new Position(guard.getPosition().getX(), guard.getPosition().getY(),
-				guard.getPosition().getRepresentation());
-
-		if (guard.isAwake()) {
-
-			for (int i = 0; i < 5; i++) {
-				switch (i) {
-				case 0: // Guard's position
-					if (posH.equals(posG))
+		if (guard.isPlaying()) {
+			if (guard.isAwake()) {
+				for (Position pos : guard.getPosition().getSurroundings()) {
+					if (pos.equals(hero.getPosition()))
 						return true;
-					else {
-						posG.decreaseX();
-					}
-					break;
-
-				case 1: // Left
-					if (posH.equals(posG))
-						return true;
-					else {
-						posG.increaseX();
-						posG.increaseX();
-					}
-					break;
-
-				case 2: // Right
-					if (posH.equals(posG))
-						return true;
-					else {
-						posG.decreaseX();
-						posG.increaseY();
-					}
-					break;
-
-				case 3: // Up
-					if (posH.equals(posG))
-						return true;
-					else {
-						posG.decreaseY();
-						posG.decreaseY();
-					}
-					break;
-
-				case 4: // Down
-					if (posH.equals(posG))
-						return true;
-					else {
-						posG.decreaseY();
-						posG.decreaseY();
-					}
-					break;
 				}
 
 			}
-
+		}
+		
+		for (Ogre ogre : ogres)
+		{
+			if (ogre.getClubVisibily())
+			{
+				for (Position pos : ogre.getClub().getPosition().getSurroundings()) {
+					if (pos.equals(hero.getPosition()))
+						return true;
+				}
+			}
 		}
 
 		return false;
@@ -226,9 +191,6 @@ public class Logic {
 				return false;
 		}
 		
-//		if (temp.equals(hero.getPosition()))
-//			return false;
-
 		return true;
 
 	}
@@ -287,16 +249,25 @@ public class Logic {
 					pos = ogre.moveCharacter(map.getMapSize());
 				} while (!map.isFree(pos.getX(), pos.getY()));
 
-				ogre.setPosition(pos.getX(), pos.getY());
-				// do{
-				// pos = o.moveClub(this.map.getMapSize());
-				// }while( !map.isFree(pos[0],pos[1]));
-				// o.setClub(pos[0], pos[1], map.getMapSize());
+				ogre.setPosition(pos.getX(), pos.getY());				
 				}
+			}	
+			for (int k = 0; k < ogres.size(); k++) {
+				pos = ogres.get(k).moveClub();
+
+				if (map.isFree(pos.getX(), pos.getY()) && positionClear(pos)) {
+					ogres.get(k).setClub(pos);
+				} else
+					ogres.get(k).setClubNotVisible();
+
 			}
 		}
 	}
 
+	/**
+	 * Hero atacks villains if they are surrounding him
+	 * 
+	 */
 	public void atack_villains()
 	{
 		if (hero.is_armed())
@@ -339,7 +310,12 @@ public class Logic {
 		for (Ogre ogre : ogres)
 		{
 			if (ogre.isPlaying())
+			{
 				temp.add(ogre);
+				if (ogre.getClubVisibily())
+					temp.add(ogre.getClub());
+				
+			}
 		}
 
 		return temp;

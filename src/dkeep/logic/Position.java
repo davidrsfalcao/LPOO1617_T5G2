@@ -194,11 +194,13 @@ public class Position {
 	{
 		ArrayList<Position> temp = new ArrayList<Position>();
 		
+		Position t0 = new Position(x,y,representation);
 		Position t1 = new Position(x-1,y,representation);
 		Position t2 = new Position(x+1,y,representation);
 		Position t3 = new Position(x,y+1,representation);
 		Position t4 = new Position(x,y-1,representation);
 		
+		temp.add(t0);
 		temp.add(t1);
 		temp.add(t2);
 		temp.add(t3);

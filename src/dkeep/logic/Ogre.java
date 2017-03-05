@@ -5,7 +5,11 @@ public class Ogre extends Character {
 	
 	private boolean stunned = false;
 	private int rounds = 2;
+	private MassiveClub club = new MassiveClub();
 	
+ 	public Ogre(){
+		
+	}
 	
 	public Ogre(int x, int y) {
 		playing = true;
@@ -65,6 +69,56 @@ public class Ogre extends Character {
 	public boolean isStunned()
 	{
 		return stunned;
+	}
+	
+	public MassiveClub getClub()
+	{
+		return club;
+	}
+	
+	public Position moveClub()
+	{
+		Random rand = new Random();
+		Position temp = new Position(position.getX(), position.getY(), '*');
+		
+		int direction = rand.nextInt(4);
+		
+		switch(direction)
+		{
+		case 0: //right
+			temp.increaseX();
+			break;
+		
+		case 1: //left
+			temp.decreaseX();
+			break;
+			
+		case 2: //down
+			temp.increaseY();
+			break;
+			
+		case 3: //up
+			temp.decreaseY();
+			break;
+		}
+				
+		return temp;
+	}
+	
+	public void setClub(Position pos)
+	{
+		club.setVisibility(true);
+		club.setPosition(pos);
+	}
+
+	public void setClubNotVisible()
+	{
+		club.setVisibility(false);
+	}
+
+	public boolean getClubVisibily()
+	{
+		return club.getVisibility();
 	}
 	
 }

@@ -1,5 +1,7 @@
 package dkeep.cli;
-import java.util.*;
+
+import java.util.Scanner;
+import java.util.ArrayList;
 import dkeep.logic.Logic;
 import dkeep.logic.Character;
 import dkeep.logic.Maze1;

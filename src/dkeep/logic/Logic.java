@@ -18,21 +18,7 @@ public class Logic {
 		this.map = map;
 		initCharacters();	
 	}
-////////////////////////////////////For Test////////////////////////////////
-	public Logic(Maze1 gameMap, int level) {
-		// para teste
-		
-		if (level == 0)
-		{
-			this.guard=new Rookie(1,3,true);
-			this.map=gameMap;
-			this.hero=new Hero(1,1,false,false);
-			
-		}
-		
-		
-	}
-////////////////////////////////////////////////////////////////////////////
+
 	/**
 	 * Init all the characters based on current map
 	 * 

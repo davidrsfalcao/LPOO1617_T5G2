@@ -57,6 +57,11 @@ public class Maze1 extends Map{
 		
 	}
 	
+	public Maze1(char[][] map) {
+		this.map=map;
+	}
+
+
 	/**
 	 * Returns the next map
 	 * 

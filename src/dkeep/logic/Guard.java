@@ -29,8 +29,19 @@ public abstract class Guard extends Character {
 			index = patch.length - 1;
 	}
 	
+	/**
+	 * Abstract method for moving Characters
+	 * 
+	 * @param MAP_SIZE
+	 * @return
+	 */
 	public abstract Position moveCharacter(int MAP_SIZE);
 	
+	/**
+	 * Return if the guard is awake or sleeping
+	 * 
+	 * @return true or false
+	 */
 	public boolean isAwake()
 	{
 		return awake;

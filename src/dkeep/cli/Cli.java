@@ -8,7 +8,23 @@ import dkeep.logic.Maze1;
 public class Cli {
 	
 	Logic game;
+	Scanner sc = new Scanner(System.in);
+		
+	/**
+	 * Cli constructor
+	 * 
+	 */
+	public Cli()
+	{
+		game = new Logic(new Maze1());
+		
+	}
 	
+	/**
+	 * Initial function
+	 * 
+	 * @param args
+	 */
 	public static void main (String[] args)
 	{
 		Cli cl= new Cli();
@@ -16,38 +32,31 @@ public class Cli {
 		
 	}
 	
-	public Cli()
-	{
-		game = new Logic(new Maze1());
-		
-	}
-	
-	private void clearScreen()
-	{
-		for(int i=0;i < 20;i++)
-		{
-			System.out.println();
-		}
-	}
-	
+	/**
+	 * Read the user input
+	 * 
+	 * @return a key
+	 */
 	private char UserInput()
-	{
-		
-		Scanner sc = new Scanner(System.in);
+	{	
 		char op = sc.next().charAt(0);
 		return op;
 		
 	}
 	
+	/**
+	 * Main function that control all the game
+	 * 
+	 */
 	private void game() {
 		do {
 			printMap(game.getMap().getMap());
 			game = game.moveHero(UserInput());
 			game.moveAllVillains();
 
-		} while (!game.wonGame()  && !game.Over() );
+		} while (!game.levelUp()  && !game.Over() );
 		printMap(game.getMap().getMap());
-		if (game.wonGame())
+		if (game.levelUp()) // quando não ouver mapa seguinte
 		{
 			clearScreen();
 			System.out.println("    Congratulations!!   \n");
@@ -60,6 +69,11 @@ public class Cli {
 
 	}
 	
+	/**
+	 * Function the prints the game board on console
+	 * 
+	 * @param map
+	 */
 	private void printMap(char[][] map)
 	{
 		clearScreen();	
@@ -83,5 +97,16 @@ public class Cli {
 		
 	}
 	
+	/**
+	 * Print some newlines to clean console
+	 * 
+	 */
+	private void clearScreen()
+	{
+		for(int i=0;i < 20;i++)
+		{
+			System.out.println();
+		}
+	}
 
 }

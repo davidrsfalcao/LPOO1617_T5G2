@@ -5,6 +5,7 @@ public class Position {
 	private int x;
 	private int y;
 	private char representation;
+	private int type = 0; // 0 for default, 1 for lever and 2 for key
 	
 	/**
 	 * Constructor of Position with initialization of x and y and representation
@@ -13,7 +14,7 @@ public class Position {
 	 * @param y
 	 * @param representation
 	 */
-	public Position(int x, int y, char representation)
+ 	public Position(int x, int y, char representation)
 	{
 		this.x = x;
 		this.y = y;
@@ -147,4 +148,20 @@ public class Position {
 		
 	}
 	
+	public void copy(Position pos1)
+	{
+		x = pos1.getX();
+		y = pos1.getY();
+		representation = pos1.getRepresentation();
+	}
+
+	public void setType(int type)
+	{
+		this.type = type;
+	}
+
+	public int getType()
+	{
+		return type;
+	}
 }

@@ -43,6 +43,14 @@ public abstract class Map {
 		
 	}
 	
+	public boolean isFreeForHero(int x , int y)
+	{
+		if (map[y][x] == ' ' || map[y][x] == 'k' || map[y][x] == 'S' || map[y][x] == 'I')
+			return true;
+		else return false;
+		
+	}
+	
 	public void openDoors()
 	{
 		for (int i = 0; i < MAP_SIZE; i++)
@@ -50,6 +58,19 @@ public abstract class Map {
 			{
 				if (map[i][k] == 'I')
 					map[i][k] = 'S';
+			}
+		
+	}
+	
+	public void changeDoors()
+	{
+		for (int i = 0; i < MAP_SIZE; i++)
+			for (int k = 0; k < MAP_SIZE; k++)
+			{
+				if (map[i][k] == 'I')
+					map[i][k] = 'S';
+				else if (map[i][k] == 'S')
+					map[i][k] = 'I';
 			}
 		
 	}

@@ -18,7 +18,7 @@ public class Cli {
 	
 	public Cli()
 	{
-		game = new Logic(0, new Maze1());
+		game = new Logic(new Maze1());
 		
 	}
 	
@@ -41,12 +41,12 @@ public class Cli {
 	
 	private void game() {
 		do {
-			printMap(game.getMap().getMap(), game.getLevel());
+			printMap(game.getMap().getMap());
 			game = game.moveHero(UserInput());
 			game.moveAllVillains();
 
 		} while (!game.wonGame()  && !game.Over() );
-		printMap(game.getMap().getMap(), game.getLevel());
+		printMap(game.getMap().getMap());
 		if (game.wonGame())
 		{
 			clearScreen();
@@ -60,7 +60,7 @@ public class Cli {
 
 	}
 	
-	private void printMap(char[][] map,int level)
+	private void printMap(char[][] map)
 	{
 		clearScreen();	
 		int tam = game.getAllCharacters().size();

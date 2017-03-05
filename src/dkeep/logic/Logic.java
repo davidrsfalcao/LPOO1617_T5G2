@@ -8,11 +8,8 @@ public class Logic {
 	private Guard guard;
 	private ArrayList<Ogre> ogres = new ArrayList<Ogre>();
 	private Hero hero;
-	private int level = 0;
 
-	public Logic(int level, Map map) {
-		this.level = level;
-
+	public Logic(Map map) {
 		this.map = map;
 		initCharacters();
 		
@@ -30,7 +27,6 @@ public class Logic {
 	public Map getMap() {
 		return map;
 	}
-	
 	
 	private void initCharacters()
 	{
@@ -106,9 +102,6 @@ public class Logic {
 		}
 	}
 	
-	public int getLevel() {
-		return level;
-	}
 
 	public ArrayList<Character> getAllCharacters() {
 		ArrayList<Character> temp = new ArrayList<Character>();
@@ -140,28 +133,46 @@ public class Logic {
 		else
 			return this;
 
-		checkTriggers(temp);
 
-		if (map.isFree(temp.getX(), temp.getY()) && positionClear(temp))
+		if (map.isFreeForHero(temp.getX(), temp.getY()) && positionClear(temp))
+		{
+			hero.updateLastPosition();
 			hero.setPos(temp.getX(), temp.getY(), map.getMapSize());
+		}
 
+		checkTriggers();
+		
 		if (levelUp()) {
 			if (map.nextMap() != null)
-				return new Logic(++level, map.nextMap());
+				return new Logic(map.nextMap());
 		}
 		return this;
 	}
 
-	private void checkTriggers(Position pos) {
+	private void checkTriggers() {
 
-		if (level == 0 && pos.getX() == map.getKey().getX() && pos.getY() ==  map.getKey().getY())
-			map.openDoors();
-		else if (level == 1 && map.getMap()[pos.getY()][pos.getX()] == 'I' && hero.hasKey()) {
-			map.openDoors();
-			pos.increaseX();
-		} else if (level == 1 && pos.getX() ==  map.getKey().getX() && pos.getY() ==  map.getKey().getY() && !hero.hasKey()) {
-			hero.pickUpKey();
-			map.pickUpKey();
+		if (hero.getPosition().equals(map.getKey())) {
+			int type = map.getKey().getType();
+
+			switch (type) {
+			case 1:
+				map.changeDoors();
+				hero.comeBack();
+				break;
+
+			case 2:
+				hero.pickUpKey();
+				map.pickUpKey();
+				break;
+
+			}
+		} else if (map.getMap()[hero.getPosition().getY()][hero.getPosition().getX()] == 'I') {
+			if (hero.hasKey()) {
+				map.openDoors();
+				hero.comeBack();
+			} else {
+				hero.comeBack();
+			}
 		}
 
 	}
@@ -178,13 +189,13 @@ public class Logic {
 				if (ogre.isPlaying()){
 				do {
 					pos = ogre.moveCharacter(map.getMapSize());
-				} while (!this.map.isFree(pos.getX(), pos.getY()));
+				} while (!map.isFree(pos.getX(), pos.getY()));
 
 				ogre.setPos(pos.getX(), pos.getY(), map.getMapSize());
 				// do{
 				// pos = o.moveClub(this.map.getMapSize());
-				// }while( !this.map.isFree(pos[0],pos[1]));
-				// o.setClub(pos[0], pos[1], this.map.getMapSize());
+				// }while( !map.isFree(pos[0],pos[1]));
+				// o.setClub(pos[0], pos[1], map.getMapSize());
 				}
 			}
 		}

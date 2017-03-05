@@ -93,7 +93,21 @@ public class Hero extends Character{
 	public void pickUpKey()
 	{
 		has_key = true;
+		position.setRepresentation('K');
 	}
 	
+	public boolean is_armed()
+	{
+		return is_armed;
+	}
 	
+	public void updateLastPosition()
+	{
+		last_position.copy(position);
+	}
+	
+	public void comeBack()
+	{
+		position.copy(last_position);
+	}
 }

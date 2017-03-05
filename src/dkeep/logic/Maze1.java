@@ -26,6 +26,7 @@ public class Maze1 extends Map{
 		initValues.add(ogre);
 		
 		key = new Position(7,8,'k');
+		key.setType(1);
 		
 		
 		char[][]temp={{'X','X','X','X','X','X','X','X','X','X'} ,

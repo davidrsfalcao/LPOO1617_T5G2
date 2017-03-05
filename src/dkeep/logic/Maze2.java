@@ -27,6 +27,7 @@ public class Maze2 extends Map{
 		initValues.add(ogre);
 		
 		key = new Position(7,1,'k');
+		key.setType(2);
 		
 		char[][]temp={{'X','X','X','X','X','X','X','X','X'} ,
 					  {'I',' ',' ',' ',' ',' ',' ','k','X'} ,
@@ -53,7 +54,7 @@ public class Maze2 extends Map{
 	}
 
 	public void pickUpKey(){
-		this.map[1][8] = ' ';
+		this.map[1][7] = ' ';
 	}
 
 }

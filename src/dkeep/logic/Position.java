@@ -130,6 +130,30 @@ public class Position {
 		return representation;
 	}
 
+	/**
+	 * Redefines type
+	 * 
+	 * @param type
+	 */
+	public void setType(int type)
+	{
+		this.type = type;
+	}
+
+	/**
+	 * Returns the type of a position (0 for default position and != 0 for key positions)
+	 * 
+	 * @return type
+	 */
+	public int getType()
+	{
+		return type;
+	}
+	
+	/**
+	 * Overrride of equal
+	 * 
+	 */
 	@Override
 	public boolean equals(Object obj)
 	{
@@ -148,6 +172,11 @@ public class Position {
 		
 	}
 	
+	/**
+	 * Clone the variables of a object of the type Position to another
+	 * 
+	 * @param pos1
+	 */
 	public void copy(Position pos1)
 	{
 		x = pos1.getX();
@@ -155,13 +184,4 @@ public class Position {
 		representation = pos1.getRepresentation();
 	}
 
-	public void setType(int type)
-	{
-		this.type = type;
-	}
-
-	public int getType()
-	{
-		return type;
-	}
 }

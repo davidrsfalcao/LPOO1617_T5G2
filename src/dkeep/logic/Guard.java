@@ -1,5 +1,4 @@
 package dkeep.logic;
-import java.util.ArrayList;
 
 public abstract class Guard extends Character {
 
@@ -31,12 +30,6 @@ public abstract class Guard extends Character {
 	}
 	
 	public abstract Position moveCharacter(int MAP_SIZE);
-	
-	public ArrayList<Position> getPrintable() {
-		ArrayList<Position> temp = new ArrayList<Position>();
-		temp.add(position);
-		return temp;
-	}
 	
 	public boolean isAwake()
 	{

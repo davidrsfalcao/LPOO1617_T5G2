@@ -1,5 +1,4 @@
 package dkeep.logic;
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Ogre extends Character {
@@ -52,11 +51,5 @@ public class Ogre extends Character {
 		return temp;
 	}
 	
-	public ArrayList<Position> getPrintable()
-	{
-		ArrayList<Position> temp = new ArrayList<Position>();
-		temp.add(position);
-		return temp;
-	}
 	
 }

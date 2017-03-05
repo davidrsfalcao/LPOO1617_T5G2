@@ -77,14 +77,7 @@ public class Hero extends Character{
 		
 		return temp;
 	}	
-	
-	public ArrayList<Position> getPrintable()
-	{
-		ArrayList<Position> temp = new ArrayList<Position>();
-		temp.add(position);
-		return temp;
-	}
-	
+		
 	public boolean hasKey()
 	{
 		return has_key;

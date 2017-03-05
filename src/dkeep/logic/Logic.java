@@ -254,7 +254,7 @@ public class Logic {
 		if (map.isFreeForHero(temp.getX(), temp.getY()) && positionClear(temp))
 		{
 			hero.updateLastPosition();
-			hero.setPos(temp.getX(), temp.getY(), map.getMapSize());
+			hero.setPosition(temp.getX(), temp.getY());
 		}
 
 		checkObjectives();
@@ -284,7 +284,7 @@ public class Logic {
 					pos = ogre.moveCharacter(map.getMapSize());
 				} while (!map.isFree(pos.getX(), pos.getY()));
 
-				ogre.setPos(pos.getX(), pos.getY(), map.getMapSize());
+				ogre.setPosition(pos.getX(), pos.getY());
 				// do{
 				// pos = o.moveClub(this.map.getMapSize());
 				// }while( !map.isFree(pos[0],pos[1]));

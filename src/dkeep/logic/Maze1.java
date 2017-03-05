@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class Maze1 extends Map{
 
+	/**
+	 * Constructor of 1st Maze
+	 * 
+	 */
 	public Maze1(){
 		MAP_SIZE = 10;
 		map = new char[MAP_SIZE][MAP_SIZE];
@@ -53,11 +57,22 @@ public class Maze1 extends Map{
 		
 	}
 	
+	/**
+	 * Returns the next map
+	 * 
+	 * @return next map
+	 */
 	public Map nextMap(){
 		return new Maze2();
 	}
 	
-	public void pickUpKey(){};
+	/**
+	 * Removes the key from the map
+	 * 
+	 */
+	public void pickUpKey(){
+		
+	};
 	
 }
 	

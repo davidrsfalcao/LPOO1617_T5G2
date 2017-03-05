@@ -1,45 +1,55 @@
 package dkeep.logic;
-import java.util.ArrayList;
 
 public abstract class Character {
 	
 	protected Position position;
 	protected boolean playing;
 	
+	/**
+	 * Returns the character representation
+	 * 
+	 * @return representation
+	 */
 	public char getRepresentation()
 	{
 		return position.getRepresentation();
 	}
 
+	/**
+	 * Returns the position of the character
+	 * 
+	 * @return Position
+	 */
 	public Position getPosition()
 	{
 		return position;
 	}
 	
+	/**
+	 * Redefines the position of character
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	public void setPosition(int x, int y)
 	{
 		position.setX(x);
 		position.setY(y);
 	}
 
-	public boolean setPos(int x , int y , int MAP_SIZE){
-		if( x >= 0 && x < MAP_SIZE && y >= 0 && y < MAP_SIZE){
-			position.changeTo(x, y);
-			return true;
-		}
-		return false;
-	}
-
+	/**
+	 * Abstract method for moving Characters
+	 * 
+	 * @param MAP_SIZE
+	 * @return
+	 */
 	public abstract Position moveCharacter(int MAP_SIZE);
 	
-	public abstract ArrayList<Position> getPrintable();
-	
-	public void takeOff()
-	{
-		playing = false;
-		setPosition(-10,-10);
-	}
-
+	/**
+	 * Return if the character is playing in the current level
+	 * 
+	 * @return
+	 */
 	public boolean isPlaying()
 	{
 		return playing;

@@ -225,6 +225,9 @@ public class Logic {
 			if (temp.equals(ogre.getPosition()))
 				return false;
 		}
+		
+//		if (temp.equals(hero.getPosition()))
+//			return false;
 
 		return true;
 
@@ -294,6 +297,24 @@ public class Logic {
 		}
 	}
 
+	public void atack_villains()
+	{
+		if (hero.is_armed())
+		{
+			for (Position pos : hero.getPosition().getSurroundings())
+			{
+				for (int i = 0; i < ogres.size(); i++)
+				{
+					if (ogres.get(i).getPosition().equals(pos))
+						ogres.get(i).stun();
+				}
+				
+			}
+			
+		}
+		
+	}
+	
 	/**
 	 * Returns current map
 	 * 

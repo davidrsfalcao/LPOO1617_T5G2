@@ -52,7 +52,9 @@ public class Cli {
 		do {
 			printMap(game.getMap().getMap());
 			game = game.moveHero(UserInput());
+			game.atack_villains();
 			game.moveAllVillains();
+			game.atack_villains();
 
 		} while (!game.levelUp()  && !game.Over() );
 		printMap(game.getMap().getMap());

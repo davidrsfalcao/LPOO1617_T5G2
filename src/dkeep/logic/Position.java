@@ -1,4 +1,5 @@
 package dkeep.logic;
+import java.util.ArrayList;
 
 public class Position {
 
@@ -182,6 +183,29 @@ public class Position {
 		x = pos1.getX();
 		y = pos1.getY();
 		representation = pos1.getRepresentation();
+	}
+	
+	/**
+	 * Returns a ArrayList of adjacent positions 
+	 * 
+	 * @return surroundings
+	 */
+	public ArrayList<Position> getSurroundings()
+	{
+		ArrayList<Position> temp = new ArrayList<Position>();
+		
+		Position t1 = new Position(x-1,y,representation);
+		Position t2 = new Position(x+1,y,representation);
+		Position t3 = new Position(x,y+1,representation);
+		Position t4 = new Position(x,y-1,representation);
+		
+		temp.add(t1);
+		temp.add(t2);
+		temp.add(t3);
+		temp.add(t4);
+		
+		
+		return temp;
 	}
 
 }

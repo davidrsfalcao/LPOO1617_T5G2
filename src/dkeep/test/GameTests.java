@@ -2,21 +2,15 @@ package dkeep.test;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import dkeep.logic.Position;
-import dkeep.logic.Maze1;
+import dkeep.test.TestMap;
 import dkeep.logic.Logic;
+
 
 
 
 
 public class GameTests {
 
-	char [][] map = {{'X','X','X','X','X'},
-			         {'X','H',' ','G','X'},
-			         {'X',' ',' ',' ','X'},
-			         {'X','k',' ',' ','X'},
-			         {'X','X','X','X','X'}};
-	
 	@Test
 	public void testMoveHeroIntoToFreeCell()
 	{
@@ -34,7 +28,10 @@ public class GameTests {
 	@Test
 	public void testHeroIsCapturedByGuard()
 	{
-		Logic game =new Logic( new Maze1());
+		Logic game =new Logic( new TestMap());
+		int [][] path = {{3,1}};
+		game.getGuard().setPath(path);
+	
 		assertFalse(game.Over());
 		game.moveHero('d');
 		assertTrue(game.Over());

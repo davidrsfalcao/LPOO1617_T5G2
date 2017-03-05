@@ -327,5 +327,9 @@ public class Logic {
 		
 	}
 
-
+	public Guard getGuard()
+	{
+		return guard;
+	}
+	
 }

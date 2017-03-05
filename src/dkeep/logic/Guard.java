@@ -2,7 +2,7 @@ package dkeep.logic;
 
 public abstract class Guard extends Character {
 
-	protected int[][] patch =  {{7,1},{7,2},{7,3},{7,4},{7,5},{6,5},{5,5},{4,5},{3,5},{2,5},{1,5},{1,6},
+	protected int[][] path =  {{7,1},{7,2},{7,3},{7,4},{7,5},{6,5},{5,5},{4,5},{3,5},{2,5},{1,5},{1,6},
 			   {2,6},{3,6},{4,6},{5,6},{6,6},{7,6},{8,6},{8,5},{8,4},{8,3},{8,2},{8,1}};
 	protected int index = 0;
 	protected boolean awake = true;
@@ -14,7 +14,7 @@ public abstract class Guard extends Character {
 	public void increaseIndex()
 	{
 		index++;
-		if (index >= patch.length)
+		if (index >= path.length)
 			index = 0;
 	}
 	
@@ -26,7 +26,7 @@ public abstract class Guard extends Character {
 	{
 		index--;
 		if (index <= 0)
-			index = patch.length - 1;
+			index = path.length - 1;
 	}
 	
 	/**
@@ -46,6 +46,10 @@ public abstract class Guard extends Character {
 	{
 		return awake;
 	}
-	
+
+	public void setPath (int[][] path)
+	{
+		this.path = path;
+	}
 	
 }

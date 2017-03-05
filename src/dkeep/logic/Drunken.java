@@ -41,7 +41,7 @@ public class Drunken extends Guard{
 		}
 		else if (awake)
 		{
-			position.changeTo(patch[index][0] , patch[index][1]);
+			position.changeTo(path[index][0] , path[index][1]);
 			increaseIndex();
 			counter--;
 		}

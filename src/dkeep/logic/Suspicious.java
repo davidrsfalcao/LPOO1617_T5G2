@@ -21,12 +21,12 @@ public class Suspicious extends Guard {
 	
 	public Position moveCharacter(int MAP_SIZE) {
 		if (front) {
-			position.changeTo(patch[index][0], patch[index][1]);
+			position.changeTo(path[index][0], path[index][1]);
 			steps_front--;
 			increaseIndex();
 
 		} else {
-			position.changeTo(patch[index][0], patch[index][1]);
+			position.changeTo(path[index][0], path[index][1]);
 			steps_back--;
 			decreaseIndex();
 		}

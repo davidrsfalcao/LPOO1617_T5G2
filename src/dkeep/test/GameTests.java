@@ -5,7 +5,7 @@ import org.junit.Test;
 import dkeep.logic.Position;
 import dkeep.logic.Maze1;
 import dkeep.logic.Logic;
-import dkeep.logic.Hero;
+
 
 
 public class GameTests {

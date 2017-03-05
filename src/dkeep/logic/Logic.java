@@ -9,25 +9,20 @@ public class Logic {
 	private ArrayList<Ogre> ogres = new ArrayList<Ogre>();
 	private Hero hero;
 
+	/**
+	 * Level Constructor
+	 * 
+	 * @param map
+	 */
 	public Logic(Map map) {
 		this.map = map;
-		initCharacters();
-		
+		initCharacters();	
 	}
 
-	public boolean wonGame() {
-
-		for (int i = 0; i < map.endPositions.size(); i++) {
-			if (hero.position.equals(map.endPositions.get(i)))
-				return true;
-		}
-		return false;
-	}
-
-	public Map getMap() {
-		return map;
-	}
-	
+	/**
+	 * Init all the characters based on current map
+	 * 
+	 */
 	private void initCharacters()
 	{
 		Random rand = new Random();
@@ -102,118 +97,25 @@ public class Logic {
 		}
 	}
 	
-
-	public ArrayList<Character> getAllCharacters() {
-		ArrayList<Character> temp = new ArrayList<Character>();
-		temp.add(hero);
-
-		if (guard.isPlaying())
-			temp.add(guard);
-
-		for (Ogre ogre : ogres)
-		{
-			if (ogre.isPlaying())
-				temp.add(ogre);
+	/**
+	 * Check if the hero has passed the level
+	 * 
+	 * @return true or false
+	 */
+	public boolean levelUp() {
+		for (Position end : map.getEndPositions()) {
+			if (hero.getPosition().equals(end))
+				return true;
 		}
 
-		return temp;
+		return false;
 	}
 
-	public Logic moveHero(char direction) {
-		Position temp;
-
-		if ('w' == direction)
-			temp = hero.moveCharacter(map.getMapSize(), 4);
-		else if ('a' == direction)
-			temp = hero.moveCharacter(map.getMapSize(), 3);
-		else if ('s' == direction)
-			temp = hero.moveCharacter(map.getMapSize(), 2);
-		else if ('d' == direction)
-			temp = hero.moveCharacter(map.getMapSize(), 1);
-		else
-			return this;
-
-
-		if (map.isFreeForHero(temp.getX(), temp.getY()) && positionClear(temp))
-		{
-			hero.updateLastPosition();
-			hero.setPos(temp.getX(), temp.getY(), map.getMapSize());
-		}
-
-		checkTriggers();
-		
-		if (levelUp()) {
-			if (map.nextMap() != null)
-				return new Logic(map.nextMap());
-		}
-		return this;
-	}
-
-	private void checkTriggers() {
-
-		if (hero.getPosition().equals(map.getKey())) {
-			int type = map.getKey().getType();
-
-			switch (type) {
-			case 1:
-				map.changeDoors();
-				hero.comeBack();
-				break;
-
-			case 2:
-				hero.pickUpKey();
-				map.pickUpKey();
-				break;
-
-			}
-		} else if (map.getMap()[hero.getPosition().getY()][hero.getPosition().getX()] == 'I') {
-			if (hero.hasKey()) {
-				map.openDoors();
-				hero.comeBack();
-			} else {
-				hero.comeBack();
-			}
-		}
-
-	}
-
-	public void moveAllVillains() {
-		Position pos;
-		if (guard.isPlaying()) {
-			do {
-				pos = guard.moveCharacter(map.getMapSize());
-			} while (!this.map.isFree(pos.getX(), pos.getY()));
-
-		} else { 
-			for (Ogre ogre : ogres) {
-				if (ogre.isPlaying()){
-				do {
-					pos = ogre.moveCharacter(map.getMapSize());
-				} while (!map.isFree(pos.getX(), pos.getY()));
-
-				ogre.setPos(pos.getX(), pos.getY(), map.getMapSize());
-				// do{
-				// pos = o.moveClub(this.map.getMapSize());
-				// }while( !map.isFree(pos[0],pos[1]));
-				// o.setClub(pos[0], pos[1], map.getMapSize());
-				}
-			}
-		}
-	}
-
-	private boolean positionClear(Position temp) {
-		if (temp.equals(guard.getPosition()))
-			return false;
-
-		for (Ogre ogre : ogres) {
-			if (temp.equals(ogre.getPosition()))
-				return false;
-		}
-
-		return true;
-
-	}
-
+	/**
+	 * Check if the villains catch the hero and the game ends
+	 * 
+	 * @return true or false
+	 */
 	public boolean Over() {
 		Position posH = new Position(hero.getPosition().getX(), hero.getPosition().getY(),
 				hero.getPosition().getRepresentation());
@@ -277,14 +179,150 @@ public class Logic {
 		return false;
 	}
 
-	private boolean levelUp() {
-		for (Position end : map.getEndPositions()) {
-			if (hero.getPosition().equals(end))
-				return true;
+	/**
+	 * Check level objectives such as keys and levers
+	 * 
+	 */
+	private void checkObjectives() {
 
+		if (hero.getPosition().equals(map.getKey())) {
+			int type = map.getKey().getType();
+
+			switch (type) {
+			case 1:
+				map.changeDoors();
+				hero.comeBack();
+				break;
+
+			case 2:
+				hero.pickUpKey();
+				map.pickUpKey();
+				break;
+
+			}
+		} else if (map.getMap()[hero.getPosition().getY()][hero.getPosition().getX()] == 'I') {
+			if (hero.hasKey()) {
+				map.openDoors();
+				hero.comeBack();
+			} else {
+				hero.comeBack();
+			}
 		}
 
-		return false;
 	}
+
+	/**
+	 * Check if there is no ogre stunned or guard sleeping in a certain position
+	 * 
+	 * @param temp
+	 * @return true or false
+	 */
+	private boolean positionClear(Position temp) {
+		if (temp.equals(guard.getPosition()))
+			return false;
+
+		for (Ogre ogre : ogres) {
+			if (temp.equals(ogre.getPosition()))
+				return false;
+		}
+
+		return true;
+
+	}
+
+	/**
+	 * Move hero and check if hero has passed the level. Case affirmative, returns a new level.
+	 * 
+	 * @param direction
+	 * @return Logic
+	 */
+	public Logic moveHero(char direction) {
+		Position temp;
+
+		if ('w' == direction)
+			temp = hero.moveCharacter(map.getMapSize(), 4);
+		else if ('a' == direction)
+			temp = hero.moveCharacter(map.getMapSize(), 3);
+		else if ('s' == direction)
+			temp = hero.moveCharacter(map.getMapSize(), 2);
+		else if ('d' == direction)
+			temp = hero.moveCharacter(map.getMapSize(), 1);
+		else
+			return this;
+
+
+		if (map.isFreeForHero(temp.getX(), temp.getY()) && positionClear(temp))
+		{
+			hero.updateLastPosition();
+			hero.setPos(temp.getX(), temp.getY(), map.getMapSize());
+		}
+
+		checkObjectives();
+		
+		if (levelUp()) {
+			if (map.nextMap() != null)
+				return new Logic(map.nextMap());
+		}
+		return this;
+	}
+
+	/**
+	 * Move all villains according to the level
+	 * 
+	 */
+	public void moveAllVillains() {
+		Position pos;
+		if (guard.isPlaying()) {
+			do {
+				pos = guard.moveCharacter(map.getMapSize());
+			} while (!this.map.isFree(pos.getX(), pos.getY()));
+
+		} else { 
+			for (Ogre ogre : ogres) {
+				if (ogre.isPlaying()){
+				do {
+					pos = ogre.moveCharacter(map.getMapSize());
+				} while (!map.isFree(pos.getX(), pos.getY()));
+
+				ogre.setPos(pos.getX(), pos.getY(), map.getMapSize());
+				// do{
+				// pos = o.moveClub(this.map.getMapSize());
+				// }while( !map.isFree(pos[0],pos[1]));
+				// o.setClub(pos[0], pos[1], map.getMapSize());
+				}
+			}
+		}
+	}
+
+	/**
+	 * Returns current map
+	 * 
+	 * @return map
+	 */
+	public Map getMap() {
+		return map;
+	}
+
+	/**
+	 * Return a ArrayList with all character of a level
+	 * 
+	 * @return
+	 */
+	public ArrayList<Character> getAllCharacters() {
+		ArrayList<Character> temp = new ArrayList<Character>();
+		temp.add(hero);
+
+		if (guard.isPlaying())
+			temp.add(guard);
+
+		for (Ogre ogre : ogres)
+		{
+			if (ogre.isPlaying())
+				temp.add(ogre);
+		}
+
+		return temp;
+	}
+
 
 }

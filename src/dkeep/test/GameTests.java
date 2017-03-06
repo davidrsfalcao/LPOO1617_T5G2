@@ -6,9 +6,6 @@ import dkeep.test.TestMap;
 import dkeep.logic.Logic;
 
 
-
-
-
 public class GameTests {
 
 	@Test

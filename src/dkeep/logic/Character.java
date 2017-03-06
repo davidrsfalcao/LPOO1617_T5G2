@@ -16,6 +16,16 @@ public abstract class Character {
 	}
 
 	/**
+	 * Redefines the representation of character
+	 * 
+	 * @param representation
+	 */
+	public void setRepresentation(char representation)
+	{
+		position.setRepresentation(representation);
+	}
+	
+	/**
 	 * Returns the position of the character
 	 * 
 	 * @return Position
@@ -54,4 +64,5 @@ public abstract class Character {
 	{
 		return playing;
 	}
+
 }

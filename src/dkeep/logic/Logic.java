@@ -311,22 +311,43 @@ public class Logic {
 		{
 			if (ogre.isPlaying())
 			{
+				if (ogre.getPosition().equals(map.getKey()))
+					ogre.setRepresentation('$');
+				else if (!ogre.isStunned())
+					ogre.setRepresentation('O');
+				else ogre.setRepresentation('o');
+					
 				temp.add(ogre);
-				if (ogre.getClubVisibily())
-					temp.add(ogre.getClub());
 				
+				if (ogre.getClubVisibily())
+				{
+					if (ogre.getClub().getPosition().equals(map.getKey()))
+						ogre.getClub().setRepresentation('$');
+					else ogre.getClub().setRepresentation('*');
+					temp.add(ogre.getClub());
+				}
 			}
 		}
 
 		return temp;
 	}
 	
+	/**
+	 * Returns hero
+	 * 
+	 * @return hero
+	 */
 	public Hero getHero()
 	{
 		return hero;
 		
 	}
 
+	/**
+	 * Returns guard
+	 * 	
+	 * @return guard
+	 */
 	public Guard getGuard()
 	{
 		return guard;

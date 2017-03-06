@@ -140,6 +140,18 @@ public class Logic {
 		
 		for (Ogre ogre : ogres)
 		{
+			if (!hero.is_armed())
+			{
+				for (Position pos : ogre.getPosition().getSurroundings()) {
+					if (pos.equals(hero.getPosition())) {
+						condition = status.DEFEAT;
+						return true;
+					}
+				}
+				
+			}
+			
+			
 			if (ogre.getClubVisibily())
 			{
 				for (Position pos : ogre.getClub().getPosition().getSurroundings()) {

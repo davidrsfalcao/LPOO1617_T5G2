@@ -9,7 +9,7 @@ public class Maze1 extends Map{
 	 * 
 	 */
 	public Maze1(){
-		MAP_SIZE = 10;
+		MAP_SIZE = 10; 
 		map = new char[MAP_SIZE][MAP_SIZE];
 		ArrayList<Integer> hero = new ArrayList<Integer>();
 		hero.add(1); //posX

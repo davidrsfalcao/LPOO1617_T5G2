@@ -5,7 +5,7 @@ public class Position {
 
 	private int x;
 	private int y;
-	private char representation;
+	private char representation; 
 	private int type = 0; // 0 for default, 1 for lever and 2 for key
 	
 	/**

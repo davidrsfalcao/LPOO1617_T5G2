@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Logic {
 	private Map map;
-	private Guard guard;
+	private Guard guard; 
 	private ArrayList<Ogre> ogres = new ArrayList<Ogre>();
 	private Hero hero;
 

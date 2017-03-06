@@ -8,7 +8,7 @@ public class Maze2 extends Map{
 	 * Constructor of 2nd Maze
 	 * 
 	 */
-	public Maze2(){
+	public Maze2(){ 
 		MAP_SIZE = 9;
 		map = new char[MAP_SIZE][MAP_SIZE];
 		

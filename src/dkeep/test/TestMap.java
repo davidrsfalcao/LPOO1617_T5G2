@@ -14,7 +14,7 @@ public class TestMap extends Map{
 		MAP_SIZE = 5;
 		map = new char[MAP_SIZE][MAP_SIZE];
 		ArrayList<Integer> hero = new ArrayList<Integer>();
-		hero.add(1); //posX
+		hero.add(1); //posX 
 		hero.add(1); //posY
 		hero.add(0); //has_key
 		hero.add(0); //is_armed

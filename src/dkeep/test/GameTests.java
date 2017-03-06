@@ -32,7 +32,7 @@ public class GameTests {
 		assertFalse(game.Over());
 		game.moveHero('d');
 		assertTrue(game.Over());
-		
+	
 	}
 	
 }

@@ -11,7 +11,7 @@ public abstract class Guard extends Character {
 	 * Increase index 
 	 * 
 	 */
-	public void increaseIndex()
+	public void increaseIndex() 
 	{
 		index++;
 		if (index >= path.length)

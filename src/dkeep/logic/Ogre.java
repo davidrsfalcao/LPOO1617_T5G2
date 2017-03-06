@@ -9,7 +9,7 @@ public class Ogre extends Character {
 	
  	public Ogre(){
 		
-	}
+	} 
 	
 	public Ogre(int x, int y) {
 		playing = true;

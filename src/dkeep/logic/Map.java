@@ -2,7 +2,7 @@ package dkeep.logic;
 import java.util.ArrayList;
 
 public abstract class Map {
-	protected int MAP_SIZE;
+	protected int MAP_SIZE; 
 	protected char[][] map;
 	protected ArrayList<Position> endPositions;
 	protected Position key;

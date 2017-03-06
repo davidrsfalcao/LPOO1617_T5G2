@@ -8,7 +8,7 @@ public abstract class Character {
 	/**
 	 * Returns the character representation
 	 * 
-	 * @return representation
+	 * @return representation 
 	 */
 	public char getRepresentation()
 	{ 

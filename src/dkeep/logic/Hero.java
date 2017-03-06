@@ -15,7 +15,7 @@ public class Hero extends Character{
 		
 		position = new Position(posX, posY, 'H');
 		
-		if (is_armed)
+		if (is_armed) 
 			position.setRepresentation('A');
 
 		if (has_key)

@@ -7,7 +7,7 @@ public class MassiveClub extends Character {
 	}
 	
 	public MassiveClub()
-	{
+	{ 
 		playing = false;
 		position = new Position(-10,-10,'*');
 	}

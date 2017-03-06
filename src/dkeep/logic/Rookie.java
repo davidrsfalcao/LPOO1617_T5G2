@@ -6,7 +6,7 @@ public class Rookie extends Guard {
 	{
 		this.playing = playing;
 		
-		if(!playing)
+		if(!playing) 
 			position = new Position(-10,-10,'G');
 		else position = new Position(posX, posY, 'G');
 	}

@@ -5,7 +5,7 @@ import java.util.Random;
 public class Drunken extends Guard{
 
 	private int counter; // Counter of sleepy rounds and awake rounds
-	private Random rand = new Random();
+	private Random rand = new Random(); 
 	
 	public Drunken(int posX, int posY, boolean playing)
 	{

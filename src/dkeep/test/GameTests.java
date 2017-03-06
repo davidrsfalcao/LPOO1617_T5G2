@@ -34,6 +34,21 @@ public class GameTests {
 		assertTrue(game.Over());
 	
 	}
+	@Test
+	public void testHeroTriesMoveIntoToWall()
+	{
+		int [] test1 = {1,1};
+		
+		Logic game = new Logic(new TestMap());
+		assertEquals(test1[0],game.getHero().getPosition().getX());
+		assertEquals(test1[1],game.getHero().getPosition().getY());
+		game = game.moveHero('w');
+		assertEquals(test1[0],game.getHero().getPosition().getX());
+		assertEquals(test1[1],game.getHero().getPosition().getY());
+		
+	}
+	
+	
 	
 }
 

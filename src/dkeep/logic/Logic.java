@@ -315,7 +315,7 @@ public class Logic {
 					ogre.setRepresentation('$');
 				else if (!ogre.isStunned())
 					ogre.setRepresentation('O');
-				else ogre.setRepresentation('o');
+				else ogre.setRepresentation('8');
 					
 				temp.add(ogre);
 				

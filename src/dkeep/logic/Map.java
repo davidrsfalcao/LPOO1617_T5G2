@@ -27,7 +27,7 @@ public abstract class Map {
 	 * @return map
 	 */
 	public char[][] getMap(){
-		char[][] temp = new char[MAP_SIZE][];
+		char[][] temp = new char[MAP_SIZE][]; 
 		int i = 0;
 		for (char[] arr : this.map){
 			temp[i] = (char[])arr.clone();

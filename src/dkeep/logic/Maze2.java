@@ -67,7 +67,8 @@ public class Maze2 extends Map{
 	 * 
 	 */
 	public void pickUpKey(){
-		this.map[1][7] = ' ';
+		map[1][7] = ' ';
+		key.changeTo(-10, -10);
 	}
 
 }

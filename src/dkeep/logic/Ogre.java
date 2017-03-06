@@ -5,7 +5,7 @@ public class Ogre extends Character {
 	
 	private boolean stunned = false;
 	private int rounds = 2;
-	private MassiveClub club = new MassiveClub();
+	private MassiveClub club = new MassiveClub(); 
 	
  	public Ogre(){
 		
@@ -63,7 +63,7 @@ public class Ogre extends Character {
 	public void stun()
 	{
 		stunned = true;
-		position.setRepresentation('o');
+		position.setRepresentation('8');
 	}
 	
 	public boolean isStunned()

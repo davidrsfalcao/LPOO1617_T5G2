@@ -11,7 +11,7 @@ public abstract class Character {
 	 * @return representation
 	 */
 	public char getRepresentation()
-	{
+	{ 
 		return position.getRepresentation();
 	}
 

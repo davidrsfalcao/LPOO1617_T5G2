@@ -51,6 +51,57 @@ public class GameTests {
 		
 	}
 	
+	@Test
+	public void testHeroTriesToGoOut()
+	{
+		int [] test1 = {1,1};
+		int [] test2 = {1,2};
+		
+		Logic game = new Logic(new TestMap());
+		assertEquals(test1[0],game.getHero().getPosition().getX());
+		assertEquals(test1[1],game.getHero().getPosition().getY());
+		game = game.moveHero('s');
+		game = game.moveHero('a');
+		assertEquals(test2[0],game.getHero().getPosition().getX());
+		assertEquals(test2[1],game.getHero().getPosition().getY());
+		
+	}
+	@Test
+	public void testHeroOpensDoors()
+	{
+		int [] test1 = {1,1};
+		int [] test2 = {1,2};
+		
+		Logic game = new Logic(new TestMap());
+		assertEquals(test1[0],game.getHero().getPosition().getX());
+		assertEquals(test1[1],game.getHero().getPosition().getY());
+		game = game.moveHero('s');
+		game = game.moveHero('s');
+		assertEquals(test2[0],game.getHero().getPosition().getX());
+		assertEquals(test2[1],game.getHero().getPosition().getY());
+		assertEquals('S',game.getMap().getMap()[2][0]);
+		
+	}
+	
+	@Test
+	public void testHeroWins()
+	{
+		int [] test1 = {1,1};
+		int [] test2 = {1,2};
+		
+		Logic game = new Logic(new TestMap());
+		assertEquals(test1[0],game.getHero().getPosition().getX());
+		assertEquals(test1[1],game.getHero().getPosition().getY());
+		game = game.moveHero('s');
+		game = game.moveHero('s');
+		assertEquals(test2[0],game.getHero().getPosition().getX());
+		assertEquals(test2[1],game.getHero().getPosition().getY());
+		game = game.moveHero('a');
+		assertEquals('S',game.getMap().getMap()[2][0]);
+		
+	}
+	
+	
 	
 }
 

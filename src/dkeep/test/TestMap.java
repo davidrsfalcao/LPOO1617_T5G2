@@ -37,7 +37,7 @@ public class TestMap extends Map{
 		
 		char [][] temp = 
 				{{'X','X','X','X','X'},
-		         {'X','H',' ','G','X'},
+		         {'X','H',' ','G','X'}, 
 		         {'I',' ',' ',' ','X'},
 		         {'I','k',' ',' ','X'},
 		         {'X','X','X','X','X'}};

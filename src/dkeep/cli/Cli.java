@@ -58,7 +58,8 @@ public class Cli {
 			game.atack_villains();
 			game.moveAllVillains();
 			game.atack_villains();
-
+			game.Over();
+			
 		} while (game.condition == status.RUNNING);
 		
 		printMap(game.getMap().getMap());

@@ -343,6 +343,16 @@ public class Logic {
 		return temp;
 	}
 	
+	public void setHero(Hero hero)
+	{
+		this.hero = hero;
+	}
+	
+	public void setOgre(Ogre ogre)
+	{
+		ogres.add(ogre);
+	}
+	
 	/**
 	 * Returns hero
 	 * 

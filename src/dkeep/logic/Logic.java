@@ -14,7 +14,6 @@ public class Logic {
 		WON, DEFEAT, RUNNING
 	}
 	
-	
 	/**
 	 * Level Constructor
 	 * 
@@ -130,7 +129,10 @@ public class Logic {
 			if (guard.isAwake()) {
 				for (Position pos : guard.getPosition().getSurroundings()) {
 					if (pos.equals(hero.getPosition()))
+					{
+						condition = status.DEFEAT;
 						return true;
+					}	
 				}
 
 			}
@@ -183,7 +185,7 @@ public class Logic {
 		}
 
 	}
-
+ 
 	/**
 	 * Check if there is no ogre stunned or guard sleeping in a certain position
 	 * 

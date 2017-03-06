@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import dkeep.test.TestMap;
 import dkeep.logic.Logic;
-
+import dkeep.logic.Logic.status;
 
 public class GameTests {
 
@@ -21,7 +21,7 @@ public class GameTests {
 		assertEquals(test2[1],game.getHero().getPosition().getY());
 		
 	}
-	
+
 	@Test
 	public void testHeroIsCapturedByGuard()
 	{
@@ -32,8 +32,11 @@ public class GameTests {
 		assertFalse(game.Over());
 		game.moveHero('d');
 		assertTrue(game.Over());
+		game.Over();
+		assertEquals(status.DEFEAT, game.condition);
 	
 	}
+	
 	@Test
 	public void testHeroTriesMoveIntoToWall()
 	{
@@ -47,7 +50,6 @@ public class GameTests {
 		assertEquals(test1[1],game.getHero().getPosition().getY());
 		
 	}
-	
 	
 	
 }

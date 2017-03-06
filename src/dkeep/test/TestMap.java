@@ -38,8 +38,8 @@ public class TestMap extends Map{
 		char [][] temp = 
 				{{'X','X','X','X','X'},
 		         {'X','H',' ','G','X'},
-		         {'X',' ',' ',' ','X'},
-		         {'X','k',' ',' ','X'},
+		         {'I',' ',' ',' ','X'},
+		         {'I','k',' ',' ','X'},
 		         {'X','X','X','X','X'}};
 		int i = 0;
 		for( char[] c : temp){
@@ -48,6 +48,9 @@ public class TestMap extends Map{
 		}
 		
 		endPositions = new ArrayList<Position>();
+		endPositions.add(new Position(0,3,'I'));
+		endPositions.add(new Position(0,2,'I'));
+		
 		
 	}
 	

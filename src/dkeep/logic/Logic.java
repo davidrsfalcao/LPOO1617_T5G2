@@ -8,7 +8,13 @@ public class Logic {
 	private Guard guard; 
 	private ArrayList<Ogre> ogres = new ArrayList<Ogre>();
 	private Hero hero;
+	public status condition = status.RUNNING;
 
+	public enum status {
+		WON, DEFEAT, RUNNING
+	}
+	
+	
 	/**
 	 * Level Constructor
 	 * 
@@ -92,7 +98,7 @@ public class Logic {
 		
 		if (ogre_playing) {
 			int res1 = rand.nextInt(3) + 1;
-			for (int i = 0; i < res1; i++)
+			for (int i = 0; i < res1; i++) 
 				ogres.add(new Ogre(rand.nextInt(map.getMapSize() - 3) + 1, rand.nextInt(map.getMapSize() - 3) + 1));
 		}
 		
@@ -135,8 +141,10 @@ public class Logic {
 			if (ogre.getClubVisibily())
 			{
 				for (Position pos : ogre.getClub().getPosition().getSurroundings()) {
-					if (pos.equals(hero.getPosition()))
+					if (pos.equals(hero.getPosition())) {
+						condition = status.DEFEAT;
 						return true;
+					}
 				}
 			}
 		}
@@ -227,6 +235,7 @@ public class Logic {
 		if (levelUp()) {
 			if (map.nextMap() != null)
 				return new Logic(map.nextMap());
+			else condition = status.WON;
 		}
 		return this;
 	}

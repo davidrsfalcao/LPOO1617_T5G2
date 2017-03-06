@@ -3,6 +3,7 @@ package dkeep.cli;
 import java.util.Scanner;
 import java.util.ArrayList;
 import dkeep.logic.Logic;
+import dkeep.logic.Logic.status;
 import dkeep.logic.Character;
 import dkeep.logic.Maze1;
 
@@ -17,7 +18,7 @@ public class Cli {
 	 * 
 	 */
 	public Cli()
-	{
+	{ 
 		game = new Logic(new Maze1());
 		
 	}
@@ -58,14 +59,15 @@ public class Cli {
 			game.moveAllVillains();
 			game.atack_villains();
 
-		} while (!game.levelUp()  && !game.Over() );
+		} while (game.condition == status.RUNNING);
+		
 		printMap(game.getMap().getMap());
-		if (game.levelUp()) // quando não ouver mapa seguinte
+		if (game.condition == status.WON) 
 		{
 			clearScreen();
 			System.out.println("    Congratulations!!   \n");
 		}
-		else
+		else if(game.condition == status.DEFEAT)
 		{
 			clearScreen();
 			System.out.println("    Game Over!!   \n");

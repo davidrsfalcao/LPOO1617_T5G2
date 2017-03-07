@@ -1,4 +1,6 @@
 package dkeep.gui;
+import dkeep.cli.Cli;
+import dkeep.logic.Logic;
 
 import java.awt.EventQueue;
 
@@ -17,6 +19,7 @@ public class window {
 	private JFrame frmDun;
 	private JTextField Board;
 	private JTextField textNOgres;
+	private Cli cli;
 
 	/**
 	 * Launch the application.
@@ -58,6 +61,11 @@ public class window {
 		frmDun.getContentPane().add(Board);
 		Board.setColumns(10);
 		
+		JLabel lblStatus = new JLabel("You can start a new game");
+		lblStatus.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
+		lblStatus.setBounds(33, 370, 183, 16);
+		frmDun.getContentPane().add(lblStatus);
+		
 		JButton btnUp = new JButton("Up");
 		btnUp.setEnabled(false);
 		btnUp.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
@@ -87,6 +95,9 @@ public class window {
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				Cli cl = new Cli();
+				lblStatus.setText(cl.getGame().condition.toString());
+				//cl.game();
 				btnRight.setEnabled(true);
 				btnLeft.setEnabled(true);
 				btnDown.setEnabled(true);
@@ -128,9 +139,5 @@ public class window {
 		btnExit.setBounds(387, 330, 117, 29);
 		frmDun.getContentPane().add(btnExit);
 		
-		JLabel lblStatus = new JLabel("You can start a new game");
-		lblStatus.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
-		lblStatus.setBounds(33, 370, 183, 16);
-		frmDun.getContentPane().add(lblStatus);
 	}
 }

@@ -9,7 +9,7 @@ import dkeep.logic.Maze1;
 
 public class Cli {
 
-	Logic game;
+	private Logic game;
 	Scanner sc = new Scanner(System.in);
 
 	/**
@@ -18,7 +18,6 @@ public class Cli {
 	 */
 	public Cli() {
 		game = new Logic(new Maze1());
-
 	}
 
 	/**
@@ -47,7 +46,7 @@ public class Cli {
 	 * Main function that control all the game
 	 * 
 	 */
-	private void game() {
+	public void game() {
 		do {
 			printMap(game.getMap().getMap());
 			game = game.moveHero(UserInput());
@@ -102,4 +101,9 @@ public class Cli {
 		}
 	}
 
+	public Logic getGame()
+	{
+		return game;
+	}
+	
 }

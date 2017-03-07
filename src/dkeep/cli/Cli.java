@@ -46,7 +46,7 @@ public class Cli {
 	 * Main function that control all the game
 	 * 
 	 */
-	public void game() {
+	private void game() {
 		do {
 			printMap(game.getMap().getMap());
 			game = game.moveHero(UserInput());
@@ -73,7 +73,7 @@ public class Cli {
 	 * 
 	 * @param map
 	 */
-	private void printMap(char[][] map) {
+	public void printMap(char[][] map) {
 		clearScreen();
 		int tam = game.getAllCharacters().size();
 		ArrayList<Character> temp = game.getAllCharacters();
@@ -106,4 +106,40 @@ public class Cli {
 		return game;
 	}
 	
+	public void setGame(Logic game)
+	{
+		this.game = game;
+	}
+	
+	public String print(char[][] map)
+	{
+		String temp = new String();
+		int tam = game.getAllCharacters().size();
+		ArrayList<Character> temp1 = game.getAllCharacters();
+		
+		for (int k = 0; k < tam; k++) {
+			map[temp1.get(k).getPosition().getY()][temp1.get(k).getPosition().getX()] = temp1.get(k).getRepresentation();
+		}
+		
+		for (int i = 0; i < map.length; i++) {
+			for (int k = 0; k < map[i].length; k++) {
+				temp = temp + (map[i][k] + " ");
+			}
+			temp = temp + '\n';
+		}
+		
+		
+		
+		return temp;
+	}
+
+	public void play(char option)
+	{
+		game = game.moveHero(option);
+		game.atack_villains();
+		game.moveAllVillains();
+		game.atack_villains();
+		game.Over();
+		
+	}
 }

@@ -265,7 +265,34 @@ public class GameTests {
 		game.atack_villains();
 		assertTrue(game.getOgre().isStunned());		
 	}
+  
+	@Test
+	public void MakeMaze1()
+	{
+		int[] test1 = { 1, 1 }, test2 = { 2, 1 };
 
+		Logic game = new Logic(new Maze1());
+		assertEquals(test1[0], game.getHero().getPosition().getX());
+		assertEquals(test1[1], game.getHero().getPosition().getY());
+		game = game.moveHero('d');
+		assertEquals(test2[0], game.getHero().getPosition().getX());
+		assertEquals(test2[1], game.getHero().getPosition().getY());
+		
+		
+	}
 	
-	
+	@Test
+	public void MakeMaze2()
+	{
+		int[] test1 = { 1, 7 }, test2 = { 2, 7 };
+
+		Logic game = new Logic(new Maze2());
+		assertEquals(test1[0], game.getHero().getPosition().getX());
+		assertEquals(test1[1], game.getHero().getPosition().getY());
+		game = game.moveHero('d');
+		assertEquals(test2[0], game.getHero().getPosition().getX());
+		assertEquals(test2[1], game.getHero().getPosition().getY());
+		
+		
+	}
 }

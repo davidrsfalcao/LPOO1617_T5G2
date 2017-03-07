@@ -54,7 +54,7 @@ public class window {
 		
 		Board = new JTextField();
 		Board.setEditable(false);
-		Board.setBounds(23, 105, 312, 270);
+		Board.setBounds(23, 88, 312, 270);
 		frmDun.getContentPane().add(Board);
 		Board.setColumns(10);
 		
@@ -86,6 +86,11 @@ public class window {
 		btnNewGame.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				btnRight.setEnabled(true);
+				btnLeft.setEnabled(true);
+				btnDown.setEnabled(true);
+				btnUp.setEnabled(true);
 				
 			}
 		});
@@ -122,5 +127,10 @@ public class window {
 		btnExit.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		btnExit.setBounds(387, 330, 117, 29);
 		frmDun.getContentPane().add(btnExit);
+		
+		JLabel lblStatus = new JLabel("You can start a new game");
+		lblStatus.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
+		lblStatus.setBounds(33, 370, 183, 16);
+		frmDun.getContentPane().add(lblStatus);
 	}
 }

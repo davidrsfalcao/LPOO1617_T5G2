@@ -211,7 +211,7 @@ public class GameTests {
 		
 		
 		boolean outcome1=false,outcome2=false;
-		Logic game=new Logic(new TestMap2());
+		Logic game=new Logic(new TestMap3());
 		Ogre ogre = new Ogre(3,3);
 		game.setOgre(ogre);
 		game.moveAllVillains();
@@ -232,9 +232,40 @@ public class GameTests {
 		
 	}
 
+	@Test
+	public void testClubKillsHero()
+	{
+		int [] test1 = {1,1};
+		
+		Logic game = new Logic(new TestMap2());
+		Ogre ogre = new Ogre(3,1);
+		game.setOgre(ogre);
+		ogre.getClub().setVisibility(true);
+		ogre.getClub().setPosition(2, 1);
+		assertEquals(test1[0],game.getHero().getPosition().getX());
+		assertEquals(test1[1],game.getHero().getPosition().getY());
+		assertTrue(game.Over());
+		game.Over();
+		assertEquals(status.DEFEAT, game.condition);
+		
+	}
 	
-	
-	
+	@Test
+	public void testHeroStunsOgre()
+	{
+		int [] test1 = {1,1};
+		
+		Logic game = new Logic(new TestMap2());
+		Ogre ogre = new Ogre(3,1);
+		game.setOgre(ogre);
+		game.getHero().setWeapon(true);
+		assertEquals(test1[0],game.getHero().getPosition().getX());
+		assertEquals(test1[1],game.getHero().getPosition().getY());
+		game.moveHero('d');
+		game.atack_villains();
+		assertTrue(game.getOgre().isStunned());		
+	}
 
+	
 	
 }

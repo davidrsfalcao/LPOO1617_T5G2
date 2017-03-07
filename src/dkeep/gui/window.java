@@ -54,27 +54,36 @@ public class window {
 		
 		Board = new JTextField();
 		Board.setEditable(false);
-		Board.setBounds(37, 105, 298, 270);
+		Board.setBounds(23, 105, 312, 270);
 		frmDun.getContentPane().add(Board);
 		Board.setColumns(10);
 		
-		JButton btnUp = new JButton("UP");
+		JButton btnUp = new JButton("Up");
+		btnUp.setEnabled(false);
+		btnUp.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		btnUp.setBounds(406, 178, 91, 29);
 		frmDun.getContentPane().add(btnUp);
 		
 		JButton btnDown = new JButton("Down");
+		btnDown.setEnabled(false);
+		btnDown.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		btnDown.setBounds(406, 241, 91, 29);
 		frmDun.getContentPane().add(btnDown);
 		
 		JButton btnLeft = new JButton("Left");
+		btnLeft.setEnabled(false);
+		btnLeft.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		btnLeft.setBounds(347, 211, 84, 29);
 		frmDun.getContentPane().add(btnLeft);
 		
 		JButton btnRight = new JButton("Right");
+		btnRight.setEnabled(false);
+		btnRight.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		btnRight.setBounds(459, 211, 84, 29);
 		frmDun.getContentPane().add(btnRight);
 		
 		JButton btnNewGame = new JButton("New Game");
+		btnNewGame.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -103,5 +112,15 @@ public class window {
 		comboBoxGuardPersonality.setModel(new DefaultComboBoxModel(new String[] {"Rookie", "Drunken", "Suspicious"}));
 		comboBoxGuardPersonality.setBounds(126, 54, 117, 27);
 		frmDun.getContentPane().add(comboBoxGuardPersonality);
+		
+		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnExit.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
+		btnExit.setBounds(387, 330, 117, 29);
+		frmDun.getContentPane().add(btnExit);
 	}
 }

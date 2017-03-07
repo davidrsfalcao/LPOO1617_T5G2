@@ -127,6 +127,7 @@ public class GameTests {
 		assertEquals('K',game.getHero().getRepresentation());
 		
 	}
+
 	@Test
 	public void testHeroTrysToExitWithoutKey()
 	{
@@ -143,6 +144,7 @@ public class GameTests {
 		assertEquals('I', game.getMap().getMap()[2][0]);
 		
 	}
+	
 	@Test
 	public void testHeroOpenDoorsKey()
 	{
@@ -158,6 +160,7 @@ public class GameTests {
 		assertEquals('S', game.getMap().getMap()[2][0]);
 		
 	}
+	
 	@Test
 	public void testHeroWins2level()
 	{
@@ -176,6 +179,60 @@ public class GameTests {
 		assertEquals(status.WON, game.condition);
 		
 	}
+	
+	@Test (timeout=1000)
+	public void testRandomBehabior()
+	{
+		//ogre positions
+		int [] testO1 = {2,3};
+		int [] testO2 = {3,2};
+		int [] testO3 = {4,3};
+		int [] testO4 = {3,4};
+		
+		//club positions
+		//testO1
+		int[] testC1 = {1,3};
+		int[] testC2 = {3,3};
+		int[] testC3 = {2,2};
+		int[] testC4 = {2,4};
+		
+		//testO2
+		int[] testC5 = {3,1};
+		int[] testC6 = {4,2};
+		
+		//testO3
+		int[] testC7 = {4,2};
+		int[] testC8 = {4,4};
+		int[] testC9 = {5,3};
+		
+		//testO4
+		int[] testC10 = {3,5};
+		
+		
+		
+		boolean outcome1=false,outcome2=false;
+		Logic game=new Logic(new TestMap2());
+		Ogre ogre = new Ogre(3,3);
+		game.setOgre(ogre);
+		game.moveAllVillains();
+		if((game.getOgre().getPosition().getX() == testO1[0] && game.getOgre().getPosition().getY() == testO1[1]) || (game.getOgre().getPosition().getX() == testO2[0] && game.getOgre().getPosition().getY() == testO2[1]) || (game.getOgre().getPosition().getX() == testO3[0] && game.getOgre().getPosition().getY() == testO3[1]) || (game.getOgre().getPosition().getX() == testO4[0] && game.getOgre().getPosition().getY() == testO4[1]) )
+		{
+			outcome1=true;
+			
+		}
+		assertTrue(outcome1);
+		
+		if((game.getOgre().getClub().getPosition().getX() == testC1[0] && game.getOgre().getClub().getPosition().getY() == testC1[1]) || (game.getOgre().getClub().getPosition().getX() == testC2[0] && game.getOgre().getClub().getPosition().getY() == testC2[1]) || (game.getOgre().getClub().getPosition().getX() == testC3[0] && game.getOgre().getClub().getPosition().getY() == testC3[1]) || (game.getOgre().getClub().getPosition().getX() == testC4[0] && game.getOgre().getClub().getPosition().getY() == testC4[1]) || (game.getOgre().getClub().getPosition().getX() == testC5[0] && game.getOgre().getClub().getPosition().getY() == testC5[1]) || (game.getOgre().getClub().getPosition().getX() == testC6[0] && game.getOgre().getClub().getPosition().getY() == testC6[1]) || (game.getOgre().getClub().getPosition().getX() == testC7[0] && game.getOgre().getClub().getPosition().getY() == testC7[1]) || (game.getOgre().getClub().getPosition().getX() == testC8[0] && game.getOgre().getClub().getPosition().getY() == testC8[1]) || (game.getOgre().getClub().getPosition().getX() == testC9[0] && game.getOgre().getClub().getPosition().getY() == testC9[1]) || (game.getOgre().getClub().getPosition().getX() == testC10[0] && game.getOgre().getClub().getPosition().getY() == testC10[1]))
+		{
+			outcome2=true;
+			
+		}
+		assertTrue(outcome2);
+		
+		
+	}
+
+	
 	
 	
 

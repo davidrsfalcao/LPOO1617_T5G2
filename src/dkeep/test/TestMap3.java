@@ -3,15 +3,15 @@ package dkeep.test;
 import dkeep.logic.*;
 import java.util.ArrayList;
 
-public class TestMap2 extends Map{
+public class TestMap3 extends Map{
 
 	/**
-	 * Constructor of 2nd Maze
+	 * Constructor of 3rd Maze
 	 * 
 	 */
-	public TestMap2()
+	public TestMap3()
 	{
-		MAP_SIZE = 5;
+		MAP_SIZE = 7;
 		map = new char[MAP_SIZE][MAP_SIZE];
 		ArrayList<Integer> hero = new ArrayList<Integer>();
 		hero.add(1); //posX 
@@ -31,16 +31,18 @@ public class TestMap2 extends Map{
 		initValues.add(guard);
 		initValues.add(ogre);
 		
-		key = new Position(1,3,'k');
+		key = new Position(1,5,'k');
 		key.setType(2);
 		
 		
 		char [][] temp = 
-				{{'X','X','X','X','X'},
-		         {'X',' ',' ',' ','X'}, 
-		         {'I',' ',' ',' ','X'},
-		         {'I','k',' ',' ','X'},
-		         {'X','X','X','X','X'}};
+				{{'X','X','X','X','X','X','X'},
+		         {'X',' ',' ',' ',' ',' ','X'}, 
+		         {'X',' ',' ',' ',' ',' ','X'},
+		         {'X',' ',' ',' ',' ',' ','X'},
+		         {'I',' ',' ',' ',' ',' ','X'},
+		         {'I','k',' ',' ',' ',' ','X'},
+		         {'X','X','X','X','X','X','X'}};
 		int i = 0;
 		for( char[] c : temp){
 			map[i] = (char[])c.clone();
@@ -48,8 +50,8 @@ public class TestMap2 extends Map{
 		}
 		
 		endPositions = new ArrayList<Position>();
-		endPositions.add(new Position(0,3,'I'));
-		endPositions.add(new Position(0,2,'I'));
+		endPositions.add(new Position(0,5,'I'));
+		endPositions.add(new Position(0,4,'I'));
 		
 		
 	}

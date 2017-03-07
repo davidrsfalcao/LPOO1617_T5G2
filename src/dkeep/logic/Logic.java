@@ -386,4 +386,10 @@ public class Logic {
 		return guard;
 	}
 	
+	public Ogre getOgre()
+	{
+		return ogres.get(0);
+		
+	}
+	
 }

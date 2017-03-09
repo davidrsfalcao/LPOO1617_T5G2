@@ -13,6 +13,7 @@ import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DropMode;
@@ -86,6 +87,7 @@ public class window {
 		
 		// Botão UP
 		btnUp.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				
 				if (cli.getGame().condition == status.RUNNING) {
@@ -101,6 +103,10 @@ public class window {
 					btnUp.setEnabled(false);
 					btnLeft.setEnabled(false);
 					btnRight.setEnabled(false);
+					textNOgres.setEnabled(true);
+					textNOgres.setText("");
+					comboBoxGuardPersonality.setEnabled(true);
+					comboBoxGuardPersonality.setSelectedIndex(0);
 					
 				}
 				
@@ -125,6 +131,7 @@ public class window {
 
 		// Botão down
 		btnDown.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				
 				if (cli.getGame().condition == status.RUNNING) {
@@ -140,6 +147,10 @@ public class window {
 					btnUp.setEnabled(false);
 					btnLeft.setEnabled(false);
 					btnRight.setEnabled(false);
+					textNOgres.setEnabled(true);
+					textNOgres.setText("");
+					comboBoxGuardPersonality.setEnabled(true);
+					comboBoxGuardPersonality.setSelectedIndex(0);
 					
 				}
 				
@@ -178,6 +189,10 @@ public class window {
 					btnUp.setEnabled(false);
 					btnLeft.setEnabled(false);
 					btnRight.setEnabled(false);
+					textNOgres.setEnabled(true);
+					textNOgres.setText("");
+					comboBoxGuardPersonality.setEnabled(true);
+					comboBoxGuardPersonality.setSelectedIndex(0);
 					
 				}
 				
@@ -215,6 +230,10 @@ public class window {
 					btnUp.setEnabled(false);
 					btnLeft.setEnabled(false);
 					btnRight.setEnabled(false);
+					textNOgres.setEnabled(true);
+					textNOgres.setText("");
+					comboBoxGuardPersonality.setEnabled(true);
+					comboBoxGuardPersonality.setSelectedIndex(0);
 					
 				}
 				
@@ -264,15 +283,28 @@ public class window {
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				 if (textNOgres.getText() == null)
-					 return;
+
+				int nOgres;
 				
-				Scanner sc = new Scanner(textNOgres.getText());
-				int nOgres =  sc.nextInt();
+				try {
+					nOgres  = Integer.parseInt(textNOgres.getText());
+
+				} catch (NumberFormatException ex) {
+
+					JOptionPane.showMessageDialog(frmDun, "Number of ogres invalid");
+					return;
+				}
+				
+				if (nOgres > 5 || nOgres <0)
+				{
+					JOptionPane.showMessageDialog(frmDun, "Number of ogres invalid");
+					return;
+				}
+				
 				
 				int guardType = comboBoxGuardPersonality.getSelectedIndex();
-				
-				
+				textNOgres.setEnabled(false);
+				comboBoxGuardPersonality.setEnabled(false);
 				
 				
 				cli = new Cli(guardType, nOgres);

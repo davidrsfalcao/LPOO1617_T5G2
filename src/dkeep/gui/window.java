@@ -71,18 +71,19 @@ public class window {
 		frmDun.getContentPane().setLayout(null);
 		
 		JTextArea board = new JTextArea();
+		board.setBounds(23, 101, 290, 257);
 		board.setBackground(Color.WHITE);
 		board.setForeground(Color.BLACK);
 		board.setFont(new Font("Courier", Font.PLAIN, 25));
 		board.setEditable(false);
-		board.setBounds(23, 101, 290, 257);
 		frmDun.getContentPane().add(board);
+		lblStatus.setBounds(33, 370, 183, 16);
 		
 		
 		// Botão status
 		lblStatus.setFont(new Font("Courier", Font.PLAIN, 11));
-		lblStatus.setBounds(33, 370, 183, 16);
 		frmDun.getContentPane().add(lblStatus);
+		btnUp.setBounds(406, 178, 91, 29);
 		
 		
 		// Botão UP
@@ -112,11 +113,13 @@ public class window {
 				
 				if (cli.getGame().condition == status.WON)
 				{
+					board.setForeground(new Color(0, 255, 0));
 					board.setText("\n\n\n\n      YOU WIN");
 					
 				}
 				else if (cli.getGame().condition == status.DEFEAT)
 				{
+					board.setForeground(new Color(255,0, 0));
 					board.setText("\n\n\n\n     YOU LOSE!");
 					
 				}
@@ -125,8 +128,8 @@ public class window {
 		});
 		btnUp.setEnabled(false);
 		btnUp.setFont(new Font("Courier", Font.PLAIN, 11));
-		btnUp.setBounds(406, 178, 91, 29);
 		frmDun.getContentPane().add(btnUp);
+		btnDown.setBounds(406, 241, 91, 29);
 		
 
 		// Botão down
@@ -156,20 +159,23 @@ public class window {
 				
 				if (cli.getGame().condition == status.WON)
 				{
+					board.setForeground(new Color(0, 255, 0));
 					board.setText("\n\n\n\n      YOU WIN");
 					
 				}
 				else if (cli.getGame().condition == status.DEFEAT)
 				{
+					board.setForeground(new Color(255,0, 0));
 					board.setText("\n\n\n\n     YOU LOSE!");
+					
 				}
 				
 			}
 		});
 		btnDown.setEnabled(false);
 		btnDown.setFont(new Font("Courier", Font.PLAIN, 11));
-		btnDown.setBounds(406, 241, 91, 29);
 		frmDun.getContentPane().add(btnDown);
+		btnLeft.setBounds(347, 211, 84, 29);
 		
 		
 		// Botão left
@@ -198,20 +204,23 @@ public class window {
 				
 				if (cli.getGame().condition == status.WON)
 				{
+					board.setForeground(new Color(0, 255, 0));
 					board.setText("\n\n\n\n      YOU WIN");
 					
 				}
 				else if (cli.getGame().condition == status.DEFEAT)
 				{
+					board.setForeground(new Color(255,0, 0));
 					board.setText("\n\n\n\n     YOU LOSE!");
+					
 				}
 				
 			}
 		});
 		btnLeft.setEnabled(false);
 		btnLeft.setFont(new Font("Courier", Font.PLAIN, 11));
-		btnLeft.setBounds(347, 211, 84, 29);
 		frmDun.getContentPane().add(btnLeft);
+		btnRight.setBounds(459, 211, 84, 29);
 		
 		// Botão right
 		btnRight.addActionListener(new ActionListener() {
@@ -239,44 +248,43 @@ public class window {
 				
 				if (cli.getGame().condition == status.WON)
 				{
+					board.setForeground(new Color(0, 255, 0));
 					board.setText("\n\n\n\n      YOU WIN");
 					
 				}
 				else if (cli.getGame().condition == status.DEFEAT)
 				{
+					board.setForeground(new Color(255,0, 0));
 					board.setText("\n\n\n\n     YOU LOSE!");
+					
 				}
 				
 			}
 		});
 		btnRight.setEnabled(false);
 		btnRight.setFont(new Font("Courier", Font.PLAIN, 11));
-		btnRight.setBounds(459, 211, 84, 29);
 		frmDun.getContentPane().add(btnRight);
 		
 		
 		JLabel lblNOgres = new JLabel("Number of ogres");
-		lblNOgres.setFont(new Font("Courier", Font.PLAIN, 11));
 		lblNOgres.setBounds(23, 22, 122, 16);
+		lblNOgres.setFont(new Font("Courier", Font.PLAIN, 11));
 		frmDun.getContentPane().add(lblNOgres);
-		
-		
-		// Caixa n ogres
-		
 		textNOgres.setBounds(157, 15, 59, 26);
 		frmDun.getContentPane().add(textNOgres);
 		textNOgres.setColumns(10);
 		
 		JLabel lblGuardPersonality = new JLabel("Guard personality");
-		lblGuardPersonality.setFont(new Font("Courier", Font.PLAIN, 11));
 		lblGuardPersonality.setBounds(23, 59, 122, 16);
+		lblGuardPersonality.setFont(new Font("Courier", Font.PLAIN, 11));
 		frmDun.getContentPane().add(lblGuardPersonality);
+		comboBoxGuardPersonality.setBounds(157, 53, 117, 27);
 		
 		// Botão tipo de guarda
 		comboBoxGuardPersonality.setFont(new Font("Courier", Font.PLAIN, 11));
 		comboBoxGuardPersonality.setModel(new DefaultComboBoxModel(new String[] {"Rookie", "Drunken", "Suspicious"}));
-		comboBoxGuardPersonality.setBounds(157, 53, 117, 27);
 		frmDun.getContentPane().add(comboBoxGuardPersonality);
+		btnNewGame.setBounds(387, 121, 117, 29);
 		
 		// Botão novo jogo
 		btnNewGame.setFont(new Font("Courier", Font.PLAIN, 11));
@@ -314,23 +322,25 @@ public class window {
 				btnDown.setEnabled(true);
 				btnUp.setEnabled(true);
 				
+
+				board.setForeground(new Color(0, 0, 0));
+
 				board.setText(cli.print(cli.getGame().getMap().getMap()));
 				
 				btnNewGame.setEnabled(false);
 				
 			}
 		});
-		btnNewGame.setBounds(387, 121, 117, 29);
 		frmDun.getContentPane().add(btnNewGame);
 		
 		JButton btnExit = new JButton("Exit");
+		btnExit.setBounds(387, 330, 117, 29);
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
 		btnExit.setFont(new Font("Courier", Font.PLAIN, 11));
-		btnExit.setBounds(387, 330, 117, 29);
 		frmDun.getContentPane().add(btnExit);
 		
 

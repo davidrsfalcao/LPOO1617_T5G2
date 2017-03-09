@@ -9,7 +9,11 @@ public class Logic {
 	private ArrayList<Ogre> ogres = new ArrayList<Ogre>();
 	private Hero hero;
 	public status condition = status.RUNNING;
-
+	private Random rand = new Random();
+	private int nOgres;
+	private int typeGuard = rand.nextInt(3);
+	
+	
 	public enum status {
 		WON, DEFEAT, RUNNING
 	}
@@ -19,8 +23,10 @@ public class Logic {
 	 * 
 	 * @param map
 	 */
-	public Logic(Map map) {
+	public Logic(Map map, int typeGuard, int nOgres) {
 		this.map = map;
+		this.typeGuard = typeGuard;
+		this.nOgres = nOgres;
 		initCharacters();	
 	}
 
@@ -66,19 +72,19 @@ public class Logic {
 			guard_playing = false;
 		else guard_playing = true;
 		
-		int res = rand.nextInt(3);
 
-		switch (res) {
+		switch (typeGuard) {
+		
 		case 0:
+			guard = new Rookie(guardX, guardY, guard_playing);
+			break;
+	
+		case 1:
 			guard = new Drunken(guardX, guardY, guard_playing);
 			break;
 
-		case 1:
-			guard = new Suspicious(guardX, guardY, guard_playing);
-			break;
-
 		case 2:
-			guard = new Rookie(guardX, guardY, guard_playing);
+			guard = new Suspicious(guardX, guardY, guard_playing);
 			break;
 
 		}
@@ -96,8 +102,8 @@ public class Logic {
 		else ogre_playing = true;
 		
 		if (ogre_playing) {
-			int res1 = rand.nextInt(3) + 1;
-			for (int i = 0; i < res1; i++) 
+			
+			for (int i = 0; i < nOgres; i++) 
 				ogres.add(new Ogre(rand.nextInt(map.getMapSize() - 3) + 1, rand.nextInt(map.getMapSize() - 3) + 1));
 		}
 		
@@ -248,7 +254,7 @@ public class Logic {
 		
 		if (levelUp()) {
 			if (map.nextMap() != null)
-				return new Logic(map.nextMap());
+				return new Logic(map.nextMap(), typeGuard, nOgres);
 			else condition = status.WON;
 		}
 		return this;

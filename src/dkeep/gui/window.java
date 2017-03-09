@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -22,9 +23,17 @@ import java.awt.Color;
 public class window {
 
 	private JFrame frmDun;
-	private JTextField textNOgres;
 	private Cli cli;
 	private JButton btnNewGame = new JButton("New Game");
+	private JLabel lblStatus = new JLabel("You can start a new game");
+	private JButton btnUp = new JButton("Up");
+	private JButton btnDown = new JButton("Down");
+	private JButton btnLeft = new JButton("Left");
+	private JButton btnRight = new JButton("Right");
+	private JTextField textNOgres = new JTextField();
+	private JComboBox comboBoxGuardPersonality = new JComboBox();
+	
+
 
 	/**
 	 * Launch the application.
@@ -68,13 +77,14 @@ public class window {
 		board.setBounds(23, 101, 290, 257);
 		frmDun.getContentPane().add(board);
 		
-		JLabel lblStatus = new JLabel("You can start a new game");
+		
+		// Botão status
 		lblStatus.setFont(new Font("Courier", Font.PLAIN, 11));
 		lblStatus.setBounds(33, 370, 183, 16);
 		frmDun.getContentPane().add(lblStatus);
 		
 		
-		JButton btnUp = new JButton("Up");
+		// Botão UP
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -82,8 +92,16 @@ public class window {
 					cli.play('w');
 					board.setText(cli.print(cli.getGame().getMap().getMap()));
 				}
-				else {
+				
+				if (cli.getGame().condition != status.RUNNING)
+				{
+					lblStatus.setText("You can start a new game");
 					btnNewGame.setEnabled(true);
+					btnDown.setEnabled(false);
+					btnUp.setEnabled(false);
+					btnLeft.setEnabled(false);
+					btnRight.setEnabled(false);
+					
 				}
 				
 				if (cli.getGame().condition == status.WON)
@@ -104,15 +122,25 @@ public class window {
 		btnUp.setBounds(406, 178, 91, 29);
 		frmDun.getContentPane().add(btnUp);
 		
-		JButton btnDown = new JButton("Down");
+
+		// Botão down
 		btnDown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				if (cli.getGame().condition == status.RUNNING) {
 					cli.play('s');
 					board.setText(cli.print(cli.getGame().getMap().getMap()));
-				} else {
+				} 
+				
+				if (cli.getGame().condition != status.RUNNING)
+				{
+					lblStatus.setText("You can start a new game");
 					btnNewGame.setEnabled(true);
+					btnDown.setEnabled(false);
+					btnUp.setEnabled(false);
+					btnLeft.setEnabled(false);
+					btnRight.setEnabled(false);
+					
 				}
 				
 				if (cli.getGame().condition == status.WON)
@@ -132,15 +160,25 @@ public class window {
 		btnDown.setBounds(406, 241, 91, 29);
 		frmDun.getContentPane().add(btnDown);
 		
-		JButton btnLeft = new JButton("Left");
+		
+		// Botão left
 		btnLeft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				if (cli.getGame().condition == status.RUNNING) {
 					cli.play('a');
 					board.setText(cli.print(cli.getGame().getMap().getMap()));
-				} else {
+				}
+
+				if (cli.getGame().condition != status.RUNNING)
+				{
+					lblStatus.setText("You can start a new game");
 					btnNewGame.setEnabled(true);
+					btnDown.setEnabled(false);
+					btnUp.setEnabled(false);
+					btnLeft.setEnabled(false);
+					btnRight.setEnabled(false);
+					
 				}
 				
 				if (cli.getGame().condition == status.WON)
@@ -155,21 +193,29 @@ public class window {
 				
 			}
 		});
-	
 		btnLeft.setEnabled(false);
 		btnLeft.setFont(new Font("Courier", Font.PLAIN, 11));
 		btnLeft.setBounds(347, 211, 84, 29);
 		frmDun.getContentPane().add(btnLeft);
 		
-		JButton btnRight = new JButton("Right");
+		// Botão right
 		btnRight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				if (cli.getGame().condition == status.RUNNING) {
 					cli.play('d');
 					board.setText(cli.print(cli.getGame().getMap().getMap()));
-				} else {
+				} 
+				
+				if (cli.getGame().condition != status.RUNNING)
+				{
+					lblStatus.setText("You can start a new game");
 					btnNewGame.setEnabled(true);
+					btnDown.setEnabled(false);
+					btnUp.setEnabled(false);
+					btnLeft.setEnabled(false);
+					btnRight.setEnabled(false);
+					
 				}
 				
 				if (cli.getGame().condition == status.WON)
@@ -195,7 +241,9 @@ public class window {
 		lblNOgres.setBounds(23, 22, 122, 16);
 		frmDun.getContentPane().add(lblNOgres);
 		
-		textNOgres = new JTextField();
+		
+		// Caixa n ogres
+		
 		textNOgres.setBounds(157, 15, 59, 26);
 		frmDun.getContentPane().add(textNOgres);
 		textNOgres.setColumns(10);
@@ -205,18 +253,29 @@ public class window {
 		lblGuardPersonality.setBounds(23, 59, 122, 16);
 		frmDun.getContentPane().add(lblGuardPersonality);
 		
-		JComboBox comboBoxGuardPersonality = new JComboBox();
+		// Botão tipo de guarda
 		comboBoxGuardPersonality.setFont(new Font("Courier", Font.PLAIN, 11));
 		comboBoxGuardPersonality.setModel(new DefaultComboBoxModel(new String[] {"Rookie", "Drunken", "Suspicious"}));
 		comboBoxGuardPersonality.setBounds(157, 53, 117, 27);
 		frmDun.getContentPane().add(comboBoxGuardPersonality);
 		
-		JButton btnNewGame = new JButton("New Game");
+		// Botão novo jogo
 		btnNewGame.setFont(new Font("Courier", Font.PLAIN, 11));
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				cli = new Cli();
+				 if (textNOgres.getText() == null)
+					 return;
+				
+				Scanner sc = new Scanner(textNOgres.getText());
+				int nOgres =  sc.nextInt();
+				
+				int guardType = comboBoxGuardPersonality.getSelectedIndex();
+				
+				
+				
+				
+				cli = new Cli(guardType, nOgres);
 				lblStatus.setText(cli.getGame().condition.toString());
 				btnRight.setEnabled(true);
 				btnLeft.setEnabled(true);
@@ -242,6 +301,7 @@ public class window {
 		btnExit.setBounds(387, 330, 117, 29);
 		frmDun.getContentPane().add(btnExit);
 		
+
 
 	}
 }

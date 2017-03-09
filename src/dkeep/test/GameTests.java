@@ -1,6 +1,9 @@
 package dkeep.test;
 
 import static org.junit.Assert.*;
+
+import java.util.Random;
+
 import org.junit.Test;
 import dkeep.test.TestMap;
 import dkeep.logic.*;
@@ -8,11 +11,12 @@ import dkeep.logic.Logic.status;
 
 public class GameTests {
 
+	private Random rand = new Random();
 	@Test
 	public void testMoveHeroIntoToFreeCell() {
 		int[] test1 = { 1, 1 }, test2 = { 1, 2 };
 
-		Logic game = new Logic(new TestMap());
+		Logic game = new Logic(new TestMap(), rand.nextInt(3), rand.nextInt(3)+1);;
 		assertEquals(test1[0], game.getHero().getPosition().getX());
 		assertEquals(test1[1], game.getHero().getPosition().getY());
 		game = game.moveHero('s');
@@ -23,7 +27,7 @@ public class GameTests {
 
 	@Test
 	public void testHeroIsCapturedByGuard() {
-		Logic game = new Logic(new TestMap());
+		Logic game = new Logic(new TestMap(), rand.nextInt(3), rand.nextInt(3)+1);;
 		int[][] path = { { 3, 1 } };
 		game.getGuard().setPath(path);
 
@@ -39,7 +43,7 @@ public class GameTests {
 	public void testHeroTriesMoveIntoToWall() {
 		int[] test1 = { 1, 1 };
 
-		Logic game = new Logic(new TestMap());
+		Logic game = new Logic(new TestMap(), rand.nextInt(3), rand.nextInt(3)+1);;
 		assertEquals(test1[0], game.getHero().getPosition().getX());
 		assertEquals(test1[1], game.getHero().getPosition().getY());
 		game = game.moveHero('w');
@@ -53,7 +57,7 @@ public class GameTests {
 		int[] test1 = { 1, 1 };
 		int[] test2 = { 1, 2 };
 
-		Logic game = new Logic(new TestMap());
+		Logic game = new Logic(new TestMap(), rand.nextInt(3), rand.nextInt(3)+1);;
 		assertEquals(test1[0], game.getHero().getPosition().getX());
 		assertEquals(test1[1], game.getHero().getPosition().getY());
 		game = game.moveHero('s');
@@ -68,7 +72,7 @@ public class GameTests {
 		int[] test1 = { 1, 1 };
 		int[] test2 = { 1, 2 };
 
-		Logic game = new Logic(new TestMap());
+		Logic game = new Logic(new TestMap(), rand.nextInt(3), rand.nextInt(3)+1);;
 		assertEquals(test1[0], game.getHero().getPosition().getX());
 		assertEquals(test1[1], game.getHero().getPosition().getY());
 		game = game.moveHero('s');
@@ -84,7 +88,7 @@ public class GameTests {
 		int[] test1 = { 1, 1 };
 		int[] test2 = { 1, 2 };
 
-		Logic game = new Logic(new TestMap());
+		Logic game = new Logic(new TestMap(), rand.nextInt(3), rand.nextInt(3)+1);;
 		assertEquals(test1[0], game.getHero().getPosition().getX());
 		assertEquals(test1[1], game.getHero().getPosition().getY());
 		game = game.moveHero('s');
@@ -102,7 +106,7 @@ public class GameTests {
 	{
 		int [] test1 = {1,1};
 		
-		Logic game = new Logic(new TestMap2());
+		Logic game = new Logic(new TestMap2(), rand.nextInt(3), rand.nextInt(3)+1);;
 		Ogre ogre = new Ogre(3,1);
 		game.setOgre(ogre);
 		assertEquals(test1[0],game.getHero().getPosition().getX());
@@ -119,7 +123,7 @@ public class GameTests {
 	{
 		int [] test1 = {1,1};
 		
-		Logic game = new Logic(new TestMap2());
+		Logic game = new Logic(new TestMap2(), rand.nextInt(3), rand.nextInt(3)+1);;
 		assertEquals(test1[0],game.getHero().getPosition().getX());
 		assertEquals(test1[1],game.getHero().getPosition().getY());
 		game = game.moveHero('s');
@@ -134,7 +138,7 @@ public class GameTests {
 		int [] test1 = {1,1};
 		int[] test2 = { 1, 2 };
 		
-		Logic game = new Logic(new TestMap2());
+		Logic game = new Logic(new TestMap2(), rand.nextInt(3), rand.nextInt(3)+1);;
 		assertEquals(test1[0],game.getHero().getPosition().getX());
 		assertEquals(test1[1],game.getHero().getPosition().getY());
 		game = game.moveHero('s');
@@ -150,7 +154,7 @@ public class GameTests {
 	{
 		int [] test1 = {1,1};
 		
-		Logic game = new Logic(new TestMap2());
+		Logic game = new Logic(new TestMap2(), rand.nextInt(3), rand.nextInt(3)+1);;
 		assertEquals(test1[0],game.getHero().getPosition().getX());
 		assertEquals(test1[1],game.getHero().getPosition().getY());
 		game = game.moveHero('s');
@@ -166,7 +170,7 @@ public class GameTests {
 	{
 		int [] test1 = {1,1};
 		
-		Logic game = new Logic(new TestMap2());
+		Logic game = new Logic(new TestMap2(), rand.nextInt(3), rand.nextInt(3)+1);;
 		assertEquals(test1[0],game.getHero().getPosition().getX());
 		assertEquals(test1[1],game.getHero().getPosition().getY());
 		game = game.moveHero('s');
@@ -211,7 +215,7 @@ public class GameTests {
 		
 		
 		boolean outcome1=false,outcome2=false;
-		Logic game=new Logic(new TestMap3());
+		Logic game=new Logic(new TestMap3(), rand.nextInt(3), rand.nextInt(3)+1);;
 		Ogre ogre = new Ogre(3,3);
 		game.setOgre(ogre);
 		game.moveAllVillains();
@@ -237,7 +241,7 @@ public class GameTests {
 	{
 		int [] test1 = {1,1};
 		
-		Logic game = new Logic(new TestMap2());
+		Logic game = new Logic(new TestMap2(), rand.nextInt(3), rand.nextInt(3)+1);;
 		Ogre ogre = new Ogre(3,1);
 		game.setOgre(ogre);
 		ogre.getClub().setVisibility(true);
@@ -255,7 +259,7 @@ public class GameTests {
 	{
 		int [] test1 = {1,1};
 		
-		Logic game = new Logic(new TestMap2());
+		Logic game = new Logic(new TestMap2(), rand.nextInt(3), rand.nextInt(3)+1);;
 		Ogre ogre = new Ogre(3,1);
 		game.setOgre(ogre);
 		game.getHero().setWeapon(true);
@@ -271,7 +275,7 @@ public class GameTests {
 	{
 		int[] test1 = { 1, 1 }, test2 = { 2, 1 };
 
-		Logic game = new Logic(new Maze1());
+		Logic game = new Logic(new Maze1(), rand.nextInt(3), rand.nextInt(3)+1);;
 		assertEquals(test1[0], game.getHero().getPosition().getX());
 		assertEquals(test1[1], game.getHero().getPosition().getY());
 		game = game.moveHero('d');
@@ -286,7 +290,7 @@ public class GameTests {
 	{
 		int[] test1 = { 1, 7 }, test2 = { 2, 7 };
 
-		Logic game = new Logic(new Maze2());
+		Logic game = new Logic(new Maze2(), rand.nextInt(3), rand.nextInt(3)+1);;
 		assertEquals(test1[0], game.getHero().getPosition().getX());
 		assertEquals(test1[1], game.getHero().getPosition().getY());
 		game = game.moveHero('d');

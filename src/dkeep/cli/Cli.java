@@ -2,6 +2,8 @@ package dkeep.cli;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Random;
+
 import dkeep.logic.Logic;
 import dkeep.logic.Logic.status;
 import dkeep.logic.Character;
@@ -10,16 +12,22 @@ import dkeep.logic.Maze1;
 public class Cli {
 
 	private Logic game;
-	Scanner sc = new Scanner(System.in);
+	private Scanner sc = new Scanner(System.in);
+	private Random rand = new Random();
 
 	/**
 	 * Cli constructor
 	 * 
 	 */
 	public Cli() {
-		game = new Logic(new Maze1());
+		game = new Logic(new Maze1(), rand.nextInt(3), rand.nextInt(3)+1);
 	}
 
+	public Cli(int typeGuard, int nOgres)
+	{
+		game = new Logic(new Maze1(), typeGuard, nOgres);
+	}
+	
 	/**
 	 * Initial function
 	 * 

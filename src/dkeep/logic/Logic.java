@@ -105,13 +105,27 @@ public class Logic {
 		if (ogre_play == 0)
 			ogre_playing = false;
 		else ogre_playing = true;
-		
+
 		if (ogre_playing) {
+
+			for (int i = 0; i < nOgres; i++) {
+
+				int x;
+				int y;
+				Position pos;
+
+				do {
+					x = rand.nextInt(map.getMapSize() - 3) + 1;
+					y = rand.nextInt(map.getMapSize() - 3) + 1;
+
+					pos = new Position(x, y, 'O');
+
+				} while (!secureStart(pos));
+
+				ogres.add(new Ogre(pos.getX(), pos.getY()));
+			}
 			
-			for (int i = 0; i < nOgres; i++) 
-				ogres.add(new Ogre(rand.nextInt(map.getMapSize() - 3) + 1, rand.nextInt(map.getMapSize() - 3) + 1));
 		}
-		
 		
 	}
 	
@@ -228,11 +242,18 @@ public class Logic {
 
 	}
 
+	/**
+	 * Determine if the position of the ogre is far enought for a secure start of the hero 
+	 * We set this distance as more than 3 positions
+	 * 
+	 * @param position
+	 * @return true or false
+	 */
 	private boolean secureStart(Position temp)
 	{
-		
-		
-		return true;
+		if (hero.getPosition().distance(temp) <= 3) // 3 for default, it can be changed
+			return false;
+		else return true;
 	}
 	
 	/**

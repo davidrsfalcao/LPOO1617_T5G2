@@ -13,7 +13,12 @@ public class Logic {
 	private int nOgres;
 	private int typeGuard = rand.nextInt(3);
 	
-	
+	/**
+	 * Game status
+	 * 
+	 * @author davidfalcao
+	 *
+	 */
 	public enum status {
 		WON, DEFEAT, RUNNING
 	}
@@ -223,6 +228,13 @@ public class Logic {
 
 	}
 
+	private boolean secureStart(Position temp)
+	{
+		
+		
+		return true;
+	}
+	
 	/**
 	 * Move hero and check if hero has passed the level. Case affirmative, returns a new level.
 	 * 
@@ -271,26 +283,27 @@ public class Logic {
 				pos = guard.moveCharacter(map.getMapSize());
 			} while (!this.map.isFree(pos.getX(), pos.getY()));
 
-		} else { 
-			for (Ogre ogre : ogres) {
-				if (ogre.isPlaying()){
+		}
+		
+		for (Ogre ogre : ogres) {
+			if (ogre.isPlaying()) {
 				do {
 					pos = ogre.moveCharacter(map.getMapSize());
 				} while (!map.isFree(pos.getX(), pos.getY()));
 
-				ogre.setPosition(pos.getX(), pos.getY());				
-				}
-			}	
-			for (int k = 0; k < ogres.size(); k++) {
-				pos = ogres.get(k).moveClub();
-
-				if (map.isFree(pos.getX(), pos.getY()) && positionClear(pos)) {
-					ogres.get(k).setClub(pos);
-				} else
-					ogres.get(k).setClubNotVisible();
-
+				ogre.setPosition(pos.getX(), pos.getY());
 			}
 		}
+		for (int k = 0; k < ogres.size(); k++) {
+			pos = ogres.get(k).moveClub();
+
+			if (map.isFree(pos.getX(), pos.getY()) && positionClear(pos)) {
+				ogres.get(k).setClub(pos);
+			} else
+				ogres.get(k).setClubNotVisible();
+
+		}
+
 	}
 
 	/**
@@ -361,11 +374,21 @@ public class Logic {
 		return temp;
 	}
 	
+	/**
+	 * Redefines hero 
+	 * 
+	 * @param hero
+	 */
 	public void setHero(Hero hero)
 	{
 		this.hero = hero;
 	}
 	
+	/**
+	 * Redefines ogre
+	 * 
+	 * @param ogre
+	 */
 	public void setOgre(Ogre ogre)
 	{
 		ogres.add(ogre);
@@ -392,6 +415,11 @@ public class Logic {
 		return guard;
 	}
 	
+	/**
+	 * Returns ogre
+	 * 
+	 * @return ogre
+	 */
 	public Ogre getOgre()
 	{
 		return ogres.get(0);

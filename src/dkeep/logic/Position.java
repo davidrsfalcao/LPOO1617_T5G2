@@ -210,4 +210,29 @@ public class Position {
 		return temp;
 	}
 
+	/**
+	 * Calculates the distance between 2 positions
+	 * 
+	 * @param temp
+	 * @return distance
+	 */
+	public double distance(Position temp)
+	{
+		double distance;
+		int x1 = temp.getX();
+		int y1 = temp.getY();
+		
+		/**
+		 * Distance formula
+		 * 
+		 * D = sqrt( (x1-x)^2 + (y1-y)^2 )
+		 * 
+		 */
+		
+		distance = Math.sqrt(Math.pow((x1-x),2) + Math.pow((y1-y),2));
+		
+		
+		return distance;
+	}
+	
 }

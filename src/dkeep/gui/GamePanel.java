@@ -40,9 +40,96 @@ public class GamePanel extends JPanel {
 	private BufferedImage ogre_back;
 	private BufferedImage ogreStunned;
 	
-	//// (.....) terminar
+	/**
+	 * Objectives representations 
+	 * 
+	 */
+	private BufferedImage doorClosed;
+	private BufferedImage doorOpen;
+	private BufferedImage key;
+	private BufferedImage LeverUp;
+	private BufferedImage LeverDown;
+	
+	/**
+	 * Walls and floor represenatation
+	 * 
+	 */
+	private BufferedImage wall1;
+	private BufferedImage wall2;
+	private BufferedImage wall3;
+	private BufferedImage wall4;
+		////(.....) terminar
 	
 	
+	public GamePanel() {
+
+		/**
+		 * HERO
+		 * 
+		 */
+		try {
+			hero_front = ImageIO.read(new File("res/hero/Hero.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			hero_back = ImageIO.read(new File("res/hero/HeroBack.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			heroArmed_back = ImageIO.read(new File("res/hero/HeroBackArmed.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			heroArmed_front = ImageIO.read(new File("res/hero/HeroArmed.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			heroWithKeyArmed = ImageIO.read(new File("res/hero/HeroArmedWithKey.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			heroWithKey = ImageIO.read(new File("res/hero/HeroWithKey.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		/**
+		 * OGRE
+		 * 
+		 */
+		try {
+			ogre_front = ImageIO.read(new File("res/ogre/Ogre.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			ogre_back = ImageIO.read(new File("res/ogre/OgreBack.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			ogreStunned = ImageIO.read(new File("res/ogre/OgreStunned.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+	}
 	
 	public void paintComponent(Graphics gr) {
 		super.paintComponent(gr); // clears the background ...		

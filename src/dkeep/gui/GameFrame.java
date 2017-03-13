@@ -30,7 +30,7 @@ import java.awt.Rectangle;
 public class GameFrame {
 
 	private JFrame frmMaze;
-	private Logic g;
+	private Logic game;
 	private JTextArea printMaze;
 	private JLabel lblcurretnState;
 	private JLabel mazeSize;
@@ -77,13 +77,6 @@ public class GameFrame {
 	private void initialize() {
 	}
 	
-	public int getMazeSize(){
-		int x = mazeDimensions.getValue();
-		if ((x % 2) == 0) {
-			x++;
-		}
-		return x;
-	}
 
 	
 

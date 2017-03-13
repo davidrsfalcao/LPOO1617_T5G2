@@ -1,27 +1,60 @@
 package dkeep.gui;
 
+import java.awt.image.BufferedImage;
+import java.awt.Graphics;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 import dkeep.logic.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.Timer;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+public class GamePanel extends JPanel {
 
-public class GamePanel extends JPanel implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	public void actionPerformed(ActionEvent e) {
-		repaint();
+
+	private ArrayList<ArrayList<String>> map = new ArrayList<ArrayList<String>>();
+	
+	/**
+	 * Hero representations
+	 * 
+	 */
+	private BufferedImage hero_front;
+	private BufferedImage hero_back;
+	private BufferedImage heroArmed_front;
+	private BufferedImage heroArmed_back;
+	private BufferedImage heroWithKey;
+	private BufferedImage heroWithKeyArmed;
+	
+	/**
+	 * Ogre representations
+	 * 
+	 */
+	private BufferedImage ogre_front;
+	private BufferedImage ogre_back;
+	private BufferedImage ogreStunned;
+	
+	//// (.....) terminar
+	
+	
+	
+	public void paintComponent(Graphics gr) {
+		super.paintComponent(gr); // clears the background ...		
+		drawGame(gr);
 	}
+	
+	public void drawGame(Graphics gr)
+	{
+		
+		
+	}
+	
+	
+	
 }

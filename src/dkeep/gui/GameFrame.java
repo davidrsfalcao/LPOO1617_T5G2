@@ -31,44 +31,30 @@ public class GameFrame {
 
 	private JFrame frmMaze;
 	private Logic game;
-	private JTextArea printMaze;
+	private JTextArea board;
 	private JLabel lblcurretnState;
 	private JLabel mazeSize;
-	private JButton btnUp;
-	private JButton btnDown;
-	private JButton btnLeft;
-	private JButton btnRight;
 	private JButton btnExit;
-	private JButton newMaze;
+	private JButton newGame;
 	private JButton btnExitToMenu;
 	private GamePanel graphicsPanel;
-	private JSlider mazeDimensions;
 	private JSlider drakeNumber;
 	private JComboBox<String> gameMode;
 	private JButton btnRandomMaze;
 	private JButton btnNext;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GameFrame window = new GameFrame();
-					window.frmMaze.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the application.
 	 */
 	public GameFrame() {
 		initialize();
+		try {
+			frmMaze.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

@@ -39,13 +39,12 @@ public class GameFrame extends JFrame{
 
 	private JFrame frmMaze;
 	private Logic game;
+	private GamePanel graphicsPanel;
 	private JTextArea board;
 	private JLabel lblcurretnState;
-	private JLabel mazeSize;
 	private JButton btnExit;
 	private JButton newGame;
 	private JButton btnExitToMenu;
-	private GamePanel graphicsPanel;
 	private JSlider drakeNumber;
 	private JComboBox<String> gameMode;
 	private JButton btnRandomMaze;
@@ -83,37 +82,30 @@ public class GameFrame extends JFrame{
 		
 		frmMaze = new JFrame();
 		frmMaze.setTitle("Dungeon Keep");
-		frmMaze.getContentPane().setPreferredSize(new Dimension(1024, 768));
+		frmMaze.getContentPane().setPreferredSize(new Dimension(1024, 700));
 		frmMaze.pack();
 		frmMaze.setVisible(true);
-		BufferedImage myImage  = ImageIO.read(new File("res/hero/Hero.png"));
+		BufferedImage myImage  = ImageIO.read(new File("res/a1.png"));
+		Resizer a = new Resizer();
+		myImage = a.resize(myImage, 1024,700);
 		frmMaze.setContentPane(new ImagePanel(myImage));
-		GameFrame a = new GameFrame(1);
-		
-		myImage = a.resize(myImage, 70,70);
-		//frmMaze.setContentPane(new ImagePanel(myImage));
-		
 		frmMaze.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmMaze.getContentPane().setLayout(null);
+		
+		newGame = new JButton("New Game");
+		newGame.setBounds(400, 211, 224, 100);
+		frmMaze.getContentPane().add(newGame);
+		
+		btnExit = new JButton("Exit");
+		btnExit.setBounds(400, 338, 224, 100);
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		frmMaze.getContentPane().add(btnExit);
 		
 	}
 	
 	
-	
-	public BufferedImage resize(BufferedImage image, int width, int height) {
-	    BufferedImage bi = new BufferedImage(width, height, BufferedImage.TRANSLUCENT);
-	    Graphics2D g2d = (Graphics2D) bi.createGraphics();
-	    g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY));
-	    g2d.drawImage(image, 0, 0, width, height, null);
-	    g2d.dispose();
-	    return bi;
-	}
-	
-
-	
-
-	
-
-	
-
-
 }

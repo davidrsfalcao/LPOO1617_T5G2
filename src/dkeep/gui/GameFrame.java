@@ -8,6 +8,7 @@ import dkeep.logic.*;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -34,9 +35,14 @@ import javax.swing.JSlider;
 import java.awt.Component;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.Color;
 
 public class GameFrame extends JFrame{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3248703783191618035L;
 	private JFrame frmMaze;
 	private Logic game;
 	private GamePanel graphicsPanel;
@@ -49,6 +55,7 @@ public class GameFrame extends JFrame{
 	private JComboBox<String> gameMode;
 	private JButton btnRandomMaze;
 	private JButton btnNext;
+	private JLabel authors;
 
 
 
@@ -81,31 +88,47 @@ public class GameFrame extends JFrame{
 	private void initialize() throws IOException {
 		
 		frmMaze = new JFrame();
+		frmMaze.setResizable(false);
 		frmMaze.setTitle("Dungeon Keep");
 		frmMaze.getContentPane().setPreferredSize(new Dimension(1024, 700));
 		frmMaze.pack();
 		frmMaze.setVisible(true);
+		
+		
 		BufferedImage myImage  = ImageIO.read(new File("res/a1.png"));
 		Resizer a = new Resizer();
 		myImage = a.resize(myImage, 1024,700);
 		frmMaze.setContentPane(new ImagePanel(myImage));
+
+		
 		frmMaze.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMaze.getContentPane().setLayout(null);
 		
+		
 		newGame = new JButton("New Game");
-		newGame.setBounds(400, 211, 224, 100);
+		newGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		newGame.setBounds(400, 300, 224, 100);
 		frmMaze.getContentPane().add(newGame);
 		
+		
 		btnExit = new JButton("Exit");
-		btnExit.setBounds(400, 338, 224, 100);
+		btnExit.setBounds(400, 420, 224, 100);
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
 		frmMaze.getContentPane().add(btnExit);
+
+		authors = new JLabel("David & Pedro 2017");
+		authors.setForeground(Color.WHITE);
+		authors.setFont(new Font("Osaka", Font.PLAIN, 15));
+		authors.setBounds(850, 650, 200, 50);
+		frmMaze.getContentPane().add(authors);
+		
 		
 	}
-	
-	
 }

@@ -56,6 +56,7 @@ public class GameFrame extends JFrame{
 	private JButton btnRandomMaze;
 	private JButton btnNext;
 	private JLabel authors;
+	private JDialog init_values;
 
 
 
@@ -108,6 +109,8 @@ public class GameFrame extends JFrame{
 		newGame = new JButton("New Game");
 		newGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
 			}
 		});
 		newGame.setBounds(400, 300, 224, 100);

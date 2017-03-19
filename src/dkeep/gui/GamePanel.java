@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import dkeep.logic.*;
+import dkeep.logic.Character;
 
 
 public class GamePanel extends JPanel {
@@ -19,9 +20,9 @@ public class GamePanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<ArrayList<String>> map = new ArrayList<ArrayList<String>>();
-	private int guardType;
-	private int nOgres;
-	private Logic game;
+	private ArrayList<Position> objectives = new ArrayList<Position>();
+	private ArrayList<Character> characters = new ArrayList<Character>();
+	private int map_size;
 	
 	/**
 	 * Hero representations
@@ -97,8 +98,10 @@ public class GamePanel extends JPanel {
 	
 	
 	
-	public GamePanel() {
+	public GamePanel(int map_size) {
 			
+		this.map_size = map_size;
+		
 		/**
 		 * HERO
 		 * 
@@ -156,6 +159,13 @@ public class GamePanel extends JPanel {
 			e.printStackTrace();
 		}
 		
+		try {
+			floor = ImageIO.read(new File("res/floor/Grass.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 		
 		
 		
@@ -174,16 +184,17 @@ public class GamePanel extends JPanel {
 		Resizer res = new Resizer();
 		BufferedImage temp;
 		
+		int resX = 1024/((map_size*2)-1);
+		int resY = resX;
 		
-		temp = res.resize(hero_front, 70, 70);
-		gr.drawImage(temp, 900,100, null);
 		
-		for(int y = 0;y < map.size();y++)
+		for(int y = 0;y < map_size;y++)
 		{
-			for (int x=0;x < map.get(y).size();x++)
+			for (int x=0;x < map_size;x++)
 			{
-				int i=x*10;
-				int j=y*10;
+				int i=(map_size-(y+1)+x)*resX;
+				int j=(2+y)*resY;
+				
 				switch(map.get(y).get(x))
 				{
 				//paredes
@@ -225,7 +236,8 @@ public class GamePanel extends JPanel {
 				//espacos
 					
 				case " ":
-					gr.drawImage(floor, i, j, null);
+					temp = res.resize(floor, resX, resY);
+					gr.drawImage(temp, i, j, null);
 					break;
 				case "ES":
 					gr.drawImage(floors, i, j, null);
@@ -233,7 +245,7 @@ public class GamePanel extends JPanel {
 					
 				//heroi
 					
-				case "HF":
+				case "H":
 					gr.drawImage(hero_front, i, j, null);
 					break;
 				case "HB":
@@ -387,6 +399,24 @@ public class GamePanel extends JPanel {
 		
 	}
 	
+	public void setMap(ArrayList<ArrayList<String>> map1)
+	{
+		map = new ArrayList<ArrayList<String>>(map1);
+		
+	}
+	
+	public void setObjectives(ArrayList<Position> obj)
+	{
+		objectives = new ArrayList<Position>(obj);
+		
+	}
+	
+	public void setCharacters(ArrayList<Character> obj)
+	{
+		characters = new ArrayList<Character>(obj);
+		
+	}
 
+	
 	
 }

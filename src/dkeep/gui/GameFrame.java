@@ -24,6 +24,7 @@ public class GameFrame extends JFrame {
 	private JButton btnQuitGame;
 	private GamePanel gamePanel;
 	private Menu menu;
+	private Logic game;
 	
 	private int guardType;
 	private int nOgres;
@@ -38,13 +39,13 @@ public class GameFrame extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		
-		
+		game = new Logic(new Maze1(), guardType, nOgres);
 		this.menu = menu;
 		this.nOgres = nOgres;
 		this.guardType = guardType;
 
-		gamePanel = new GamePanel();
-		gamePanel.setBackground(new Color(47,67,45));
+		gamePanel = new GamePanel(game.getMap().getMapSize());
+		//gamePanel.setBackground(new Color(30,65,39));
 
 		setUpButtons();
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -137,6 +138,7 @@ public class GameFrame extends JFrame {
 				- getSize().height / 2);
 
 		setVisible(true);
+		gamePanel.setMap(game.getMapGui());
 		gamePanel.repaint();
 	}
 

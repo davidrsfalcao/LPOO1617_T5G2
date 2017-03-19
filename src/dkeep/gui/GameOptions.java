@@ -95,6 +95,7 @@ public class GameOptions extends JDialog {
 							window.setNOgres(tempOgre);
 							setVisible(false);
 							
+							
 						}
 						else {
 							JOptionPane.showMessageDialog(window, "Number of ogres invalid");

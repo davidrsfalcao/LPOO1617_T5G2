@@ -1,6 +1,5 @@
 package dkeep.gui;
 
-import dkeep.logic.GameConfig;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +29,6 @@ public class GameFrame extends JFrame{
 	private JButton btnNewGame;
 	private JButton btnExit;
 	private JButton btnOptions;
-	private GameConfig gameConfig;
 	private JDialog options;
 	private int guardType = 0;
 	private int nOgres = 3;
@@ -56,7 +54,6 @@ public class GameFrame extends JFrame{
 		getContentPane().add(authors);
 		
 		graphicsPanel = new GamePanel();
-		gameConfig = new GameConfig();
 		options = new GameOptions(this, guardType, nOgres);
 		
 		

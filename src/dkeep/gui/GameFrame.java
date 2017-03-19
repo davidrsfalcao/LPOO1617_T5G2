@@ -6,8 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import dkeep.logic.Logic;
-import dkeep.logic.Maze1;
+import dkeep.logic.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

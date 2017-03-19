@@ -165,6 +165,18 @@ public class GamePanel extends JPanel {
 			e.printStackTrace();
 		}
 		
+		try {
+			wall2 = ImageIO.read(new File("res/Wall01.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			wall5 = ImageIO.read(new File("res/Wall00.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		
 		
 		
@@ -206,7 +218,8 @@ public class GamePanel extends JPanel {
 					gr.drawImage(wall1, i, j, null);
 					break;
 				case "X2":
-					gr.drawImage(wall2, i, j, null);
+					temp = res.resize(wall2, resX, resY);
+					gr.drawImage(temp, i, j, null);
 					break;
 				case "X3":
 					gr.drawImage(wall3, i, j, null);
@@ -215,7 +228,8 @@ public class GamePanel extends JPanel {
 					gr.drawImage(wall4, i, j, null);
 					break;
 				case "X5":
-					gr.drawImage(wall5, i, j, null);
+					temp = res.resize(wall5, resX, resY);
+					gr.drawImage(temp, i, j, null);
 					break;
 				case "X6":
 					gr.drawImage(wall6, i, j, null);

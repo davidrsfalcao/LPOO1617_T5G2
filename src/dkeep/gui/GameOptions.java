@@ -33,7 +33,7 @@ public class GameOptions extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public GameOptions(GameFrame window, int guard_type, int nOgres) {
+	public GameOptions(Menu window, int guard_type, int nOgres) {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setVisible(false);
 		setBounds(100, 100, 387, 187);

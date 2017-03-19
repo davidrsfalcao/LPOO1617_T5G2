@@ -20,7 +20,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
 
-public class GameFrame extends JFrame{
+public class Menu extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,7 +36,7 @@ public class GameFrame extends JFrame{
 
 
 	
-	public GameFrame() throws IOException {
+	public Menu() throws IOException {
 		setResizable(false);
 		setTitle("Dungeon Keep");
 		pack();
@@ -67,13 +67,14 @@ public class GameFrame extends JFrame{
 		btnNewGame = new JButton("New Game");
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println(guardType);
-				System.out.println(nOgres);
 					
+				setVisible(false);
 				getContentPane().setLayout(new BorderLayout(0, 0));
 				getContentPane().add(graphicsPanel);
 
 					//graphicsPanel.startNewGame(gameConfig); <-------------------------------
+				
+				setVisible(true);
 				
 			}
 		});

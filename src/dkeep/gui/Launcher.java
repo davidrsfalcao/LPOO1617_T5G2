@@ -7,7 +7,7 @@ public class Launcher{
 	
 	public static void main(String[] args) throws IOException {
 	
-		GameFrame window = new GameFrame();
+		Menu window = new Menu();
 		window.start();
 	}
 

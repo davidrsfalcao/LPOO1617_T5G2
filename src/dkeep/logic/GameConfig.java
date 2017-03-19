@@ -6,10 +6,6 @@ public class GameConfig {
 	private int width, height;
 	private int guardType;
 	private int nOgres;
-	private int upKeyAssignment = KeyEvent.VK_W;
-	private int downKeyAssignment = KeyEvent.VK_S;
-	private int leftKeyAssignment = KeyEvent.VK_A;
-	private int rightKeyAssignment = KeyEvent.VK_D;
 
 	public GameConfig() {
 		width = 10;
@@ -41,22 +37,6 @@ public class GameConfig {
 		return nOgres;
 	}
 
-	public int getUpKeyAssignment() {
-		return upKeyAssignment;
-	}
-
-	public int getDownKeyAssignment() {
-		return downKeyAssignment;
-	}
-
-	public int getLeftKeyAssignment() {
-		return leftKeyAssignment;
-	}
-
-	public int getRightKeyAssignment() {
-		return rightKeyAssignment;
-	}
-
 	public void setWidth(int width) {
 		this.width = width;
 	}
@@ -73,20 +53,5 @@ public class GameConfig {
 		this.nOgres = nOgres;
 	}
 
-	public void setUpKeyAssignment(int upKeyAssignment) {
-		this.upKeyAssignment = upKeyAssignment;
-	}
-
-	public void setDownKeyAssignment(int downKeyAssignment) {
-		this.downKeyAssignment = downKeyAssignment;
-	}
-
-	public void setLeftKeyAssignment(int leftKeyAssignment) {
-		this.leftKeyAssignment = leftKeyAssignment;
-	}
-
-	public void setRightKeyAssignment(int rightKeyAssignment) {
-		this.rightKeyAssignment = rightKeyAssignment;
-	}
 
 }

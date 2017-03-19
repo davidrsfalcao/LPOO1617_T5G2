@@ -2,22 +2,18 @@ package dkeep.gui;
 
 import java.io.IOException;
 
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
+import dkeep.logic.Logic;
 import dkeep.logic.Maze1;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Toolkit;
 
 
@@ -47,7 +43,7 @@ public class GameFrame extends JFrame {
 		this.nOgres = nOgres;
 		this.guardType = guardType;
 
-		gamePanel = new GamePanel(new Maze1(),guardType,nOgres);
+		gamePanel = new GamePanel();
 		gamePanel.setBackground(new Color(47,67,45));
 
 		setUpButtons();
@@ -116,9 +112,6 @@ public class GameFrame extends JFrame {
 		});
 	}
 
-	/**
-	 * Adds buttons to game windows layout.
-	 */
 	private void addButtons() {
 
 		btnNewGame.setBounds(10, 10, 100, 50);
@@ -144,5 +137,7 @@ public class GameFrame extends JFrame {
 				- getSize().height / 2);
 
 		setVisible(true);
+		gamePanel.repaint();
 	}
+
 }

@@ -325,7 +325,6 @@ public class window {
 
 				board.setForeground(new Color(0, 0, 0));
 
-				cli.printGui();
 				board.setText(cli.print(cli.getGame().getMap().getMap()));
 				
 				btnNewGame.setEnabled(false);

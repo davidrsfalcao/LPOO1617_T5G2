@@ -89,8 +89,7 @@ public class GamePanel extends JPanel {
 	private BufferedImage wall9;   // parede excepto em oeste
 	private BufferedImage wall10;   // parede excepto em este
 	
-	
-	
+
 	//floor	
 	
 	private BufferedImage floor;   // chao sem sombra
@@ -98,11 +97,7 @@ public class GamePanel extends JPanel {
 	
 	
 	
-	public GamePanel(Map map, int guardType, int nOgres) {
-		
-		this.guardType = guardType;
-		this.nOgres = nOgres;
-		game = new Logic(map, guardType, nOgres);
+	public GamePanel() {
 			
 		/**
 		 * HERO
@@ -167,13 +162,21 @@ public class GamePanel extends JPanel {
 		
 	}
 	
+	@Override
 	public void paintComponent(Graphics gr) {
 		super.paintComponent(gr); // clears the background ...		
 		drawGame(gr);
 	}
 	
+	
 	public void drawGame(Graphics gr)
 	{
+		Resizer res = new Resizer();
+		BufferedImage temp;
+		
+		
+		temp = res.resize(hero_front, 70, 70);
+		gr.drawImage(temp, 900,100, null);
 		
 		for(int y = 0;y < map.size();y++)
 		{
@@ -376,10 +379,6 @@ public class GamePanel extends JPanel {
 					gr.drawImage(club_key, i, j, null);
 					break;
 				
-					
-					
-				
-					
 				}
 				
 			}
@@ -388,7 +387,6 @@ public class GamePanel extends JPanel {
 		
 	}
 	
-	
-	
+
 	
 }

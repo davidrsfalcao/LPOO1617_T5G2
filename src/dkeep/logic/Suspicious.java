@@ -17,9 +17,13 @@ public class Suspicious extends Guard {
 		if(!playing)
 			position = new Position(-10,-10,'G');
 		else position = new Position(posX, posY, 'G');
+		
+		last_position = new Position(posX, posY, position.getRepresentation());
+
 	}
 	
 	public Position moveCharacter(int MAP_SIZE) {
+		
 		if (front) {
 			position.changeTo(path[index][0], path[index][1]);
 			steps_front--;

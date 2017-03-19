@@ -10,6 +10,7 @@ public class MassiveClub extends Character {
 	{ 
 		playing = false;
 		position = new Position(-10,-10,'*');
+		last_position = position;
 	}
 	
 	public void setVisibility(boolean mode)

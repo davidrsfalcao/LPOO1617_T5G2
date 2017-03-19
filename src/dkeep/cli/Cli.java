@@ -140,7 +140,26 @@ public class Cli {
 		
 		return temp;
 	}
-
+	
+	public  void printGui()
+	{
+		ArrayList<ArrayList<String>> board = game.getMapGui();
+		System.out.println(board.size());
+		
+		
+		for (int i = 0; i < board.size(); i++)
+		{
+			for (int k = 0; k < board.get(i).size(); k++)
+			{
+				 System.out.print (board.get(i).get(k) + " ");
+			}
+			System.out.println();
+		}
+		
+		System.out.println(board.size());
+		
+	}
+	
 	public void play(char option)
 	{
 		game = game.moveHero(option);

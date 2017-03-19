@@ -7,6 +7,7 @@ public abstract class Guard extends Character {
 	protected int index = 0;
 	protected boolean awake = true;
 		
+	
 	/**
 	 * Increase index 
 	 * 

@@ -12,6 +12,7 @@ public class Logic {
 	private Random rand = new Random();
 	private int nOgres;
 	private int typeGuard = rand.nextInt(3);
+	private boolean changed = false;
 	
 	/**
 	 * Game status
@@ -281,6 +282,7 @@ public class Logic {
 		{
 			hero.updateLastPosition();
 			hero.setPosition(temp.getX(), temp.getY());
+			hero.updateDirection();
 		}
 
 		checkObjectives();
@@ -301,8 +303,11 @@ public class Logic {
 		Position pos;
 		if (guard.isPlaying()) {
 			do {
+				guard.updateLastPosition();
 				pos = guard.moveCharacter(map.getMapSize());
+				guard.updateDirection();
 			} while (!this.map.isFree(pos.getX(), pos.getY()));
+			
 
 		}
 		
@@ -312,7 +317,9 @@ public class Logic {
 					pos = ogre.moveCharacter(map.getMapSize());
 				} while (!map.isFree(pos.getX(), pos.getY()));
 
+				ogre.updateLastPosition();
 				ogre.setPosition(pos.getX(), pos.getY());
+				ogre.updateDirection();
 			}
 		}
 		for (int k = 0; k < ogres.size(); k++) {
@@ -369,6 +376,7 @@ public class Logic {
 
 		if (guard.isPlaying())
 			temp.add(guard);
+		
 
 		for (Ogre ogre : ogres)
 		{
@@ -447,5 +455,218 @@ public class Logic {
 		
 	}
 	
+	public String typeOfObjectives(String a)
+	{
+		if (a == "S" || a == "I")
+		{
+			changed = true;
+			return a;
+		}
+			
+		
+		if (a == "k")
+		{
+			switch(map.getKey().getType())
+			{
+			case 1:
+				if (map.getMap()[map.getEndPositions().get(0).getY()][map.getEndPositions().get(0).getX()] == 'S')
+				{
+					changed = true;
+					a = "kd";
+					return a;
+				}
+				else {
+					changed = true;
+					a = "ku";
+					return a;
+					
+				}
+				
+			case 2:
+				changed = true;
+				return a;
+				
+			}
+			
+			
+		}
+			
+		changed = true;
+		return a;
+	}
+	
+	public String typeOfWall(String a , int x , int y) // implementar
+	{
+		char[][] map1 = map.getMap();
+		
+		if (!a.equals("X"))
+			return a;
+		
+		boolean n, s , w, e;
+		
+		if (x == 0)
+		{
+			w = false;
+			e = (map1[y][x+1] == 'X');
+		}
+		else if (x ==  map.getMapSize()-1)
+		{
+			w = (map1[y][x-1] == 'X');
+			e = false;
+		}
+		else {
+			w = (map1[y][x-1] == 'X');
+			e = (map1[y][x+1] == 'X');		
+		}
+			
+		
+		if (y == 0)
+		{
+			n = false;
+			s = (map1[y+1][x] == 'X');
+		}
+		else if (y ==  map.getMapSize()-1)
+		{
+			n = (map1[y-1][x] == 'X');
+			s = false;
+		}
+		else {
+			n = (map1[y-1][x] == 'X');
+			s = (map1[y+1][x] == 'X');		
+		}
+			
+		
+		if (!n && !s && !w && !e)
+		{
+			// parede isolada
+			// fica a X
+			changed = true;
+			return a;
+		}
+		
+		if (n && !s && !w && !e)
+		{
+			// parede a norte
+			a = "X1";
+			changed = true;
+			return a;
+		}
+		
+		if (n && s && !w && !e)
+		{
+			// parede a norte e sul
+			a = "X2";
+			changed = true;
+			return a;
+		}
+		
+		if (!n && s && !w && !e)
+		{
+			// parede a sul
+			a = "X2";
+			changed = true;
+			return a;
+		}
+		
+		if (!n && !s && w && !e)
+		{
+			// parede a oeste
+			a = "X3";
+			changed = true;
+			return a;
+		}
+		
+		if (!n && !s && !w && e)
+		{
+			// parede a este
+			a = "X4";
+			changed = true;
+			return a;
+		}
+		
+		if (!n && !s && w && e)
+		{
+			// parede a este e oeste
+			a = "X5";
+			changed = true;
+			return a;
+		}
+		
+		
+		if (n && s && w && e)
+		{
+			// parede em todas as direções
+			a = "X6";
+			changed = true;
+			return a;
+			
+		}
+		
+		if (!n && s && w && e)
+		{
+			// parede em todas as direções menos norte
+			a = "X7";
+			changed = true;
+			return a;
+		}
+		
+		if (n && !s && w && e)
+		{
+			// parede em todas as direções menos sul
+			a = "X8";
+			changed = true;
+			return a;
+		}
+		
+		if (n && s && !w && e)
+		{
+			// parede em todas as direções menos oeste
+			a = "X9";
+			changed = true;
+			return a;
+		}
+		
+		if (n && s && w && !e)
+		{
+			// parede em todas as direções menos este
+			a = "X10";
+			changed = true;
+			return a;
+		}
+		
+		
+		return a;
+	}
+	
+	public ArrayList<ArrayList<String>> getMapGui()
+	{
+		ArrayList<ArrayList<String>> board = new ArrayList<ArrayList<String>>();
+		
+		for (int k = 0; k < map.getMapSize(); k++) {
+			ArrayList<String> line = new ArrayList<String>();
+			for (int i = 0; i < map.getMapSize(); i++) {
+				
+				String temp;
+				temp = "" + map.getMap()[k][i];
+				
+				temp = typeOfWall(temp,i,k);
+				
+				
+				if (changed)
+				{
+					line.add(temp);
+				}
+				else line.add(temp);
+				
+				changed = false;
+				temp = typeOfObjectives(temp);
+				
+			}
+			board.add(line);
+
+		}
+		
+		return board;
+	}
 	
 }

@@ -14,6 +14,8 @@ public class Ogre extends Character {
 	public Ogre(int x, int y) {
 		playing = true;
 		position = new Position(x, y, 'O');
+		last_position = new Position(x, y, position.getRepresentation());
+
 	}
 	
 	public Position moveCharacter(int MAP_SIZE) {

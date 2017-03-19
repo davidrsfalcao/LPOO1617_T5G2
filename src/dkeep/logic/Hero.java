@@ -2,7 +2,6 @@ package dkeep.logic;
 
 public class Hero extends Character{
 	
-	private Position last_position;
 	private boolean has_key;
 	private boolean is_armed;
 	
@@ -75,16 +74,9 @@ public class Hero extends Character{
 	public void comeBack()
 	{
 		position.copy(last_position);
+		updateDirection();
 	}
 	
-	/**
-	 * Update the last position
-	 * 
-	 */
-	public void updateLastPosition()
-	{
-		last_position.copy(position);
-	}
 	
 	/**
 	 * Return if the hero has a key or not

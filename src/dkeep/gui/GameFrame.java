@@ -32,8 +32,8 @@ public class GameFrame extends JFrame{
 	private JButton btnOptions;
 	private GameConfig gameConfig;
 	private JDialog options;
-	private int guardType;
-	private int nOgres;
+	private int guardType = 0;
+	private int nOgres = 3;
 
 
 
@@ -70,6 +70,8 @@ public class GameFrame extends JFrame{
 		btnNewGame = new JButton("New Game");
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				System.out.println(guardType);
+				System.out.println(nOgres);
 					
 				getContentPane().setLayout(new BorderLayout(0, 0));
 				getContentPane().add(graphicsPanel);
@@ -85,6 +87,7 @@ public class GameFrame extends JFrame{
 		btnOptions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				options.setVisible(true);
+
 				
 			}
 		});
@@ -101,7 +104,6 @@ public class GameFrame extends JFrame{
 			}
 		});
 	}
-	
 	
 	private void addButtons() {
 		btnNewGame.setBounds(400, 300, 224, 50);
@@ -127,6 +129,16 @@ public class GameFrame extends JFrame{
 				- getSize().height / 2);
 
 		setVisible(true);
+	}
+	
+	public void setGuardType(int type)
+	{
+		guardType = type;	
+	}
+	
+	public void setNOgres(int n)
+	{
+		nOgres = n;	
 	}
 	
 }

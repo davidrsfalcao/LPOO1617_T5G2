@@ -17,12 +17,13 @@ import java.awt.Toolkit;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class GameOptions extends JDialog {
 
+
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 	private int tempGuard;
@@ -53,7 +54,9 @@ public class GameOptions extends JDialog {
 		comboBox.setFont(new Font("Courier", Font.PLAIN, 11));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Rookie", "Drunken", "Suspicious"}));
 		comboBox.setBounds(183, 22, 175, 27);
+		comboBox.setSelectedIndex(guard_type);
 		contentPanel.add(comboBox);
+		
 		
 		JLabel lblNumberOfOgres = new JLabel("Number of ogres");
 		lblNumberOfOgres.setFont(new Font("Courier", Font.PLAIN, 11));
@@ -63,6 +66,7 @@ public class GameOptions extends JDialog {
 		textField = new JTextField();
 		textField.setFont(new Font("Courier", Font.PLAIN, 11));
 		textField.setBounds(191, 78, 167, 26);
+		textField.setText(nOgres + "");
 		contentPanel.add(textField);
 		textField.setColumns(10);
 		{
@@ -74,6 +78,7 @@ public class GameOptions extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
+						tempGuard = comboBox.getSelectedIndex();
 						
 						try {
 							tempOgre  = Integer.parseInt(textField.getText());
@@ -81,10 +86,13 @@ public class GameOptions extends JDialog {
 						} catch (NumberFormatException ex) {
 
 							JOptionPane.showMessageDialog(window, "Number of ogres invalid");
+							
 						}
 						
-						if (tempOgre < 5 && tempOgre >0)
+						if (tempOgre <= 5 && tempOgre >0)
 						{
+							window.setGuardType(tempGuard);
+							window.setNOgres(tempOgre);
 							setVisible(false);
 							
 						}
@@ -92,6 +100,7 @@ public class GameOptions extends JDialog {
 							JOptionPane.showMessageDialog(window, "Number of ogres invalid");
 							
 							}
+						toFront();
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -100,6 +109,13 @@ public class GameOptions extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						setVisible(false);
+						comboBox.setSelectedItem(guard_type);
+						textField.setText(nOgres + "");
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

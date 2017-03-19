@@ -24,7 +24,6 @@ public class Menu extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 
-	private GamePanel graphicsPanel;
 	private JLabel authors;
 	private JButton btnNewGame;
 	private JButton btnExit;
@@ -36,11 +35,17 @@ public class Menu extends JFrame{
 
 
 	
-	public Menu() throws IOException {
+	public Menu(){
 		setResizable(false);
 		setTitle("Dungeon Keep");
 		pack();
-		BufferedImage myImage  = ImageIO.read(new File("res/a1.png"));
+		BufferedImage myImage = null;
+		try {
+			myImage = ImageIO.read(new File("res/a1.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Resizer a = new Resizer();
 		myImage = a.resize(myImage, 1024,700);
 		setContentPane(new ImagePanel(myImage));
@@ -53,7 +58,6 @@ public class Menu extends JFrame{
 		authors.setBounds(850, 650, 200, 50);
 		getContentPane().add(authors);
 		
-		graphicsPanel = new GamePanel();
 		options = new GameOptions(this, guardType, nOgres);
 		
 		
@@ -67,14 +71,18 @@ public class Menu extends JFrame{
 		btnNewGame = new JButton("New Game");
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					
-				setVisible(false);
-				getContentPane().setLayout(new BorderLayout(0, 0));
-				getContentPane().add(graphicsPanel);
 
-					//graphicsPanel.startNewGame(gameConfig); <-------------------------------
-				
-				setVisible(true);
+				setVisible(false);
+				// getContentPane().setLayout(new BorderLayout(0, 0));
+				// getContentPane().add(graphicsPanel);
+
+				GameFrame game = new GameFrame(new Menu(), guardType, nOgres);
+				game.start();
+
+				// graphicsPanel.startNewGame(gameConfig);
+				// <-------------------------------
+
+				//setVisible(true);
 				
 			}
 		});

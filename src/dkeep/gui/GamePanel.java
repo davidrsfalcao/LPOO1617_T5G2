@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import dkeep.logic.*;
+
 
 public class GamePanel extends JPanel {
 
@@ -16,9 +18,10 @@ public class GamePanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-
 	private ArrayList<ArrayList<String>> map = new ArrayList<ArrayList<String>>();
+	private int guardType;
+	private int nOgres;
+	private Logic game;
 	
 	/**
 	 * Hero representations
@@ -95,8 +98,12 @@ public class GamePanel extends JPanel {
 	
 	
 	
-	public GamePanel() {
-
+	public GamePanel(Map map, int guardType, int nOgres) {
+		
+		this.guardType = guardType;
+		this.nOgres = nOgres;
+		game = new Logic(map, guardType, nOgres);
+			
 		/**
 		 * HERO
 		 * 

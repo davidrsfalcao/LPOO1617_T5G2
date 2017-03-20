@@ -10,13 +10,16 @@ import dkeep.logic.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
 
 
-public class GameFrame extends JFrame {
+public class GameFrame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton btnNewGame;
 	private JButton btnBackMenu;
@@ -43,16 +46,18 @@ public class GameFrame extends JFrame {
 		this.nOgres = nOgres;
 		this.guardType = guardType;
 
-		gamePanel = new GamePanel(game.getMap().getMapSize());
-		//gamePanel.setBackground(new Color(30,65,39));
+		gamePanel = new GamePanel();
+		gamePanel.setBackground(new Color(30,65,39));
 
 		setUpButtons();
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		addButtons();
 		getContentPane().add(gamePanel);
+		
+
 	}
 
-	public void close()
+	private void close()
 	{
 		this.dispose();
 		
@@ -112,16 +117,17 @@ public class GameFrame extends JFrame {
 		});
 	}
 
+	
 	private void addButtons() {
 
-		btnNewGame.setBounds(10, 10, 100, 50);
-		getContentPane().add(btnNewGame);
+		//btnNewGame.setBounds(10, 10, 100, 50);
+		gamePanel.add(btnNewGame);
 		
-		btnBackMenu.setBounds(10, 70, 100, 50);
-		getContentPane().add(btnBackMenu);
+		//btnBackMenu.setBounds(10, 70, 100, 50);
+		gamePanel.add(btnBackMenu);
 		
-		btnQuitGame.setBounds(10, 130, 100, 50);
-		getContentPane().add(btnQuitGame);
+		//btnQuitGame.setBounds(10, 130, 100, 50);
+		gamePanel.add(btnQuitGame);
 		
 		
 	}
@@ -137,8 +143,54 @@ public class GameFrame extends JFrame {
 				- getSize().height / 2);
 
 		setVisible(true);
+		gamePanel.requestFocusInWindow();
+		gamePanel.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				keyMovement(e);
+			}
+		});
+		
 		gamePanel.setMap(game.getMapGui());
+		gamePanel.setCharacters(game.getCharactersGui());
 		gamePanel.repaint();
+		
+	}
+
+	private void keyMovement(KeyEvent e) {
+		char key;
+		key = e.getKeyChar();
+
+		if (key == 'w') {
+			updateGame('w');
+		} else if (key == 's') {
+			updateGame('s');
+		} else if (key == 'a') {
+			updateGame('a');
+		} else if (key == 'd') {
+			updateGame('d');
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			updateGame('d');
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			updateGame('a');
+		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+			updateGame('w');
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			updateGame('s');
+		}
+	}
+
+	private void updateGame(char i)
+	{
+		game = game.moveHero(i);
+		game.atack_villains();
+		game.moveAllVillains();
+		game.atack_villains();
+		game.Over();
+		gamePanel.setMap(game.getMapGui());
+		gamePanel.setCharacters(game.getCharactersGui());
+		gamePanel.repaint();
+		
 	}
 
 }

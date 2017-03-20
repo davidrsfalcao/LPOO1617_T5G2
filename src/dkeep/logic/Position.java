@@ -5,7 +5,8 @@ public class Position {
 
 	private int x;
 	private int y;
-	private char representation; 
+	private char representation;
+	private String representation_gui;
 	private int type = 0; // 0 for default, 1 for lever and 2 for key
 	
 	/**
@@ -20,6 +21,15 @@ public class Position {
 		this.x = x;
 		this.y = y;
 		this.representation = representation;
+		representation_gui = "";
+	}
+ 	
+ 	public Position(int x, int y, String representation)
+	{
+		this.x = x;
+		this.y = y;
+		this.representation_gui = representation;
+		this.representation = ' ';
 	}
 	
 	/**
@@ -129,6 +139,16 @@ public class Position {
 	public char getRepresentation()
 	{	
 		return representation;
+	}
+	
+	/**
+	 * Returns the representation
+	 * 
+	 * @return representation
+	 */
+	public String getRepresentationGui()
+	{	
+		return representation_gui;
 	}
 
 	/**

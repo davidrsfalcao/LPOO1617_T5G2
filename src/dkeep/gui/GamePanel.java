@@ -2,6 +2,8 @@ package dkeep.gui;
 
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,8 +23,7 @@ public class GamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<ArrayList<String>> map = new ArrayList<ArrayList<String>>();
 	private ArrayList<Position> objectives = new ArrayList<Position>();
-	private ArrayList<Character> characters = new ArrayList<Character>();
-	private int map_size;
+	private ArrayList<Position> characters = new ArrayList<Position>();
 	
 	/**
 	 * Hero representations
@@ -31,8 +32,9 @@ public class GamePanel extends JPanel {
 	private BufferedImage hero_front;
 	private BufferedImage hero_back;
 	private BufferedImage heroArmed_front;
+	private BufferedImage heroKey_front;
 	private BufferedImage heroArmed_back;
-	private BufferedImage heroWithKeyArmed;
+	private BufferedImage heroKeyArmed_front;
 	
 	
 	/**
@@ -50,7 +52,8 @@ public class GamePanel extends JPanel {
 	 */
 	private BufferedImage ogre_front;
 	private BufferedImage ogre_back;
-	private BufferedImage ogreStunned;
+	private BufferedImage ogreStunned_front;
+	private BufferedImage ogreStunned_back;
 	private BufferedImage ogreKey;
 	
 	
@@ -78,16 +81,16 @@ public class GamePanel extends JPanel {
 	 */
 	
 	 // walls
-	private BufferedImage wall;  // isolada
-	private BufferedImage wall1;  // parede a norte
-	private BufferedImage wall2;  // parede a norte e sul ou só sul
-	private BufferedImage wall3;  // parede a oeste
-	private BufferedImage wall4;  // parede a este
-	private BufferedImage wall5;  // parede a este e oeste
-	private BufferedImage wall6;  // parede em todas as direcoes
-	private BufferedImage wall7;  // parede excepto em norte
-	private BufferedImage wall8;   // parede excepto em sul
-	private BufferedImage wall9;   // parede excepto em oeste
+	private BufferedImage wall00;  // este e oeste
+	private BufferedImage wall01;  // parede a norte
+	private BufferedImage wall02;  // parede a norte e sul ou só sul
+	private BufferedImage wall03;  // parede a oeste
+	private BufferedImage wall04;  // parede a este
+	private BufferedImage wall05;  // parede a este e oeste
+	private BufferedImage wall06;  // parede em todas as direcoes
+	private BufferedImage wall07;  // parede excepto em norte
+	private BufferedImage wall08;   // parede excepto em sul
+	private BufferedImage wall09;   // parede excepto em oeste
 	private BufferedImage wall10;   // parede excepto em este
 	
 
@@ -98,10 +101,7 @@ public class GamePanel extends JPanel {
 	
 	
 	
-	public GamePanel(int map_size) {
-			
-		this.map_size = map_size;
-		
+	public GamePanel() {	
 		/**
 		 * HERO
 		 * 
@@ -131,7 +131,7 @@ public class GamePanel extends JPanel {
 		}
 		
 		try {
-			heroWithKeyArmed = ImageIO.read(new File("res/hero/HeroArmedWithKey.png"));
+			 heroKeyArmed_front = ImageIO.read(new File("res/hero/HeroArmedWithKey.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -154,7 +154,34 @@ public class GamePanel extends JPanel {
 		}
 		
 		try {
-			ogreStunned = ImageIO.read(new File("res/ogre/OgreStunned.png"));
+			ogreStunned_front = ImageIO.read(new File("res/ogre/OgreStunned.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			ogreStunned_back = ImageIO.read(new File("res/ogre/OgreStunned.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+
+
+		/**
+		 * 
+		 * Walls
+		 * 
+		 */
+		
+		try {
+			wall00 = ImageIO.read(new File("res/walls/Wall00.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			wall02 = ImageIO.read(new File("res/walls/Wall01.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -165,21 +192,6 @@ public class GamePanel extends JPanel {
 			e.printStackTrace();
 		}
 		
-		try {
-			wall2 = ImageIO.read(new File("res/Wall01.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		try {
-			wall5 = ImageIO.read(new File("res/Wall00.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
-		
-		
 		
 		
 	}
@@ -187,14 +199,16 @@ public class GamePanel extends JPanel {
 	@Override
 	public void paintComponent(Graphics gr) {
 		super.paintComponent(gr); // clears the background ...		
-		drawGame(gr);
+		drawBoard(gr);
+		drawCharacters(gr);
 	}
 	
-	
-	public void drawGame(Graphics gr)
+	public void drawBoard(Graphics gr)
 	{
 		Resizer res = new Resizer();
 		BufferedImage temp;
+		
+		int map_size = map.size();
 		
 		int resX = 1024/((map_size*2)-1);
 		int resY = resX;
@@ -211,40 +225,49 @@ public class GamePanel extends JPanel {
 				{
 				//paredes
 				
-				case "X":
-					gr.drawImage(wall, i, j, null);
-					break;
-				case "X1":
-					gr.drawImage(wall1, i, j, null);
-					break;
-				case "X2":
-					temp = res.resize(wall2, resX, resY);
+				case "X00":
+					temp = res.resize(wall00, resX, resY);
 					gr.drawImage(temp, i, j, null);
 					break;
-				case "X3":
-					gr.drawImage(wall3, i, j, null);
-					break;
-				case "X4":
-					gr.drawImage(wall4, i, j, null);
-					break;
-				case "X5":
-					temp = res.resize(wall5, resX, resY);
+				case "X01":
+					temp = res.resize(wall01, resX, resY);
 					gr.drawImage(temp, i, j, null);
 					break;
-				case "X6":
-					gr.drawImage(wall6, i, j, null);
+				case "X02":
+					temp = res.resize(wall02, resX, resY);
+					gr.drawImage(temp, i, j, null);
 					break;
-				case "X7":
-					gr.drawImage(wall7, i, j, null);
+				case "X03":
+					temp = res.resize(wall03, resX, resY);
+					gr.drawImage(temp, i, j, null);
 					break;
-				case "X8":
-					gr.drawImage(wall8, i, j, null);
+				case "X04":
+					temp = res.resize(wall04, resX, resY);
+					gr.drawImage(temp, i, j, null);
 					break;
-				case "X9":
-					gr.drawImage(wall9, i, j, null);
+				case "X05":
+					temp = res.resize(wall05, resX, resY);
+					gr.drawImage(temp, i, j, null);
+					break;
+				case "X06":
+					temp = res.resize(wall06, resX, resY);
+					gr.drawImage(temp, i, j, null);
+					break;
+				case "X07":
+					temp = res.resize(wall07, resX, resY);
+					gr.drawImage(temp, i, j, null);
+					break;
+				case "X08":
+					temp = res.resize(wall08, resX, resY);
+					gr.drawImage(temp, i, j, null);
+					break;
+				case "X09":
+					temp = res.resize(wall09, resX, resY);
+					gr.drawImage(temp, i, j, null);
 					break;
 				case "X10":
-					gr.drawImage(wall10, i, j, null);
+					temp = res.resize(wall10, resX, resY);
+					gr.drawImage(temp, i, j, null);
 					break;
 					
 				//espacos
@@ -257,83 +280,7 @@ public class GamePanel extends JPanel {
 					gr.drawImage(floors, i, j, null);
 					break;
 					
-				//heroi
-					
-				case "H":
-					gr.drawImage(hero_front, i, j, null);
-					break;
-				case "HB":
-					gr.drawImage(hero_back, i, j, null);
-					break;
-				case "HAF":
-					gr.drawImage(heroArmed_front, i, j, null);
-					break;
-				case "HAB":
-					gr.drawImage(heroArmed_back, i, j, null);
-					break;
-				case "HKAF":
-					gr.drawImage(heroWithKeyArmed, i, j, null);
-					break;
-					
-				//sombras	
-					
-				case "HFS":
-					gr.drawImage(floors, i, j, null);
-					gr.drawImage(hero_front, i, j, null);
-					break;
-				case "HBS":
-					gr.drawImage(floors, i, j, null);
-					gr.drawImage(hero_back, i, j, null);
-					break;
-				case "HAFS":
-					gr.drawImage(floors, i, j, null);
-					gr.drawImage(heroArmed_front, i, j, null);
-					break;
-				case "HABS":
-					gr.drawImage(floors, i, j, null);
-					gr.drawImage(heroArmed_back, i, j, null);
-					break;
-				case "HKAFS":
-					gr.drawImage(floors, i, j, null);
-					gr.drawImage(heroWithKeyArmed, i, j, null);
-					break;
-				
-					
-				//ogre
-					
-				case "OF":
-					gr.drawImage(ogre_front, i, j, null);
-					break;
-				case "OB":
-					gr.drawImage(ogre_back, i, j, null);
-					break;
-				case "OS":
-					gr.drawImage(ogreStunned, i, j, null);
-					break;
-				case "O$":
-					gr.drawImage(ogreKey, i, j, null);
-					break;
-					
-				//sombra	
-					
-				case "OFS":
-					gr.drawImage(floors, i, j, null);
-					gr.drawImage(ogre_front, i, j, null);
-					break;
-				case "OBS":
-					gr.drawImage(floors, i, j, null);
-					gr.drawImage(ogre_back, i, j, null);
-					break;
-				case "OSS":
-					gr.drawImage(floors, i, j, null);
-					gr.drawImage(ogreStunned, i, j, null);
-					break;
-				case "O$S":
-					gr.drawImage(floors, i, j, null);
-					gr.drawImage(ogreKey, i, j, null);
-					break;
-				
-					
+
 				//portas
 					
 				case "I":
@@ -354,61 +301,89 @@ public class GamePanel extends JPanel {
 				case "k":
 					gr.drawImage(key, i, j, null);
 					break;
-					
-				//sombra
-					
-				case "kS":
-					gr.drawImage(floors, i, j, null);
-					gr.drawImage(key, i, j, null);
-					break;
-					
-				//guards
-					
-				case "GF":
-					gr.drawImage(guard_front, i, j, null);
-					break;
-				case "GB":
-					gr.drawImage(guard_back, i, j, null);
-					break;
-				case "GS":
-					gr.drawImage(guard_sleep, i, j, null);
-					break;
-					
-					
-				case "GFS":
-					gr.drawImage(floors, i, j, null);
-					gr.drawImage(guard_front, i, j, null);
-					break;
-				case "GBS":
-					gr.drawImage(floors, i, j, null);
-					gr.drawImage(guard_back, i, j, null);
-					break;
-				case "GSS":
-					gr.drawImage(floors, i, j, null);
-					gr.drawImage(guard_sleep, i, j, null);
-					break;
-				
-				// club
-					
-				case "*":
-					gr.drawImage(club, i, j, null);
-					break;
-				case "k$":
-					gr.drawImage(club_key, i, j, null);
-					break;
-				case "*S":
-					gr.drawImage(floors, i, j, null);
-					gr.drawImage(club, i, j, null);
-					break;
-				case "k$S":
-					gr.drawImage(floors, i, j, null);
-					gr.drawImage(club_key, i, j, null);
-					break;
+
 				
 				}
 				
 			}
 			
+		}
+		
+	}
+	
+	public void drawCharacters(Graphics gr)
+	{
+		Resizer res = new Resizer();
+		BufferedImage temp;
+		
+		int map_size = map.size();
+		
+		int resX = 1024/((map_size*2)-1);
+		int resY = resX;
+		
+		
+		
+		for (Position pos : characters)
+		{
+			int x = pos.getX();
+			int y = pos.getY();
+			int i=(map_size-(y+1)+x)*resX;
+			int j=(2+y)*resY;
+			
+			switch(pos.getRepresentationGui())
+			{
+			case "HF":
+				temp = res.resize(hero_front, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "HFA":
+				temp = res.resize(heroArmed_front, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "HFK":
+				temp = res.resize(heroKey_front, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "HFAK":
+				temp = res.resize(heroKeyArmed_front, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "HB":
+				temp = res.resize(hero_back, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "HBA":
+				temp = res.resize(heroArmed_back, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "OF":
+				temp = res.resize(ogre_front, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "OFS":
+				temp = res.resize(ogreStunned_front, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "OB":
+				temp = res.resize(ogre_back, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "OBS":
+				temp = res.resize(ogreStunned_front, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			
+			}
 		}
 		
 	}
@@ -425,12 +400,11 @@ public class GamePanel extends JPanel {
 		
 	}
 	
-	public void setCharacters(ArrayList<Character> obj)
+	public void setCharacters(ArrayList<Position> obj)
 	{
-		characters = new ArrayList<Character>(obj);
+		characters = new ArrayList<Position>(obj);
 		
 	}
 
-	
 	
 }

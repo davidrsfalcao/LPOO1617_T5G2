@@ -12,7 +12,6 @@ public class Logic {
 	private Random rand = new Random();
 	private int nOgres;
 	private int typeGuard = rand.nextInt(3);
-	private boolean changed = false;
 	
 	/**
 	 * Game status
@@ -455,6 +454,7 @@ public class Logic {
 		
 	}
 	
+/*
 	public String typeOfObjectives(String a)
 	{
 		if (a == "S" || a == "I")
@@ -494,13 +494,14 @@ public class Logic {
 		changed = true;
 		return a;
 	}
+	*/
 	
 	public String typeOfWall(String a , int x , int y) // implementar
 	{
 		char[][] map1 = map.getMap();
 		
 		if (!a.equals("X"))
-			return a;
+			return " ";
 		
 		boolean n, s , w, e;
 		
@@ -536,35 +537,30 @@ public class Logic {
 		}
 			
 		
-		if (!n && !s && !w && !e)
+		if (!n && !s && w && e)
 		{
-			// parede isolada
-			// fica a X
-			changed = true;
-			return a;
+			// parede a este e oeste
+			return "X00";
 		}
 		
-		if (n && !s && !w && !e)
+		if (!n && !s && !w && e)
 		{
-			// parede a norte
-			a = "X1";
-			changed = true;
+			// parede a este
+			a = "X01";
 			return a;
 		}
 		
 		if (n && s && !w && !e)
 		{
 			// parede a norte e sul
-			a = "X2";
-			changed = true;
+			a = "X02";
 			return a;
 		}
 		
 		if (!n && s && !w && !e)
 		{
 			// parede a sul
-			a = "X2";
-			changed = true;
+			a = "X02";
 			return a;
 		}
 		
@@ -572,7 +568,6 @@ public class Logic {
 		{
 			// parede a oeste
 			a = "X3";
-			changed = true;
 			return a;
 		}
 		
@@ -580,7 +575,6 @@ public class Logic {
 		{
 			// parede a este
 			a = "X4";
-			changed = true;
 			return a;
 		}
 		
@@ -588,7 +582,6 @@ public class Logic {
 		{
 			// parede a este e oeste
 			a = "X5";
-			changed = true;
 			return a;
 		}
 		
@@ -597,7 +590,6 @@ public class Logic {
 		{
 			// parede em todas as direções
 			a = "X6";
-			changed = true;
 			return a;
 			
 		}
@@ -606,7 +598,6 @@ public class Logic {
 		{
 			// parede em todas as direções menos norte
 			a = "X7";
-			changed = true;
 			return a;
 		}
 		
@@ -614,7 +605,6 @@ public class Logic {
 		{
 			// parede em todas as direções menos sul
 			a = "X8";
-			changed = true;
 			return a;
 		}
 		
@@ -622,7 +612,6 @@ public class Logic {
 		{
 			// parede em todas as direções menos oeste
 			a = "X9";
-			changed = true;
 			return a;
 		}
 		
@@ -630,12 +619,117 @@ public class Logic {
 		{
 			// parede em todas as direções menos este
 			a = "X10";
-			changed = true;
 			return a;
 		}
 		
 		
 		return a;
+	}
+	
+	public ArrayList<Position> getCharactersGui()
+	{
+		ArrayList<Position> array = new ArrayList<Position>();
+		
+		int x = hero.getPosition().getX();
+		int y = hero.getPosition().getY();
+		boolean armed = hero.is_armed();
+		boolean key = hero.hasKey();
+		String representation = "";
+		
+		if (hero.getDirection() == 'L' || hero.getDirection() == 'D') // front
+		{
+			if (!armed && !key)
+				representation = "HF";
+			else if (armed && !key)
+				representation = "HFA";
+			else if (!armed && key)
+				representation = "HFK";
+			else if (armed && key)
+				representation = "HFAK";
+	
+		}
+		else if (hero.getDirection() == 'U' || hero.getDirection() == 'R') //back
+		{
+			if (!armed)
+				representation = "HB";
+			else if (armed)
+				representation = "HBA";
+		}
+		
+		array.add(new Position(x,y,representation));
+		
+		if (guard.isPlaying())
+		{
+			x = guard.getPosition().getX();
+			y = guard.getPosition().getY();
+			
+			if (guard.getDirection() == 'L' || guard.getDirection() == 'D') // front
+			{
+				if (guard.isAwake())
+					representation = "GF";
+				else representation = "GFS";
+				
+			}
+			else if(guard.getDirection() == 'U' || guard.getDirection() == 'R') // back
+			{
+				if (guard.isAwake())
+					representation = "GB";
+				else representation = "GBS";
+			}
+
+		}
+		array.add(new Position(x,y,representation));
+		
+		
+		for (Ogre ogre : ogres)
+		{
+			x = ogre.getPosition().getX();
+			y = ogre.getPosition().getY();
+			
+			if (ogre.getDirection() == 'L' || ogre.getDirection() == 'D') // front
+			{
+				if (ogre.isStunned())
+					representation = "OFS";
+				else representation = "OF";
+				
+			}
+			else if(ogre.getDirection() == 'U' || ogre.getDirection() == 'R') // back
+			{
+				if (ogre.isStunned())
+					representation = "OBS";
+				else representation = "OB";
+			}
+			
+			if (ogre.getPosition().equals(map.getKey()))
+				representation = "OK";
+			
+			array.add(new Position(x,y,representation));
+			
+			if (ogre.getClubVisibily())
+			{
+				x = ogre.getClub().getPosition().getX();
+				y = ogre.getClub().getPosition().getY();
+				
+				switch(ogre.getClub().getRepresentation())
+				{
+				case '*':
+					representation = "*";
+					break;
+					
+				case '$':
+					representation = "*K";
+					break;
+				}
+				
+				
+			}
+			
+		}
+		
+		
+		
+		
+		return array;
 	}
 	
 	public ArrayList<ArrayList<String>> getMapGui()
@@ -652,14 +746,8 @@ public class Logic {
 				temp = typeOfWall(temp,i,k);
 				
 				
-				if (changed)
-				{
-					line.add(temp);
-				}
-				else line.add(temp);
+				line.add(temp);
 				
-				changed = false;
-				temp = typeOfObjectives(temp);
 				
 			}
 			board.add(line);

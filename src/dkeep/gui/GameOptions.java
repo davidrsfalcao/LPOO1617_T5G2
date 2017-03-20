@@ -65,7 +65,7 @@ public class GameOptions extends JDialog {
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Courier", Font.PLAIN, 11));
-		textField.setBounds(191, 78, 167, 26);
+		textField.setBounds(183, 78, 175, 26);
 		textField.setText(nOgres + "");
 		contentPanel.add(textField);
 		textField.setColumns(10);

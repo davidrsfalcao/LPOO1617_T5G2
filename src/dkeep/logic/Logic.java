@@ -1,6 +1,7 @@
 package dkeep.logic;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 public class Logic {
@@ -454,47 +455,30 @@ public class Logic {
 		
 	}
 	
-/*
-	public String typeOfObjectives(String a)
+	
+	public void addPerspective(ArrayList<ArrayList<String>> array)
 	{
-		if (a == "S" || a == "I")
+		for (int i = 0; i < array.size(); i++)
 		{
-			changed = true;
-			return a;
+			for (int j = 0; j < array.get(i).size(); j++)
+			{
+				if (array.get(i).get(j) == "X02")
+				{
+					if (j + 1 < array.get(i).size())
+						array.get(i).set(j+1, "XC02");
+					else array.get(i).add("XC02");
+				}
+				else if (array.get(i).get(j) == "X03")
+				{
+					array.get(i).set(j+1, "XS");
+				}
+
+			}
+			
 		}
 			
 		
-		if (a == "k")
-		{
-			switch(map.getKey().getType())
-			{
-			case 1:
-				if (map.getMap()[map.getEndPositions().get(0).getY()][map.getEndPositions().get(0).getX()] == 'S')
-				{
-					changed = true;
-					a = "kd";
-					return a;
-				}
-				else {
-					changed = true;
-					a = "ku";
-					return a;
-					
-				}
-				
-			case 2:
-				changed = true;
-				return a;
-				
-			}
-			
-			
-		}
-			
-		changed = true;
-		return a;
 	}
-	*/
 	
 	public String typeOfWall(String a , int x , int y) // implementar
 	{
@@ -567,21 +551,21 @@ public class Logic {
 		if (!n && !s && w && !e)
 		{
 			// parede a oeste
-			a = "X3";
+			a = "X03";
 			return a;
 		}
 		
 		if (!n && !s && !w && e)
 		{
 			// parede a este
-			a = "X4";
+			a = "X04";
 			return a;
 		}
 		
 		if (!n && !s && w && e)
 		{
 			// parede a este e oeste
-			a = "X5";
+			a = "X05";
 			return a;
 		}
 		
@@ -589,7 +573,7 @@ public class Logic {
 		if (n && s && w && e)
 		{
 			// parede em todas as direções
-			a = "X6";
+			a = "X06";
 			return a;
 			
 		}
@@ -597,23 +581,23 @@ public class Logic {
 		if (!n && s && w && e)
 		{
 			// parede em todas as direções menos norte
-			a = "X7";
+			a = "X06";
 			return a;
 		}
 		
 		if (n && !s && w && e)
 		{
 			// parede em todas as direções menos sul
-			a = "X8";
+			a = "X07";
 			return a;
 		}
 		
-		if (n && s && !w && e)
-		{
-			// parede em todas as direções menos oeste
-			a = "X9";
-			return a;
-		}
+//		if (n && s && !w && e)
+//		{
+//			// parede em todas as direções menos oeste
+//			a = "X09";
+//			return a;
+//		}
 		
 		if (n && s && w && !e)
 		{
@@ -622,8 +606,62 @@ public class Logic {
 			return a;
 		}
 		
+		if (/*!n &&*/ s && !w && e)
+		{
+			// parede a sul e este
+			a = "X11";
+			return a;
+		}
+		
+		if (n && s && !w && e)
+		{
+			// parede a sul, norte e este
+			a = "X11";
+			return a;
+		}
 		
 		return a;
+	}
+	
+	public ArrayList<Position> getObjectivesGui()
+	{
+		ArrayList<Position> array = new ArrayList<Position>();
+		boolean open = false;
+		
+		for (int y = 0; y < map.getMapSize(); y++)
+			for (int x = 0; x < map.getMapSize(); x++)
+			{
+				if (map.getMap()[y][x]== 'I')
+				{
+					open = false;
+					array.add(new Position(x,y,"I"));
+				}
+				else if (map.getMap()[y][x]== 'S')
+				{
+					open = true;
+					array.add(new Position(x,y,"S"));
+				}
+			}
+		
+		
+		if (open)
+		{
+			for (Position pos : map.getEndPositions())
+			{
+				array.add(new Position(pos.getX(),pos.getY(),"E"));
+			}
+			
+			if (map.getKey().getType() == 1)
+				array.add(new Position(map.getKey().getX(),map.getKey().getY(), "LD"));	
+			else array.add(new Position(map.getKey().getX(),map.getKey().getY(), "K"));	
+		}
+		else {
+			if (map.getKey().getType() == 1)
+				array.add(new Position(map.getKey().getX(),map.getKey().getY(), "LU"));	
+			else array.add(new Position(map.getKey().getX(),map.getKey().getY(), "K"));	
+		}
+		
+		return array;
 	}
 	
 	public ArrayList<Position> getCharactersGui()
@@ -754,6 +792,7 @@ public class Logic {
 
 		}
 		
+		addPerspective(board);
 		return board;
 	}
 	

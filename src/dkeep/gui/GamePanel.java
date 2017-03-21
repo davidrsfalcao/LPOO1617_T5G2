@@ -72,8 +72,9 @@ public class GamePanel extends JPanel {
 	private BufferedImage doorClosed;
 	private BufferedImage doorOpen;
 	private BufferedImage key;
-	private BufferedImage LeverUp;
-	private BufferedImage LeverDown;
+	private BufferedImage leverUp;
+	private BufferedImage leverDown;
+	private BufferedImage exit;
 	
 	/**
 	 * Walls and floor representation
@@ -84,6 +85,7 @@ public class GamePanel extends JPanel {
 	private BufferedImage wall00;  // este e oeste
 	private BufferedImage wall01;  // parede a norte
 	private BufferedImage wall02;  // parede a norte e sul ou só sul
+	private BufferedImage wall02_complement;
 	private BufferedImage wall03;  // parede a oeste
 	private BufferedImage wall04;  // parede a este
 	private BufferedImage wall05;  // parede a este e oeste
@@ -92,6 +94,7 @@ public class GamePanel extends JPanel {
 	private BufferedImage wall08;   // parede excepto em sul
 	private BufferedImage wall09;   // parede excepto em oeste
 	private BufferedImage wall10;   // parede excepto em este
+	private BufferedImage wall11;   // parede a sul e este
 	
 
 	//floor	
@@ -187,7 +190,71 @@ public class GamePanel extends JPanel {
 		}
 		
 		try {
+			wall02_complement = ImageIO.read(new File("res/walls/Wall02C.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			wall06 = ImageIO.read(new File("res/walls/Wall06.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			wall11 = ImageIO.read(new File("res/walls/Wall11.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		try {
 			floor = ImageIO.read(new File("res/floor/Grass.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			floors = ImageIO.read(new File("res/floor/Grass1.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		/**
+		 * 
+		 * Objectives
+		 * 
+		 */
+		
+		try {
+			doorClosed = ImageIO.read(new File("res/objectives/Closed.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			key = ImageIO.read(new File("res/objectives/Key.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			leverUp = ImageIO.read(new File("res/objectives/Lever.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			leverDown = ImageIO.read(new File("res/objectives/Lever1.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			key = ImageIO.read(new File("res/objectives/Key.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -200,6 +267,7 @@ public class GamePanel extends JPanel {
 	public void paintComponent(Graphics gr) {
 		super.paintComponent(gr); // clears the background ...		
 		drawBoard(gr);
+		drawObjectives(gr);
 		drawCharacters(gr);
 	}
 	
@@ -214,9 +282,9 @@ public class GamePanel extends JPanel {
 		int resY = resX;
 		
 		
-		for(int y = 0;y < map_size;y++)
+		for(int y = 0;y < map.size();y++)
 		{
-			for (int x=0;x < map_size;x++)
+			for (int x=0;x < map.get(y).size();x++)
 			{
 				int i=(map_size-(y+1)+x)*resX;
 				int j=(2+y)*resY;
@@ -235,6 +303,11 @@ public class GamePanel extends JPanel {
 					break;
 				case "X02":
 					temp = res.resize(wall02, resX, resY);
+					gr.drawImage(temp, i, j, null);
+					break;
+					
+				case "XC02":
+					temp = res.resize(wall02_complement, resX, resY);
 					gr.drawImage(temp, i, j, null);
 					break;
 				case "X03":
@@ -270,39 +343,22 @@ public class GamePanel extends JPanel {
 					gr.drawImage(temp, i, j, null);
 					break;
 					
+				case "X11":
+					temp = res.resize(wall11, resX, resY);
+					gr.drawImage(temp, i, j, null);
+					break;
+					
 				//espacos
 					
 				case " ":
 					temp = res.resize(floor, resX, resY);
 					gr.drawImage(temp, i, j, null);
 					break;
-				case "ES":
-					gr.drawImage(floors, i, j, null);
+				case "XS":
+					temp = res.resize(floors, resX, resY);
+					gr.drawImage(temp, i, j, null);
 					break;
 					
-
-				//portas
-					
-				case "I":
-					gr.drawImage(doorClosed, i, j, null);
-					break;
-				case "S":
-					gr.drawImage(doorOpen, i, j, null);
-					break;
-					
-				//key and lever
-					
-				case "ku":
-					gr.drawImage(LeverUp, i, j, null);
-					break;
-				case "kd":
-					gr.drawImage(LeverDown, i, j, null);
-					break;
-				case "k":
-					gr.drawImage(key, i, j, null);
-					break;
-
-				
 				}
 				
 			}
@@ -327,8 +383,8 @@ public class GamePanel extends JPanel {
 		{
 			int x = pos.getX();
 			int y = pos.getY();
-			int i=(map_size-(y+1)+x)*resX;
-			int j=(2+y)*resY;
+			int i= (map_size-(y+1)+x)*resX;
+			int j= (2+y)*resY;
 			
 			switch(pos.getRepresentationGui())
 			{
@@ -388,6 +444,55 @@ public class GamePanel extends JPanel {
 		
 	}
 	
+	public void drawObjectives(Graphics gr)
+	{
+		Resizer res = new Resizer();
+		BufferedImage temp;
+		
+		int map_size = map.size();
+		
+		int resX = 1024/((map_size*2)-1);
+		int resY = resX;
+		
+		for (Position pos : objectives)
+		{
+			int x = pos.getX();
+			int y = pos.getY();
+			int i= (map_size-(y+1)+x)*resX;
+			int j= (2+y)*resY;
+			
+			switch(pos.getRepresentationGui())
+			{
+			case "I":
+				temp = res.resize(doorClosed, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "S":
+				break;
+				
+			case "LU":
+				temp = res.resize(leverUp, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "LD":
+				temp = res.resize(leverDown, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "K":
+				temp = res.resize(key, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+				
+				
+			}
+		}
+		
+	}
+	
 	public void setMap(ArrayList<ArrayList<String>> map1)
 	{
 		map = new ArrayList<ArrayList<String>>(map1);
@@ -405,6 +510,5 @@ public class GamePanel extends JPanel {
 		characters = new ArrayList<Position>(obj);
 		
 	}
-
 	
 }

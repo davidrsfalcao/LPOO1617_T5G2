@@ -1,6 +1,7 @@
 package dkeep.gui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -117,7 +118,6 @@ public class GameFrame extends JFrame{
 		});
 	}
 
-	
 	private void addButtons() {
 
 		//btnNewGame.setBounds(10, 10, 100, 50);
@@ -152,6 +152,18 @@ public class GameFrame extends JFrame{
 		});
 		
 		gamePanel.setMap(game.getMapGui());
+		
+		
+		 /* TESTAR O MAPA GUI*/
+		for (ArrayList<String> temp :game.getMapGui())
+		{
+			System.out.println(temp);
+		}
+			
+		
+		
+		
+		gamePanel.setObjectives(game.getObjectivesGui());;
 		gamePanel.setCharacters(game.getCharactersGui());
 		gamePanel.repaint();
 		
@@ -188,9 +200,11 @@ public class GameFrame extends JFrame{
 		game.atack_villains();
 		game.Over();
 		gamePanel.setMap(game.getMapGui());
+		gamePanel.setObjectives(game.getObjectivesGui());
 		gamePanel.setCharacters(game.getCharactersGui());
 		gamePanel.repaint();
 		
 	}
 
+	
 }

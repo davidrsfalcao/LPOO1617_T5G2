@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import dkeep.logic.*;
+import dkeep.logic.Logic.status;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -268,15 +269,29 @@ public class GameFrame extends JFrame{
 
 	private void updateGame(char i)
 	{
-		game = game.moveHero(i);
-		game.atack_villains();
-		game.moveAllVillains();
-		game.atack_villains();
-		game.Over();
-		gamePanel.setMap(game.getMapGui());
-		gamePanel.setObjectives(game.getObjectivesGui());
-		gamePanel.setCharacters(game.getCharactersGui());
-		gamePanel.repaint();
+		if (game.condition == status.RUNNING) {
+			game = game.moveHero(i);
+			game.atack_villains();
+			game.moveAllVillains();
+			game.atack_villains();
+			game.Over();
+			
+			if (game.condition == status.RUNNING) {
+				gamePanel.setMap(game.getMapGui());
+				gamePanel.setObjectives(game.getObjectivesGui());
+				gamePanel.setCharacters(game.getCharactersGui());
+			}
+			else if(game.condition == status.DEFEAT){
+				gamePanel.setLose(true);
+				buttonsPanel1.setVisible(false);
+			}
+			else if(game.condition == status.WON){
+				gamePanel.setWin(true);
+				buttonsPanel1.setVisible(false);
+			}
+		
+			gamePanel.repaint();
+		}
 		
 	}
 

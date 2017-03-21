@@ -24,6 +24,9 @@ public class GamePanel extends JPanel {
 	private ArrayList<ArrayList<String>> map = new ArrayList<ArrayList<String>>();
 	private ArrayList<Position> objectives = new ArrayList<Position>();
 	private ArrayList<Position> characters = new ArrayList<Position>();
+	private boolean win = false;
+	private boolean lose = false;
+	
 	
 	/**
 	 * Hero representations
@@ -100,6 +103,9 @@ public class GamePanel extends JPanel {
 	
 	private BufferedImage floor;   // chao sem sombra
 	private BufferedImage floors;  // chao com sombra
+	
+	private BufferedImage win_img; //
+	private BufferedImage lose_img;
 	
 	
 	
@@ -278,17 +284,48 @@ public class GamePanel extends JPanel {
 		}
 		
 		
+		try {
+			lose_img = ImageIO.read(new File("res/lose.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 		
 	}
 	
 	@Override
 	public void paintComponent(Graphics gr) {
 		super.paintComponent(gr); // clears the background ...		
-		drawBoard(gr);
-		drawObjectives(gr);
-		drawCharacters(gr);
+		if (!win && !lose) {
+			drawBoard(gr);
+			drawObjectives(gr);
+			drawCharacters(gr);
+		}
+		else drawEndMenu(gr);
 	}
 	
+	public void drawEndMenu(Graphics gr)
+	{
+		BufferedImage temp;
+		Resizer res = new Resizer();
+		int width = (int) getSize().getWidth();
+		int height = (int) getSize().getHeight();
+		
+		if (win)
+		{
+			
+		}
+		else {
+
+			
+			temp = res.resize(lose_img, width, height);
+			gr.drawImage(temp, 0, 0, null);
+			
+		}
+		
+	}
+
 	public void drawBoard(Graphics gr)
 	{
 		Resizer res = new Resizer();
@@ -589,6 +626,16 @@ public class GamePanel extends JPanel {
 	{
 		characters = new ArrayList<Position>(obj);
 		
+	}
+	
+	public void setWin(boolean status)
+	{
+		win = status;
+	}
+	
+	public void setLose(boolean status)
+	{
+		lose = status;
 	}
 	
 }

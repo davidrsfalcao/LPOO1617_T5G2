@@ -196,6 +196,19 @@ public class GamePanel extends JPanel {
 		}
 		
 		try {
+			wall03 = ImageIO.read(new File("res/walls/Wall03.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			wall04 = ImageIO.read(new File("res/walls/Wall04.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		try {
 			wall06 = ImageIO.read(new File("res/walls/Wall06.png"));
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -530,7 +530,9 @@ public class Logic {
 		if (!n && !s && !w && e)
 		{
 			// parede a este
-			a = "X01";
+			if (x!=0)
+				a = "X04";
+			
 			return a;
 		}
 		
@@ -558,7 +560,8 @@ public class Logic {
 		if (!n && !s && !w && e)
 		{
 			// parede a este
-			a = "X04";
+			if (x!=0)
+				a = "X04";
 			return a;
 		}
 		
@@ -602,7 +605,7 @@ public class Logic {
 		if (n && s && w && !e)
 		{
 			// parede em todas as direções menos este
-			a = "X10";
+			a = "X11";
 			return a;
 		}
 		
@@ -616,8 +619,24 @@ public class Logic {
 		if (n && s && !w && e)
 		{
 			// parede a sul, norte e este
-			a = "X11";
+			a = "X06";
 			return a;
+		}
+		
+		if ( s && w)
+		{
+			// parede a sul, norte e oeste
+			a = "X06";
+			return a;
+		}
+		
+		if ((n && e) || e)
+		{
+			// parede a norte e este
+			if (x!=0)
+				a = "X04";
+			return a;
+			
 		}
 		
 		return a;

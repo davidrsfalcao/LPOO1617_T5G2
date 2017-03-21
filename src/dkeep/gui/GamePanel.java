@@ -70,7 +70,6 @@ public class GamePanel extends JPanel {
 	 * 
 	 */
 	private BufferedImage doorClosed;
-	private BufferedImage doorOpen;
 	private BufferedImage key;
 	private BufferedImage leverUp;
 	private BufferedImage leverDown;
@@ -85,7 +84,7 @@ public class GamePanel extends JPanel {
 	private BufferedImage wall00;  // este e oeste
 	private BufferedImage wall01;  // parede a norte
 	private BufferedImage wall02;  // parede a norte e sul ou só sul
-	private BufferedImage wall02_complement;
+	private BufferedImage wall02_complement; // complemento parede 2
 	private BufferedImage wall03;  // parede a oeste
 	private BufferedImage wall04;  // parede a este
 	private BufferedImage wall05;  // parede a este e oeste
@@ -164,6 +163,12 @@ public class GamePanel extends JPanel {
 		
 		try {
 			ogreStunned_back = ImageIO.read(new File("res/ogre/OgreStunned.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			ogreKey = ImageIO.read(new File("res/ogre/OgreStunned.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -290,17 +295,33 @@ public class GamePanel extends JPanel {
 		BufferedImage temp;
 		
 		int map_size = map.size();
+
+		int width = (int) getSize().getWidth();
+		int height = (int) getSize().getHeight();
 		
-		int resX = 1024/((map_size*2)-1);
-		int resY = resX;
+		int resX_temp = width/((map_size*2)-1);
+		int resY_temp = height/(map_size+1);
 		
+		int resX;
+		int resY;
 		
+		if (resX_temp < resY_temp) {
+			resX = resX_temp;
+			resY = resX_temp;
+		}
+		else {
+			resX = resY_temp;
+			resY = resY_temp;
+			
+		}
+		
+
 		for(int y = 0;y < map.size();y++)
 		{
 			for (int x=0;x < map.get(y).size();x++)
 			{
 				int i=(map_size-(y+1)+x)*resX;
-				int j=(2+y)*resY;
+				int j=(y+1)*resY;
 				
 				switch(map.get(y).get(x))
 				{
@@ -386,9 +407,32 @@ public class GamePanel extends JPanel {
 		BufferedImage temp;
 		
 		int map_size = map.size();
+
+		int width = (int) getSize().getWidth();
+		int height = (int) getSize().getHeight();
 		
+		int resX_temp = width/((map_size*2)-1);
+		int resY_temp = height/(map_size+1);
+		
+		int resX;
+		int resY;
+		
+		if (resX_temp < resY_temp) {
+			resX = resX_temp;
+			resY = resX_temp;
+		}
+		else {
+			resX = resY_temp;
+			resY = resY_temp;
+			
+		}
+		
+		/*
 		int resX = 1024/((map_size*2)-1);
 		int resY = resX;
+		*/
+		
+		
 		
 		
 		
@@ -397,7 +441,7 @@ public class GamePanel extends JPanel {
 			int x = pos.getX();
 			int y = pos.getY();
 			int i= (map_size-(y+1)+x)*resX;
-			int j= (2+y)*resY;
+			int j= (1+y)*resY;
 			
 			switch(pos.getRepresentationGui())
 			{
@@ -463,16 +507,39 @@ public class GamePanel extends JPanel {
 		BufferedImage temp;
 		
 		int map_size = map.size();
+
+		int width = (int) getSize().getWidth();
+		int height = (int) getSize().getHeight();
 		
+		int resX_temp = width/((map_size*2)-1);
+		int resY_temp = height/(map_size+1);
+		
+		
+		int resX;
+		int resY;
+		
+		if (resX_temp < resY_temp) {
+			resX = resX_temp;
+			resY = resX_temp;
+		}
+		else {
+			resX = resY_temp;
+			resY = resY_temp;
+			
+		}
+		
+		/*
 		int resX = 1024/((map_size*2)-1);
 		int resY = resX;
+		*/
+		
 		
 		for (Position pos : objectives)
 		{
 			int x = pos.getX();
 			int y = pos.getY();
 			int i= (map_size-(y+1)+x)*resX;
-			int j= (2+y)*resY;
+			int j= (1+y)*resY;
 			
 			switch(pos.getRepresentationGui())
 			{

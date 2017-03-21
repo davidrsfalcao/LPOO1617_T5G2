@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import dkeep.logic.*;
 
@@ -15,6 +16,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -40,7 +42,7 @@ public class GameFrame extends JFrame{
 	public GameFrame(Menu menu, int guardType, int nOgres) {
 		setTitle("Dungeon Explorer");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setResizable(false);
+		//setResizable(false);
 		
 		game = new Logic(new Maze1(), guardType, nOgres);
 		this.menu = menu;
@@ -73,15 +75,23 @@ public class GameFrame extends JFrame{
 				int res = JOptionPane.showConfirmDialog(rootPane, msg);
 
 				if (res == JOptionPane.YES_OPTION) {
-					setSize(1024, 720);
+					setSize(1024, 600);
 
 					Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 					setLocation(dim.width / 2 - getSize().width / 2, dim.height
 							/ 2 - getSize().height / 2);
 
 					// starting new game with new options
-					//gamePanel.startNewGame(gameConfig);
+					game = new Logic(new Maze1(), guardType, nOgres);
+					gamePanel.setMap(game.getMapGui());
+					gamePanel.setObjectives(game.getObjectivesGui());;
+					gamePanel.setCharacters(game.getCharactersGui());
+					gamePanel.repaint();
+					
+					
 				}
+				requestFocusInWindow();
+				
 			}
 		});
 
@@ -99,6 +109,7 @@ public class GameFrame extends JFrame{
 					menu = new Menu();
 					menu.start();	
 				}
+				requestFocusInWindow();
 					
 			}
 		});
@@ -113,6 +124,7 @@ public class GameFrame extends JFrame{
 				if (res == JOptionPane.YES_OPTION){
 					System.exit(0);
 				}
+				requestFocusInWindow();
 					
 			}
 		});
@@ -120,13 +132,13 @@ public class GameFrame extends JFrame{
 
 	private void addButtons() {
 
-		//btnNewGame.setBounds(10, 10, 100, 50);
+		btnNewGame.setBounds(10, 10, 100, 50);
 		gamePanel.add(btnNewGame);
 		
-		//btnBackMenu.setBounds(10, 70, 100, 50);
+		btnBackMenu.setBounds(10, 70, 100, 50);
 		gamePanel.add(btnBackMenu);
 		
-		//btnQuitGame.setBounds(10, 130, 100, 50);
+		btnQuitGame.setBounds(10, 130, 100, 50);
 		gamePanel.add(btnQuitGame);
 		
 		
@@ -136,15 +148,15 @@ public class GameFrame extends JFrame{
 	 * Starts the game window.
 	 */
 	public void start() {
-		setSize(1024, 720);
+		setSize(1024, 600);
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2
 				- getSize().height / 2);
 
 		setVisible(true);
-		gamePanel.requestFocusInWindow();
-		gamePanel.addKeyListener(new KeyAdapter() {
+		requestFocusInWindow();
+		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				keyMovement(e);
@@ -155,14 +167,14 @@ public class GameFrame extends JFrame{
 		
 		
 		 /* TESTAR O MAPA GUI*/
+		/*
 		for (ArrayList<String> temp :game.getMapGui())
 		{
 			System.out.println(temp);
 		}
+		*/
 			
-		
-		
-		
+
 		gamePanel.setObjectives(game.getObjectivesGui());;
 		gamePanel.setCharacters(game.getCharactersGui());
 		gamePanel.repaint();
@@ -172,6 +184,7 @@ public class GameFrame extends JFrame{
 	private void keyMovement(KeyEvent e) {
 		char key;
 		key = e.getKeyChar();
+		
 
 		if (key == 'w') {
 			updateGame('w');

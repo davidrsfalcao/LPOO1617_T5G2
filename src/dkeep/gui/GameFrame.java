@@ -27,6 +27,12 @@ public class GameFrame extends JFrame{
 	private JButton btnNewGame;
 	private JButton btnBackMenu;
 	private JButton btnQuitGame;
+	private JPanel buttonsPanel;
+	private JPanel buttonsPanel1;
+	private JButton btnUp;
+	private JButton btnDown;
+	private JButton btnLeft;
+	private JButton btnRight;
 	private GamePanel gamePanel;
 	private Menu menu;
 	private Logic game;
@@ -51,6 +57,8 @@ public class GameFrame extends JFrame{
 
 		gamePanel = new GamePanel();
 		gamePanel.setBackground(new Color(30,65,39));
+		buttonsPanel = new JPanel(new GridLayout());
+		buttonsPanel1 = new JPanel(new GridLayout(4, 1, 0, 10));
 
 		setUpButtons();
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -128,18 +136,71 @@ public class GameFrame extends JFrame{
 					
 			}
 		});
+	
+		btnUp = new JButton("Up");
+		btnUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				updateGame('w');
+				requestFocusInWindow();
+					
+			}
+		});
+		
+		btnDown = new JButton("Down");
+		btnDown.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				updateGame('s');
+				requestFocusInWindow();
+					
+			}
+		});
+		
+		btnLeft = new JButton("Left");
+		btnLeft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				updateGame('a');
+				requestFocusInWindow();
+					
+			}
+		});
+		
+		btnRight = new JButton("Right");
+		btnRight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				updateGame('d');
+				requestFocusInWindow();
+					
+			}
+		});
+	
+	
+	
 	}
 
 	private void addButtons() {
 
-		btnNewGame.setBounds(10, 10, 100, 50);
-		gamePanel.add(btnNewGame);
 		
-		btnBackMenu.setBounds(10, 70, 100, 50);
-		gamePanel.add(btnBackMenu);
 		
-		btnQuitGame.setBounds(10, 130, 100, 50);
-		gamePanel.add(btnQuitGame);
+		gamePanel.add(btnNewGame,BorderLayout.NORTH);
+		gamePanel.add(btnBackMenu,BorderLayout.NORTH);
+		gamePanel.add(btnQuitGame,BorderLayout.NORTH);
+		
+		
+
+		
+		buttonsPanel1.add(btnUp);
+		buttonsPanel1.add(btnLeft);
+		buttonsPanel1.add(btnRight);
+		buttonsPanel1.add(btnDown);
+		
+		buttonsPanel1.setPreferredSize(new Dimension(50, 20));
+		
+		add(buttonsPanel1, BorderLayout.WEST);
+		
 		
 		
 	}

@@ -71,6 +71,15 @@ public class TestMap2 extends Map{
 		
 	};
 	
-	public void setObjectives(){}
+	protected void setObjectives(){}
+
+	protected void setHero(){}
+	
+	protected void setGuard(){}
+	
+	protected void setOgres(){}
+	
+	protected void setMap(){}
+	
 }
 	

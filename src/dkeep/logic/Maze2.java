@@ -76,4 +76,11 @@ public class Maze2 extends Map{
 		key.changeTo(-10, -10);
 	}
 
+	protected void setHero(){}
+	
+	protected void setGuard(){}
+	
+	protected void setOgres(){}
+	
+	protected void setMap(){}
 }

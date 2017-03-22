@@ -164,7 +164,19 @@ public abstract class Map {
 		return initValues;
 	}
 
-	public abstract void setObjectives();
+	protected abstract void setObjectives();
+	
+	protected abstract void setHero();
+	
+	protected abstract void setGuard();
+	
+	protected abstract void setOgres();
+	
+	protected abstract void setMap();
+	
+	
+	
+	
 	
 
 }

@@ -16,6 +16,9 @@ public class Position {
 	 * @param y
 	 * @param representation
 	 */
+	
+	public Position(){}
+	
  	public Position(int x, int y, char representation)
 	{
 		this.x = x;

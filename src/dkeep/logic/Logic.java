@@ -248,8 +248,20 @@ public class Logic {
 	 * @return Logic
 	 */
 	public Logic moveHero(char direction) {
-		Position temp;
+		Position temp1 = hero.getPosition();
+		Position temp = tryToMoveHero(direction);
 
+		if (temp.equals(temp1))
+			return this;
+		
+		updateHeroMovement(temp);
+		checkObjectives();
+		
+		return checkLevel();
+	}
+
+	public Position tryToMoveHero(char direction) {
+		Position temp = new Position();
 		if ('w' == direction)
 			temp = hero.moveCharacter(map.getMapSize(), 4);
 		else if ('a' == direction)
@@ -258,27 +270,32 @@ public class Logic {
 			temp = hero.moveCharacter(map.getMapSize(), 2);
 		else if ('d' == direction)
 			temp = hero.moveCharacter(map.getMapSize(), 1);
-		else
-			return this;
 
-
-		if (map.isFreeForHero(temp.getX(), temp.getY()) && positionClear(temp))
-		{
+		return temp;
+	}
+	
+	public void updateHeroMovement(Position temp)
+	{
+		if (map.isFreeForHero(temp.getX(), temp.getY()) && positionClear(temp)) {
 			hero.updateLastPosition();
 			hero.setPosition(temp.getX(), temp.getY());
 			hero.updateDirection();
 		}
-
-		checkObjectives();
-		
+	
+	}
+	
+	public Logic checkLevel()
+	{
 		if (levelUp()) {
 			if (map.nextMap() != null)
 				return new Logic(map.nextMap(), typeGuard, nOgres);
-			else condition = status.WON;
+			else
+				condition = status.WON;
 		}
+
 		return this;
 	}
-
+	
 	/**
 	 * Move all villains according to the level
 	 * 
@@ -789,6 +806,5 @@ public class Logic {
 		return board;
 	}
 	
-
 	
 }

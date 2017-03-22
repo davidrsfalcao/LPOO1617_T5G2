@@ -176,10 +176,14 @@ public class Logic {
 	 */
 	private void checkObjectives() {
 
-		if (hero.getPosition().equals(map.getKey())) {
-			int type = map.getKey().getType();
+		heroPickUpKey();
+		heroOpenDoors();
 
-			switch (type) {
+	}
+ 
+	private void heroPickUpKey() {
+		if (hero.getPosition().equals(map.getKey())) {
+			switch (map.getKey().getType()) {
 			case 1:
 				map.changeDoors();
 				hero.comeBack();
@@ -189,9 +193,12 @@ public class Logic {
 				hero.pickUpKey();
 				map.pickUpKey();
 				break;
-
 			}
-		} else if (map.getMap()[hero.getPosition().getY()][hero.getPosition().getX()] == 'I') {
+		}
+	}
+	
+	private void heroOpenDoors() {
+		if (map.getMap()[hero.getPosition().getY()][hero.getPosition().getX()] == 'I') {
 			if (hero.hasKey()) {
 				map.openDoors();
 				hero.comeBack();
@@ -199,9 +206,8 @@ public class Logic {
 				hero.comeBack();
 			}
 		}
-
 	}
- 
+	
 	/**
 	 * Check if there is no ogre stunned or guard sleeping in a certain position
 	 * 

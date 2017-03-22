@@ -107,4 +107,31 @@ public class Ogre extends Character {
 		return club.getVisibility();
 	}
 
+	public void setFront()
+	{
+		if (stunned)
+			position.setRepresentationGui("OFS");
+		else position.setRepresentationGui("OF");
+		
+	}
+	
+	public void setBack()
+	{
+		if (stunned)
+			position.setRepresentationGui("OBS");
+		else position.setRepresentationGui("OB");
+	}
+	
+	@Override
+	public String toString()
+	{
+		if (direction_mov == 'D' || direction_mov == 'L')
+			setFront();
+		else
+			setBack();
+		
+		return position.getRepresentationGui();
+		
+	}
+	
 }

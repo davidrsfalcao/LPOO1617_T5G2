@@ -675,105 +675,14 @@ public class Logic {
 	public ArrayList<Position> getCharactersGui()
 	{
 		ArrayList<Position> array = new ArrayList<Position>();
-		
-		int x = hero.getPosition().getX();
-		int y = hero.getPosition().getY();
-		boolean armed = hero.is_armed();
-		boolean key = hero.hasKey();
-		String representation = "";
-		
-		if (hero.getDirection() == 'L' || hero.getDirection() == 'D') // front
-		{
-			if (!armed && !key)
-				representation = "HF";
-			else if (armed && !key)
-				representation = "HFA";
-			else if (!armed && key)
-				representation = "HFK";
-			else if (armed && key)
-				representation = "HFAK";
-	
-		}
-		else if (hero.getDirection() == 'U' || hero.getDirection() == 'R') //back
-		{
-			if (!armed)
-				representation = "HB";
-			else if (armed)
-				representation = "HBA";
-		}
-		
-		array.add(new Position(x,y,representation));
-		
-		if (guard.isPlaying())
-		{
-			x = guard.getPosition().getX();
-			y = guard.getPosition().getY();
-			
-			if (guard.getDirection() == 'L' || guard.getDirection() == 'D') // front
-			{
-				if (guard.isAwake())
-					representation = "GF";
-				else representation = "GFS";
-				
-			}
-			else if(guard.getDirection() == 'U' || guard.getDirection() == 'R') // back
-			{
-				if (guard.isAwake())
-					representation = "GB";
-				else representation = "GBS";
-			}
 
+		array.add(new Position(hero.getPosition().getX(), hero.getPosition().getY(), hero + ""));
+
+		if (guard.isPlaying()) {
+			array.add(new Position(guard.getPosition().getX(), guard.getPosition().getY(), guard + ""));
 		}
-		array.add(new Position(x,y,representation));
-		
-		
-		for (Ogre ogre : ogres)
-		{
-			x = ogre.getPosition().getX();
-			y = ogre.getPosition().getY();
-			
-			if (ogre.getDirection() == 'L' || ogre.getDirection() == 'D') // front
-			{
-				if (ogre.isStunned())
-					representation = "OFS";
-				else representation = "OF";
-				
-			}
-			else if(ogre.getDirection() == 'U' || ogre.getDirection() == 'R') // back
-			{
-				if (ogre.isStunned())
-					representation = "OBS";
-				else representation = "OB";
-			}
-			
-			if (ogre.getPosition().equals(map.getKey()))
-				representation = "OK";
-			
-			array.add(new Position(x,y,representation));
-			
-			if (ogre.getClubVisibily())
-			{
-				x = ogre.getClub().getPosition().getX();
-				y = ogre.getClub().getPosition().getY();
-				
-				switch(ogre.getClub().getRepresentation())
-				{
-				case '*':
-					representation = "*";
-					break;
-					
-				case '$':
-					representation = "*K";
-					break;
-				}
-				
-				
-			}
-			
-		}
-		
-		
-		
+
+		getOgresGui(array);
 		
 		return array;
 	}
@@ -781,27 +690,37 @@ public class Logic {
 	public ArrayList<ArrayList<String>> getMapGui()
 	{
 		ArrayList<ArrayList<String>> board = new ArrayList<ArrayList<String>>();
-		
+
 		for (int k = 0; k < map.getMapSize(); k++) {
 			ArrayList<String> line = new ArrayList<String>();
 			for (int i = 0; i < map.getMapSize(); i++) {
-				
 				String temp;
 				temp = "" + map.getMap()[k][i];
-				
-				temp = typeOfWall(temp,i,k);
-				
-				
+				temp = typeOfWall(temp, i, k);
 				line.add(temp);
-				
-				
 			}
 			board.add(line);
 
 		}
-		
 		addPerspective(board);
 		return board;
+	}
+	
+	public void getOgresGui(ArrayList<Position> array) {
+		for (Ogre ogre : ogres) {
+			if (ogre.getPosition().equals(map.getKey()))
+				array.add(new Position(ogre.getPosition().getX(), ogre.getPosition().getY(), "OK"));
+			else
+				array.add(new Position(ogre.getPosition().getX(), ogre.getPosition().getY(), ogre + ""));
+
+			if (ogre.getClubVisibily()) {
+				array.add(new Position(ogre.getClub().getPosition().getX(), ogre.getClub().getPosition().getY(),
+						ogre.getClub() + ""));
+
+			}
+
+		}
+
 	}
 	
 	public void printMap() {

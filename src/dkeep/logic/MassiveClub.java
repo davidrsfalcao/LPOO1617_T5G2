@@ -27,5 +27,11 @@ public class MassiveClub extends Character {
 	{
 		position = pos;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return position.getRepresentation() + "";
+	}
 
 }

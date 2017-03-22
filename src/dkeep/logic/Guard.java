@@ -53,4 +53,34 @@ public abstract class Guard extends Character {
 		this.path = path;
 	}
 	
+	public void setFront()
+	{
+		if (awake)
+			position.setRepresentationGui("GF");
+		else position.setRepresentationGui("GFS");
+		
+	}
+	
+	public void setBack()
+	{
+		if (awake)
+			position.setRepresentationGui("GB");
+		else position.setRepresentationGui("GFS");
+		
+	}
+	
+	
+	
+	@Override
+	public String toString()
+	{
+		if (direction_mov == 'D' || direction_mov == 'L')
+			setFront();
+		else
+			setBack();
+		
+		
+		return position.getRepresentationGui();
+	}
+	
 }

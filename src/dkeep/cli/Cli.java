@@ -56,13 +56,7 @@ public class Cli {
 	 */
 	private void game() {
 		do {
-			printMap(game.getMap().getMap());
-			game = game.moveHero(UserInput());
-			game.atack_villains();
-			game.moveAllVillains();
-			game.atack_villains();
-			game.Over();
-
+			playGame();
 		} while (game.condition == status.RUNNING);
 
 		printMap(game.getMap().getMap());
@@ -109,6 +103,16 @@ public class Cli {
 		}
 	}
 
+	private void playGame()
+	{
+		printMap(game.getMap().getMap());
+		game = game.moveHero(UserInput());
+		game.atack_villains();
+		game.moveAllVillains();
+		game.atack_villains();
+		game.Over();
+	}
+	
 	public Logic getGame()
 	{
 		return game;

@@ -78,49 +78,34 @@ public class Ogre extends Character {
 		return club;
 	}
 	
-	public Position moveClub()
-	{
+	public Position moveClub() {
 		Random rand = new Random();
 		Position temp = new Position(position.getX(), position.getY(), '*');
-		
 		int direction = rand.nextInt(4);
-		
-		switch(direction)
-		{
-		case 0: //right
-			temp.increaseX();
-			break;
-		
-		case 1: //left
-			temp.decreaseX();
-			break;
-			
-		case 2: //down
-			temp.increaseY();
-			break;
-			
-		case 3: //up
-			temp.decreaseY();
-			break;
-		}
-				
+
+		if (direction == 0)
+			temp.increaseX(); // right
+		else if (direction == 1)
+			temp.decreaseX(); // left
+		else if (direction == 2)
+			temp.increaseY(); // down
+		else
+			temp.decreaseY(); // up
+
 		return temp;
 	}
 	
-	public void setClub(Position pos)
-	{
+	public void setClub(Position pos) {
 		club.setVisibility(true);
 		club.setPosition(pos);
 	}
 
-	public void setClubNotVisible()
-	{
+	public void setClubNotVisible() {
 		club.setVisibility(false);
 	}
 
-	public boolean getClubVisibily()
-	{
+	public boolean getClubVisibily() {
 		return club.getVisibility();
 	}
-	
+
 }

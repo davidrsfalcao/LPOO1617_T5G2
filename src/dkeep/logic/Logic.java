@@ -42,16 +42,14 @@ public class Logic {
 	 */
 	private void initCharacters()
 	{
-		Random rand = new Random();
 		ArrayList<ArrayList<Integer>> temp = map.getInitValues();
-		
-		/**
-		 * Init Hero
-		 * 
-		 */
-		ArrayList<Integer> heroArr = temp.get(0);
-		int heroX = heroArr.get(0);
-		int heroY = heroArr.get(1);
+		initHero(temp.get(0));
+		initGuard(temp.get(1));
+		initOgres(temp.get(2));
+
+	}
+	
+	private void initHero(ArrayList<Integer> heroArr){
 		int hero_key = heroArr.get(2);
 		boolean hero_has_key;
 		if (hero_key == 0)
@@ -63,71 +61,37 @@ public class Logic {
 			hero_is_armed = false;
 		else hero_is_armed = true;
 		
-		hero = new Hero(heroX, heroY, hero_has_key, hero_is_armed);
+		hero = new Hero(heroArr.get(0), heroArr.get(1), hero_has_key, hero_is_armed);
 		
-		/**
-		 * Init Guard
-		 * 
-		 */
-		ArrayList<Integer> guardArr = temp.get(1);
-		int guardX = guardArr.get(0);
-		int guardY = guardArr.get(1);
-		int guard_play = guardArr.get(2);
+	}
+	
+	private void initGuard(ArrayList<Integer> guardArr)
+	{
 		boolean guard_playing;
-		if (guard_play == 0)
+		if (guardArr.get(2) == 0)
 			guard_playing = false;
 		else guard_playing = true;
 		
-
-		switch (typeGuard) {
-		
-		case 0:
-			guard = new Rookie(guardX, guardY, guard_playing);
-			break;
+		if (typeGuard == 0)
+			guard = new Rookie(guardArr.get(0), guardArr.get(1), guard_playing);
+		else if(typeGuard == 1)
+			guard = new Drunken(guardArr.get(0), guardArr.get(1), guard_playing);
+		else guard = new Suspicious(guardArr.get(0), guardArr.get(1), guard_playing);
+	}
 	
-		case 1:
-			guard = new Drunken(guardX, guardY, guard_playing);
-			break;
-
-		case 2:
-			guard = new Suspicious(guardX, guardY, guard_playing);
-			break;
-
-		}
-		
-		/**
-		 * Init Ogres
-		 * 
-		 */
-		ArrayList<Integer> ogreArr = temp.get(2);
-		
-		int ogre_play = ogreArr.get(0);
-		boolean ogre_playing;
-		if (ogre_play == 0)
-			ogre_playing = false;
-		else ogre_playing = true;
-
-		if (ogre_playing) {
+	private void initOgres(ArrayList<Integer> ogreArr) {
+		if (ogreArr.get(0) == 1) {
 
 			for (int i = 0; i < nOgres; i++) {
-
-				int x;
-				int y;
 				Position pos;
-
 				do {
-					x = rand.nextInt(map.getMapSize() - 3) + 1;
-					y = rand.nextInt(map.getMapSize() - 3) + 1;
-
-					pos = new Position(x, y, 'O');
-
+					pos = new Position(rand.nextInt(map.getMapSize() - 3) + 1, rand.nextInt(map.getMapSize() - 3) + 1,'O');
 				} while (!secureStart(pos));
-
 				ogres.add(new Ogre(pos.getX(), pos.getY()));
 			}
-			
+
 		}
-		
+
 	}
 	
 	/**
@@ -151,47 +115,61 @@ public class Logic {
 	 */
 	public boolean Over() {
 
-		if (guard.isPlaying()) {
-			if (guard.isAwake()) {
-				for (Position pos : guard.getPosition().getSurroundings()) {
-					if (pos.equals(hero.getPosition()))
-					{
-						condition = status.DEFEAT;
-						return true;
-					}	
-				}
+		if (heroKilledByGuard())
+			return true;
 
-			}
+		for (Ogre ogre : ogres) {
+			if (heroKilledByOgre(ogre) || heroKilledByClub(ogre))
+				return true;
 		}
 		
-		for (Ogre ogre : ogres)
-		{
-			if (!hero.is_armed())
-			{
-				for (Position pos : ogre.getPosition().getSurroundings()) {
-					if (pos.equals(hero.getPosition())) {
-						condition = status.DEFEAT;
-						return true;
-					}
-				}
-				
-			}
-			
-			
-			if (ogre.getClubVisibily())
-			{
-				for (Position pos : ogre.getClub().getPosition().getSurroundings()) {
-					if (pos.equals(hero.getPosition())) {
-						condition = status.DEFEAT;
-						return true;
-					}
-				}
-			}
-		}
-
 		return false;
 	}
 
+	public boolean heroKilledByGuard()
+	{
+		if (guard.isPlaying()) {
+			if (guard.isAwake()) {
+				for (Position pos : guard.getPosition().getSurroundings()) {
+					if (pos.equals(hero.getPosition())) {
+						condition = status.DEFEAT;
+						return true;
+					}
+				}
+
+			}
+		}
+		return false;
+	}
+	
+	public boolean heroKilledByOgre(Ogre ogre)
+	{
+		if (!hero.is_armed()) {
+			for (Position pos : ogre.getPosition().getSurroundings()) {
+				if (pos.equals(hero.getPosition())) {
+					condition = status.DEFEAT;
+					return true;
+				}
+			}
+
+		}
+		return false;
+	}
+	
+	public boolean heroKilledByClub(Ogre ogre)
+	{
+		if (ogre.getClubVisibily())
+		{
+			for (Position pos : ogre.getClub().getPosition().getSurroundings()) {
+				if (pos.equals(hero.getPosition())) {
+					condition = status.DEFEAT;
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * Check level objectives such as keys and levers
 	 * 

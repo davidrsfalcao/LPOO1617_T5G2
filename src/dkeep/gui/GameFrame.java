@@ -198,12 +198,8 @@ public class GameFrame extends JFrame{
 		
 	}
 
-	/**
-	 * Starts the game window.
-	 */
 	public void start() {
 		setSize(1024, 600);
-
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2
 				- getSize().height / 2);
@@ -216,19 +212,7 @@ public class GameFrame extends JFrame{
 				keyMovement(e);
 			}
 		});
-		
 		gamePanel.setMap(game.getMapGui());
-		
-		
-		 /* TESTAR O MAPA GUI*/
-		/*
-		for (ArrayList<String> temp :game.getMapGui())
-		{
-			System.out.println(temp);
-		}
-		*/
-			
-
 		gamePanel.setObjectives(game.getObjectivesGui());;
 		gamePanel.setCharacters(game.getCharactersGui());
 		gamePanel.repaint();

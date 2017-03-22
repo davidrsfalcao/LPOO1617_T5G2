@@ -174,7 +174,14 @@ public abstract class Map {
 	
 	protected abstract void setMap();
 	
-	
+	protected void init(){
+		map = new char[MAP_SIZE][MAP_SIZE];
+		setHero();
+		setGuard();
+		setOgres();
+		setObjectives();
+		setMap();
+	};
 	
 	
 	

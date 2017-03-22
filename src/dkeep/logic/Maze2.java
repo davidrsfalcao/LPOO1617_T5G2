@@ -21,12 +21,7 @@ public class Maze2 extends Map{
 	 */
 	public Maze2(){ 
 		MAP_SIZE = 9;
-		map = new char[MAP_SIZE][MAP_SIZE];
-		setHero();
-		setGuard();
-		setOgres();
-		setObjectives();
-		setMap();
+		init();
 
 	}
 	

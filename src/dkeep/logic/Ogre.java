@@ -122,16 +122,5 @@ public class Ogre extends Character {
 		else position.setRepresentationGui("OB");
 	}
 	
-	@Override
-	public String toString()
-	{
-		if (direction_mov == 'D' || direction_mov == 'L')
-			setFront();
-		else
-			setBack();
-		
-		return position.getRepresentationGui();
-		
-	}
 	
 }

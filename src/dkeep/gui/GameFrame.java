@@ -28,7 +28,6 @@ public class GameFrame extends JFrame{
 	private JButton btnNewGame;
 	private JButton btnBackMenu;
 	private JButton btnQuitGame;
-	private JPanel buttonsPanel;
 	private JPanel buttonsPanel1;
 	private JButton btnUp;
 	private JButton btnDown;
@@ -49,24 +48,17 @@ public class GameFrame extends JFrame{
 	public GameFrame(Menu menu, int guardType, int nOgres) {
 		setTitle("Dungeon Explorer");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		//setResizable(false);
-		
 		game = new Logic(new Maze1(), guardType, nOgres);
 		this.menu = menu;
 		this.nOgres = nOgres;
 		this.guardType = guardType;
-
 		gamePanel = new GamePanel();
 		gamePanel.setBackground(new Color(30,65,39));
-		buttonsPanel = new JPanel(new GridLayout());
 		buttonsPanel1 = new JPanel(new GridLayout(4, 1, 0, 10));
-
 		setUpButtons();
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		addButtons();
 		getContentPane().add(gamePanel);
-		
-
 	}
 
 	private void close()

@@ -201,13 +201,10 @@ public class GameFrame extends JFrame{
 	public void start() {
 		setSize(1024, 600);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2
-				- getSize().height / 2);
-
+		setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2 - getSize().height / 2);
 		setVisible(true);
 		requestFocusInWindow();
 		addKeyListener(new KeyAdapter() {
-			@Override
 			public void keyPressed(KeyEvent e) {
 				keyMovement(e);
 			}
@@ -216,7 +213,6 @@ public class GameFrame extends JFrame{
 		gamePanel.setObjectives(game.getObjectivesGui());;
 		gamePanel.setCharacters(game.getCharactersGui());
 		gamePanel.repaint();
-		
 	}
 
 	private void keyMovement(KeyEvent e) {

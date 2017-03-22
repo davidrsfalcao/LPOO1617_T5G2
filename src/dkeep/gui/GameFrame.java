@@ -79,23 +79,20 @@ public class GameFrame extends JFrame{
 					setSize(1024, 600);
 
 					Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-					setLocation(dim.width / 2 - getSize().width / 2, dim.height
-							/ 2 - getSize().height / 2);
+					setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2 - getSize().height / 2);
 
 					// starting new game with new options
 					game = new Logic(new Maze1(), guardType, nOgres);
-					gamePanel.setMap(game.getMapGui());
-					gamePanel.setObjectives(game.getObjectivesGui());;
-					gamePanel.setCharacters(game.getCharactersGui());
+					gamePanel.setWin(false);
+					gamePanel.setLose(false);
+					updateGamePanel();
 					gamePanel.repaint();
-					
-					
+
 				}
 				requestFocusInWindow();
-				
+
 			}
 		});
-
 
 		// Back to menu
 		btnBackMenu = new JButton("Back to Menu");
@@ -104,17 +101,17 @@ public class GameFrame extends JFrame{
 				String msg = "Are you sure you want to go back to menu?";
 				int res = JOptionPane.showConfirmDialog(rootPane, msg);
 
-				if (res == JOptionPane.YES_OPTION){
-					
+				if (res == JOptionPane.YES_OPTION) {
+
 					close();
 					menu = new Menu();
-					menu.start();	
+					menu.start();
 				}
 				requestFocusInWindow();
-					
+
 			}
 		});
-		
+
 		// Quit Game button
 		btnQuitGame = new JButton("Quit");
 		btnQuitGame.addActionListener(new ActionListener() {
@@ -122,80 +119,66 @@ public class GameFrame extends JFrame{
 				String msg = "Are you sure you want to quit?";
 				int res = JOptionPane.showConfirmDialog(rootPane, msg);
 
-				if (res == JOptionPane.YES_OPTION){
+				if (res == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}
 				requestFocusInWindow();
-					
+
 			}
 		});
-	
+
 		btnUp = new JButton("Up");
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				updateGame('w');
 				requestFocusInWindow();
-					
+
 			}
 		});
-		
+
 		btnDown = new JButton("Down");
 		btnDown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				updateGame('s');
 				requestFocusInWindow();
-					
+
 			}
 		});
-		
+
 		btnLeft = new JButton("Left");
 		btnLeft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				updateGame('a');
 				requestFocusInWindow();
-					
+
 			}
 		});
-		
+
 		btnRight = new JButton("Right");
 		btnRight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				updateGame('d');
 				requestFocusInWindow();
-					
+
 			}
 		});
-	
-	
-	
+
 	}
 
 	private void addButtons() {
-
-		
-		
 		gamePanel.add(btnNewGame,BorderLayout.NORTH);
 		gamePanel.add(btnBackMenu,BorderLayout.NORTH);
 		gamePanel.add(btnQuitGame,BorderLayout.NORTH);
-		
-		
-
-		
 		buttonsPanel1.add(btnUp);
 		buttonsPanel1.add(btnLeft);
 		buttonsPanel1.add(btnRight);
 		buttonsPanel1.add(btnDown);
-		
 		buttonsPanel1.setPreferredSize(new Dimension(50, 20));
-		
 		add(buttonsPanel1, BorderLayout.WEST);
-		
-		
-		
 	}
 
 	public void start() {
@@ -209,49 +192,32 @@ public class GameFrame extends JFrame{
 				keyMovement(e);
 			}
 		});
-		gamePanel.setMap(game.getMapGui());
-		gamePanel.setObjectives(game.getObjectivesGui());;
-		gamePanel.setCharacters(game.getCharactersGui());
+		updateGamePanel();
 		gamePanel.repaint();
 	}
 
 	private void keyMovement(KeyEvent e) {
 		char key;
 		key = e.getKeyChar();
-		
 
-		if (key == 'w') {
+		if (key == 'w' || e.getKeyCode() == KeyEvent.VK_UP)
 			updateGame('w');
-		} else if (key == 's') {
+		else if (key == 's' || e.getKeyCode() == KeyEvent.VK_DOWN)
 			updateGame('s');
-		} else if (key == 'a') {
+		else if (key == 'a' || e.getKeyCode() == KeyEvent.VK_LEFT)
 			updateGame('a');
-		} else if (key == 'd') {
+		else if (key == 'd' || e.getKeyCode() == KeyEvent.VK_RIGHT)
 			updateGame('d');
-		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			updateGame('d');
-		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			updateGame('a');
-		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			updateGame('w');
-		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			updateGame('s');
-		}
+
 	}
 
 	private void updateGame(char i)
 	{
 		if (game.condition == status.RUNNING) {
-			game = game.moveHero(i);
-			game.atack_villains();
-			game.moveAllVillains();
-			game.atack_villains();
-			game.Over();
-			
+			 moveAllCharacters(i);
+			 
 			if (game.condition == status.RUNNING) {
-				gamePanel.setMap(game.getMapGui());
-				gamePanel.setObjectives(game.getObjectivesGui());
-				gamePanel.setCharacters(game.getCharactersGui());
+				updateGamePanel();
 			}
 			else if(game.condition == status.DEFEAT){
 				gamePanel.setLose(true);
@@ -261,11 +227,26 @@ public class GameFrame extends JFrame{
 				gamePanel.setWin(true);
 				buttonsPanel1.setVisible(false);
 			}
-		
 			gamePanel.repaint();
 		}
-		
 	}
 
+	
+	private void updateGamePanel()
+	{
+		gamePanel.setMap(game.getMapGui());
+		gamePanel.setObjectives(game.getObjectivesGui());
+		gamePanel.setCharacters(game.getCharactersGui());
+		
+	}
+	
+	private void moveAllCharacters(char i)
+	{
+		game = game.moveHero(i);
+		game.atack_villains();
+		game.moveAllVillains();
+		game.atack_villains();
+		game.Over();
+	}
 	
 }

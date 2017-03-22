@@ -455,29 +455,19 @@ public class Logic {
 		
 	}
 	
-	
-	public void addPerspective(ArrayList<ArrayList<String>> array)
-	{
+	public void addPerspective(ArrayList<ArrayList<String>> array) {
 		for (int i = 0; i < array.size(); i++)
-		{
-			for (int j = 0; j < array.get(i).size(); j++)
-			{
-				if (array.get(i).get(j) == "X02")
-				{
+			for (int j = 0; j < array.get(i).size(); j++) {
+				if (array.get(i).get(j) == "X02") {
 					if (j + 1 < array.get(i).size())
-						array.get(i).set(j+1, "XC02");
-					else array.get(i).add("XC02");
-				}
-				else if (array.get(i).get(j) == "X03")
-				{
-					array.get(i).set(j+1, "XS");
-				}
+						array.get(i).set(j + 1, "XC02");
+					else
+						array.get(i).add("XC02");
+				} else if (array.get(i).get(j) == "X03")
+					array.get(i).set(j + 1, "XS");
 
 			}
-			
-		}
-			
-		
+
 	}
 	
 	public String typeOfWall(String a , int x , int y) // implementar

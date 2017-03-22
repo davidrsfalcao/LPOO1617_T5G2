@@ -34,4 +34,13 @@ public class MassiveClub extends Character {
 		return position.getRepresentation() + "";
 	}
 
+	@Override
+	protected void setFront() {
+	}
+
+	@Override
+	protected void setBack() {
+		
+	}
+
 }

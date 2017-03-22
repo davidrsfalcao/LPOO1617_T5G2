@@ -112,4 +112,19 @@ public abstract class Character {
 		return direction_mov;
 	}
 
+	protected abstract void setFront();
+	protected abstract void setBack();
+	
+	
+	@Override
+	public String toString()
+	{
+		if (direction_mov == 'D' || direction_mov == 'L')
+			setFront();
+		else
+			setBack();
+		
+		
+		return position.getRepresentationGui();
+	}
 }

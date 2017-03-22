@@ -114,7 +114,7 @@ public class Hero extends Character{
 		
 	}
 	
-	private void setFront()
+	protected void setFront()
 	{
 			if (!is_armed && !has_key)
 				position.setRepresentationGui("HF");
@@ -126,7 +126,7 @@ public class Hero extends Character{
 
 	}
 	
-	private void setBack()
+	protected void setBack()
 	{
 			if (!is_armed)
 				position.setRepresentationGui("HB");
@@ -135,13 +135,4 @@ public class Hero extends Character{
 
 	}
 	
-	@Override
-	public String toString()
-	{
-		if (direction_mov == 'D' || direction_mov == 'L')
-			setFront();
-		else setBack();
-		
-		return position.getRepresentationGui();
-	}
 }

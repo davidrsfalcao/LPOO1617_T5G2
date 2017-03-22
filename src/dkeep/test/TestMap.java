@@ -71,5 +71,6 @@ public class TestMap extends Map{
 		
 	};
 	
+	public void setObjectives(){}
 }
 	

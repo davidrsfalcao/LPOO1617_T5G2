@@ -73,5 +73,6 @@ public class TestMap3 extends Map{
 		
 	};
 	
+	public void setObjectives(){}
 }
 	

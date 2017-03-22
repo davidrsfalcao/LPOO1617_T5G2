@@ -74,5 +74,9 @@ public class Maze1 extends Map{
 		
 	};
 	
+	public void setObjectives()
+	{
+		
+	}
 }
 	

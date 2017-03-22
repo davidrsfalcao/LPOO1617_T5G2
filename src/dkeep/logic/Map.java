@@ -163,4 +163,8 @@ public abstract class Map {
 	{
 		return initValues;
 	}
+
+	public abstract void setObjectives();
+	
+
 }

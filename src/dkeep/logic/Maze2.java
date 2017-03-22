@@ -53,6 +53,11 @@ public class Maze2 extends Map{
 		endPositions.add(t1);
 	}
 	
+	public void setObjectives()
+	{
+		
+	}
+	
 	/**
 	 * Returns the next map
 	 * 

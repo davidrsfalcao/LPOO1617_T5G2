@@ -211,27 +211,21 @@ public class GameFrame extends JFrame{
 
 	}
 
-	private void updateGame(char i)
-	{
+	private void updateGame(char i) {
 		if (game.condition == status.RUNNING) {
-			 moveAllCharacters(i);
-			 
+			moveAllCharacters(i);
+
 			if (game.condition == status.RUNNING) {
 				updateGamePanel();
-			}
-			else if(game.condition == status.DEFEAT){
-				gamePanel.setLose(true);
-				buttonsPanel1.setVisible(false);
-			}
-			else if(game.condition == status.WON){
-				gamePanel.setWin(true);
-				buttonsPanel1.setVisible(false);
+			} else if (game.condition == status.DEFEAT) {
+				lose();
+			} else if (game.condition == status.WON) {
+				win();
 			}
 			gamePanel.repaint();
 		}
 	}
 
-	
 	private void updateGamePanel()
 	{
 		gamePanel.setMap(game.getMapGui());
@@ -248,5 +242,18 @@ public class GameFrame extends JFrame{
 		game.atack_villains();
 		game.Over();
 	}
+	
+	private void win()
+	{
+		gamePanel.setWin(true);
+		buttonsPanel1.setVisible(false);
+	}
+	
+	private void lose()
+	{
+		gamePanel.setLose(true);
+		buttonsPanel1.setVisible(false);
+	}
+	
 	
 }

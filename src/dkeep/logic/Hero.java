@@ -122,8 +122,7 @@ public class Hero extends Character{
 				position.setRepresentationGui("HFA");
 			else if (!is_armed && has_key)
 				position.setRepresentationGui("HFK");
-			else if (is_armed && has_key)
-				position.setRepresentationGui("HFAK");
+			else position.setRepresentationGui("HFAK");
 
 	}
 	

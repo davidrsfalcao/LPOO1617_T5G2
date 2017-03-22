@@ -23,29 +23,41 @@ public class Suspicious extends Guard {
 	}
 	
 	public Position moveCharacter(int MAP_SIZE) {
-		
+
 		if (front) {
-			position.changeTo(path[index][0], path[index][1]);
-			steps_front--;
-			increaseIndex();
-
+			moveFront();
 		} else {
-			position.changeTo(path[index][0], path[index][1]);
-			steps_back--;
-			decreaseIndex();
+			moveBack();
 		}
-
+		changeDirection();
+		
+		return position;
+	}
+	
+	private void moveFront()
+	{
+		position.changeTo(path[index][0], path[index][1]);
+		steps_front--;
+		increaseIndex();
+	}
+	
+	private void moveBack()
+	{
+		position.changeTo(path[index][0], path[index][1]);
+		steps_back--;
+		decreaseIndex();
+		
+	}
+	
+	private void changeDirection() {
 		if (steps_front == 0) {
 			steps_front = rand.nextInt(5) + 3;
 			front = false;
 		}
-
 		if (steps_back == 0) {
 			steps_back = rand.nextInt(3) + 1;
 			front = true;
 		}
-
-		return position;
 	}
 	
 }

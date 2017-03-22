@@ -154,6 +154,11 @@ public class Position {
 		return representation_gui;
 	}
 
+	public void setRepresentationGui(String rep)
+	{
+		representation_gui = rep;
+	}
+	
 	/**
 	 * Redefines type
 	 * 

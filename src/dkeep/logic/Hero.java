@@ -114,4 +114,35 @@ public class Hero extends Character{
 		
 	}
 	
+	private void setFront()
+	{
+			if (!is_armed && !has_key)
+				position.setRepresentationGui("HF");
+			else if (is_armed && !has_key)
+				position.setRepresentationGui("HFA");
+			else if (!is_armed && has_key)
+				position.setRepresentationGui("HFK");
+			else if (is_armed && has_key)
+				position.setRepresentationGui("HFAK");
+
+	}
+	
+	private void setBack()
+	{
+			if (!is_armed)
+				position.setRepresentationGui("HB");
+			else if (is_armed)
+				position.setRepresentationGui("HBA");
+
+	}
+	
+	@Override
+	public String toString()
+	{
+		if (direction_mov == 'D' || direction_mov == 'L')
+			setFront();
+		else setBack();
+		
+		return position.getRepresentationGui();
+	}
 }

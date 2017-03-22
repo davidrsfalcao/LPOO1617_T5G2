@@ -1,7 +1,6 @@
 package dkeep.logic;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 
 public class Logic {
@@ -321,17 +320,16 @@ public class Logic {
 				ogre.updateLastPosition();
 				ogre.setPosition(pos.getX(), pos.getY());
 				ogre.updateDirection();
+				
+				pos = ogre.moveClub();
+
+				if (map.isFree(pos.getX(), pos.getY()) && positionClear(pos)) {
+					ogre.setClub(pos);
+				} else
+					ogre.setClubNotVisible();
 			}
 		}
-		for (int k = 0; k < ogres.size(); k++) {
-			pos = ogres.get(k).moveClub();
 
-			if (map.isFree(pos.getX(), pos.getY()) && positionClear(pos)) {
-				ogres.get(k).setClub(pos);
-			} else
-				ogres.get(k).setClubNotVisible();
-
-		}
 
 	}
 
@@ -806,5 +804,24 @@ public class Logic {
 		return board;
 	}
 	
+	public void printMap() {
+
+		char [][] map1 = map.getMap();
+
+		int tam = getAllCharacters().size();
+		ArrayList<Character> temp = getAllCharacters();
+
+		for (int k = 0; k < tam; k++) {
+			map1[temp.get(k).getPosition().getY()][temp.get(k).getPosition().getX()] = temp.get(k).getRepresentation();
+		}
+
+		for (int i = 0; i < map1.length; i++) {
+			for (int k = 0; k < map1.length; k++) {
+				System.out.print(map1[i][k] + " ");
+			}
+			System.out.println();
+		}
+
+	}
 	
 }

@@ -232,6 +232,8 @@ public class GameFrame extends JFrame{
 		gamePanel.setObjectives(game.getObjectivesGui());
 		gamePanel.setCharacters(game.getCharactersGui());
 		
+		game.printMap();
+		
 	}
 	
 	private void moveAllCharacters(char i)

@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Maze1 extends Map{
 
-	char[][]temp={{'X','X','X','X','X','X','X','X','X','X'} ,
+	char[][]temp=
+			 {{'X','X','X','X','X','X','X','X','X','X'} ,
 			  {'X',' ',' ',' ','I',' ','X',' ',' ','X'} ,
 			  {'X','X','X',' ','X','X','X',' ',' ','X'} ,
 			  {'X',' ','I',' ','I',' ','X',' ',' ','X'} ,

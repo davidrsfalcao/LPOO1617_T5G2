@@ -290,7 +290,7 @@ public class GameTests {
 	{
 		int[] test1 = { 1, 7 }, test2 = { 2, 7 };
 
-		Logic game = new Logic(new Maze2(), rand.nextInt(3), rand.nextInt(3)+1);;
+		Logic game = new Logic(new Maze2(), rand.nextInt(3), rand.nextInt(3)+1);
 		assertEquals(test1[0], game.getHero().getPosition().getX());
 		assertEquals(test1[1], game.getHero().getPosition().getY());
 		game = game.moveHero('d');
@@ -299,4 +299,135 @@ public class GameTests {
 		
 		
 	}
+	
+
+	@Test
+	public void SuspiciousMove()
+	{
+		Suspicious go = new Suspicious(1,1,true);
+		int path[][] = {{1,1},{2,1},{3,1},{3,2},{2,2},{1,2}};
+		int[] test1 = { 1, 1 };
+		go.setPath(path);
+		assertEquals(test1[0], go.getPosition().getX());
+		assertEquals(test1[1], go.getPosition().getY());
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		
+		
+	}
+	
+	@Test
+	public void DrunkenMove()
+	{
+		Drunken go = new Drunken(1,1,true);
+		int path[][] = {{1,1},{2,1},{3,1},{3,2},{2,2},{1,2}};
+		int[] test1 = { 1, 1 };
+		go.setPath(path);
+		assertEquals(test1[0], go.getPosition().getX());
+		assertEquals(test1[1], go.getPosition().getY());
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		
+	}
+	
+	@Test
+	public void OgreTest()
+	{
+		Ogre go = new Ogre(1,1);
+		int[] test1 = { 1, 1 };
+		assertEquals(test1[0], go.getPosition().getX());
+		assertEquals(test1[1], go.getPosition().getY());
+		go.moveCharacter(10);
+		String rep = go + "";
+		go.moveCharacter(10);
+		rep = go + "";
+		go.moveCharacter(10);
+		rep = go + "";
+		go.moveCharacter(10);
+		rep = go + "";
+		go.moveCharacter(10);
+		rep = go + "";
+		go.moveCharacter(10);
+		rep = go + "";
+		go.moveCharacter(10);
+		go.moveCharacter(10);
+		go.moveCharacter(10);
+		rep = go + "";
+		go.moveCharacter(10);
+		rep = go + "";
+		go.moveCharacter(10);
+		rep = go + "";
+		go.moveCharacter(10);
+		go.moveClub();
+		go.moveClub();
+		go.moveClub();
+		go.moveClub();
+		go.moveClub();
+		go.moveClub();
+		go.moveClub();
+		go.setClubNotVisible();
+		rep = go + "";
+		
+	}
+	@Test
+	public void RookieMove()
+	{
+		Rookie go = new Rookie(1,1,true);
+		int path[][] = {{1,1},{2,1},{3,1},{3,2},{2,2},{1,2}};
+		int[] test1 = { 1, 1 };
+		go.setPath(path);
+		assertEquals(test1[0], go.getPosition().getX());
+		assertEquals(test1[1], go.getPosition().getY());
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		go.moveCharacter(5);
+		
+		
+	}
+	
+	@Test
+	public void ClubMove()
+	{
+		MassiveClub go = new MassiveClub();
+		go.moveCharacter(5);
+		String r = ""+go;
+		
+	}
+	
+	@Test
+	public void TestHero()
+	{
+		Hero go = new Hero(1,1,true,false);
+		go.moveCharacter(5);
+		String s = ""+go;
+		
+	}
+	
+	
+	
+	
 }

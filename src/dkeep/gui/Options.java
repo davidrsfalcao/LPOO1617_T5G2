@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -23,7 +24,7 @@ public class Options extends JPanel {
 	private Logic game;
 
 	 
-	public Options()
+	public Options(JFrame frame)
 	{
 		JButton jogar = new JButton("Play the Maze");
 		jogar.addActionListener(new ActionListener()
@@ -57,8 +58,10 @@ public class Options extends JPanel {
 	  			game.setOgre(CreateMaze.getOgres().get(i));
 	  		}
 
+	  		
 	  		window = new Menu();
 	  		window.initGame(game);
+	  		frame.dispose();
 	
 			
 	  		
@@ -91,6 +94,10 @@ public class Options extends JPanel {
 	}
 	
 	
+	public void close()
+	{
+		setVisible(false);
+	}
 	
 	public static String getSelecionado()
 	{

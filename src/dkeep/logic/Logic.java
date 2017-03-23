@@ -463,7 +463,9 @@ public class Logic {
 					else
 						array.get(i).add("XC02");
 				} else if (array.get(i).get(j) == "X03")
-					array.get(i).set(j + 1, "XS");
+					if (j + 1 < array.get(i).size())
+						array.get(i).set(j + 1, "XS");
+					else array.get(i).add(j + 1, "XS");
 
 			}
 

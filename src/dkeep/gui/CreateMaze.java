@@ -39,7 +39,7 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 	
 	
 	private BufferedImage floor; 
-	private BufferedImage wall00;
+	private BufferedImage wall;
 	private BufferedImage keys;
 	private BufferedImage hero;
 	private BufferedImage ogre;
@@ -101,31 +101,31 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		}
 		
 		try {
-			wall00 = ImageIO.read(new File("res/walls/Wall00.png"));
+			wall = ImageIO.read(new File("res/creator/Wall.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			keys = ImageIO.read(new File("res/objectives/Key.png"));
+			keys = ImageIO.read(new File("res/creator/Key.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			hero = ImageIO.read(new File("res/hero/Hero.png"));
+			hero = ImageIO.read(new File("res/creator/Hero.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			ogre= ImageIO.read(new File("res/ogre/Ogre.png"));
+			ogre= ImageIO.read(new File("res/creator/Ogre.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			door = ImageIO.read(new File("res/objectives/Closed.png"));
+			door = ImageIO.read(new File("res/creator/Door.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -133,45 +133,36 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 	
 	
 	public void paintComponent(Graphics gr) {
-		
+
 		super.paintComponent(gr);
-		
-		
-		
+
 		Resizer res = new Resizer();
 		BufferedImage temp;
 		BufferedImage temp1;
-		
+
 		int map_size = maze.length;
-		
+
 		int width = (int) panel.getSize().getWidth();
-		//int height = (int) panel.getSize().getHeight();
-		
-		
-		int resY = (int) Math.ceil(width/map_size);
-		int resX = resY ;
 
-		
-		
-		frame.setSize(resX*map_size, resY*map_size+70);
+		int resY = (int) Math.ceil(width / map_size);
+		int resX = resY;
 
-		for(int y = 0;y < maze.length;y++)
-		{
-			for (int x=0;x < maze[y].length;x++)
-			{
-				int i=x*resX;
-				int j=y*resY;
-				
-				switch(maze[y][x])
-				{
-				//paredes
-				
+		frame.setSize(resX * map_size, resY * map_size + 70);
+
+		for (int y = 0; y < maze.length; y++) {
+			for (int x = 0; x < maze[y].length; x++) {
+				int i = x * resX;
+				int j = y * resY;
+
+				switch (maze[y][x]) {
+				// paredes
+
 				case ' ':
 					temp = res.resize(floor, resX, resY);
 					gr.drawImage(temp, i, j, null);
 					break;
 				case 'X':
-					temp = res.resize(wall00, resX, resY);
+					temp = res.resize(wall, resX, resY);
 					gr.drawImage(temp, i, j, null);
 					break;
 				case 'k':
@@ -198,15 +189,13 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 					gr.drawImage(temp1, i, j, null);
 					gr.drawImage(temp, i, j, null);
 					break;
-					
 
-					
 				}
-				
+
 			}
-			
+
 		}
-		
+
 	}
 	
 
@@ -215,7 +204,7 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		frame.setPreferredSize(new Dimension(600, 600));
 		frame.getContentPane().setLayout(new BorderLayout());
 		panel = new CreateMaze(tamanho);
-		JPanel panel2 = new Options();
+		JPanel panel2 = new Options(frame);
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		frame.getContentPane().add(panel2, BorderLayout.SOUTH);
 		frame.pack();

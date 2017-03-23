@@ -357,40 +357,44 @@ public class GameTests {
 	@Test
 	public void OgreTest()
 	{
+		Ogre gi = new Ogre();
 		Ogre go = new Ogre(1,1);
 		int[] test1 = { 1, 1 };
 		assertEquals(test1[0], go.getPosition().getX());
 		assertEquals(test1[1], go.getPosition().getY());
-		go.moveCharacter(10);
+		go.setPosition(1, 0);
+		go.updateDirection();
+		go.updateLastPosition();
 		String rep = go + "";
-		go.moveCharacter(10);
-		rep = go + "";
-		go.moveCharacter(10);
-		rep = go + "";
-		go.moveCharacter(10);
-		rep = go + "";
-		go.moveCharacter(10);
-		rep = go + "";
-		go.moveCharacter(10);
-		rep = go + "";
-		go.moveCharacter(10);
-		go.moveCharacter(10);
-		go.moveCharacter(10);
-		rep = go + "";
-		go.moveCharacter(10);
-		rep = go + "";
-		go.moveCharacter(10);
-		rep = go + "";
-		go.moveCharacter(10);
+		go.setPosition(1, 1);
+		go.updateDirection();
+		go.updateLastPosition();
+		rep=go+"";
 		go.moveClub();
+		go.moveCharacter(5);
 		go.moveClub();
+		go.moveCharacter(5);
 		go.moveClub();
+		go.moveCharacter(5);
 		go.moveClub();
+		go.moveCharacter(5);
 		go.moveClub();
+		go.moveCharacter(5);
 		go.moveClub();
+		go.moveCharacter(5);
 		go.moveClub();
+		go.moveCharacter(5);
+		go.moveClub();
+		go.moveCharacter(5);
+		go.moveClub();
+		go.moveCharacter(5);
+		go.moveClub();
+		go.moveCharacter(5);
+		go.moveClub();
+		go.moveCharacter(5);
 		go.setClubNotVisible();
-		rep = go + "";
+		
+		
 		
 	}
 	@Test

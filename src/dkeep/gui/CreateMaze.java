@@ -95,7 +95,7 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 	void Elements() {
 		
 		try {
-			floor = ImageIO.read(new File("res/floor/Grass.png"));
+			floor = ImageIO.read(new File("res/creator/Floor.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -26,13 +26,10 @@ public class Menu extends JFrame{
 	private JLabel authors;
 	private JButton btnNewGame;
 	private JButton btnExit;
-	private JButton btnOptions;
 	private JButton btnMaze;
 	private JDialog options;
 	private int guardType = 0;
 	private int nOgres = 3;
-
-
 
 	
 	public Menu(){
@@ -43,7 +40,6 @@ public class Menu extends JFrame{
 		try {
 			myImage = ImageIO.read(new File("res/a1.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Resizer a = new Resizer();
@@ -72,29 +68,9 @@ public class Menu extends JFrame{
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				setVisible(false);
-				// getContentPane().setLayout(new BorderLayout(0, 0));
-				// getContentPane().add(graphicsPanel);
-
-				GameFrame game = new GameFrame(new Menu(), guardType, nOgres);
-				game.start();
-
-				// graphicsPanel.startNewGame(gameConfig);
-				// <-------------------------------
-
-				//setVisible(true);
-				
-			}
-		});
-
-
-		// Options button
-		btnOptions = new JButton("Options");
-		btnOptions.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
 				options.setVisible(true);
+				options.toFront();
 
-				
 			}
 		});
 
@@ -125,14 +101,12 @@ public class Menu extends JFrame{
 	private void addButtons() {
 		btnNewGame.setBounds(400, 300, 224, 50);
 		getContentPane().add(btnNewGame);
-		
-		btnOptions.setBounds(400, 360, 224, 50);
-		getContentPane().add(btnOptions);
+	
 		
 		btnExit.setBounds(400, 420, 224, 50);
 		getContentPane().add(btnExit);
 		
-		btnMaze.setBounds(400, 480, 224, 50);
+		btnMaze.setBounds(400, 360, 224, 50);
 		getContentPane().add(btnMaze);
 		
 		
@@ -159,6 +133,12 @@ public class Menu extends JFrame{
 	public void setNOgres(int n)
 	{
 		nOgres = n;	
+	}
+
+	public void initGame(){
+		setVisible(false);
+		GameFrame game = new GameFrame(new Menu(), guardType, nOgres);
+		game.start();
 	}
 	
 }

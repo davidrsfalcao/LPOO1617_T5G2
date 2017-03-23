@@ -27,7 +27,7 @@ public class GameOptions extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 	private int tempGuard;
-	private int tempOgre; 
+	private int tempOgre;
 
 
 	/**
@@ -94,6 +94,7 @@ public class GameOptions extends JDialog {
 							window.setGuardType(tempGuard);
 							window.setNOgres(tempOgre);
 							setVisible(false);
+							window.initGame();
 							
 							
 						}

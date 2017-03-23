@@ -41,11 +41,7 @@ public class MapSize extends JDialog{
 	    		  	JOptionPane.showMessageDialog(window, "The Maze dimension must be between 5 and 30");
 		  			return;
 		    	}
-		    	else if (Integer.parseInt(box.getText()) % 2 == 0)
-		    		CreateMaze.construir(Integer.parseInt(box.getText()) + 1);
-	    	  		
-		    	else if (Integer.parseInt(box.getText()) % 2 != 0)
-		    		CreateMaze.construir(Integer.parseInt(box.getText()));
+		    	else CreateMaze.construir(Integer.parseInt(box.getText()));
 	    	 MapSize.this.setVisible(false);
 	    	
 	      }

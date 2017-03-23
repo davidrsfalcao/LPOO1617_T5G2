@@ -87,16 +87,16 @@ public class Menu extends JFrame{
 		});
 		//Create Maze
 		
-				btnMaze = new JButton("Create Maze");
-				btnMaze.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0){
-						JDialog dialog = new MapSize();
-						dialog.setVisible(true);
-						setVisible(false);
-						
-					}
-					
-				});
+		btnMaze = new JButton("Create Maze");
+		btnMaze.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JDialog dialog = new MapSize();
+				dialog.setVisible(true);
+				setVisible(false);
+
+			}
+
+		});
 	}
 	
 

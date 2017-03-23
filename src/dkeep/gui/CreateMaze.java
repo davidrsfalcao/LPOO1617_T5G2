@@ -65,6 +65,9 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 
 		heroi.setPosition(-1, -1);
 
+		setSize(580,582);
+		frame.setSize(580,582);
+		//frame.setResizable(false);
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
 		CreateMaze.tamanho = tamanho;
@@ -134,31 +137,36 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		
 		super.paintComponent(gr);
 		
+		
+		
 		Resizer res = new Resizer();
 		BufferedImage temp;
 		BufferedImage temp1;
 		
 		int map_size = maze.length;
-
-		int width = (int) getSize().getWidth();
-		int height = (int) getSize().getHeight();
 		
-		int resX_temp = width/(map_size+1);
-		int resY_temp = height/(map_size+1);
+		int width = (int) panel.getSize().getWidth();
+		int height = (int) panel.getSize().getHeight();
 		
-		int resX;
-		int resY;
+		System.out.println(width + " " + height );
 		
-		if (resX_temp < resY_temp) {
-			resX = resX_temp;
-			resY = resX_temp;
-		}
-		else {
-			resX = resY_temp;
-			resY = resY_temp;
-			
-		}
+		int resX_temp = width/map_size;
+		int resY_temp = height/map_size;
+		System.out.println("ceil: " +Math.ceil(580/map_size));
+		int resY = (int) Math.ceil(width/map_size);
+		int resX = resY ;
 		
+//		if (resX_temp < resY_temp) {
+//			resX = resX_temp;
+//			resY = resX_temp;
+//		}
+//		else {
+//			resX = resY_temp;
+//			resY = resY_temp;
+//			
+//		}
+		
+		frame.setSize(resX*map_size, resY*(map_size+1));
 
 		for(int y = 0;y < maze.length;y++)
 		{
@@ -214,11 +222,7 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		
 	}
 	
-	
-	
-	
-	
-	
+
 	public static void construir(int tamanho) {
 		frame = new JFrame("Maze Creator");
 		frame.setPreferredSize(new Dimension(600, 600));
@@ -235,7 +239,6 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		frame.requestFocus();
 	}
 
-	
 	
 	public void mouseClicked(MouseEvent arg0) {
 	}

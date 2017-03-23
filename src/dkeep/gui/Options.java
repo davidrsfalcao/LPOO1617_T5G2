@@ -21,7 +21,6 @@ public class Options extends JPanel {
 	private Menu menu;
 	private Menu window;
 	private Logic game;
-	private GameFrame gameFrame;
 
 	 
 	public Options()
@@ -36,17 +35,17 @@ public class Options extends JPanel {
 		  		
 	  		if(!CreateMaze.getSaida())
 	  		{
-	  			JOptionPane.showMessageDialog(window, "The Maze doesn´t have a Exit");
+	  			JOptionPane.showMessageDialog(window, "The Maze doesn't have a Exit");
 	  			return;
 	  		}
 	  		else if(CreateMaze.getHero().getPosition().getX() == -1)
 	  		{
-	  			JOptionPane.showMessageDialog(window, "The Maze doesn´t have a Hero");
+	  			JOptionPane.showMessageDialog(window, "The Maze doesn't have a Hero");
 	  			return;
 	  		}
 	  		else if(CreateMaze.getKey()[0] == -1)
 	  		{
-	  			JOptionPane.showMessageDialog(window, "The Maze doesn´t have a Key");
+	  			JOptionPane.showMessageDialog(window, "The Maze doesn't have a Key");
 	  			return;
 	  		}
 

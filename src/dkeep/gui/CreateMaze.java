@@ -153,7 +153,7 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 
 		
 		
-		frame.setSize(resX*map_size, resY*(map_size+1));
+		frame.setSize(resX*map_size, resY*map_size+70);
 
 		for(int y = 0;y < maze.length;y++)
 		{
@@ -248,8 +248,12 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 	public void mousePressed(MouseEvent arg0) {
 		
 		
+		
 		double x=  arg0.getX() /(getWidth() / tamanho); 
-		double y=  arg0.getY() /( getHeight() / tamanho); 
+		double y=  arg0.getY() /( (getHeight() +20) / tamanho); 
+		
+		if (x > tamanho || y > tamanho)
+			return;
 		
 		
 		if (Options.getSelecionado() == "Wall") 

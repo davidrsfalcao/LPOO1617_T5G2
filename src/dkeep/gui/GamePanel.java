@@ -42,7 +42,6 @@ public class GamePanel extends JPanel {
 	 * 
 	 */
 	private BufferedImage club;
-	private BufferedImage club_key;
 	
 	
 	
@@ -53,7 +52,6 @@ public class GamePanel extends JPanel {
 	private BufferedImage ogre_front;
 	private BufferedImage ogre_back;
 	private BufferedImage ogreStunned_front;
-	private BufferedImage ogreKey;
 	
 	
 	/**
@@ -135,7 +133,13 @@ public class GamePanel extends JPanel {
 		}
 		
 		try {
-			 heroKeyArmed_front = ImageIO.read(new File("res/hero/HeroArmedWithKey.png"));
+			heroKeyArmed_front = ImageIO.read(new File("res/hero/HeroArmedWithKey.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			 club = ImageIO.read(new File("res/ogre/Club.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -163,12 +167,13 @@ public class GamePanel extends JPanel {
 			e.printStackTrace();
 		}
 		
-		
 		try {
-			ogreKey = ImageIO.read(new File("res/ogre/OgreStunned.png"));
+			ogreStunned_front = ImageIO.read(new File("res/ogre/OgreStunned.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
 		
 		
 
@@ -544,6 +549,21 @@ public class GamePanel extends JPanel {
 				
 			case "OBS":
 				temp = res.resize(ogreStunned_front, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "OK":
+				temp = res.resize(ogreStunned_front, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "*":
+				temp = res.resize(club, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "$":
+				temp = res.resize(club, resX, resY);
 				gr.drawImage(temp, i, j, null);
 				break;
 				

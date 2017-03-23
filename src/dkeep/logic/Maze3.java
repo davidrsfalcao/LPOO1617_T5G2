@@ -16,7 +16,7 @@ public class Maze3 extends Map {
 			
 			for(int i=0;i < MAP_SIZE;i++)
 			{
-				for(int j=0;j < MAP_SIZE;j++)
+				for(int j=0;j < MAP_SIZE;j++) 
 				{
 					if(map[i][j] == 'A')
 					{
@@ -24,6 +24,7 @@ public class Maze3 extends Map {
 						hero.add(i); //posY
 						hero.add(0); //has_key
 						hero.add(1); //is_armed
+						map[i][j] = ' ';
 					}
 					
 					if(map[i][j] == 'k')
@@ -40,6 +41,10 @@ public class Maze3 extends Map {
 						endPositions.add(t1);
 						
 					}
+					if(map[i][j] == 'O')
+					{
+						map[i][j] = ' ';
+					}
 			
 			    }
 			}
@@ -50,7 +55,9 @@ public class Maze3 extends Map {
 			guard.add(0); //playing
 			
 			ArrayList<Integer> ogre = new ArrayList<Integer>();
-			ogre.add(1); //playing
+			ogre.add(0); //playing
+			
+			
 			
 			initValues.add(hero);
 			initValues.add(guard);

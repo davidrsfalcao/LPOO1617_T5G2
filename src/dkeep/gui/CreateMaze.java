@@ -26,7 +26,7 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 	
 	private static Hero heroi = new Hero(-1,-1,false,true);
 	private static ArrayList<Ogre> ogres = new ArrayList<Ogre>();
-	private boolean key=false;
+	private static Integer key[] = {-1,-1};
 	private boolean herob=false;
 	
 	
@@ -68,7 +68,7 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		setSize(580,582);
 		frame.setSize(580,582);
 		//frame.setResizable(false);
-		this.addMouseListener(this);
+		this.addMouseListener(this);  
 		CreateMaze.tamanho = tamanho;
 		CreateMaze.maze = new char[tamanho][tamanho];
 
@@ -393,7 +393,7 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		if (Options.getSelecionado() == "Key") {
 			if (!((int) x == 0 || (int) x == tamanho - 1 || (int) y == 0 || (int) y == tamanho - 1)) 
 			{
-				if (!key) 
+				if (key[0] == -1) 
 				{
 					if(maze[(int) y][(int) x] == 'O'){
 						for(int i = 0;i < ogres.size();i++)
@@ -401,14 +401,13 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 							if((ogres.get(i).getPosition().getX() == (int) x) && (ogres.get(i).getPosition().getY() == (int) y) )
 							{
 								ogres.remove(i);
-							
-							
 							}
 						
 						}
 					}
 					maze[(int)y][(int)x] = 'k'; 
-					key = true;
+					key[0] = (int)x;
+					key[1] = (int)y;
 				} 
 				else
 				{
@@ -433,7 +432,8 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 					}
 					
 					maze[(int)y][(int)x] = 'k'; 
-					
+					key[0]=(int) x;
+					key[1]= (int) y;
 				}
 				
 			}
@@ -462,22 +462,15 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		
 	}
 
-	public static boolean getKey()
+	public static Integer[] getKey()
 	{
-		for (int linha = 0; linha < tamanho; linha++) 
-		{
-			for (int coluna = 0; coluna < tamanho; coluna++) 
-			{
-				if (maze[coluna][linha] == 'k')
-					return true;
-			}
-		}
-		return false;
+		return key;
 		
 	}
 
 	public static char[][] getMaze() 
 	{
+		
 		return maze;
 	}
 	
@@ -486,11 +479,13 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		return frame;
 	}
 	
-	public static int getNumOgres()
+	public static ArrayList<Ogre> getOgres()
 	{
-		return ogres.size();
+		return ogres;
 		
 	}
+
+	
 }
 
 

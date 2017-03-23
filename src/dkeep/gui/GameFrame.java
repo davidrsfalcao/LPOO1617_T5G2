@@ -257,5 +257,10 @@ public class GameFrame extends JFrame{
 		buttonsPanel1.setVisible(false);
 	}
 	
+	public void setGame(Logic game){
+		this.game = game;
+		
+		
+	}
 	
 }

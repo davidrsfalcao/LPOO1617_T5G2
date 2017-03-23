@@ -86,6 +86,6 @@ public class Maze1 extends Map{
 			i++;
 		}
 	}
-
+	
 }
 	

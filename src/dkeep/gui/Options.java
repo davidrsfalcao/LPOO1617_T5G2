@@ -21,9 +21,9 @@ public class Options extends JPanel {
 	private Menu menu;
 	private Menu window;
 	private Logic game;
-	private GamePanel gamePanel;
+	private GameFrame gameFrame;
 
-	
+	 
 	public Options()
 	{
 		JButton jogar = new JButton("Play the Maze");
@@ -33,7 +33,6 @@ public class Options extends JPanel {
 	      {  
 	  		 
 	    	Maze3 maze = new Maze3();
-		  	maze.setMap(CreateMaze.getMaze());
 		  		
 	  		if(!CreateMaze.getSaida())
 	  		{
@@ -45,19 +44,27 @@ public class Options extends JPanel {
 	  			JOptionPane.showMessageDialog(window, "The Maze doesn´t have a Hero");
 	  			return;
 	  		}
-	  		else if(!CreateMaze.getKey())
+	  		else if(CreateMaze.getKey()[0] == -1)
 	  		{
 	  			JOptionPane.showMessageDialog(window, "The Maze doesn´t have a Key");
 	  			return;
 	  		}
+
 	  		
-	  		game = new Logic(maze,1,CreateMaze.getNumOgres());
-			gamePanel.setMap(game.getMapGui());
-			gamePanel.setObjectives(game.getObjectivesGui());;
-			gamePanel.setCharacters(game.getCharactersGui());
-			gamePanel.repaint();
+	  		maze.setMap(CreateMaze.getMaze());
+	  		game = new Logic(maze,1,CreateMaze.getOgres().size());
+	  		for(int i=0;i < CreateMaze.getOgres().size();i++)
+	  		{
+	  			game.setOgre(CreateMaze.getOgres().get(i));
+	  		}
+
+	  		window = new Menu();
+	  		window.initGame(game);
+	
+			
 	  		
-	      } 
+	  		
+	      }   
 	    });
 		
 		JButton voltar = new JButton("Quit to Menu");
@@ -90,7 +97,6 @@ public class Options extends JPanel {
 	{
 		return (String)opcoes.getSelectedItem();
 	}
-	
 	
 	
 

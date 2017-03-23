@@ -11,6 +11,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import dkeep.logic.Logic;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -140,6 +142,16 @@ public class Menu extends JFrame{
 	public void initGame(){
 		setVisible(false);
 		GameFrame game = new GameFrame(new Menu(), guardType, nOgres);
+		game.start();
+	}
+	
+	public void initGame(Logic game1)
+	{
+		setVisible(false);
+		GameFrame game = new GameFrame(new Menu(), guardType, nOgres);
+		setUpButtons();
+		addButtons();
+		game.setGame(game1);
 		game.start();
 	}
 	

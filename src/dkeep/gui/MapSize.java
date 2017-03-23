@@ -25,7 +25,7 @@ public class MapSize extends JDialog{
 		panel.setLayout(new FlowLayout());
 		panel.setSize(200, 200);
 		JLabel Label = new JLabel("Maze dimension: ");
-		Label.setBounds(0,0,100,100);
+		Label.setBounds(0,0,100,100);  
 		JTextField box = new JTextField(3);
 		box.setText("" + 10);
 		JButton accept = new JButton("Accept");

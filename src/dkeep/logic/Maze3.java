@@ -13,6 +13,7 @@ public class Maze3 extends Map {
 			this.map=map;
 			this.MAP_SIZE= map[0].length;
 			ArrayList<Integer> hero = new ArrayList<Integer>();
+			endPositions = new ArrayList<Position>();
 			
 			for(int i=0;i < MAP_SIZE;i++)
 			{
@@ -36,7 +37,6 @@ public class Maze3 extends Map {
 					if(map[i][j] == 'I')
 					{
 						
-						endPositions = new ArrayList<Position>();
 						Position t1 = new Position(j,i,'S');
 						endPositions.add(t1);
 						
@@ -80,7 +80,7 @@ public class Maze3 extends Map {
 		 * 
 		 */
 		public void pickUpKey(){
-			map[1][7] = ' ';
+			map[key.getY()][key.getX()] = ' ';
 			key.changeTo(-10, -10);
 		}
 

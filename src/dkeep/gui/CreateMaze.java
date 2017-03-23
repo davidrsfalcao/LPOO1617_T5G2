@@ -283,9 +283,9 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 			
 		}
 	
-		if (Options.getSelecionado() == "Exit") 
+		if (Options.getSelecionado() == "Exit")   
 		{
-			if (!((x == 0 && y == 0) && (x == 0 && y == tamanho - 1) && (x == tamanho - 1 && y == 0) && (x == tamanho - 1 && y == tamanho - 1)))
+			if (!((x == 0 && y == 0) || (x == 0 && y == tamanho - 1) || (x == tamanho - 1 && y == 0) || (x == tamanho - 1 && y == tamanho - 1)))
 			{
 				if ((int) x == 0 || (int) x == tamanho - 1 || (int) y == 0 || (int) y == tamanho - 1) 
 				{

@@ -50,9 +50,9 @@ public class GameOptions extends JDialog {
 		lblGuar.setBounds(33, 28, 138, 16);
 		contentPanel.add(lblGuar);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setFont(new Font("Courier", Font.PLAIN, 11));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Rookie", "Drunken", "Suspicious"}));
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Rookie", "Drunken", "Suspicious"}));
 		comboBox.setBounds(183, 22, 175, 27);
 		comboBox.setSelectedIndex(guard_type);
 		contentPanel.add(comboBox);

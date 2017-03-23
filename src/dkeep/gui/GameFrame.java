@@ -1,7 +1,6 @@
 package dkeep.gui;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -15,7 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
@@ -166,18 +164,19 @@ public class GameFrame extends JFrame{
 
 			}
 		});
-
 	}
 
 	private void addButtons() {
 		gamePanel.add(btnNewGame,BorderLayout.NORTH);
 		gamePanel.add(btnBackMenu,BorderLayout.NORTH);
 		gamePanel.add(btnQuitGame,BorderLayout.NORTH);
+				
 		buttonsPanel1.add(btnUp);
 		buttonsPanel1.add(btnLeft);
 		buttonsPanel1.add(btnRight);
 		buttonsPanel1.add(btnDown);
 		buttonsPanel1.setPreferredSize(new Dimension(50, 20));
+
 		add(buttonsPanel1, BorderLayout.WEST);
 	}
 
@@ -223,6 +222,7 @@ public class GameFrame extends JFrame{
 				win();
 			}
 			gamePanel.repaint();
+			requestFocusInWindow();
 		}
 	}
 

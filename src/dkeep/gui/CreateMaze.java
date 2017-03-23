@@ -146,7 +146,7 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		int map_size = maze.length;
 		
 		int width = (int) panel.getSize().getWidth();
-		int height = (int) panel.getSize().getHeight();
+		//int height = (int) panel.getSize().getHeight();
 		
 		
 		int resY = (int) Math.ceil(width/map_size);

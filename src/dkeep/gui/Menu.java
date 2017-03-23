@@ -27,6 +27,7 @@ public class Menu extends JFrame{
 	private JButton btnNewGame;
 	private JButton btnExit;
 	private JButton btnOptions;
+	private JButton btnMaze;
 	private JDialog options;
 	private int guardType = 0;
 	private int nOgres = 3;
@@ -108,8 +109,19 @@ public class Menu extends JFrame{
 					System.exit(0);
 			}
 		});
+		//Create Maze
+		
+				btnMaze = new JButton("Create Maze");
+				btnMaze.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0){
+						JDialog dialog = new MapSize();
+						dialog.setVisible(true);
+					}
+					
+				});
 	}
 	
+
 	private void addButtons() {
 		btnNewGame.setBounds(400, 300, 224, 50);
 		getContentPane().add(btnNewGame);
@@ -119,6 +131,9 @@ public class Menu extends JFrame{
 		
 		btnExit.setBounds(400, 420, 224, 50);
 		getContentPane().add(btnExit);
+		
+		btnMaze.setBounds(400, 480, 224, 50);
+		getContentPane().add(btnMaze);
 		
 		
 		

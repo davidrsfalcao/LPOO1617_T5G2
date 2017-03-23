@@ -19,6 +19,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridLayout;
 
 public class GameOptions extends JDialog {
 
@@ -36,7 +37,7 @@ public class GameOptions extends JDialog {
 	public GameOptions(Menu window, int guard_type, int nOgres) {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setVisible(false);
-		setBounds(100, 100, 387, 187);
+		setBounds(100, 100, 359, 162);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height
 				/ 2 - this.getSize().height / 2);
@@ -46,32 +47,31 @@ public class GameOptions extends JDialog {
 		contentPanel.setLayout(null);
 		
 		JLabel lblGuar = new JLabel("Guard personality");
-		lblGuar.setFont(new Font("Courier", Font.PLAIN, 11));
 		lblGuar.setBounds(33, 28, 138, 16);
+		lblGuar.setFont(new Font("Courier", Font.PLAIN, 11));
 		contentPanel.add(lblGuar);
 		
 		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setBounds(183, 22, 126, 27);
 		comboBox.setFont(new Font("Courier", Font.PLAIN, 11));
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Rookie", "Drunken", "Suspicious"}));
-		comboBox.setBounds(183, 22, 175, 27);
 		comboBox.setSelectedIndex(guard_type);
 		contentPanel.add(comboBox);
 		
 		
 		JLabel lblNumberOfOgres = new JLabel("Number of ogres");
+		lblNumberOfOgres.setBounds(33, 66, 146, 16);
 		lblNumberOfOgres.setFont(new Font("Courier", Font.PLAIN, 11));
-		lblNumberOfOgres.setBounds(33, 83, 146, 16);
 		contentPanel.add(lblNumberOfOgres);
 		
 		textField = new JTextField();
+		textField.setBounds(183, 61, 126, 26);
 		textField.setFont(new Font("Courier", Font.PLAIN, 11));
-		textField.setBounds(183, 78, 175, 26);
 		textField.setText(nOgres + "");
 		contentPanel.add(textField);
 		textField.setColumns(10);
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
@@ -105,6 +105,7 @@ public class GameOptions extends JDialog {
 						toFront();
 					}
 				});
+				buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);

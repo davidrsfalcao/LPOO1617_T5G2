@@ -53,7 +53,6 @@ public class GamePanel extends JPanel {
 	private BufferedImage ogre_front;
 	private BufferedImage ogre_back;
 	private BufferedImage ogreStunned_front;
-	private BufferedImage ogreStunned_back;
 	private BufferedImage ogreKey;
 	
 	
@@ -164,11 +163,6 @@ public class GamePanel extends JPanel {
 			e.printStackTrace();
 		}
 		
-		try {
-			ogreStunned_back = ImageIO.read(new File("res/ogre/OgreStunned.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
 		try {
 			ogreKey = ImageIO.read(new File("res/ogre/OgreStunned.png"));
@@ -228,6 +222,30 @@ public class GamePanel extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		/**
+		 * 
+		 * Guard
+		 * 
+		 */
+		try {
+			guard_front = ImageIO.read(new File("res/guard/Guard.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			guard_back = ImageIO.read(new File("res/guard/GuardB.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			guard_sleep = ImageIO.read(new File("res/guard/GuardS.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		
 		
 		
@@ -526,6 +544,21 @@ public class GamePanel extends JPanel {
 				
 			case "OBS":
 				temp = res.resize(ogreStunned_front, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "GF":
+				temp = res.resize(guard_front, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "GB":
+				temp = res.resize(guard_back, resX, resY);
+				gr.drawImage(temp, i, j, null);
+				break;
+				
+			case "GFS":
+				temp = res.resize(guard_sleep, resX, resY);
 				gr.drawImage(temp, i, j, null);
 				break;
 				

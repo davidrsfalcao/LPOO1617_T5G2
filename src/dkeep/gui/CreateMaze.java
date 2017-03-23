@@ -220,7 +220,7 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 	
 	
 	public static void construir(int tamanho) {
-		frame = new JFrame("Constroi a tua Arena");
+		frame = new JFrame("Maze Creator");
 		frame.setPreferredSize(new Dimension(600, 600));
 		frame.getContentPane().setLayout(new BorderLayout());
 		panel = new CreateMaze(tamanho);
@@ -258,8 +258,8 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 	public void mousePressed(MouseEvent arg0) {
 		
 		
-		double x=  arg0.getX() /(getWidth() / tamanho);
-		double y=  arg0.getY() /( getHeight() / tamanho);
+		double x=  arg0.getX() /(getWidth() / tamanho); 
+		double y=  arg0.getY() /( getHeight() / tamanho); 
 		
 		
 		if (Options.getSelecionado() == "Wall") 

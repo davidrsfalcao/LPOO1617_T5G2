@@ -27,7 +27,7 @@ public class MapSize extends JDialog{
 		JLabel Label = new JLabel("Maze dimension: ");
 		Label.setBounds(0,0,100,100);
 		JTextField box = new JTextField(3);
-		box.setText("" + 11);
+		box.setText("" + 10);
 		JButton accept = new JButton("Accept");
 		panel.add(Label);
 		panel.add(box);
@@ -36,13 +36,14 @@ public class MapSize extends JDialog{
 	    {
 	      public void actionPerformed(ActionEvent e) 
 	      {
-	    	  if (Integer.parseInt(box.getText()) < 5 || Integer.parseInt(box.getText()) > 51)
+	    	  if (Integer.parseInt(box.getText()) < 5 || Integer.parseInt(box.getText()) > 30)
 		    	{
-	    		  	JOptionPane.showMessageDialog(window, "The Maze dimension must be between 5 and 51");
+	    		  	JOptionPane.showMessageDialog(window, "The Maze dimension must be between 5 and 30");
 		  			return;
 		    	}
 		    	else if (Integer.parseInt(box.getText()) % 2 == 0)
 		    		CreateMaze.construir(Integer.parseInt(box.getText()) + 1);
+	    	  		
 		    	else if (Integer.parseInt(box.getText()) % 2 != 0)
 		    		CreateMaze.construir(Integer.parseInt(box.getText()));
 	    	 MapSize.this.setVisible(false);

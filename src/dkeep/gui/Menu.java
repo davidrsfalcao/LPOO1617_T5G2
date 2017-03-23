@@ -28,7 +28,7 @@ public class Menu extends JFrame{
 	private JButton btnExit;
 	private JButton btnMaze;
 	private JDialog options;
-	private int guardType = 0;
+	private int guardType = 0; 
 	private int nOgres = 3;
 
 	
@@ -92,6 +92,8 @@ public class Menu extends JFrame{
 					public void actionPerformed(ActionEvent arg0){
 						JDialog dialog = new MapSize();
 						dialog.setVisible(true);
+						setVisible(false);
+						
 					}
 					
 				});

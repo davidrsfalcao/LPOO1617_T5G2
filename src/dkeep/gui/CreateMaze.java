@@ -435,7 +435,6 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		
 	}
 	
-	
 	public static Hero getHero() {
 		return heroi;
 	}
@@ -477,6 +476,10 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		
 	}
 
+	public static void clearOgres()
+	{
+		ogres = new ArrayList<Ogre>();
+	}
 	
 }
 

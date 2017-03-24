@@ -57,15 +57,13 @@ public class Options extends JPanel {
 	  		{
 	  			game.setOgre(CreateMaze.getOgres().get(i));
 	  		}
-
 	  		
+	  		CreateMaze.clearOgres();
+
 	  		window = new Menu();
 	  		window.initGame(game);
 	  		frame.dispose();
-	
-			
-	  		
-	  		
+
 	      }   
 	    });
 		
@@ -92,7 +90,6 @@ public class Options extends JPanel {
 		this.add(voltar);
 		this.add(opcoes);
 	}
-	
 	
 	public void close()
 	{

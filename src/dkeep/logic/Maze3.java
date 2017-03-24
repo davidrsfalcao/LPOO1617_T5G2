@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class Maze3 extends Map {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int i, j;
 
 	public Maze3() {

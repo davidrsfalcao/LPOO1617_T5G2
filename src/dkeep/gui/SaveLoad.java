@@ -10,7 +10,9 @@ import dkeep.logic.Logic;
 
 public class SaveLoad {
 	
-	private void save(Logic game)
+	public SaveLoad(){};
+	
+	public void save(Logic game)
 	{
 		try{
 			FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.dir")+"/save.ser");
@@ -25,17 +27,20 @@ public class SaveLoad {
 		}
 	}
 	
-	private Logic load()
+	public Logic load()
 	{
 		Logic game;
 		try {
 			FileInputStream fileIn = new FileInputStream(System.getProperty("user.dir")+"/save.ser");
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			game = (Logic) in.readObject();
+			System.out.println("Game Loaded");
+			
 			in.close();
 			fileIn.close();
 		
 		} catch (IOException e) {
+			System.out.println("Game not Loaded");
 			e.printStackTrace();
 			return null;
 		}catch (ClassNotFoundException n)

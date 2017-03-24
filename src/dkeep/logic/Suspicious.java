@@ -3,6 +3,10 @@ import java.util.Random;
 
 public class Suspicious extends Guard {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean front = true;
 	private int steps_front;
 	private int steps_back;

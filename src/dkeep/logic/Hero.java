@@ -2,6 +2,10 @@ package dkeep.logic;
 
 public class Hero extends Character{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean has_key;
 	private boolean is_armed;
 	

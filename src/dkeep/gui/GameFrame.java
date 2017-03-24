@@ -116,7 +116,8 @@ public class GameFrame extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				String msg = "Are you sure you want to quit?";
 				int res = JOptionPane.showConfirmDialog(rootPane, msg);
-
+				
+				
 				if (res == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}
@@ -128,7 +129,7 @@ public class GameFrame extends JFrame{
 		btnUp = new JButton("Up");
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				
 				updateGame('w');
 				requestFocusInWindow();
 

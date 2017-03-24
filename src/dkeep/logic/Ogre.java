@@ -3,6 +3,10 @@ import java.util.Random;
 
 public class Ogre extends Character {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean stunned = false;
 	private int rounds = 2;
 	private MassiveClub club = new MassiveClub(); 

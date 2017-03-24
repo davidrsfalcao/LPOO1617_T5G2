@@ -1,9 +1,14 @@
 package dkeep.logic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Logic {
+public class Logic implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Map map;
 	private Guard guard; 
 	private ArrayList<Ogre> ogres = new ArrayList<Ogre>();

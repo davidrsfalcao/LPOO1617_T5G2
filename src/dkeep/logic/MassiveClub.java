@@ -2,6 +2,11 @@ package dkeep.logic;
 
 public class MassiveClub extends Character {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Position moveCharacter(int MAP_SIZE){
 			return null;
 	}

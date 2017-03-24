@@ -1,7 +1,12 @@
 package dkeep.logic;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Map {
+public abstract class Map implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected int MAP_SIZE; 
 	protected char[][] map;
 	protected ArrayList<Position> endPositions;

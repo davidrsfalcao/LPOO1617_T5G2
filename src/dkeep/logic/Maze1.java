@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class Maze1 extends Map{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	char[][]temp=
 			 {{'X','X','X','X','X','X','X','X','X','X'} ,
 			  {'X',' ',' ',' ','I',' ','X',' ',' ','X'} ,

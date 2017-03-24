@@ -4,6 +4,10 @@ import java.util.Random;
 
 public class Drunken extends Guard{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int counter; // Counter of sleepy rounds and awake rounds
 	private Random rand = new Random(); 
 	

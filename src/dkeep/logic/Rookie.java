@@ -2,6 +2,11 @@ package dkeep.logic;
 
 public class Rookie extends Guard {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Rookie(int posX, int posY, boolean playing)
 	{
 		this.playing = playing;

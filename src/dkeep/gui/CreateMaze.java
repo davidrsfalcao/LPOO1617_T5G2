@@ -67,7 +67,6 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 
 		setSize(580,582);
 		frame.setSize(580,582);
-		//frame.setResizable(false);
 		this.addMouseListener(this);  
 		CreateMaze.tamanho = tamanho;
 		CreateMaze.maze = new char[tamanho][tamanho];

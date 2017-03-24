@@ -21,13 +21,12 @@ public class Drunken extends Guard{
 	}
 	
 	public Position moveCharacter(int MAP_SIZE) {
-		if (!playing)
-			return position;
+		if (playing)
+			if (counter == 0)
+				restartCounter();
+			else
+				move();
 
-		if (counter == 0) 
-			restartCounter();
-		else move();
-		
 		return position;
 	}
 

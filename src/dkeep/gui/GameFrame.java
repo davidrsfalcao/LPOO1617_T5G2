@@ -1,6 +1,7 @@
 package dkeep.gui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -248,14 +249,44 @@ public class GameFrame extends JFrame{
 		}
 	}
 
-	private void updateGamePanel()
-	{
+	private void updateGamePanel() {
 		gamePanel.setMap(game.getMapGui());
 		gamePanel.setObjectives(game.getObjectivesGui());
 		gamePanel.setCharacters(game.getCharactersGui());
-		
-		game.printMap();
-		
+
+		for (ArrayList<String> linha : game.getMapGui()) {
+			for (String a : linha) {
+				String temp;
+
+				if (a.equals(" "))
+					temp = "|    ";
+
+				else
+					switch (a.length()) {
+					case 1:
+						temp = "|" + a + "   ";
+						break;
+
+					case 2:
+						temp = "|" + a + "  ";
+						break;
+
+					case 3:
+						temp = "|" + a + " ";
+						break;
+						
+					default:
+						temp ="|" + a;
+						break;
+					}
+
+				System.out.print(temp + " ");
+
+			}
+
+			System.out.println();
+		}
+
 	}
 	
 	private void moveAllCharacters(char i)

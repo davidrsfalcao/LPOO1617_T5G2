@@ -454,7 +454,7 @@ public class Logic {
 	}
 	
 	/**
-	 * Returns ogre
+	 * Returns ogre (used only for tests)
 	 * 
 	 * @return ogre
 	 */

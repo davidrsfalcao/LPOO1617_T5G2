@@ -272,7 +272,6 @@ public class Position {
 		if (y < temp.getY())
 			return 'U';
 		else return 'D';
-		
 	}
 	
 }

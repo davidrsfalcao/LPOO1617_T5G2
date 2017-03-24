@@ -38,21 +38,52 @@ public class Hero extends Character{
 	 * @param dir
 	 * @return temporary position
 	 */
-	public Position moveCharacter(int MAP_SIZE,int dir){
-		Position temp =  new Position(position.getX(), position.getY(), position.getRepresentation());
-		
+	public Position moveCharacter(int MAP_SIZE, int dir) {
 		switch (dir) {
-		case 1: // move right
-			if (position.getX() + 1 < MAP_SIZE) temp.increaseX(); break;
-		case 2: // move down
-			if (position.getY() + 1 < MAP_SIZE) temp.increaseY(); break;
-		case 3: // move left
-			if (position.getX() - 1 >= 0) temp.decreaseX(); break;
-		case 4: // move up
-			if (position.getY() - 1 >= 0) temp.decreaseY(); break;
+		case 1:
+			return moveRight(MAP_SIZE);
+		case 2:
+			return moveDown(MAP_SIZE);
+		case 3:
+			return moveLeft(MAP_SIZE);
+		case 4:
+			return moveUp(MAP_SIZE);
 		}
-		return temp;
-	}	
+		return position;
+	}
+	
+	public Position moveRight(int MAP_SIZE)
+	{
+		Position temp =  new Position(position.getX(), position.getY(), position.getRepresentation());
+		if (position.getX() + 1 < MAP_SIZE)
+			temp.increaseX();
+		
+		return temp;	
+	}
+	
+	public Position moveDown(int MAP_SIZE)
+	{
+		Position temp =  new Position(position.getX(), position.getY(), position.getRepresentation());
+		if (position.getY() + 1 < MAP_SIZE)
+			temp.increaseY();
+		return temp;	
+	}
+	
+	public Position moveLeft(int MAP_SIZE)
+	{
+		Position temp =  new Position(position.getX(), position.getY(), position.getRepresentation());
+		if (position.getX() - 1 >= 0) 
+			temp.decreaseX(); 
+		return temp;	
+	}
+	
+	public Position moveUp(int MAP_SIZE)
+	{
+		Position temp =  new Position(position.getX(), position.getY(), position.getRepresentation());
+		if (position.getY() - 1 >= 0)
+			temp.decreaseY();
+		return temp;	
+	}
 	
 	/**
 	 * The hero come back to the last position

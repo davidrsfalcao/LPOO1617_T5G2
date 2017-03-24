@@ -300,17 +300,26 @@ public class Logic {
 	 * 
 	 */
 	public void moveAllVillains() {
-		Position pos;
+		Position pos = new Position();
+		
+		moveGuard(pos);
+		moveOgres(pos);
+
+
+	}
+
+	private void moveGuard(Position pos)
+	{
 		if (guard.isPlaying()) {
 			do {
 				guard.updateLastPosition();
 				pos = guard.moveCharacter(map.getMapSize());
 				guard.updateDirection();
 			} while (!this.map.isFree(pos.getX(), pos.getY()));
-			
-
 		}
-		
+	}
+	
+	private void moveOgres(Position pos){
 		for (Ogre ogre : ogres) {
 			if (ogre.isPlaying()) {
 				do {
@@ -320,39 +329,40 @@ public class Logic {
 				ogre.updateLastPosition();
 				ogre.setPosition(pos.getX(), pos.getY());
 				ogre.updateDirection();
+				moveClub(pos,ogre);
 				
-				pos = ogre.moveClub();
 
-				if (map.isFree(pos.getX(), pos.getY()) && positionClear(pos)) {
-					ogre.setClub(pos);
-				} else
-					ogre.setClubNotVisible();
 			}
 		}
-
-
+		
 	}
+	
+	private void moveClub(Position pos, Ogre ogre){
+		pos = ogre.moveClub();
 
+		if (map.isFree(pos.getX(), pos.getY()) && positionClear(pos)) {
+			ogre.setClub(pos);
+		} else
+			ogre.setClubNotVisible();
+		
+	}
+	
 	/**
 	 * Hero atacks villains if they are surrounding him
 	 * 
 	 */
-	public void atack_villains()
-	{
-		if (hero.is_armed())
-		{
-			for (Position pos : hero.getPosition().getSurroundings())
-			{
-				for (int i = 0; i < ogres.size(); i++)
-				{
+	public void atack_villains() {
+		if (hero.is_armed()) {
+			for (Position pos : hero.getPosition().getSurroundings()) {
+				for (int i = 0; i < ogres.size(); i++) {
 					if (ogres.get(i).getPosition().equals(pos))
 						ogres.get(i).stun();
 				}
-				
+
 			}
-			
+
 		}
-		
+
 	}
 	
 	/**

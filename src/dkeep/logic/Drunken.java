@@ -20,40 +20,39 @@ public class Drunken extends Guard{
 
 	}
 	
-	public Position moveCharacter(int MAP_SIZE)
-	{
-		
+	public Position moveCharacter(int MAP_SIZE) {
 		if (!playing)
 			return position;
+
+		if (counter == 0) 
+			restartCounter();
+		else move();
 		
-		if (counter == 0)
-		{
-			awake = !awake;
-			
-			if (awake)
-			{
-				position.setRepresentation('G');
-				counter = rand.nextInt(5) + 3;	
-			}
-			else {
-				position.setRepresentation('g');
-				counter = rand.nextInt(3) + 1;	
-			}
-				
-			
+		return position;
+	}
+
+	private void restartCounter() {
+		awake = !awake;
+
+		if (awake) {
+			position.setRepresentation('G');
+			counter = rand.nextInt(5) + 3;
+		} else {
+			position.setRepresentation('g');
+			counter = rand.nextInt(3) + 1;
 		}
-		else if (awake)
-		{
-			position.changeTo(path[index][0] , path[index][1]);
+	}
+
+	private void move()
+	{
+		if (awake) {
+			position.changeTo(path[index][0], path[index][1]);
 			increaseIndex();
 			counter--;
-		}
-		else {
+		} else {
 			// stay in the same position
 			counter--;
 		}
 		
-		return position;
 	}
-	
 }

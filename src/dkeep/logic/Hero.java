@@ -43,27 +43,14 @@ public class Hero extends Character{
 		
 		switch (dir) {
 		case 1: // move right
-			if (position.getX() + 1 < MAP_SIZE)
-				temp.increaseX();
-			break;
-
+			if (position.getX() + 1 < MAP_SIZE) temp.increaseX(); break;
 		case 2: // move down
-			if (position.getY() + 1 < MAP_SIZE)
-				temp.increaseY();
-			break;
-
+			if (position.getY() + 1 < MAP_SIZE) temp.increaseY(); break;
 		case 3: // move left
-			if (position.getX() - 1 >= 0)
-				temp.decreaseX();
-			break;
-
+			if (position.getX() - 1 >= 0) temp.decreaseX(); break;
 		case 4: // move up
-			if (position.getY() - 1 >= 0)
-				temp.decreaseY();
-			break;
-
+			if (position.getY() - 1 >= 0) temp.decreaseY(); break;
 		}
-		
 		return temp;
 	}	
 	

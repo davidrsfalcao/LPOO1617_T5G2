@@ -5,11 +5,13 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import dkeep.logic.Logic;
 
@@ -29,6 +31,7 @@ public class Menu extends JFrame{
 	private JButton btnNewGame;
 	private JButton btnExit;
 	private JButton btnMaze;
+	private JButton btnLoad;
 	private JDialog options;
 	private int guardType = 0; 
 	private int nOgres = 3;
@@ -65,7 +68,7 @@ public class Menu extends JFrame{
 	}
 
 	private void setUpButtons() {
-		// Play Game button
+		// Play Game 
 		btnNewGame = new JButton("New Game");
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -76,10 +79,11 @@ public class Menu extends JFrame{
 			}
 		});
 
-		// Exit button
+		// Exit 
 		btnExit = new JButton("Quit");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				String msg = "Are you sure you want to quit?";
 				int res = JOptionPane.showConfirmDialog(rootPane, msg);
 
@@ -87,8 +91,8 @@ public class Menu extends JFrame{
 					System.exit(0);
 			}
 		});
-		//Create Maze
 		
+		//Create Maze
 		btnMaze = new JButton("Create Maze");
 		btnMaze.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -97,21 +101,45 @@ public class Menu extends JFrame{
 				setVisible(false);
 
 			}
-
 		});
+		
+		btnLoad = new JButton("Load Game");
+		btnLoad.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			    JFileChooser chooser = new JFileChooser();
+			    FileNameExtensionFilter filter = new FileNameExtensionFilter("SER file", "ser");
+			    chooser.setFileFilter(filter);
+			    int returnVal = chooser.showOpenDialog(getParent());
+			    if(returnVal == JFileChooser.APPROVE_OPTION) {
+			    	SaveLoad sv = new SaveLoad();
+			    	initGame(sv.load(chooser.getSelectedFile()));
+			    	
+			    }
+				
+			}
+		});
+	
+	
 	}
 	
-
 	private void addButtons() {
 		btnNewGame.setBounds(400, 300, 224, 50);
 		getContentPane().add(btnNewGame);
-	
 		
-		btnExit.setBounds(400, 420, 224, 50);
+		btnLoad.setBounds(400, 360, 224, 50);
+		getContentPane().add(btnLoad);
+		
+		btnMaze.setBounds(400, 420, 224, 50);
+		getContentPane().add(btnMaze);
+		
+	
+		btnExit.setBounds(400, 480, 224, 50);
 		getContentPane().add(btnExit);
 		
-		btnMaze.setBounds(400, 360, 224, 50);
-		getContentPane().add(btnMaze);
+
+		
 		
 		
 		

@@ -1,5 +1,6 @@
 package dkeep.gui;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,11 +28,11 @@ public class SaveLoad {
 		}
 	}
 	
-	public Logic load()
+	public Logic load(File file)
 	{
 		Logic game;
 		try {
-			FileInputStream fileIn = new FileInputStream(System.getProperty("user.dir")+"/save.ser");
+			FileInputStream fileIn = new FileInputStream(file);
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			game = (Logic) in.readObject();
 			System.out.println("Game Loaded");

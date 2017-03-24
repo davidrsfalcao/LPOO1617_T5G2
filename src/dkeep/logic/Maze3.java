@@ -73,12 +73,7 @@ public class Maze3 extends Map {
 
 	@Override
 	protected void setGuard() {
-		ArrayList<Integer> guard = new ArrayList<Integer>();
-		guard.add(0); // posX
-		guard.add(0); // posY
-		guard.add(0); // playing
-		initValues.add(guard);
-
+		setGuardInactive();
 	}
 
 	@Override

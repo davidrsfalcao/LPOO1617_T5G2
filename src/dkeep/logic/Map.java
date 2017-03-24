@@ -170,6 +170,16 @@ public abstract class Map {
 	
 	protected abstract void setGuard();
 	
+	protected void setGuardInactive()
+	{
+		ArrayList<Integer> guard = new ArrayList<Integer>();
+		guard.add(0); // posX
+		guard.add(0); // posY
+		guard.add(0); // playing
+		initValues.add(guard);	
+		
+	}
+	
 	protected abstract void setOgres();
 	
 	protected abstract void setMap();

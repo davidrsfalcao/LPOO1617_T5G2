@@ -64,11 +64,7 @@ public class Maze2 extends Map{
 	}
 	
 	protected void setGuard(){
-		ArrayList<Integer> guard = new ArrayList<Integer>();
-		guard.add(0); //posX
-		guard.add(0); //posY
-		guard.add(0); //playing
-		initValues.add(guard);
+		setGuardInactive();
 	}
 	
 	protected void setOgres(){

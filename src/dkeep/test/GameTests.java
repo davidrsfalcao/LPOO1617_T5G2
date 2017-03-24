@@ -336,20 +336,13 @@ public class GameTests {
 		go.setPath(path);
 		assertEquals(test1[0], go.getPosition().getX());
 		assertEquals(test1[1], go.getPosition().getY());
+		for(int i=0;i < 9;i++){
 		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
+		if(go.isAwake())
+			assertTrue(go.isAwake());
+		}
+		assertTrue(go.isPlaying());
+		
 		
 	}
 	
@@ -406,7 +399,15 @@ public class GameTests {
 		go.setPath(path);
 		assertEquals(test1[0], go.getPosition().getX());
 		assertEquals(test1[1], go.getPosition().getY());
+		go.setPosition(1, 2);
+		go.updateDirection();
+		go.updateLastPosition();
+		String r = go + "";
+		go.setPosition(1, 1);
+		go.updateDirection();
+		go.updateLastPosition();
 		go.moveCharacter(5);
+		assertTrue(go.isPlaying());
 		go.moveCharacter(5);
 		go.moveCharacter(5);
 		
@@ -417,6 +418,7 @@ public class GameTests {
 	public void ClubMove()
 	{
 		MassiveClub go = new MassiveClub();
+		assertFalse(go.getVisibility());
 		go.moveCharacter(5);
 		String r = ""+go;
 		
@@ -432,7 +434,7 @@ public class GameTests {
 	}
 	
 	@Test 
-	public void TestMaze3()
+	public void TestMaze3() 
 	{
 		char[][] map = {{'X','X','X','X','X'},
 					    {'X',' ',' ','A','X'}, 
@@ -442,6 +444,16 @@ public class GameTests {
 		
 		Maze3 maze=new Maze3();
 		maze.setMap(map);
+		Logic game = new Logic(maze, rand.nextInt(3), rand.nextInt(3)+1);
+		int[] test1 = { 3, 1 }, test2 = { 2, 1 };
+		assertEquals(test1[0], game.getHero().getPosition().getX());
+		assertEquals(test1[1], game.getHero().getPosition().getY());
+		game = game.moveHero('a');
+		assertEquals(test2[0], game.getHero().getPosition().getX());
+		assertEquals(test2[1], game.getHero().getPosition().getY());
+		assertTrue(maze.getKey().getX() == 1);
+		assertTrue(maze.getKey().getY() == 3);
+		assertFalse(maze.getMapSize() == 0);
 		
 		 
 	}
@@ -450,21 +462,38 @@ public class GameTests {
 	public void TestLogic()
 	{
 		Logic game = new Logic(new TestMap2(), rand.nextInt(3), rand.nextInt(3)+1);
-		game.getAllCharacters();
-		game.getCharactersGui();
-		game.typeOfWall("X", 0, 0);
-		game.typeOfWall("X", 0, 3);
-		game.typeOfWall("X", 0, 2);
-		game.typeOfWall("X", 0, 4);
-		game.typeOfWall("X", 2, 0);
-		game.typeOfWall("X", 4, 0);
-		game.typeOfWall("X", 4, 4);
-		game.typeOfWall("X", 4, 2);
-		game.typeOfWall("X", 2, 4);
-		game.getObjectivesGui();
-		game.getMapGui();
+		assertFalse(game.getAllCharacters().isEmpty());
+		assertFalse(game.getCharactersGui().isEmpty());
+		assertTrue(game.typeOfWall("X", 0, 0).startsWith("X"));
+		assertTrue(game.typeOfWall("X", 0, 3).startsWith("X"));
+		assertTrue(game.typeOfWall("X", 0, 2).startsWith("X"));
+		assertTrue(game.typeOfWall("X", 0, 4).startsWith("X"));
+		assertTrue(game.typeOfWall("X", 2, 0).startsWith("X"));
+		assertTrue(game.typeOfWall("X", 4, 0).startsWith("X"));
+		assertTrue(game.typeOfWall("X", 4, 4).startsWith("X"));
+		assertTrue(game.typeOfWall("X", 4, 2).startsWith("X"));
+		assertTrue(game.typeOfWall("X", 2, 4).startsWith("X"));
+		assertFalse(game.getObjectivesGui().isEmpty());
+		assertFalse(game.getMapGui().isEmpty());
 		
 		
+		
+	}
+	
+	@Test
+	public void TestOgreStunned()
+	{
+		int [] test1 = {1,1};
+		Logic game = new Logic(new TestMap2(), rand.nextInt(3), 0);
+		Ogre ogre = new Ogre(3,1);
+		ogre.setClubNotVisible();
+		game.setOgre(ogre);
+		game.getHero().setWeapon(true);
+		assertEquals(test1[0],game.getHero().getPosition().getX());
+		assertEquals(test1[1],game.getHero().getPosition().getY());
+		game = game.moveHero('d');
+		assertTrue(game.getHero().is_armed());
+		assertFalse(game.getOgre().isStunned());
 		
 	}
 	

@@ -13,14 +13,15 @@ public class SaveLoad {
 	
 	public SaveLoad(){};
 	
-	public void save(Logic game)
+	public void save(Logic game, String path)
 	{
 		try{
-			FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.dir")+"/save.ser");
+			File file = new File(path);
+			FileOutputStream fileOut = new FileOutputStream(file);
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			out.writeObject(game);
 			out.close();
-			System.out.printf("Serialized data is saved in "+System.getProperty("user.dir")+"/save.ser");
+			System.out.println("Game save as "+path);
 			
 		}catch (IOException e)
 		{

@@ -115,7 +115,6 @@ public class Menu extends JFrame{
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
 			    	SaveLoad sv = new SaveLoad();
 			    	initGame(sv.load(chooser.getSelectedFile()));
-			    	
 			    }
 				
 			}

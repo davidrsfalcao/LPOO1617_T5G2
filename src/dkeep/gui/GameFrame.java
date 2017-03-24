@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -26,6 +27,7 @@ public class GameFrame extends JFrame{
 	private JButton btnNewGame;
 	private JButton btnBackMenu;
 	private JButton btnQuitGame;
+	private JButton btnSave;
 	private JPanel buttonsPanel1;
 	private JButton btnUp;
 	private JButton btnDown;
@@ -165,10 +167,29 @@ public class GameFrame extends JFrame{
 
 			}
 		});
+		
+		btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser chooser = new JFileChooser();
+				int res = chooser.showSaveDialog(null);
+				if (res == JFileChooser.APPROVE_OPTION) {
+					
+					SaveLoad sv = new SaveLoad();
+					String path = chooser.getSelectedFile().getAbsolutePath()+ ".ser";
+					sv.save(game, path);
+
+				}
+				
+			}
+		});
+	
 	}
 
 	private void addButtons() {
 		gamePanel.add(btnNewGame,BorderLayout.NORTH);
+		gamePanel.add(btnSave,BorderLayout.NORTH);
 		gamePanel.add(btnBackMenu,BorderLayout.NORTH);
 		gamePanel.add(btnQuitGame,BorderLayout.NORTH);
 				

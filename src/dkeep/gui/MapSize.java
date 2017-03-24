@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -16,11 +15,10 @@ import javax.swing.JTextField;
 
 public class MapSize extends JDialog{
 	private static final long serialVersionUID = 1L;
-	private Menu window;
 	
-	MapSize(){
-		this.setEnabled(true);
-		this.setModal(true);
+	public MapSize(Menu window){
+		
+		setResizable(false);
 		JPanel panel=new JPanel();
 		panel.setLayout(new FlowLayout());
 		panel.setSize(200, 200);
@@ -41,14 +39,17 @@ public class MapSize extends JDialog{
 	    		  	JOptionPane.showMessageDialog(window, "The Maze dimension must be between 5 and 30");
 		  			return;
 		    	}
-		    	else CreateMaze.construir(Integer.parseInt(box.getText()));
-	    	 MapSize.this.setVisible(false);
-	    	
+		    	else if (Integer.parseInt(box.getText()) >= 5 && Integer.parseInt(box.getText()) <= 30)
+		    	{
+		    		CreateMaze.construir(Integer.parseInt(box.getText()));
+		    		setVisible(false);
+		    		window.dispose();
+		    	}	
 	      }
 	    });
-		this.getContentPane().add(panel);
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.pack();
-		this.setLocationRelativeTo(null);
+		getContentPane().add(panel);
+		setDefaultCloseOperation(HIDE_ON_CLOSE);
+		pack();
+		setLocationRelativeTo(null);
 	}
 }

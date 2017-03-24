@@ -33,6 +33,7 @@ public class Menu extends JFrame{
 	private JButton btnMaze;
 	private JButton btnLoad;
 	private JDialog options;
+	private JDialog map_size;
 	private int guardType = 0; 
 	private int nOgres = 3;
 
@@ -60,6 +61,7 @@ public class Menu extends JFrame{
 		getContentPane().add(authors);
 		
 		options = new GameOptions(this, guardType, nOgres);
+		map_size = new MapSize(this);
 		
 		
 		setUpButtons();
@@ -96,9 +98,7 @@ public class Menu extends JFrame{
 		btnMaze = new JButton("Create Maze");
 		btnMaze.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JDialog dialog = new MapSize();
-				dialog.setVisible(true);
-				setVisible(false);
+				map_size.setVisible(true);
 
 			}
 		});

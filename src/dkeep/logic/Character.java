@@ -80,31 +80,7 @@ public abstract class Character {
 	{
 		if (position.equals(last_position))
 			return;
-		
-		int x= position.getX();
-		int x1= last_position.getX();
-		
-		int y= position.getY();
-		int y1= last_position.getY();
-		
-		if (x > x1)
-		{
-			direction_mov = 'R'; //right
-		}
-		else if (x < x1)
-		{
-			direction_mov = 'L'; // left
-		}
-		else if (y < y1)
-		{
-			direction_mov = 'U'; // up
-		}
-		else if (y > y1)
-		{
-			direction_mov = 'D'; // down
-		}
-		
-		return;
+		else direction_mov = position.getDirection(last_position);
 	}
 
 	public char getDirection()
@@ -113,6 +89,7 @@ public abstract class Character {
 	}
 
 	protected abstract void setFront();
+	
 	protected abstract void setBack();
 	
 	

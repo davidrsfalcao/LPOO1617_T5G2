@@ -263,4 +263,16 @@ public class Position {
 		return distance;
 	}
 	
+	public char getDirection(Position temp)
+	{
+		if (x < temp.getX())
+			return 'L';
+		if (x > temp.getX())
+			return 'R';
+		if (y < temp.getY())
+			return 'U';
+		else return 'D';
+		
+	}
+	
 }

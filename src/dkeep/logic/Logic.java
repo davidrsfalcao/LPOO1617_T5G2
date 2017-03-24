@@ -304,8 +304,7 @@ public class Logic {
 		
 		moveGuard(pos);
 		moveOgres(pos);
-
-
+		
 	}
 
 	private void moveGuard(Position pos)
@@ -737,7 +736,7 @@ public class Logic {
 	
 	public void printMap() {
 
-		char [][] map1 = map.getMap();
+		char[][] map1 = map.getMap();
 
 		int tam = getAllCharacters().size();
 		ArrayList<Character> temp = getAllCharacters();
@@ -745,14 +744,14 @@ public class Logic {
 		for (int k = 0; k < tam; k++) {
 			map1[temp.get(k).getPosition().getY()][temp.get(k).getPosition().getX()] = temp.get(k).getRepresentation();
 		}
-
 		for (int i = 0; i < map1.length; i++) {
 			for (int k = 0; k < map1.length; k++) {
 				System.out.print(map1[i][k] + " ");
 			}
 			System.out.println();
 		}
+		System.out.println();
 
 	}
-	
+
 }

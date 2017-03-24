@@ -95,7 +95,6 @@ public class Hero extends Character{
 		updateDirection();
 	}
 	
-	
 	/**
 	 * Return if the hero has a key or not
 	 * 

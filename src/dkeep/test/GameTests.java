@@ -16,7 +16,7 @@ public class GameTests {
 	public void testMoveHeroIntoToFreeCell() {
 		int[] test1 = { 1, 1 }, test2 = { 1, 2 };
 
-		Logic game = new Logic(new TestMap(), rand.nextInt(3), rand.nextInt(3)+1);;
+		Logic game = new Logic(new TestMap(), rand.nextInt(3), rand.nextInt(3)+1);
 		assertEquals(test1[0], game.getHero().getPosition().getX());
 		assertEquals(test1[1], game.getHero().getPosition().getY());
 		game = game.moveHero('s');
@@ -27,7 +27,7 @@ public class GameTests {
 
 	@Test
 	public void testHeroIsCapturedByGuard() {
-		Logic game = new Logic(new TestMap(), rand.nextInt(3), rand.nextInt(3)+1);;
+		Logic game = new Logic(new TestMap(), rand.nextInt(3), rand.nextInt(3)+1);
 		int[][] path = { { 3, 1 } };
 		game.getGuard().setPath(path);
 
@@ -299,7 +299,6 @@ public class GameTests {
 		
 		
 	}
-	
 
 	@Test
 	public void SuspiciousMove()
@@ -397,6 +396,7 @@ public class GameTests {
 		
 		
 	}
+	
 	@Test
 	public void RookieMove()
 	{
@@ -431,6 +431,42 @@ public class GameTests {
 		
 	}
 	
+	@Test 
+	public void TestMaze3()
+	{
+		char[][] map = {{'X','X','X','X','X'},
+					    {'X',' ',' ','A','X'}, 
+					    {'I',' ',' ',' ','X'},
+					    {'I','k',' ',' ','X'},
+					    {'X','X','X','X','X'}};
+		
+		Maze3 maze=new Maze3();
+		maze.setMap(map);
+		
+		 
+	}
+	
+	@Test 
+	public void TestLogic()
+	{
+		Logic game = new Logic(new TestMap2(), rand.nextInt(3), rand.nextInt(3)+1);
+		game.getAllCharacters();
+		game.getCharactersGui();
+		game.typeOfWall("X", 0, 0);
+		game.typeOfWall("X", 0, 3);
+		game.typeOfWall("X", 0, 2);
+		game.typeOfWall("X", 0, 4);
+		game.typeOfWall("X", 2, 0);
+		game.typeOfWall("X", 4, 0);
+		game.typeOfWall("X", 4, 4);
+		game.typeOfWall("X", 4, 2);
+		game.typeOfWall("X", 2, 4);
+		game.getObjectivesGui();
+		game.getMapGui();
+		
+		
+		
+	}
 	
 	
 	

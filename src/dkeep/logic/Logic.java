@@ -705,18 +705,61 @@ public class Logic implements Serializable{
 		return false;
 	}
 	
+	
+	public boolean verticalWall(String wall, int[] xy, boolean[] nsew)
+	{
+		if (wall03(xy, nsew)){
+			wall = "X00";
+			return true;
+		} else if (wall04(xy, nsew)){
+			wall = "X01";
+			return true;
+		} else if (wall05(xy, nsew)){
+			wall = "X02";
+			return true;
+		}
+			
+		return false;
+	}
+	
 	public boolean wall03(int[] xy, boolean[] nsew)
 	{
 		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
 		
-		if ((n && !s && e && w) || (!n && !s && e && w))
+		if (n && s && !e && !w)
 		{
 			return true;
 		}
 		
 		return false;
 	}
+	
+	public boolean wall04(int[] xy, boolean[] nsew)
+	{
+		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
 		
+		if (n && !s && !e && !w) 
+		{
+			return true;
+		}
+		
+		return false;
+		
+	}
+	
+	public boolean wall05(int[] xy, boolean[] nsew)
+	{
+		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
+		
+		if (!n && s && !e && !w) 
+		{
+			return true;
+		}
+		
+		return false;
+		
+	}
+	
 	public ArrayList<ArrayList<String>> getMapGui()
 	{
 		ArrayList<ArrayList<String>> board = new ArrayList<ArrayList<String>>();

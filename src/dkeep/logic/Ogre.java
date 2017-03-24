@@ -8,7 +8,6 @@ public class Ogre extends Character {
 	private MassiveClub club = new MassiveClub(); 
 	
  	public Ogre(){
-		
 	} 
 	
 	public Ogre(int x, int y) {
@@ -18,9 +17,37 @@ public class Ogre extends Character {
 	}
 	
 	public Position moveCharacter(int MAP_SIZE) {
-		Random rand = new Random();
-		Position temp = new Position(position.getX(), position.getY(), position.getRepresentation());
 
+		backNormal();
+
+		if (stunned) {
+			rounds--;
+			return position;
+		} else {
+			Random rand = new Random();
+			Position temp = new Position(position.getX(), position.getY(), position.getRepresentation());
+			int direction = rand.nextInt(4);
+			return positionTemp(temp, direction);
+		}
+	}
+	
+	public Position positionTemp(Position temp, int direction){
+		switch (direction) {
+		case 0: // move up
+			temp.increaseY(); break;
+		case 1: // move down
+			temp.decreaseY(); break;
+		case 2: // move right
+			temp.increaseX(); break;
+		case 3: // move left
+			temp.decreaseX(); break;
+		}
+		return temp;
+
+	}
+	
+	private void backNormal()
+	{
 		if (rounds == 0)
 		{
 			stunned = false;
@@ -28,39 +55,8 @@ public class Ogre extends Character {
 			position.setRepresentation('O');
 		}
 		
-		if (stunned) {
-			rounds--;
-		} else {
-
-			int direction = rand.nextInt(4);
-
-			/**
-			 * 0 - move up 1 - move down 2 - move righ 3 - move left
-			 * 
-			 */
-
-			switch (direction) {
-			case 0:
-				temp.increaseY();
-				break;
-
-			case 1:
-				temp.decreaseY();
-				break;
-
-			case 2:
-				temp.increaseX();
-				break;
-
-			case 3:
-				temp.decreaseX();
-				break;
-
-			}
-		}
-		return temp;
 	}
-
+	
 	public void stun()
 	{
 		stunned = true;

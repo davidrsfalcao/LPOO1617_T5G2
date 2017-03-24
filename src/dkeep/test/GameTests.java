@@ -463,7 +463,6 @@ public class GameTests {
 	{
 		Logic game = new Logic(new TestMap2(), rand.nextInt(3), rand.nextInt(3)+1);
 		assertFalse(game.getAllCharacters().isEmpty());
-		assertFalse(game.getCharactersGui().isEmpty());
 		assertTrue(game.typeOfWall("X", 0, 0).startsWith("X"));
 		assertTrue(game.typeOfWall("X", 0, 3).startsWith("X"));
 		assertTrue(game.typeOfWall("X", 0, 2).startsWith("X"));
@@ -473,7 +472,6 @@ public class GameTests {
 		assertTrue(game.typeOfWall("X", 4, 4).startsWith("X"));
 		assertTrue(game.typeOfWall("X", 4, 2).startsWith("X"));
 		assertTrue(game.typeOfWall("X", 2, 4).startsWith("X"));
-		assertFalse(game.getObjectivesGui().isEmpty());
 		assertFalse(game.getMapGui().isEmpty());
 		
 		

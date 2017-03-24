@@ -418,7 +418,7 @@ public class GamePanel extends JPanel {
 					gr.drawImage(temp, i, j, null);
 					break;
 				case "X07":
-					temp = res.resize(wall07, resX, resY);
+					temp = res.resize(wall00, resX, resY);
 					gr.drawImage(temp, i, j, null);
 					break;
 				case "X08":

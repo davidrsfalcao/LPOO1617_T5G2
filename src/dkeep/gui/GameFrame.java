@@ -251,9 +251,10 @@ public class GameFrame extends JFrame{
 
 	private void updateGamePanel() {
 		gamePanel.setMap(game.getMapGui());
-		gamePanel.setObjectives(game.getObjectivesGui());
-		gamePanel.setCharacters(game.getCharactersGui());
+		gamePanel.setObjectives(getObjectivesGui());
+		gamePanel.setCharacters(getCharactersGui());
 
+		/////// TEMPORARIO /////////////////////////////////////////////// -> APAGARRRR
 		for (ArrayList<String> linha : game.getMapGui()) {
 			for (String a : linha) {
 				String temp;
@@ -286,6 +287,7 @@ public class GameFrame extends JFrame{
 
 			System.out.println();
 		}
+		System.out.println();
 
 	}
 	
@@ -316,4 +318,70 @@ public class GameFrame extends JFrame{
 		
 	}
 	
+	public ArrayList<Position> getCharactersGui()
+	{
+		ArrayList<Position> array = new ArrayList<Position>();
+
+		array.add(new Position(game.getHero().getPosition().getX(),game.getHero().getPosition().getY(), game.getHero() + ""));
+
+		if (game.getGuard().isPlaying()) {
+			array.add(new Position(game.getGuard().getPosition().getX(),game.getGuard().getPosition().getY(), game.getGuard() + ""));
+		}
+
+		getOgresGui(array);
+		
+		return array;
+	}
+	
+	public void getOgresGui(ArrayList<Position> array) {
+		for (Ogre ogre : game.getOgres()) {
+			if (ogre.getPosition().equals(game.getMap().getKey()))
+				array.add(new Position(ogre.getPosition().getX(), ogre.getPosition().getY(), "OK"));
+			else
+				array.add(new Position(ogre.getPosition().getX(), ogre.getPosition().getY(), ogre + ""));
+
+			if (ogre.getClubVisibily()) {
+				array.add(new Position(ogre.getClub().getPosition().getX(), ogre.getClub().getPosition().getY(),
+						ogre.getClub() + ""));
+
+			}
+
+		}
+
+	}
+	
+	public ArrayList<Position> getObjectivesGui() {
+		ArrayList<Position> array = new ArrayList<Position>();
+		boolean open = false;
+
+		for (int y = 0; y < game.getMap().getMapSize(); y++)
+			for (int x = 0; x < game.getMap().getMapSize(); x++) {
+				if (game.getMap().getMap()[y][x] == 'I') {
+					open = false;
+					array.add(new Position(x, y, "I"));
+				} else if (game.getMap().getMap()[y][x] == 'S') {
+					open = true;
+					array.add(new Position(x, y, "S"));
+				}
+			}
+
+		if (open) {
+			for (Position pos : game.getMap().getEndPositions()) {
+				array.add(new Position(pos.getX(), pos.getY(), "E"));
+			}
+
+			if (game.getMap().getKey().getType() == 1)
+				array.add(new Position(game.getMap().getKey().getX(), game.getMap().getKey().getY(), "LD"));
+			else
+				array.add(new Position(game.getMap().getKey().getX(), game.getMap().getKey().getY(), "K"));
+		} else {
+			if (game.getMap().getKey().getType() == 1)
+				array.add(new Position(game.getMap().getKey().getX(), game.getMap().getKey().getY(), "LU"));
+			else
+				array.add(new Position(game.getMap().getKey().getX(), game.getMap().getKey().getY(), "K"));
+		}
+
+		return array;
+	}
+
 }

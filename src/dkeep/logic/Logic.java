@@ -240,7 +240,7 @@ public class Logic implements Serializable{
 	 */
 	private boolean secureStart(Position temp)
 	{
-		if (hero.getPosition().distance(temp) <= 3) // 3 for default, it can be changed
+		if (hero.getPosition().distance(temp) <= 4) // 4 for default, it can be changed
 			return false;
 		else return true;
 	}
@@ -468,6 +468,11 @@ public class Logic implements Serializable{
 		
 	}
 	
+	public ArrayList<Ogre> getOgres()
+	{
+		return ogres;
+	}
+	
 	public void addPerspective(ArrayList<ArrayList<String>> array) {
 		for (int i = 0; i < array.size(); i++)
 			for (int j = 0; j < array.get(i).size(); j++) {
@@ -647,62 +652,71 @@ public class Logic implements Serializable{
 		return a;
 	}
 	
-	public ArrayList<Position> getObjectivesGui()
+	
+	public boolean horizontalWall(String wall, int[] xy, boolean[] nsew)
 	{
-		ArrayList<Position> array = new ArrayList<Position>();
-		boolean open = false;
-		
-		for (int y = 0; y < map.getMapSize(); y++)
-			for (int x = 0; x < map.getMapSize(); x++)
-			{
-				if (map.getMap()[y][x]== 'I')
-				{
-					open = false;
-					array.add(new Position(x,y,"I"));
-				}
-				else if (map.getMap()[y][x]== 'S')
-				{
-					open = true;
-					array.add(new Position(x,y,"S"));
-				}
-			}
-		
-		
-		if (open)
-		{
-			for (Position pos : map.getEndPositions())
-			{
-				array.add(new Position(pos.getX(),pos.getY(),"E"));
-			}
+		if (wall00(xy, nsew)){
+			wall = "X00";
+			return true;
+		} else if (wall01(xy, nsew)){
+			wall = "X01";
+			return true;
+		} else if (wall02(xy, nsew)){
+			wall = "X02";
+			return true;
+		}
 			
-			if (map.getKey().getType() == 1)
-				array.add(new Position(map.getKey().getX(),map.getKey().getY(), "LD"));	
-			else array.add(new Position(map.getKey().getX(),map.getKey().getY(), "K"));	
-		}
-		else {
-			if (map.getKey().getType() == 1)
-				array.add(new Position(map.getKey().getX(),map.getKey().getY(), "LU"));	
-			else array.add(new Position(map.getKey().getX(),map.getKey().getY(), "K"));	
-		}
-		
-		return array;
+		return false;
 	}
 	
-	public ArrayList<Position> getCharactersGui()
+	public boolean wall00(int[] xy, boolean[] nsew)
 	{
-		ArrayList<Position> array = new ArrayList<Position>();
-
-		array.add(new Position(hero.getPosition().getX(), hero.getPosition().getY(), hero + ""));
-
-		if (guard.isPlaying()) {
-			array.add(new Position(guard.getPosition().getX(), guard.getPosition().getY(), guard + ""));
-		}
-
-		getOgresGui(array);
+		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
 		
-		return array;
+		if ((n && !s && e && w) || (!n && !s && e && w))
+		{
+			return true;
+		}
+		
+		return false;
 	}
 	
+	public boolean wall01(int[] xy, boolean[] nsew)
+	{
+		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
+		
+		if ((n && !s && !e && w) || (!n && !s && e && !w))
+		{
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean wall02(int[] xy, boolean[] nsew)
+	{
+		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
+		
+		if ((n && !s && !e && w) || (!n && !s && !e && w))
+		{
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean wall03(int[] xy, boolean[] nsew)
+	{
+		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
+		
+		if ((n && !s && e && w) || (!n && !s && e && w))
+		{
+			return true;
+		}
+		
+		return false;
+	}
+		
 	public ArrayList<ArrayList<String>> getMapGui()
 	{
 		ArrayList<ArrayList<String>> board = new ArrayList<ArrayList<String>>();
@@ -720,23 +734,6 @@ public class Logic implements Serializable{
 		}
 		addPerspective(board);
 		return board;
-	}
-	
-	public void getOgresGui(ArrayList<Position> array) {
-		for (Ogre ogre : ogres) {
-			if (ogre.getPosition().equals(map.getKey()))
-				array.add(new Position(ogre.getPosition().getX(), ogre.getPosition().getY(), "OK"));
-			else
-				array.add(new Position(ogre.getPosition().getX(), ogre.getPosition().getY(), ogre + ""));
-
-			if (ogre.getClubVisibily()) {
-				array.add(new Position(ogre.getClub().getPosition().getX(), ogre.getClub().getPosition().getY(),
-						ogre.getClub() + ""));
-
-			}
-
-		}
-
 	}
 	
 	public void printMap() {

@@ -28,8 +28,8 @@ public class Ogre extends Character {
  	/**
  	 * Constructor of Ogre with initialization of position
  	 * 
- 	 * @param x
- 	 * @param y
+ 	 * @param x x position
+ 	 * @param y y position
  	 */
 	public Ogre(int x, int y) {
 		playing = true;
@@ -40,7 +40,7 @@ public class Ogre extends Character {
 	/**
 	 * Generate a random movement
 	 * 
-	 * @param Map size
+	 * @param MAP_SIZE size of the map
 	 * @return position
 	 */
 	public Position moveCharacter(int MAP_SIZE) {
@@ -61,9 +61,9 @@ public class Ogre extends Character {
 	/**
 	 * Return a temporary position for the ogre
 	 * 
-	 * @param temp
-	 * @param direction
-	 * @return
+	 * @param temp position
+	 * @param direction direction of movement
+	 * @return position
 	 */
 	public Position positionTemp(Position temp, int direction){
 		switch (direction) {
@@ -117,7 +117,7 @@ public class Ogre extends Character {
 	/**
 	 * Returns the massive club
 	 * 
-	 * @return
+	 * @return club
 	 */
 	public MassiveClub getClub()
 	{
@@ -149,7 +149,7 @@ public class Ogre extends Character {
 	/**
 	 * Redefines the club
 	 * 
-	 * @param pos
+	 * @param pos position
 	 */
 	public void setClub(Position pos) {
 		club.setVisibility(true);

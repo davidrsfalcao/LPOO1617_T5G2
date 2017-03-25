@@ -39,8 +39,8 @@ public class Logic implements Serializable{
 	 * Level Constructor
 	 * 
 	 * @param map
-	 * @param type of Guard
-	 * @param number of ogres
+	 * @param typeGuard type of Guard
+	 * @param nOgres number of ogres
 	 */
 	public Logic(Map map, int typeGuard, int nOgres) {
 		this.map = map;
@@ -340,7 +340,7 @@ public class Logic implements Serializable{
 	/**
 	 * Check if the movement is possible and update the hero's position
 	 * 
-	 * @param position
+	 * @param temp position
 	 */
 	public void updateHeroMovement(Position temp)
 	{

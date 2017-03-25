@@ -1,6 +1,5 @@
 package dkeep.gui;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -48,8 +47,9 @@ public class GameFrame extends JFrame{
 
 	/**
 	 * Class constructor.
-	 * 
-	 * @throws IOException
+	 * @param menu menu
+	 * @param guardType type of the guard
+	 * @param nOgres number of ogres
 	 */
 	public GameFrame(Menu menu, int guardType, int nOgres) {
 		setTitle("Dungeon Explorer");
@@ -369,7 +369,7 @@ public class GameFrame extends JFrame{
 	/**
 	 * Redefines the game Logic
 	 * 
-	 * @param game
+	 * @param game Atual game logic
 	 */
 	public void setGame(Logic game){
 		this.game = game;
@@ -380,7 +380,7 @@ public class GameFrame extends JFrame{
 	/**
 	 * Returns all Characters 
 	 * 
-	 * @return
+	 * @return characters
 	 */
 	public ArrayList<Position> getCharactersGui()
 	{
@@ -448,7 +448,7 @@ public class GameFrame extends JFrame{
 	/**
 	 * Returns all ogres
 	 * 
-	 * @param array
+	 * @param array array of positions
 	 */
 	public void getOgresGui(ArrayList<Position> array) {
 		for (Ogre ogre : game.getOgres()) {
@@ -470,7 +470,7 @@ public class GameFrame extends JFrame{
 	/**
 	 * Return the key, lever and endpositions
 	 * 
-	 * @return
+	 * @return array of positions
 	 */
 	public ArrayList<Position> getObjectivesGui() {
 		ArrayList<Position> array = new ArrayList<Position>();
@@ -509,7 +509,7 @@ public class GameFrame extends JFrame{
 	/**
 	 * Add perspective to the map
 	 * 
-	 * @param array
+	 * @param array array of position
 	 */
 	private void addPerspective(ArrayList<ArrayList<String>> array) {
 		for (int i = 0; i < array.size(); i++)
@@ -557,8 +557,8 @@ public class GameFrame extends JFrame{
 	/**
 	 * Check if the wall is horizontal
 	 * 
-	 * @param wall
-	 * @param nsew
+	 * @param wall string of wall
+	 * @param nsew north? south? east? weast?
 	 * @return wall
 	 */
 	private String horizontalWall(String wall, boolean[] nsew)
@@ -581,7 +581,7 @@ public class GameFrame extends JFrame{
 	/**
 	 * Check if the wall is of type 0
 	 * 
-	 * @param nsew
+	 * @param nsew north? south? east? weast?
 	 * @return wall
 	 */
 	private String wall00(boolean[] nsew)
@@ -599,7 +599,7 @@ public class GameFrame extends JFrame{
 	/**
 	 * Check if the wall is of type 1
 	 * 
-	 * @param nsew
+	 * @param nsew north? south? east? weast?
 	 * @return wall
 	 */
 	private String wall01(boolean[] nsew)
@@ -617,7 +617,7 @@ public class GameFrame extends JFrame{
 	/**
 	 * Check if the wall is of type 2
 	 * 
-	 * @param nsew
+	 * @param nsew north? south? east? weast?
 	 * @return wall
 	 */
 	private String wall02(boolean[] nsew)
@@ -635,7 +635,8 @@ public class GameFrame extends JFrame{
 	/**
 	 * Check if the wall is vertical
 	 * 
-	 * @param nsew
+	 * @param wall string of wall
+	 * @param nsew north? south? east? weast?
 	 * @return wall
 	 */
 	private String verticalWall(String wall, boolean[] nsew)
@@ -658,7 +659,7 @@ public class GameFrame extends JFrame{
 	/**
 	 * Check if the wall is of type 3
 	 * 
-	 * @param nsew
+	 * @param nsew north? south? east? weast?
 	 * @return wall
 	 */
 	private String wall03(boolean[] nsew)
@@ -676,7 +677,7 @@ public class GameFrame extends JFrame{
 	/**
 	 * Check if the wall is of type 4
 	 * 
-	 * @param nsew
+	 * @param nsew north? south? east? weast?
 	 * @return wall
 	 */
 	private String wall04(boolean[] nsew)
@@ -695,7 +696,7 @@ public class GameFrame extends JFrame{
 	/**
 	 * Check if the wall is of type 5
 	 * 
-	 * @param nsew
+	 * @param nsew north? south? east? weast?
 	 * @return wall
 	 */
 	private String wall05(boolean[] nsew)
@@ -714,7 +715,8 @@ public class GameFrame extends JFrame{
 	/**
 	 * Check if the wall is a crossing wall
 	 * 
-	 * @param nsew
+	 * @param wall string of wall
+	 * @param nsew north? south? east? weast?
 	 * @return wall
 	 */
 	private String crossingWall(String wall, boolean[] nsew)
@@ -738,7 +740,7 @@ public class GameFrame extends JFrame{
 	/**
 	 * Check if the wall is of type 6
 	 * 
-	 * @param nsew
+	 * @param nsew north? south? east? weast?
 	 * @return wall
 	 */
 	private String wall06(boolean[] nsew)
@@ -754,7 +756,7 @@ public class GameFrame extends JFrame{
 	/**
 	 * Check if the wall is of type 7
 	 * 
-	 * @param nsew
+	 * @param nsew north? south? east? weast?
 	 * @return wall
 	 */
 	private String wall07(boolean[] nsew)
@@ -770,7 +772,7 @@ public class GameFrame extends JFrame{
 	/**
 	 * Check if the wall is of type 8
 	 * 
-	 * @param nsew
+	 * @param nsew north? south? east? weast?
 	 * @return wall
 	 */
 	private String wall08(boolean[] nsew)
@@ -788,10 +790,10 @@ public class GameFrame extends JFrame{
 	/**
 	 * Return the gui representation of the wall
 	 * 
-	 * @param wall
-	 * @param x
-	 * @param y
-	 * @return
+	 * @param wall string of wall
+	 * @param x x position
+	 * @param y y position
+	 * @return wall
 	 */
 	private String typeOfWall(String wall, int x, int y )
 	{
@@ -847,7 +849,7 @@ public class GameFrame extends JFrame{
 	/**
 	 * Returns the gui map
 	 * 
-	 * @return
+	 * @return map
 	 */
 	private ArrayList<ArrayList<String>> getMapGui()
 	{

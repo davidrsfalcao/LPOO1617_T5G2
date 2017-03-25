@@ -225,7 +225,7 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 	/**
 	 * Initialization of a window for Create the maze
 	 * 
-	 * @param tamanho
+	 * @param tamanho length of maze
 	 */
 	public static void construir(int tamanho) {
 		frame = new JFrame("Maze Creator");
@@ -485,7 +485,7 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 	/**
 	 * Returns the hero
 	 * 
-	 * @return
+	 * @return hero
 	 */
 	public static Hero getHero() {
 		return heroi;
@@ -494,7 +494,7 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 	/**
 	 * Returns the exit
 	 * 
-	 * @return
+	 * @return true or false
 	 */
 	public static boolean getSaida()
 	{
@@ -524,7 +524,7 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 	/**
 	 * Return the Map
 	 * 
-	 * @return
+	 * @return map
 	 */
 	public static char[][] getMaze() 
 	{
@@ -544,7 +544,7 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 	/**
 	 * Return the ogres
 	 * 
-	 * @return
+	 * @return ogres
 	 */
 	public static ArrayList<Ogre> getOgres()
 	{

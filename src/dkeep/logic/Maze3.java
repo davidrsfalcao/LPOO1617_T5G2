@@ -27,6 +27,8 @@ public class Maze3 extends Map {
 	/**
 	 * Defines the map of a level
 	 * 
+	 * @param map new map
+	 * 
 	 */
 	public void setMap(char[][] map) {
 		this.map = map;

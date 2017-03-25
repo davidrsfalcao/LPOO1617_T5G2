@@ -285,7 +285,7 @@ public class Position implements Serializable {
 	/**
 	 * Returns the directions of the movement
 	 * 
-	 * @param last position
+	 * @param temp last position
 	 * @return direction
 	 */
 	public char getDirection(Position temp)

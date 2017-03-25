@@ -35,6 +35,7 @@ public class MassiveClub extends Character {
 	/**
 	 * Makes the ogre not visible (over other ogres, clubs or walls) or visible
 	 * 
+	 * @param mode true or false
 	 */
 	public void setVisibility(boolean mode)
 	{
@@ -54,7 +55,7 @@ public class MassiveClub extends Character {
 	/**
 	 * Redefines club position
 	 * 
-	 * @param pos
+	 * @param pos position
 	 */
 	public void setPosition(Position pos)
 	{

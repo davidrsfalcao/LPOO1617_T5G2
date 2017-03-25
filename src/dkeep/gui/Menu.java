@@ -190,7 +190,7 @@ public class Menu extends JFrame{
 	/**
 	 * Redefine the number of ogres
 	 * 
-	 * @param number
+	 * @param n number
 	 */
 	public void setNOgres(int n)
 	{
@@ -210,7 +210,7 @@ public class Menu extends JFrame{
 	/**
 	 * Initialization fo the game with the status chosen
 	 * 
-	 * @param game
+	 * @param game1 game
 	 */
 	public void initGame(Logic game1)
 	{

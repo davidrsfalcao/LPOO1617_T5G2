@@ -412,7 +412,7 @@ public class GamePanel extends JPanel {
 	/**
 	 * Draw the end images (win or lose)
 	 * 
-	 * @param graphics
+	 * @param gr graphics
 	 */
 	public void drawEndMenu(Graphics gr)
 	{
@@ -438,7 +438,7 @@ public class GamePanel extends JPanel {
 	/**
 	 * Draw the game board
 	 * 
-	 * @param graphics
+	 * @param gr graphics
 	 */
 	public void drawBoard(Graphics gr)
 	{
@@ -540,7 +540,7 @@ public class GamePanel extends JPanel {
 	/**
 	 * Draw the characters of the game
 	 * 
-	 * @param graphics
+	 * @param gr graphics
 	 */
 	public void drawCharacters(Graphics gr)
 	{		
@@ -684,7 +684,7 @@ public class GamePanel extends JPanel {
 	/**
 	 * Draw the objective o the game
 	 * 
-	 * @param graphics
+	 * @param gr graphics
 	 */
 	public void drawObjectives(Graphics gr)
 	{
@@ -761,7 +761,7 @@ public class GamePanel extends JPanel {
 	/**
 	 * Redefines the board
 	 * 
-	 * @param map
+	 * @param map1 new map
 	 */
 	public void setMap(ArrayList<ArrayList<String>> map1)
 	{
@@ -772,7 +772,7 @@ public class GamePanel extends JPanel {
 	/**
 	 * Redefines the objectives
 	 * 
-	 * @param objectives
+	 * @param obj objectives
 	 */
 	public void setObjectives(ArrayList<Position> obj)
 	{
@@ -783,7 +783,7 @@ public class GamePanel extends JPanel {
 	/**
 	 * Redefines the characters
 	 * 
-	 * @param characters
+	 * @param obj characters
 	 */
 	public void setCharacters(ArrayList<Position> obj)
 	{

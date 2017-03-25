@@ -59,8 +59,8 @@ public abstract class Map implements Serializable{
 	/**
 	 * Check if a certain position is free to a villain move into
 	 * 
-	 * @param x
-	 * @param y
+	 * @param x position X
+	 * @param y position y
 	 * @return true or false
 	 */
 	public boolean isFree(int x , int y){
@@ -74,8 +74,8 @@ public abstract class Map implements Serializable{
 	/**
 	 * Check if a certain position is free to the hero move into
 	 * 
-	 * @param x
-	 * @param y
+	 * @param x position x
+	 * @param y position y
 	 * @return true or false
 	 */
 	public boolean isFreeForHero(int x , int y)
@@ -122,7 +122,7 @@ public abstract class Map implements Serializable{
 	/**
 	 * Return the next level's map
 	 * 
-	 * @return
+	 * @return map
 	 */
 	public abstract Map nextMap();
 	
@@ -145,7 +145,7 @@ public abstract class Map implements Serializable{
 	/**
 	 * Return the position of the key
 	 * 
-	 * @return
+	 * @return position
 	 */
 	public Position getKey()
 	{
@@ -153,11 +153,11 @@ public abstract class Map implements Serializable{
 	}
 
 	/**
-	 * Returns a ArrayList<ArrayList<Integer>> with the initialization of characters objects.
+	 * Returns a ArrayList with the initialization of characters objects.
 	 * 
 	 * The structure is:
 	 * 
-	 * 	---->   {{hero}, {guard}, {ogres}} 
+	 * 		   {{hero}, {guard}, {ogres}} 
 	 *  
 	 *  {hero} = {posX, posY, has_key(*), is_armed(*)}
 	 *   
@@ -168,7 +168,7 @@ public abstract class Map implements Serializable{
 	 * 		  (*) 1 for true and 0 for false
 	 * 
 	 * 
-	 * @return
+	 * @return initValues
 	 */
 	public ArrayList<ArrayList<Integer>> getInitValues()
 	{

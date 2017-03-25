@@ -32,8 +32,8 @@ public class Cli {
 	/**
 	 * Cli Constructor with initialization of typeGuard and nOgres
 	 * 
-	 * @param typeGuard
-	 * @param nOgres
+	 * @param typeGuard type of the guard
+	 * @param nOgres number of ogres
 	 */
 	public Cli(int typeGuard, int nOgres)
 	{
@@ -43,7 +43,7 @@ public class Cli {
 	/**
 	 * Initial function
 	 * 
-	 * @param args
+	 * @param args arguments
 	 */
 	public static void main(String[] args) {
 		Cli cl = new Cli();
@@ -85,7 +85,7 @@ public class Cli {
 	/**
 	 * Function the prints the game board on console
 	 * 
-	 * @param map
+	 * @param map actual map
 	 */
 	public void printMap(char[][] map) {
 		clearScreen();

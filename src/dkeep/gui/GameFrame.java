@@ -22,7 +22,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
 
-
+/**
+ * Window that suport the game
+ * 
+ * @author davidfalcao
+ *
+ */
 public class GameFrame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton btnNewGame;
@@ -62,12 +67,19 @@ public class GameFrame extends JFrame{
 		getContentPane().add(gamePanel);
 	}
 
+	/**
+	 * Close the window
+	 */
 	private void close()
 	{
 		this.dispose();
 		
 	}
 
+	/**
+	 * Inicialize the buttons
+	 * 
+	 */
 	private void setUpButtons() {
 		// Play Game button
 		btnNewGame = new JButton("New Game");
@@ -191,6 +203,10 @@ public class GameFrame extends JFrame{
 	
 	}
 
+	/**
+	 * Display the buttons in the window
+	 * 
+	 */
 	private void addButtons() {
 		gamePanel.add(btnNewGame,BorderLayout.NORTH);
 		gamePanel.add(btnSave,BorderLayout.NORTH);
@@ -206,6 +222,10 @@ public class GameFrame extends JFrame{
 		add(buttonsPanel1, BorderLayout.WEST);
 	}
 
+	/**
+	 * Start the window
+	 * 
+	 */
 	public void start() {
 		setSize(1024, 600);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -221,6 +241,11 @@ public class GameFrame extends JFrame{
 		gamePanel.repaint();
 	}
 
+	/**
+	 * Listener of keyword
+	 * 
+	 * @param e
+	 */
 	private void keyMovement(KeyEvent e) {
 		char key;
 		key = e.getKeyChar();
@@ -236,6 +261,11 @@ public class GameFrame extends JFrame{
 
 	}
 
+	/**
+	 * Updates the game
+	 * 
+	 * @param direction
+	 */
 	private void updateGame(char i) {
 		if (game.condition == status.RUNNING) {
 			moveAllCharacters(i);
@@ -252,6 +282,10 @@ public class GameFrame extends JFrame{
 		}
 	}
 
+	/**
+	 * Update the game panel
+	 * 
+	 */
 	private void updateGamePanel() {
 		gamePanel.setMap(getMapGui());
 		gamePanel.setObjectives(getObjectivesGui());
@@ -298,6 +332,11 @@ public class GameFrame extends JFrame{
 		 
 	}
 	
+	/**
+	 * Call all movement function 
+	 * 
+	 * @param i
+	 */
 	private void moveAllCharacters(char i)
 	{
 		game = game.moveHero(i);
@@ -307,24 +346,42 @@ public class GameFrame extends JFrame{
 		game.Over();
 	}
 	
+	/**
+	 * Set the game as won
+	 * 
+	 */
 	private void win()
 	{
 		gamePanel.setWin(true);
 		buttonsPanel1.setVisible(false);
 	}
 	
+	/**
+	 * Set the game as lost 
+	 *
+	 */
 	private void lose()
 	{
 		gamePanel.setLose(true);
 		buttonsPanel1.setVisible(false);
 	}
 	
+	/**
+	 * Redefines the game Logic
+	 * 
+	 * @param game
+	 */
 	public void setGame(Logic game){
 		this.game = game;
 		
 		
 	}
 	
+	/**
+	 * Returns all Characters 
+	 * 
+	 * @return
+	 */
 	public ArrayList<Position> getCharactersGui()
 	{
 		
@@ -342,6 +399,11 @@ public class GameFrame extends JFrame{
 		return array;
 	}
 	
+	/**
+	 * Return the lights (guard's torch)
+	 * 
+	 * @return positions
+	 */
 	public ArrayList<Position> getLights()
 	{
 		ArrayList<Position> temp = new ArrayList<Position>();
@@ -383,6 +445,11 @@ public class GameFrame extends JFrame{
 		return temp;
 	}
 	
+	/**
+	 * Returns all ogres
+	 * 
+	 * @param array
+	 */
 	public void getOgresGui(ArrayList<Position> array) {
 		for (Ogre ogre : game.getOgres()) {
 			if (ogre.getPosition().equals(game.getMap().getKey()))
@@ -400,6 +467,11 @@ public class GameFrame extends JFrame{
 
 	}
 	
+	/**
+	 * Return the key, lever and endpositions
+	 * 
+	 * @return
+	 */
 	public ArrayList<Position> getObjectivesGui() {
 		ArrayList<Position> array = new ArrayList<Position>();
 		boolean open = false;
@@ -434,6 +506,11 @@ public class GameFrame extends JFrame{
 		return array;
 	}
 
+	/**
+	 * Add perspective to the map
+	 * 
+	 * @param array
+	 */
 	private void addPerspective(ArrayList<ArrayList<String>> array) {
 		for (int i = 0; i < array.size(); i++)
 			for (int j = 0; j < array.get(i).size(); j++) {
@@ -477,6 +554,13 @@ public class GameFrame extends JFrame{
 
 	}
 
+	/**
+	 * Check if the wall is horizontal
+	 * 
+	 * @param wall
+	 * @param nsew
+	 * @return wall
+	 */
 	private String horizontalWall(String wall, boolean[] nsew)
 	{
 		wall = wall00(nsew);
@@ -494,6 +578,12 @@ public class GameFrame extends JFrame{
 		return "X";
 	}
 	
+	/**
+	 * Check if the wall is of type 0
+	 * 
+	 * @param nsew
+	 * @return wall
+	 */
 	private String wall00(boolean[] nsew)
 	{
 		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
@@ -506,6 +596,12 @@ public class GameFrame extends JFrame{
 		
 	}
 	
+	/**
+	 * Check if the wall is of type 1
+	 * 
+	 * @param nsew
+	 * @return wall
+	 */
 	private String wall01(boolean[] nsew)
 	{
 		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
@@ -518,6 +614,12 @@ public class GameFrame extends JFrame{
 		return "X";
 	}
 	
+	/**
+	 * Check if the wall is of type 2
+	 * 
+	 * @param nsew
+	 * @return wall
+	 */
 	private String wall02(boolean[] nsew)
 	{
 		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
@@ -530,6 +632,12 @@ public class GameFrame extends JFrame{
 		return "X";
 	}
 	
+	/**
+	 * Check if the wall is vertical
+	 * 
+	 * @param nsew
+	 * @return wall
+	 */
 	private String verticalWall(String wall, boolean[] nsew)
 	{
 		wall = wall03(nsew);
@@ -547,6 +655,12 @@ public class GameFrame extends JFrame{
 		return "X";
 	}
 	
+	/**
+	 * Check if the wall is of type 3
+	 * 
+	 * @param nsew
+	 * @return wall
+	 */
 	private String wall03(boolean[] nsew)
 	{
 		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
@@ -559,6 +673,12 @@ public class GameFrame extends JFrame{
 		return "X";
 	}
 	
+	/**
+	 * Check if the wall is of type 4
+	 * 
+	 * @param nsew
+	 * @return wall
+	 */
 	private String wall04(boolean[] nsew)
 	{
 		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
@@ -572,6 +692,12 @@ public class GameFrame extends JFrame{
 		
 	}
 	
+	/**
+	 * Check if the wall is of type 5
+	 * 
+	 * @param nsew
+	 * @return wall
+	 */
 	private String wall05(boolean[] nsew)
 	{
 		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
@@ -585,6 +711,12 @@ public class GameFrame extends JFrame{
 		
 	}
 	
+	/**
+	 * Check if the wall is a crossing wall
+	 * 
+	 * @param nsew
+	 * @return wall
+	 */
 	private String crossingWall(String wall, boolean[] nsew)
 	{
 		wall = wall06(nsew);
@@ -603,6 +735,12 @@ public class GameFrame extends JFrame{
 		return wall;
 	}
 	
+	/**
+	 * Check if the wall is of type 6
+	 * 
+	 * @param nsew
+	 * @return wall
+	 */
 	private String wall06(boolean[] nsew)
 	{
 		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
@@ -613,6 +751,12 @@ public class GameFrame extends JFrame{
 		return "X";
 	}
 	
+	/**
+	 * Check if the wall is of type 7
+	 * 
+	 * @param nsew
+	 * @return wall
+	 */
 	private String wall07(boolean[] nsew)
 	{
 		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
@@ -623,6 +767,12 @@ public class GameFrame extends JFrame{
 		return "X";
 	}
 	
+	/**
+	 * Check if the wall is of type 8
+	 * 
+	 * @param nsew
+	 * @return wall
+	 */
 	private String wall08(boolean[] nsew)
 	{
 		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
@@ -635,6 +785,14 @@ public class GameFrame extends JFrame{
 		return "X";
 	}
 
+	/**
+	 * Return the gui representation of the wall
+	 * 
+	 * @param wall
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	private String typeOfWall(String wall, int x, int y )
 	{
 		if (!wall.equals("X")) {
@@ -686,6 +844,11 @@ public class GameFrame extends JFrame{
 
 	}
 	
+	/**
+	 * Returns the gui map
+	 * 
+	 * @return
+	 */
 	private ArrayList<ArrayList<String>> getMapGui()
 	{
 		ArrayList<ArrayList<String>> board = new ArrayList<ArrayList<String>>();

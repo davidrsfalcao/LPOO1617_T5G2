@@ -2,6 +2,13 @@ package dkeep.logic;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Structure to save the coordinates x and y and the representation
+ * 
+ * 
+ * @author davidfalcao
+ *
+ */
 public class Position implements Serializable {
 
 	/**

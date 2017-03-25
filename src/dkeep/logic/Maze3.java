@@ -91,7 +91,6 @@ public class Maze3 extends Map {
 
 	@Override
 	protected void setMap() {
-		// TODO Auto-generated method stub
 
 	}
 

@@ -358,19 +358,21 @@ public class GameTests {
 		go.updateDirection();
 		go.updateLastPosition();
 		String rep = go + "";
+		assertEquals("OB", rep);
 		go.setPosition(1, 1);
 		go.updateDirection();
 		go.updateLastPosition();
 		rep=go+"";
+		assertEquals("OF", rep);
 		go.moveClub();
 		go.moveCharacter(5);
 		go.moveClub();
+		rep=go+"";
+		assertEquals("OF", rep);
 		go.moveCharacter(5);
 		go.moveClub();
-		go.moveCharacter(5);
-		go.moveClub();
-		go.moveCharacter(5);
-		go.moveClub();
+		rep=go+"";
+		assertEquals("OF", rep);
 		go.moveCharacter(5);
 		go.moveClub();
 		go.moveCharacter(5);
@@ -463,15 +465,6 @@ public class GameTests {
 	{
 		Logic game = new Logic(new TestMap2(), rand.nextInt(3), rand.nextInt(3)+1);
 		assertFalse(game.getAllCharacters().isEmpty());
-		assertTrue(game.typeOfWall("X", 0, 0).startsWith("X"));
-		assertTrue(game.typeOfWall("X", 0, 3).startsWith("X"));
-		assertTrue(game.typeOfWall("X", 0, 2).startsWith("X"));
-		assertTrue(game.typeOfWall("X", 0, 4).startsWith("X"));
-		assertTrue(game.typeOfWall("X", 2, 0).startsWith("X"));
-		assertTrue(game.typeOfWall("X", 4, 0).startsWith("X"));
-		assertTrue(game.typeOfWall("X", 4, 4).startsWith("X"));
-		assertTrue(game.typeOfWall("X", 4, 2).startsWith("X"));
-		assertTrue(game.typeOfWall("X", 2, 4).startsWith("X"));
 		
 		
 		

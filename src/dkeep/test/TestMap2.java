@@ -6,6 +6,11 @@ import java.util.ArrayList;
 public class TestMap2 extends Map{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Constructor of 2nd Maze
 	 * 
 	 */

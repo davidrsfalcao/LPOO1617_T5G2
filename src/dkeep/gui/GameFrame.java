@@ -84,6 +84,7 @@ public class GameFrame extends JFrame{
 
 					// starting new game with new options
 					game = new Logic(new Maze1(), guardType, nOgres);
+					buttonsPanel1.setVisible(true);
 					gamePanel.setWin(false);
 					gamePanel.setLose(false);
 					updateGamePanel();
@@ -255,42 +256,46 @@ public class GameFrame extends JFrame{
 		gamePanel.setMap(getMapGui());
 		gamePanel.setObjectives(getObjectivesGui());
 		gamePanel.setCharacters(getCharactersGui());
+		
+		game.printMap();
 
-		/////// TEMPORARIO /////////////////////////////////////////////// -> APAGARRRR
-		for (ArrayList<String> linha : getMapGui()) {
-			for (String a : linha) {
-				String temp;
-
-				if (a.equals(" "))
-					temp = "|    ";
-
-				else
-					switch (a.length()) {
-					case 1:
-						temp = "|" + a + "   ";
-						break;
-
-					case 2:
-						temp = "|" + a + "  ";
-						break;
-
-					case 3:
-						temp = "|" + a + " ";
-						break;
-						
-					default:
-						temp ="|" + a;
-						break;
-					}
-
-				System.out.print(temp + " ");
-
-			}
-
-			System.out.println();
-		}
-		System.out.println();
-
+		// Testar mapa GUI
+		  
+//		  
+//		for (ArrayList<String> linha : getMapGui()) {
+//			for (String a : linha) {
+//				String temp;
+//
+//				if (a.equals(" "))
+//					temp = "|    ";
+//
+//				else
+//					switch (a.length()) {
+//					case 1:
+//						temp = "|" + a + "   ";
+//						break;
+//
+//					case 2:
+//						temp = "|" + a + "  ";
+//						break;
+//
+//					case 3:
+//						temp = "|" + a + " ";
+//						break;
+//
+//					default:
+//						temp = "|" + a;
+//						break;
+//					}
+//
+//				System.out.print(temp + " ");
+//
+//			}
+//
+//			System.out.println();
+//		}
+//		System.out.println();
+		 
 	}
 	
 	private void moveAllCharacters(char i)
@@ -322,10 +327,12 @@ public class GameFrame extends JFrame{
 	
 	public ArrayList<Position> getCharactersGui()
 	{
+		
 		ArrayList<Position> array = new ArrayList<Position>();
+		array.addAll(getLights());
 
 		array.add(new Position(game.getHero().getPosition().getX(),game.getHero().getPosition().getY(), game.getHero() + ""));
-
+		
 		if (game.getGuard().isPlaying()) {
 			array.add(new Position(game.getGuard().getPosition().getX(),game.getGuard().getPosition().getY(), game.getGuard() + ""));
 		}
@@ -333,6 +340,47 @@ public class GameFrame extends JFrame{
 		getOgresGui(array);
 		
 		return array;
+	}
+	
+	public ArrayList<Position> getLights()
+	{
+		ArrayList<Position> temp = new ArrayList<Position>();
+		
+		if (game.getGuard().isPlaying())
+			if (game.getGuard().isAwake())
+			{
+				int x = game.getGuard().getPosition().getX();
+				int y = game.getGuard().getPosition().getY();
+
+				temp.add(new Position(x - 2, y - 1, "L1"));
+				temp.add(new Position(x - 1, y - 1, "L2"));
+				temp.add(new Position(x, y - 1, "L3"));
+
+				temp.add(new Position(x - 1, y, "L4"));
+				temp.add(new Position(x, y, "L5"));
+				temp.add(new Position(x + 1, y, "L6"));
+				
+				String a = getMapGui().get(y+1).get(x);
+				String b = getMapGui().get(y+1).get(x+1);
+				String c = getMapGui().get(y+1).get(x+2);
+				
+				
+				if (a.equals("XS") || a.equals(" ") || a.equals("XC") || a.equals("XC1") || a.equals("X03") || a.equals("X07"))
+					if (!a.equals("X07") || game.getGuard().getDirection() == 'D')
+						temp.add(new Position(x, y + 1, "L7"));
+
+				if (b.equals("XS") || b.equals(" ") || b.equals("XC") || b.equals("XC1") || b.equals("X03"))
+					temp.add(new Position(x + 1, y + 1, "L8"));
+
+				if (c.equals("XS") || c.equals(" ") || c.equals("X03") || c.equals("XC") || c.equals("XC1"))
+					temp.add(new Position(x + 2, y + 1, "L9"));
+	
+			}
+		
+		
+		
+		
+		return temp;
 	}
 	
 	public void getOgresGui(ArrayList<Position> array) {
@@ -385,7 +433,6 @@ public class GameFrame extends JFrame{
 
 		return array;
 	}
-
 
 	private void addPerspective(ArrayList<ArrayList<String>> array) {
 		for (int i = 0; i < array.size(); i++)
@@ -655,6 +702,7 @@ public class GameFrame extends JFrame{
 		addPerspective(board);
 		return board;
 	}
+	
 	
 	
 	

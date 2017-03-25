@@ -54,7 +54,7 @@ public class Menu extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
-		authors = new JLabel("David & Pedro 2017");
+		authors = new JLabel("David && Pedro 2017");
 		authors.setForeground(Color.WHITE);
 		authors.setFont(new Font("Osaka", Font.PLAIN, 15));
 		authors.setBounds(850, 650, 200, 50);

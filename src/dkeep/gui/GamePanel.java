@@ -36,14 +36,11 @@ public class GamePanel extends JPanel {
 	private BufferedImage heroArmed_back;
 	private BufferedImage heroKeyArmed_front;
 	
-	
 	/**
 	 * Massive Club Representations
 	 * 
 	 */
 	private BufferedImage club;
-	
-	
 	
 	/**
 	 * Ogre representations
@@ -70,7 +67,6 @@ public class GamePanel extends JPanel {
 	private BufferedImage key;
 	private BufferedImage leverUp;
 	private BufferedImage leverDown;
-	private BufferedImage exit;
 	
 	/**
 	 * Walls and floor representation
@@ -87,15 +83,22 @@ public class GamePanel extends JPanel {
 	private BufferedImage wallC; 
 	private BufferedImage wallC1; 
 
-	
-
-	//floor	
-	
+	//floor		
 	private BufferedImage floor;   // chao sem sombra
 	private BufferedImage floors;  // chao com sombra
 	
-	private BufferedImage win_img; //
+	private BufferedImage win_img; 
 	private BufferedImage lose_img;
+	
+	private BufferedImage light1;
+	private BufferedImage light2;
+	private BufferedImage light3;
+	private BufferedImage light4;
+	private BufferedImage light5;
+	private BufferedImage light6;
+	private BufferedImage light7;
+	private BufferedImage light8;
+	private BufferedImage light9;
 	
 	
 	
@@ -310,7 +313,7 @@ public class GamePanel extends JPanel {
 		
 		
 		try {
-			lose_img = ImageIO.read(new File("res/lose.png"));
+			lose_img = ImageIO.read(new File("res/Lose.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -320,6 +323,63 @@ public class GamePanel extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
+		try {
+			light1 = ImageIO.read(new File("res/luz/Luz_01.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			light2 = ImageIO.read(new File("res/luz/Luz_02.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			light3 = ImageIO.read(new File("res/luz/Luz_03.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			light4 = ImageIO.read(new File("res/luz/Luz_04.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			light5 = ImageIO.read(new File("res/luz/Luz_05.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			light6 = ImageIO.read(new File("res/luz/Luz_06.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			light7 = ImageIO.read(new File("res/luz/Luz_07.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			light8 = ImageIO.read(new File("res/luz/Luz_08.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			light9 = ImageIO.read(new File("res/luz/Luz_09.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 		
 		
 		
@@ -455,10 +515,7 @@ public class GamePanel extends JPanel {
 	}
 	
 	public void drawCharacters(Graphics gr)
-	{
-		Resizer res = new Resizer();
-		BufferedImage temp;
-		
+	{		
 		int map_size = map.size();
 
 		int width = (int) getSize().getWidth();
@@ -480,15 +537,6 @@ public class GamePanel extends JPanel {
 			
 		}
 		
-		/*
-		int resX = 1024/((map_size*2)-1);
-		int resY = resX;
-		*/
-		
-		
-		
-		
-		
 		for (Position pos : characters)
 		{
 			int x = pos.getX();
@@ -499,84 +547,105 @@ public class GamePanel extends JPanel {
 			switch(pos.getRepresentationGui())
 			{
 			case "HF":
-				temp = res.resize(hero_front, resX, resY);
-				gr.drawImage(temp, i, j, null);
+				gr.drawImage(hero_front, i, j , resX, resY, null);
 				break;
 				
 			case "HFA":
-				temp = res.resize(heroArmed_front, resX, resY);
-				gr.drawImage(temp, i, j, null);
+				gr.drawImage(heroArmed_front,i, j ,resX, resY, null);
 				break;
 				
 			case "HFK":
-				temp = res.resize(heroKey_front, resX, resY);
-				gr.drawImage(temp, i, j, null);
+				gr.drawImage(heroKey_front,i, j ,resX, resY, null);
 				break;
 				
 			case "HFAK":
-				temp = res.resize(heroKeyArmed_front, resX, resY);
-				gr.drawImage(temp, i, j, null);
+				gr.drawImage(heroKeyArmed_front,i, j ,resX, resY, null);
 				break;
 				
 			case "HB":
-				temp = res.resize(hero_back, resX, resY);
-				gr.drawImage(temp, i, j, null);
+				gr.drawImage(hero_back,i, j ,resX, resY, null);
 				break;
 				
 			case "HBA":
-				temp = res.resize(heroArmed_back, resX, resY);
-				gr.drawImage(temp, i, j, null);
+				gr.drawImage(heroArmed_back,i, j ,resX, resY, null);
 				break;
 				
 			case "OF":
-				temp = res.resize(ogre_front, resX, resY);
-				gr.drawImage(temp, i, j, null);
+				gr.drawImage(ogre_front,i, j ,resX, resY, null);
 				break;
 				
 			case "OFS":
-				temp = res.resize(ogreStunned_front, resX, resY);
-				gr.drawImage(temp, i, j, null);
+				gr.drawImage(ogreStunned_front,i, j ,resX, resY, null);
 				break;
 				
 			case "OB":
-				temp = res.resize(ogre_back, resX, resY);
-				gr.drawImage(temp, i, j, null);
+				gr.drawImage(ogre_back,i, j ,resX, resY, null);
 				break;
 				
 			case "OBS":
-				temp = res.resize(ogreStunned_front, resX, resY);
-				gr.drawImage(temp, i, j, null);
+				gr.drawImage(ogreStunned_front,i, j ,resX, resY, null);
 				break;
 				
 			case "OK":
-				temp = res.resize(ogre_front, resX, resY);
-				gr.drawImage(temp, i, j, null);
+				gr.drawImage(ogre_front,i, j ,resX, resY, null);
 				break;
 				
 			case "*":
-				temp = res.resize(club, resX, resY);
-				gr.drawImage(temp, i, j, null);
+				gr.drawImage(club,i, j ,resX, resY, null);
 				break;
 				
 			case "$":
-				temp = res.resize(club, resX, resY);
-				gr.drawImage(temp, i, j, null);
+				gr.drawImage(club,i, j ,resX, resY, null);
 				break;
 				
 			case "GF":
-				temp = res.resize(guard_front, resX, resY);
-				gr.drawImage(temp, i, j, null);
+				gr.drawImage(guard_front,i, j ,resX, resY, null);
 				break;
 				
 			case "GB":
-				temp = res.resize(guard_back, resX, resY);
-				gr.drawImage(temp, i, j, null);
+				gr.drawImage(guard_back,i, j ,resX, resY, null);
 				break;
 				
 			case "GFS":
-				temp = res.resize(guard_sleep, resX, resY);
-				gr.drawImage(temp, i, j, null);
+				gr.drawImage(guard_sleep,i, j ,resX, resY, null);
 				break;
+				
+			case "L1":
+				gr.drawImage(light1,i, j ,resX, resY, null);
+				break;
+				
+			case "L2":
+				gr.drawImage(light2,i, j ,resX, resY, null);
+				break;
+				
+			case "L3":
+				gr.drawImage(light3,i, j ,resX, resY, null);
+				break;
+				
+			case "L4":
+				gr.drawImage(light4,i, j ,resX, resY, null);
+				break;
+				
+			case "L5":
+				gr.drawImage(light5,i, j ,resX, resY, null);
+				break;
+				
+			case "L6":
+				gr.drawImage(light6,i, j ,resX, resY, null);
+				break;
+				
+			case "L7":
+				gr.drawImage(light7,i, j ,resX, resY, null);
+				break;
+				
+			case "L8":
+				gr.drawImage(light8,i, j ,resX, resY, null);
+				break;
+				
+			case "L9":
+				gr.drawImage(light9,i, j ,resX, resY, null);
+				break;
+				
 				
 			
 			}

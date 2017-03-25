@@ -2,6 +2,12 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
+/**
+ * Map of second level
+ * 
+ * @author davidfalcao
+ *
+ */
 public class Maze2 extends Map{
 	
 	
@@ -29,6 +35,10 @@ public class Maze2 extends Map{
 
 	}
 	
+	/**
+	 * Defines the key or lever and the endpositions of the map
+	 * 
+	 */
 	public void setObjectives()
 	{
 		key = new Position(7,1,'k');
@@ -57,6 +67,10 @@ public class Maze2 extends Map{
 		key.changeTo(-10, -10);
 	}
 
+	/**
+	 * Defines de initial position of the hero
+	 * 
+	 */
 	protected void setHero(){
 		ArrayList<Integer> hero = new ArrayList<Integer>();
 		hero.add(1); //posX
@@ -67,16 +81,28 @@ public class Maze2 extends Map{
 		
 	}
 	
+	/**
+	 * Defines the initial position of the guard
+	 * 
+	 */
 	protected void setGuard(){
 		setGuardInactive();
 	}
 	
+	/**
+	 * Defines if the level was played by ogres
+	 * 
+	 */
 	protected void setOgres(){
 		ArrayList<Integer> ogre = new ArrayList<Integer>();
 		ogre.add(1); //playing
 		initValues.add(ogre);
 	}
 	
+	/**
+	 * Defines the map of a level
+	 * 
+	 */
 	protected void setMap() {
 		int i = 0;
 		for (char[] c : temp) {

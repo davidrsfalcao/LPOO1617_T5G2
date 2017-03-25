@@ -15,15 +15,17 @@ public class Position implements Serializable {
 	private int type = 0; // 0 for default, 1 for lever and 2 for key
 	
 	/**
-	 * Constructor of Position with initialization of x and y and representation
+	 * Position default constructor
+	 */
+	public Position(){}
+	
+	/**
+	 * Constructor of Position with initialization of x and y and representation in char
 	 * 
 	 * @param x
 	 * @param y
 	 * @param representation
 	 */
-	
-	public Position(){}
-	
  	public Position(int x, int y, char representation)
 	{
 		this.x = x;
@@ -32,6 +34,13 @@ public class Position implements Serializable {
 		representation_gui = "";
 	}
  	
+	/**
+	 * Constructor of Position with initialization of x and y and representation int string
+	 * 
+	 * @param x
+	 * @param y
+	 * @param representation
+	 */
  	public Position(int x, int y, String representation)
 	{
 		this.x = x;
@@ -159,6 +168,11 @@ public class Position implements Serializable {
 		return representation_gui;
 	}
 
+	/**
+	 * Redefines Gui representation
+	 * 
+	 * @param rep
+	 */
 	public void setRepresentationGui(String rep)
 	{
 		representation_gui = rep;
@@ -268,6 +282,12 @@ public class Position implements Serializable {
 		return distance;
 	}
 	
+	/**
+	 * Returns the directions of the movement
+	 * 
+	 * @param last position
+	 * @return direction
+	 */
 	public char getDirection(Position temp)
 	{
 		if (x < temp.getX())

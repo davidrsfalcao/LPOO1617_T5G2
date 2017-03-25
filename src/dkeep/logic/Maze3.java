@@ -2,6 +2,13 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
+/**
+ * 
+ * Map of a level created using "Create Maze"
+ * 
+ * @author davidfalcao
+ *
+ */
 public class Maze3 extends Map {
 
 	/**
@@ -10,10 +17,17 @@ public class Maze3 extends Map {
 	private static final long serialVersionUID = 1L;
 	private int i, j;
 
+	/**
+	 * Constructor of Maze3
+	 */
 	public Maze3() {
 		endPositions = new ArrayList<Position>();
 	}
 
+	/**
+	 * Defines the map of a level
+	 * 
+	 */
 	public void setMap(char[][] map) {
 		this.map = map;
 		MAP_SIZE = map[0].length;
@@ -47,6 +61,10 @@ public class Maze3 extends Map {
 		key.changeTo(-10, -10);
 	}
 
+	/**
+	 * Defines the key or lever and the endpositions of the map
+	 * 
+	 */
 	@Override
 	protected void setObjectives() {
 		if (map[i][j] == 'k') {
@@ -61,6 +79,10 @@ public class Maze3 extends Map {
 
 	}
 
+	/**
+	 * Defines de initial position of the hero
+	 * 
+	 */
 	@Override
 	protected void setHero() {
 		ArrayList<Integer> hero = new ArrayList<Integer>();
@@ -75,11 +97,19 @@ public class Maze3 extends Map {
 
 	}
 
+	/**
+	 * Defines the initial position of the guard
+	 * 
+	 */
 	@Override
 	protected void setGuard() {
 		setGuardInactive();
 	}
 
+	/**
+	 * Defines if the level was played by ogres
+	 * 
+	 */
 	@Override
 	protected void setOgres() {
 		ArrayList<Integer> ogre = new ArrayList<Integer>();
@@ -89,11 +119,19 @@ public class Maze3 extends Map {
 
 	}
 
+	/**
+	 * Defines the map of a level
+	 * 
+	 */
 	@Override
 	protected void setMap() {
 
 	}
 
+	/**
+	 * Clean the 'O' of map returned by "Create Maze"
+	 * 
+	 */
 	private void cleanOgres() {
 		if (map[i][j] == 'O') {
 			map[i][j] = ' ';

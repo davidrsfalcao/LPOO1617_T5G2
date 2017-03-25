@@ -257,7 +257,7 @@ public class GameFrame extends JFrame{
 		gamePanel.setObjectives(getObjectivesGui());
 		gamePanel.setCharacters(getCharactersGui());
 		
-		game.printMap();
+		//game.printMap();
 
 		// Testar mapa GUI
 		  
@@ -459,8 +459,11 @@ public class GameFrame extends JFrame{
 				else if (array.get(i).get(j) == "X07") {
 					if (j + 1 < array.get(i).size())
 					{
-						if (array.get(i).get(j +1) == " ")
-							array.get(i).set(j + 1, "XC1");
+						if (array.get(i).get(j +1) == " " )
+							if (i == 0)
+								array.get(i).set(j + 1, "XC1");
+							else if (!(array.get(i-1).get(j) == " " ))
+								array.get(i).set(j + 1, "XC1");
 					}
 					else {
 						if (i != 0)

@@ -2,6 +2,12 @@ package dkeep.logic;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Represents a mapf
+ * 
+ * @author davidfalcao
+ *
+ */
 public abstract class Map implements Serializable{
 	/**
 	 * 
@@ -169,12 +175,28 @@ public abstract class Map implements Serializable{
 		return initValues;
 	}
 
+	/**
+	 * Defines the key or lever and the endpositions of the map
+	 * 
+	 */
 	protected abstract void setObjectives();
 	
+	/**
+	 * Defines de initial position of the hero
+	 * 
+	 */
 	protected abstract void setHero();
 	
+	/**
+	 * Defines the initial position of the guard
+	 * 
+	 */
 	protected abstract void setGuard();
 	
+	/**
+	 * Defines a inative guard (map without guard)
+	 * 
+	 */
 	protected void setGuardInactive()
 	{
 		ArrayList<Integer> guard = new ArrayList<Integer>();
@@ -185,10 +207,22 @@ public abstract class Map implements Serializable{
 		
 	}
 	
+	/**
+	 * Defines if the level was played by ogres
+	 * 
+	 */
 	protected abstract void setOgres();
 	
+	/**
+	 * Defines the map of a level
+	 * 
+	 */
 	protected abstract void setMap();
 	
+	/**
+	 * Initialization of the map 
+	 * 
+	 */
 	protected void init(){
 		map = new char[MAP_SIZE][MAP_SIZE];
 		setHero();

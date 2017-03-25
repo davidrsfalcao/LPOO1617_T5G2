@@ -10,7 +10,12 @@ public class Drunken extends Guard{
 	private static final long serialVersionUID = 1L;
 	private int counter; // Counter of sleepy rounds and awake rounds
 	private Random rand = new Random(); 
-	
+	/**
+	 * Constructor of Drunk Guard
+	 * @param posX parameter x of the position
+	 * @param posY parameter y of the position
+	 * @param playing boolean that shows if this guard is playing or not
+	 */
 	public Drunken(int posX, int posY, boolean playing)
 	{
 		this.playing = playing;
@@ -23,7 +28,6 @@ public class Drunken extends Guard{
 		last_position = new Position(posX, posY, position.getRepresentation());
 
 	}
-	
 	public Position moveCharacter(int MAP_SIZE) {
 		if (playing)
 			if (counter == 0)

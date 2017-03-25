@@ -81,16 +81,14 @@ public class GamePanel extends JPanel {
 	private BufferedImage wall00;  // este e oeste
 	private BufferedImage wall01;  // parede a norte
 	private BufferedImage wall02;  // parede a norte e sul ou só sul
-	private BufferedImage wall02_complement; // complemento parede 2
 	private BufferedImage wall03;  // parede a oeste
 	private BufferedImage wall04;  // parede a este
 	private BufferedImage wall05;  // parede a este e oeste
 	private BufferedImage wall06;  // parede em todas as direcoes
 	private BufferedImage wall07;  // parede excepto em norte
-	private BufferedImage wall08;   // parede excepto em sul
-	private BufferedImage wall09;   // parede excepto em oeste
-	private BufferedImage wall10;   // parede excepto em este
-	private BufferedImage wall11;   // parede a sul e este
+	private BufferedImage wallC; // complemento parede 2
+	private BufferedImage wallC1; // complemento parede 2
+
 	
 
 	//floor	
@@ -191,13 +189,13 @@ public class GamePanel extends JPanel {
 		}
 		
 		try {
-			wall02 = ImageIO.read(new File("res/walls/Wall01.png"));
+			wall01 = ImageIO.read(new File("res/walls/Wall01.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			wall02_complement = ImageIO.read(new File("res/walls/Wall02C.png"));
+			wall02 = ImageIO.read(new File("res/walls/Wall02.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -214,6 +212,11 @@ public class GamePanel extends JPanel {
 			e.printStackTrace();
 		}
 		
+		try {
+			wall05 = ImageIO.read(new File("res/walls/Wall05.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		try {
 			wall06 = ImageIO.read(new File("res/walls/Wall06.png"));
@@ -223,7 +226,19 @@ public class GamePanel extends JPanel {
 		
 		
 		try {
-			wall11 = ImageIO.read(new File("res/walls/Wall11.png"));
+			wall07 = ImageIO.read(new File("res/walls/Wall07.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			wallC = ImageIO.read(new File("res/walls/WallC.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			wallC1 = ImageIO.read(new File("res/walls/WallC1.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -252,7 +267,11 @@ public class GamePanel extends JPanel {
 		}
 		
 		
-		
+		/**
+		 * 
+		 * Floor
+		 * 
+		 */
 		
 		
 		try {
@@ -348,8 +367,6 @@ public class GamePanel extends JPanel {
 
 	public void drawBoard(Graphics gr)
 	{
-		Resizer res = new Resizer();
-		BufferedImage temp;
 		
 		int map_size = map.size();
 
@@ -385,69 +402,56 @@ public class GamePanel extends JPanel {
 				//paredes
 				
 				case "X00":
-					temp = res.resize(wall00, resX, resY);
-					gr.drawImage(temp, i, j, null);
+					gr.drawImage(wall00, i, j, resX, resY, null);
 					break;
+					
 				case "X01":
-					temp = res.resize(wall01, resX, resY);
-					gr.drawImage(temp, i, j, null);
+					gr.drawImage(wall01, i, j, resX, resY, null);
 					break;
 				case "X02":
-					temp = res.resize(wall02, resX, resY);
-					gr.drawImage(temp, i, j, null);
+					gr.drawImage(wall02, i, j, resX, resY, null);
 					break;
 					
-				case "XC02":
-					temp = res.resize(wall02_complement, resX, resY);
-					gr.drawImage(temp, i, j, null);
-					break;
 				case "X03":
-					temp = res.resize(wall03, resX, resY);
-					gr.drawImage(temp, i, j, null);
-					break;
-				case "X04":
-					temp = res.resize(wall04, resX, resY);
-					gr.drawImage(temp, i, j, null);
-					break;
-				case "X05":
-					temp = res.resize(wall05, resX, resY);
-					gr.drawImage(temp, i, j, null);
-					break;
-				case "X06":
-					temp = res.resize(wall06, resX, resY);
-					gr.drawImage(temp, i, j, null);
-					break;
-				case "X07":
-					temp = res.resize(wall00, resX, resY);
-					gr.drawImage(temp, i, j, null);
-					break;
-				case "X08":
-					temp = res.resize(wall08, resX, resY);
-					gr.drawImage(temp, i, j, null);
-					break;
-				case "X09":
-					temp = res.resize(wall09, resX, resY);
-					gr.drawImage(temp, i, j, null);
-					break;
-				case "X10":
-					temp = res.resize(wall10, resX, resY);
-					gr.drawImage(temp, i, j, null);
+					gr.drawImage(wall03, i, j, resX, resY, null);
 					break;
 					
-				case "X11":
-					temp = res.resize(wall11, resX, resY);
-					gr.drawImage(temp, i, j, null);
+				case "X04":
+					gr.drawImage(wall04, i, j, resX, resY, null);
 					break;
+					
+				case "X05":
+					gr.drawImage(wall05, i, j, resX, resY, null);
+					break;
+					
+				case "X06":
+					gr.drawImage(wall06, i, j, resX, resY, null);
+					break;
+					
+				case "X07":
+					gr.drawImage(wall07, i, j, resX, resY, null);
+					break;
+					
+				case "X08":
+					gr.drawImage(wall00, i, j, resX, resY, null);
+					break;
+					
+				case "XC":
+					gr.drawImage(wallC, i, j, resX, resY, null);
+					break;
+					
+				case "XC1":
+					gr.drawImage(wallC1, i, j, resX, resY, null);
+					break;
+
 					
 				//espacos
 					
 				case " ":
-					temp = res.resize(floor, resX, resY);
-					gr.drawImage(temp, i, j, null);
+					gr.drawImage(floor, i, j, resX, resY, null);
 					break;
 				case "XS":
-					temp = res.resize(floors, resX, resY);
-					gr.drawImage(temp, i, j, null);
+					gr.drawImage(floors, i, j, resX, resY, null);
 					break;
 					
 				}

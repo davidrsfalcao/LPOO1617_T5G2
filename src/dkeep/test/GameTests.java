@@ -472,7 +472,6 @@ public class GameTests {
 		assertTrue(game.typeOfWall("X", 4, 4).startsWith("X"));
 		assertTrue(game.typeOfWall("X", 4, 2).startsWith("X"));
 		assertTrue(game.typeOfWall("X", 2, 4).startsWith("X"));
-		assertFalse(game.getMapGui().isEmpty());
 		
 		
 		

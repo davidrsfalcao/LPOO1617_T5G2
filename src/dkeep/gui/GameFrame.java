@@ -250,12 +250,12 @@ public class GameFrame extends JFrame{
 	}
 
 	private void updateGamePanel() {
-		gamePanel.setMap(game.getMapGui());
+		gamePanel.setMap(getMapGui());
 		gamePanel.setObjectives(getObjectivesGui());
 		gamePanel.setCharacters(getCharactersGui());
 
 		/////// TEMPORARIO /////////////////////////////////////////////// -> APAGARRRR
-		for (ArrayList<String> linha : game.getMapGui()) {
+		for (ArrayList<String> linha : getMapGui()) {
 			for (String a : linha) {
 				String temp;
 
@@ -384,4 +384,264 @@ public class GameFrame extends JFrame{
 		return array;
 	}
 
+
+	private void addPerspective(ArrayList<ArrayList<String>> array) {
+		for (int i = 0; i < array.size(); i++)
+			for (int j = 0; j < array.get(i).size(); j++) {
+				if ((array.get(i).get(j) == "X03") || (array.get(i).get(j) == "X04")
+						|| (array.get(i).get(j) == "X05")) {
+					if (j + 1 < array.get(i).size())
+						array.get(i).set(j + 1, "XC");
+					else
+						array.get(i).add("XC");
+				} else if (array.get(i).get(j) == "X01")
+				{
+					if (j + 1 < array.get(i).size())
+						array.get(i).set(j + 1, "XS");
+					else
+						array.get(i).add(j + 1, "XS");
+				}
+				else if (array.get(i).get(j) == "X08")
+					if (j + 1 < array.get(i).size())
+						array.get(i).set(j + 1, "XC1");
+					else
+						array.get(i).add(j + 1, "XC1");
+				
+
+
+			}
+
+	}
+
+	private String horizontalWall(String wall, boolean[] nsew)
+	{
+		wall = wall00(nsew);
+		if (!wall.equals("X"))
+			return wall;
+		
+		wall = wall01(nsew);
+		if (!wall.equals("X"))
+			return wall;
+		
+		wall = wall02(nsew);
+		if (!wall.equals("X"))
+			return wall;
+		
+		return "X";
+	}
+	
+	private String wall00(boolean[] nsew)
+	{
+		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
+		
+		if ((n && !s && e && w) || (!n && !s && e && w))
+		{
+			return "X00";
+		}
+		else return "X";
+		
+	}
+	
+	private String wall01(boolean[] nsew)
+	{
+		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
+		
+		if (!n && !s && !e && w)
+		{
+			return "X01";
+		}
+		
+		return "X";
+	}
+	
+	private String wall02(boolean[] nsew)
+	{
+		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
+		
+		if ((n && !s && e && !w) || (!n && !s && e && !w))
+		{
+			return "X02";
+		}
+		
+		return "X";
+	}
+	
+	private String verticalWall(String wall, boolean[] nsew)
+	{
+		wall = wall03(nsew);
+		if (!wall.equals("X"))
+			return wall;
+		
+		wall = wall04(nsew);
+		if (!wall.equals("X"))
+			return wall;
+		
+		wall = wall05(nsew);
+		if (!wall.equals("X"))
+			return wall;
+		
+		return "X";
+	}
+	
+	private String wall03(boolean[] nsew)
+	{
+		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
+		
+		if (n && s && !e && !w)
+		{
+			return "X03";
+		}
+		
+		return "X";
+	}
+	
+	private String wall04(boolean[] nsew)
+	{
+		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
+		
+		if (n && !s && !e && !w) 
+		{
+			return "X04";
+		}
+		
+		return "X";
+		
+	}
+	
+	private String wall05(boolean[] nsew)
+	{
+		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
+		
+		if (!n && s && !e && !w) 
+		{
+			return "X03";
+		}
+		
+		return "X";
+		
+	}
+	
+	private String crossingWall(String wall, boolean[] nsew)
+	{
+		wall = wall06(nsew);
+		if (!wall.equals("X"))
+			return wall;
+		
+		wall = wall07(nsew);
+		if (!wall.equals("X"))
+			return wall;
+		
+		
+		wall = wall08(nsew);
+		if (!wall.equals("X"))
+			return wall;
+		
+		return wall;
+	}
+	
+	private String wall06(boolean[] nsew)
+	{
+		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
+		
+		if ((n && s && e && !w ) || (!n && s && e && !w ))
+			return "X06";
+		
+		return "X";
+	}
+	
+	private String wall07(boolean[] nsew)
+	{
+		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
+		
+		if ((n && s && e && w ) || (!n && s && e && w ) || (n && s && !e && w ) || (!n && s && !e && w ) )
+			return "X07";
+		
+		return "X";
+	}
+	
+	private String wall08(boolean[] nsew)
+	{
+		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
+		
+		if (n && !s && !e && w)
+		{
+			return "X08";
+		}
+		
+		return "X";
+	}
+
+	private String typeOfWall(String wall, int x, int y )
+	{
+		if (!wall.equals("X")) {
+			return " ";
+		}
+
+		char[][] map1 = game.getMap().getMap();
+		boolean n, s, w, e;
+
+		if (x == 0) {
+			w = false;
+			e = (map1[y][x + 1] == 'X');
+		} else if (x == game.getMap().getMapSize() - 1) {
+			w = (map1[y][x - 1] == 'X');
+			e = false;
+		} else {
+			w = (map1[y][x - 1] == 'X');
+			e = (map1[y][x + 1] == 'X');
+		}
+
+		if (y == 0) {
+			n = false;
+			s = (map1[y + 1][x] == 'X');
+		} else if (y == game.getMap().getMapSize() - 1) {
+			n = (map1[y - 1][x] == 'X');
+			s = false;
+		} else {
+			n = (map1[y - 1][x] == 'X');
+			s = (map1[y + 1][x] == 'X');
+		}
+		
+		boolean[] nsew = {n,s,e,w};
+		
+		wall = horizontalWall(wall, nsew);
+		
+		if (!wall.equals("X"))
+			return wall;
+		
+		wall = verticalWall(wall,nsew);
+		if (!wall.equals("X"))
+			return wall;
+		
+		wall = crossingWall(wall, nsew);
+		if (!wall.equals("X"))
+			return wall;
+		
+		return "ERROR";
+		
+
+	}
+	
+	private ArrayList<ArrayList<String>> getMapGui()
+	{
+		ArrayList<ArrayList<String>> board = new ArrayList<ArrayList<String>>();
+
+		for (int k = 0; k < game.getMap().getMapSize(); k++) {
+			ArrayList<String> line = new ArrayList<String>();
+			for (int i = 0; i < game.getMap().getMapSize(); i++) {
+				String temp;
+				temp = "" + game.getMap().getMap()[k][i];
+
+				temp = typeOfWall(temp, i, k);
+				line.add(temp);
+			}
+			board.add(line);
+
+		}
+		addPerspective(board);
+		return board;
+	}
+	
+	
+	
 }

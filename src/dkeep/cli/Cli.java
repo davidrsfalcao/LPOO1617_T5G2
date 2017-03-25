@@ -9,6 +9,12 @@ import dkeep.logic.Logic.status;
 import dkeep.logic.Character;
 import dkeep.logic.Maze1;
 
+/**
+ * Is the base to control Command Line Interface
+ * 
+ * @author davidfalcao
+ *
+ */
 public class Cli {
 
 	private Logic game;
@@ -23,6 +29,12 @@ public class Cli {
 		game = new Logic(new Maze1(), rand.nextInt(3), rand.nextInt(3)+1);
 	}
 
+	/**
+	 * Cli Constructor with initialization of typeGuard and nOgres
+	 * 
+	 * @param typeGuard
+	 * @param nOgres
+	 */
 	public Cli(int typeGuard, int nOgres)
 	{
 		game = new Logic(new Maze1(), typeGuard, nOgres);
@@ -103,6 +115,11 @@ public class Cli {
 		}
 	}
 
+	/**
+	 * Call all functions to move the characters in the game and the 
+	 * functions to check if the hero atack, die or win
+	 * 
+	 */
 	private void playGame()
 	{
 		printMap(game.getMap().getMap());
@@ -112,38 +129,5 @@ public class Cli {
 		game.atack_villains();
 		game.Over();
 	}
-	
-	public Logic getGame()
-	{
-		return game;
-	}
-	
-	public void setGame(Logic game)
-	{
-		this.game = game;
-	}
-	
-	public String print(char[][] map)
-	{
-		String temp = new String();
-		int tam = game.getAllCharacters().size();
-		ArrayList<Character> temp1 = game.getAllCharacters();
-		
-		for (int k = 0; k < tam; k++) {
-			map[temp1.get(k).getPosition().getY()][temp1.get(k).getPosition().getX()] = temp1.get(k).getRepresentation();
-		}
-		
-		for (int i = 0; i < map.length; i++) {
-			for (int k = 0; k < map[i].length; k++) {
-				temp = temp + (map[i][k] + " ");
-			}
-			temp = temp + '\n';
-		}
-		
-		
-		
-		return temp;
-	}
-	
 	
 }

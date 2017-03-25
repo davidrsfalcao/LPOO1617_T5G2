@@ -306,23 +306,22 @@ public class GameTests {
 		Suspicious go = new Suspicious(1,1,true);
 		int path[][] = {{1,1},{2,1},{3,1},{3,2},{2,2},{1,2}};
 		int[] test1 = { 1, 1 };
+		int[] test2 = { 2, 1 };
 		go.setPath(path);
 		assertEquals(test1[0], go.getPosition().getX());
 		assertEquals(test1[1], go.getPosition().getY());
 		go.moveCharacter(5);
+		go.updateLastPosition();
+		assertEquals(test2[0],go.moveCharacter(5).getX());
+		assertEquals(test2[1],go.moveCharacter(5).getY());
 		go.moveCharacter(5);
 		go.moveCharacter(5);
 		go.moveCharacter(5);
 		go.moveCharacter(5);
 		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
-		go.moveCharacter(5);
+	
+		
+		
 		
 		
 	}
@@ -333,9 +332,15 @@ public class GameTests {
 		Drunken go = new Drunken(1,1,true);
 		int path[][] = {{1,1},{2,1},{3,1},{3,2},{2,2},{1,2}};
 		int[] test1 = { 1, 1 };
+		int[] test2 = { 2, 1 };
 		go.setPath(path);
 		assertEquals(test1[0], go.getPosition().getX());
 		assertEquals(test1[1], go.getPosition().getY());
+		go.moveCharacter(5);
+		go.updateLastPosition();
+		assertEquals(test2[0],go.moveCharacter(5).getX());
+		assertEquals(test2[1],go.moveCharacter(5).getY());
+		
 		for(int i=0;i < 9;i++){
 		go.moveCharacter(5);
 		if(go.isAwake())
@@ -354,6 +359,11 @@ public class GameTests {
 		int[] test1 = { 1, 1 };
 		assertEquals(test1[0], go.getPosition().getX());
 		assertEquals(test1[1], go.getPosition().getY());
+		Position p = new Position(2,1,'*');
+		go.setClub(p);
+		assertTrue(go.getClub().getVisibility());
+		go.setClubNotVisible();
+		assertFalse(go.getClub().getVisibility());
 		go.setPosition(1, 0);
 		go.updateDirection();
 		go.updateLastPosition();
@@ -398,9 +408,14 @@ public class GameTests {
 		Rookie go = new Rookie(1,1,true);
 		int path[][] = {{1,1},{2,1},{3,1},{3,2},{2,2},{1,2}};
 		int[] test1 = { 1, 1 };
+		int[] test2 = { 2, 1 };
 		go.setPath(path);
 		assertEquals(test1[0], go.getPosition().getX());
 		assertEquals(test1[1], go.getPosition().getY());
+		go.moveCharacter(5);
+		go.updateLastPosition();
+		assertEquals(test2[0],go.moveCharacter(5).getX());
+		assertEquals(test2[1],go.moveCharacter(5).getY());
 		go.setPosition(1, 2);
 		go.updateDirection();
 		go.updateLastPosition();
@@ -408,10 +423,8 @@ public class GameTests {
 		go.setPosition(1, 1);
 		go.updateDirection();
 		go.updateLastPosition();
-		go.moveCharacter(5);
 		assertTrue(go.isPlaying());
-		go.moveCharacter(5);
-		go.moveCharacter(5);
+
 		
 		
 	}
@@ -430,7 +443,17 @@ public class GameTests {
 	public void TestHero()
 	{
 		Hero go = new Hero(1,1,true,false);
+		go.setWeapon(true);
+		assertTrue(go.is_armed());
 		go.moveCharacter(5);
+		go.updateLastPosition();
+		assertEquals(null,go.moveCharacter(5));
+		go.moveCharacter(5, 5);
+		go.updateLastPosition();
+		assertEquals(1,go.moveCharacter(5, 5).getX());
+		assertEquals(1,go.moveCharacter(5, 5).getY());
+		
+	
 		String s = ""+go;
 		
 	}
@@ -457,18 +480,20 @@ public class GameTests {
 		assertTrue(maze.getKey().getY() == 3);
 		assertFalse(maze.getMapSize() == 0);
 		
-		 
+	 
 	}
 	
+	
+	
 	@Test 
-	public void TestLogic()
+	public void TestLogic() 
 	{
 		Logic game = new Logic(new TestMap2(), rand.nextInt(3), rand.nextInt(3)+1);
 		assertFalse(game.getAllCharacters().isEmpty());
 		
-		
-		
 	}
+	
+	
 	
 	@Test
 	public void TestOgreStunned()

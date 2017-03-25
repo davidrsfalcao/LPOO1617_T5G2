@@ -180,8 +180,10 @@ public class GameFrame extends JFrame{
 					SaveLoad sv = new SaveLoad();
 					String path = chooser.getSelectedFile().getAbsolutePath()+ ".ser";
 					sv.save(game, path);
+					
 
 				}
+				requestFocusInWindow();
 				
 			}
 		});
@@ -413,8 +415,10 @@ public class GameFrame extends JFrame{
 						if (array.get(i).get(j +1) == " ")
 							array.get(i).set(j + 1, "XC1");
 					}
-					else
-						array.get(i).add(j + 1, "XC1");
+					else {
+						if (i != 0)
+							array.get(i).add(j + 1, "XC1");
+					}
 				}
 				
 

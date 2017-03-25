@@ -315,6 +315,12 @@ public class GamePanel extends JPanel {
 			e.printStackTrace();
 		}
 		
+		try {
+			win_img = ImageIO.read(new File("res/Win.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		
 		
 	}
@@ -339,11 +345,11 @@ public class GamePanel extends JPanel {
 		
 		if (win)
 		{
-			
+			temp = res.resize(win_img, width, height);
+			gr.drawImage(temp, 0, 0, null);
 		}
 		else {
 
-			
 			temp = res.resize(lose_img, width, height);
 			gr.drawImage(temp, 0, 0, null);
 			
@@ -543,7 +549,7 @@ public class GamePanel extends JPanel {
 				break;
 				
 			case "OK":
-				temp = res.resize(ogreStunned_front, resX, resY);
+				temp = res.resize(ogre_front, resX, resY);
 				gr.drawImage(temp, i, j, null);
 				break;
 				

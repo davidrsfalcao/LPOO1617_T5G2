@@ -81,24 +81,40 @@ public abstract class Character implements Serializable  {
 	{
 		last_position.copy(position);
 	}
-
+	/**
+	 * Update the Direction of the movement
+	 * 
+	 */
 	public void updateDirection()
 	{
 		if (position.equals(last_position))
 			return;
 		else direction_mov = position.getDirection(last_position);
 	}
-
+	/**
+	 * Returns the Direction of the movement
+	 * 
+	 * @return Direction
+	 */
 	public char getDirection()
 	{
 		return direction_mov;
 	}
 
+	/**
+	 * Set the representation to draw the front of the character 
+	 */
 	protected abstract void setFront();
-	
+	/**
+	 * Set the representation to draw the back of the character 
+	 */
 	protected abstract void setBack();
 	
-	
+	/**
+	 * Shows in what direction the character is moving to represent in the graphic mode
+	 * 
+	 *  @return Representation in Graphic Mode
+	 */
 	@Override
 	public String toString()
 	{

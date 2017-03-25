@@ -4,6 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * 
+ * Represents a game
+ * 
+ * @author davidfalcao
+ *
+ */
 public class Logic implements Serializable{
 	/**
 	 * 
@@ -32,6 +39,8 @@ public class Logic implements Serializable{
 	 * Level Constructor
 	 * 
 	 * @param map
+	 * @param type of Guard
+	 * @param number of ogres
 	 */
 	public Logic(Map map, int typeGuard, int nOgres) {
 		this.map = map;
@@ -53,6 +62,13 @@ public class Logic implements Serializable{
 
 	}
 	
+	/**
+	 * Init the hero in current map
+	 * 
+	 * @param heroArr - arraylist with initialization of all
+	 * hero atributes
+	 * 
+	 */
 	private void initHero(ArrayList<Integer> heroArr){
 		int hero_key = heroArr.get(2);
 		boolean hero_has_key;
@@ -69,6 +85,13 @@ public class Logic implements Serializable{
 		
 	}
 	
+	/**
+	 * Init the hero in current map
+	 * 
+	 * @param guardArr - arraylist with initialization of all
+	 * guard atributes
+	 * 
+	 */
 	private void initGuard(ArrayList<Integer> guardArr)
 	{
 		boolean guard_playing;
@@ -83,6 +106,13 @@ public class Logic implements Serializable{
 		else guard = new Suspicious(guardArr.get(0), guardArr.get(1), guard_playing);
 	}
 	
+	/**
+	 * Init the hero in current map
+	 * 
+	 * @param heroArr - arraylist with initialization of all
+	 * ogre atributes
+	 * 
+	 */
 	private void initOgres(ArrayList<Integer> ogreArr) {
 		if (ogreArr.get(0) == 1) {
 
@@ -130,6 +160,11 @@ public class Logic implements Serializable{
 		return false;
 	}
 
+	/**
+	 * Check if the hero was catch by the guard
+	 * 
+	 * @return true or false
+	 */
 	public boolean heroKilledByGuard()
 	{
 		if (guard.isPlaying()) {
@@ -146,6 +181,12 @@ public class Logic implements Serializable{
 		return false;
 	}
 	
+	/**
+	 * Check if the hero was killed by the ogre
+	 * 
+	 * @param ogre
+	 * @return true or false
+	 */
 	public boolean heroKilledByOgre(Ogre ogre)
 	{
 		if (!hero.is_armed()) {
@@ -160,6 +201,12 @@ public class Logic implements Serializable{
 		return false;
 	}
 	
+	/**
+	 * Check if the hero was killed by a massive club
+	 * 
+	 * @param ogre
+	 * @return
+	 */
 	public boolean heroKilledByClub(Ogre ogre)
 	{
 		if (ogre.getClubVisibily())
@@ -185,6 +232,9 @@ public class Logic implements Serializable{
 
 	}
  
+	/**
+	 * Hero pick up a key
+	 */
 	private void heroPickUpKey() {
 		if (hero.getPosition().equals(map.getKey())) {
 			switch (map.getKey().getType()) {
@@ -201,6 +251,9 @@ public class Logic implements Serializable{
 		}
 	}
 	
+	/**
+	 * Hero has a key and he opens the doors
+	 */
 	private void heroOpenDoors() {
 		if (map.getMap()[hero.getPosition().getY()][hero.getPosition().getX()] == 'I') {
 			if (hero.hasKey()) {
@@ -473,7 +526,9 @@ public class Logic implements Serializable{
 		return ogres;
 	}
 	
-
+	/**
+	 * Prints the current map on the console
+	 */
 	public void printMap() {
 
 		char[][] map1 = map.getMap();

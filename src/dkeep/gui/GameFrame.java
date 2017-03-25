@@ -401,11 +401,21 @@ public class GameFrame extends JFrame{
 					else
 						array.get(i).add(j + 1, "XS");
 				}
-				else if (array.get(i).get(j) == "X08")
+				else if (array.get(i).get(j) == "X08") {
 					if (j + 1 < array.get(i).size())
 						array.get(i).set(j + 1, "XC1");
 					else
 						array.get(i).add(j + 1, "XC1");
+				}
+				else if (array.get(i).get(j) == "X07") {
+					if (j + 1 < array.get(i).size())
+					{
+						if (array.get(i).get(j +1) == " ")
+							array.get(i).set(j + 1, "XC1");
+					}
+					else
+						array.get(i).add(j + 1, "XC1");
+				}
 				
 
 
@@ -514,7 +524,7 @@ public class GameFrame extends JFrame{
 		
 		if (!n && s && !e && !w) 
 		{
-			return "X03";
+			return "X05";
 		}
 		
 		return "X";

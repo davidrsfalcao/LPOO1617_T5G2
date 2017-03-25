@@ -476,6 +476,10 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		
 	}
 
+	/**
+	 * Clear the Array list - ogres
+	 * 
+	 */
 	public static void clearOgres()
 	{
 		ogres = new ArrayList<Ogre>();

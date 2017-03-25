@@ -9,10 +9,25 @@ import java.io.ObjectOutputStream;
 
 import dkeep.logic.Logic;
 
+/**
+ * Class that treats the save and load operations
+ * 
+ * @author davidfalcao
+ *
+ */
 public class SaveLoad {
 	
+	/**
+	 * Default constructor
+	 */
 	public SaveLoad(){};
 	
+	/**
+	 * Save the games into the choosen path
+	 * 
+	 * @param game
+	 * @param path
+	 */
 	public void save(Logic game, String path)
 	{
 		try{
@@ -29,6 +44,12 @@ public class SaveLoad {
 		}
 	}
 	
+	/**
+	 * Load the choosen file
+	 * 
+	 * @param file
+	 * @return
+	 */
 	public Logic load(File file)
 	{
 		Logic game;

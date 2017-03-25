@@ -317,6 +317,12 @@ public class Logic implements Serializable{
 		return checkLevel();
 	}
 
+	/**
+	 * Returns a temporary position of hero acording to the input
+	 * 
+	 * @param direction
+	 * @return
+	 */
 	public Position tryToMoveHero(char direction) {
 		Position temp = new Position();
 		if ('w' == direction)
@@ -331,6 +337,11 @@ public class Logic implements Serializable{
 		return temp;
 	}
 	
+	/**
+	 * Check if the movement is possible and update the hero's position
+	 * 
+	 * @param position
+	 */
 	public void updateHeroMovement(Position temp)
 	{
 		if (map.isFreeForHero(temp.getX(), temp.getY()) && positionClear(temp)) {
@@ -341,6 +352,11 @@ public class Logic implements Serializable{
 	
 	}
 	
+	/**
+	 * Check if the hero passed the level and if the game has another level
+	 * 
+	 * @return Logic
+	 */
 	public Logic checkLevel()
 	{
 		if (levelUp()) {
@@ -365,6 +381,11 @@ public class Logic implements Serializable{
 		
 	}
 
+	/**
+	 * Move the guard
+	 * 
+	 * @param pos
+	 */
 	private void moveGuard(Position pos)
 	{
 		if (guard.isPlaying()) {
@@ -376,6 +397,11 @@ public class Logic implements Serializable{
 		}
 	}
 	
+	/**
+	 * Move all ogres
+	 * 
+	 * @param pos
+	 */
 	private void moveOgres(Position pos){
 		for (Ogre ogre : ogres) {
 			if (ogre.isPlaying()) {
@@ -394,6 +420,12 @@ public class Logic implements Serializable{
 		
 	}
 	
+	/**
+	 * Move the club of all ogres
+	 * 
+	 * @param position
+	 * @param ogre
+	 */
 	private void moveClub(Position pos, Ogre ogre){
 		pos = ogre.moveClub();
 
@@ -521,6 +553,11 @@ public class Logic implements Serializable{
 		
 	}
 	
+	/**
+	 * Returns all the ogres
+	 * 
+	 * @return ogres
+	 */
 	public ArrayList<Ogre> getOgres()
 	{
 		return ogres;

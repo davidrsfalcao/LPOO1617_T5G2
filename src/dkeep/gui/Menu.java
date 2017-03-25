@@ -23,6 +23,13 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.Toolkit;
 
+/**
+ * Window of menu initial
+ * 
+ * 
+ * @author davidfalcao
+ *
+ */
 public class Menu extends JFrame{
 
 	private static final long serialVersionUID = 1L;
@@ -37,7 +44,9 @@ public class Menu extends JFrame{
 	private int guardType = 0; 
 	private int nOgres = 3;
 
-	
+	/**
+	 * Constructor
+	 */
 	public Menu(){
 		setResizable(false);
 		setTitle("Dungeon Keep");
@@ -69,6 +78,10 @@ public class Menu extends JFrame{
 		
 	}
 
+	/**
+	 * Initialization of buttons
+	 * 
+	 */
 	private void setUpButtons() {
 		// Play Game 
 		btnNewGame = new JButton("New Game");
@@ -123,6 +136,10 @@ public class Menu extends JFrame{
 	
 	}
 	
+	/**
+	 * Display the buttons
+	 * 
+	 */
 	private void addButtons() {
 		btnNewGame.setBounds(400, 300, 224, 50);
 		getContentPane().add(btnNewGame);
@@ -146,6 +163,10 @@ public class Menu extends JFrame{
 		
 	}
 	
+	/**
+	 * Start the window
+	 * 
+	 */
 	public void start() {
 		setSize(1024, 720);
 
@@ -156,22 +177,41 @@ public class Menu extends JFrame{
 		setVisible(true);
 	}
 	
+	/**
+	 * Redefine the type of the guard
+	 * 
+	 * @param type
+	 */
 	public void setGuardType(int type)
 	{
 		guardType = type;	
 	}
 	
+	/**
+	 * Redefine the number of ogres
+	 * 
+	 * @param number
+	 */
 	public void setNOgres(int n)
 	{
 		nOgres = n;	
 	}
 
+	/**
+	 * Initialization of the game
+	 * 
+	 */
 	public void initGame(){
 		setVisible(false);
 		GameFrame game = new GameFrame(new Menu(), guardType, nOgres);
 		game.start();
 	}
 	
+	/**
+	 * Initialization fo the game with the status chosen
+	 * 
+	 * @param game
+	 */
 	public void initGame(Logic game1)
 	{
 		setVisible(false);

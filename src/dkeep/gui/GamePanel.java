@@ -11,7 +11,12 @@ import javax.swing.JPanel;
 
 import dkeep.logic.*;
 
-
+/**
+ * Panel that displays the game
+ * 
+ * @author davidfalcao
+ *
+ */
 public class GamePanel extends JPanel {
 
 	/**
@@ -101,7 +106,11 @@ public class GamePanel extends JPanel {
 	private BufferedImage light9;
 	
 	
-	
+	/**
+	 * Cosntructor
+	 * Upload the images
+	 * 
+	 */
 	public GamePanel() {	
 		/**
 		 * HERO
@@ -385,6 +394,10 @@ public class GamePanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Override of paintComponent
+	 * 
+	 */
 	@Override
 	public void paintComponent(Graphics gr) {
 		super.paintComponent(gr); // clears the background ...		
@@ -396,6 +409,11 @@ public class GamePanel extends JPanel {
 		else drawEndMenu(gr);
 	}
 	
+	/**
+	 * Draw the end images (win or lose)
+	 * 
+	 * @param graphics
+	 */
 	public void drawEndMenu(Graphics gr)
 	{
 		BufferedImage temp;
@@ -417,6 +435,11 @@ public class GamePanel extends JPanel {
 		
 	}
 
+	/**
+	 * Draw the game board
+	 * 
+	 * @param graphics
+	 */
 	public void drawBoard(Graphics gr)
 	{
 		
@@ -514,6 +537,11 @@ public class GamePanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Draw the characters of the game
+	 * 
+	 * @param graphics
+	 */
 	public void drawCharacters(Graphics gr)
 	{		
 		int map_size = map.size();
@@ -653,6 +681,11 @@ public class GamePanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Draw the objective o the game
+	 * 
+	 * @param graphics
+	 */
 	public void drawObjectives(Graphics gr)
 	{
 		Resizer res = new Resizer();
@@ -725,29 +758,54 @@ public class GamePanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Redefines the board
+	 * 
+	 * @param map
+	 */
 	public void setMap(ArrayList<ArrayList<String>> map1)
 	{
 		map = new ArrayList<ArrayList<String>>(map1);
 		
 	}
 	
+	/**
+	 * Redefines the objectives
+	 * 
+	 * @param objectives
+	 */
 	public void setObjectives(ArrayList<Position> obj)
 	{
 		objectives = new ArrayList<Position>(obj);
 		
 	}
 	
+	/**
+	 * Redefines the characters
+	 * 
+	 * @param characters
+	 */
 	public void setCharacters(ArrayList<Position> obj)
 	{
 		characters = new ArrayList<Position>(obj);
 		
 	}
 	
+	/**
+	 * Set the game as won
+	 * 
+	 * @param status
+	 */
 	public void setWin(boolean status)
 	{
 		win = status;
 	}
 	
+	/**
+	 * Set the game as lost
+	 * 
+	 * @param status
+	 */
 	public void setLose(boolean status)
 	{
 		lose = status;

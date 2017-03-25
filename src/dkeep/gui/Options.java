@@ -12,6 +12,12 @@ import javax.swing.JPanel;
 import dkeep.logic.Logic;
 import dkeep.logic.Maze3;
 
+/**
+ * Options displayed in Create Maze
+ * 
+ * @author davidfalcao
+ *
+ */
 public class Options extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -21,6 +27,11 @@ public class Options extends JPanel {
 	private Menu window;
 	private Logic game;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param frame
+	 */
 	public Options(JFrame frame) {
 		JButton jogar = new JButton("Play the Maze");
 		jogar.addActionListener(new ActionListener() {
@@ -75,10 +86,18 @@ public class Options extends JPanel {
 		this.add(opcoes);
 	}
 
+	/**
+	 * Close the options
+	 */
 	public void close() {
 		setVisible(false);
 	}
 
+	/**
+	 * Return the select Object
+	 * 
+	 * @return
+	 */
 	public static String getSelecionado() {
 		return (String) opcoes.getSelectedItem();
 	}

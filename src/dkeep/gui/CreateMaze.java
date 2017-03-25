@@ -18,7 +18,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
+/**
+ * Panel that displays the Creator of the Maze
+ * 
+ * @author davidfalcao
+ *
+ */
 public class CreateMaze extends JPanel implements MouseListener,MouseMotionListener {
 	
 	private static JPanel panel;
@@ -48,19 +53,13 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 	
 /////////////////////////////////////////////////
 
-	boolean verificaOgre(int x, int y) 
-	{
-		for (int i = 0; i < ogres.size(); i++) 
-		{
-			if (ogres.get(i).getPosition().getX() == x && ogres.get(i).getPosition().getY() == y) 
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-	
 
+	
+	/**
+	 * Constructor 
+	 * 
+	 * @param tamanho
+	 */
 	CreateMaze(int tamanho) {
 
 		heroi.setPosition(-1, -1);
@@ -91,6 +90,29 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		
 	}
 	
+	/**
+	 * Check if exist an ogre in the position xy
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	boolean verificaOgre(int x, int y) 
+	{
+		for (int i = 0; i < ogres.size(); i++) 
+		{
+			if (ogres.get(i).getPosition().getX() == x && ogres.get(i).getPosition().getY() == y) 
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Upload of images
+	 * 
+	 */
 	void Elements() {
 		
 		try {
@@ -130,7 +152,10 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		}
 	}
 	
-	
+	/**
+	 * Override of paintComponet
+	 * 
+	 */
 	public void paintComponent(Graphics gr) {
 
 		super.paintComponent(gr);
@@ -197,7 +222,11 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 
 	}
 	
-
+	/**
+	 * Initialization of a window for Create the maze
+	 * 
+	 * @param tamanho
+	 */
 	public static void construir(int tamanho) {
 		frame = new JFrame("Maze Creator");
 		frame.setPreferredSize(new Dimension(600, 600));
@@ -214,28 +243,46 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		frame.requestFocus();
 	}
 
-	
+	/**
+	 * Unused
+	 */	
 	public void mouseClicked(MouseEvent arg0) {
 	}
 
+	/**
+	 * Unused
+	 */
 	public void mouseEntered(MouseEvent arg0) {
 	}
 
+	/**
+	 * Unused
+	 */
 	public void mouseExited(MouseEvent arg0) {
 	}
 	
+	/**
+	 * Unused
+	 */
 	public void mouseReleased(MouseEvent arg0) {
 	}
 
+	/**
+	 * Unused
+	 */
 	public void mouseDragged(MouseEvent arg0) {
 	}
 
+	/**
+	 * Unused
+	 */
 	public void mouseMoved(MouseEvent arg0) {
 	}
 	
+	/**
+	 * Override of mousePressed
+	 */
 	public void mousePressed(MouseEvent arg0) {
-		
-		
 		
 		double x=  arg0.getX() /(getWidth() / tamanho); 
 		double y=  arg0.getY() /( (getHeight() +20) / tamanho); 
@@ -435,10 +482,20 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		
 	}
 	
+	/**
+	 * Returns the hero
+	 * 
+	 * @return
+	 */
 	public static Hero getHero() {
 		return heroi;
 	}
 	
+	/**
+	 * Returns the exit
+	 * 
+	 * @return
+	 */
 	public static boolean getSaida()
 	{
 		for (int linha = 0; linha < tamanho; linha++) 
@@ -453,23 +510,42 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 		
 	}
 
+	/**
+	 * Returns the key
+	 * 
+	 * @return key
+	 */
 	public static Integer[] getKey()
 	{
 		return key;
 		
 	}
 
+	/**
+	 * Return the Map
+	 * 
+	 * @return
+	 */
 	public static char[][] getMaze() 
 	{
-		
 		return maze;
 	}
 	
+	/**
+	 * Returns the window
+	 * 
+	 * @return
+	 */
 	static JFrame getFrame() 
 	{
 		return frame;
 	}
 	
+	/**
+	 * Return the ogres
+	 * 
+	 * @return
+	 */
 	public static ArrayList<Ogre> getOgres()
 	{
 		return ogres;

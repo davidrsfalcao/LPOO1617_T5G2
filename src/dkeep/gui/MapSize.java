@@ -1,7 +1,5 @@
 package dkeep.gui;
 
-
-
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,9 +11,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Dialog to chose the size of Map
+ * 
+ * @author davidfalcao
+ *
+ */
 public class MapSize extends JDialog{
 	private static final long serialVersionUID = 1L;
 	
+
+	/**
+	 * Create the dialog.
+	 */
 	public MapSize(Menu window){
 		
 		setResizable(false);

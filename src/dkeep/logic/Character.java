@@ -2,6 +2,13 @@ package dkeep.logic;
 
 import java.io.Serializable;
 
+/**
+ * Is the representation of all that moves in the game, 
+ * although each character have got is own personality
+ * 
+ * @author davidfalcao
+ *
+ */
 public abstract class Character implements Serializable  {
 	
 	/**

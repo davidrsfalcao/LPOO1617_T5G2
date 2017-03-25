@@ -1,5 +1,12 @@
 package dkeep.logic;
 
+/**
+ * It's the main character. It is the only that is controlled
+ * by the user
+ * 
+ * @author davidfalcao
+ *
+ */
 public class Hero extends Character{
 	
 	/**
@@ -9,7 +16,14 @@ public class Hero extends Character{
 	private boolean has_key;
 	private boolean is_armed;
 	
-	
+	/**
+	 * Hero constructor
+	 * 
+	 * @param posX parameter x of the position
+	 * @param posY parameter y of the position
+	 * @param has_key show if hero has key or not
+	 * @param is_armed show if hero is armed or not
+	 */
 	public Hero(int posX, int posY, boolean has_key, boolean is_armed)
 	{
 		playing = true;
@@ -36,7 +50,7 @@ public class Hero extends Character{
 	}
 
 	/**
-	 * Moves the Hero
+	 * Controls the hero movement
 	 * 
 	 * @param MAP_SIZE
 	 * @param dir
@@ -56,6 +70,12 @@ public class Hero extends Character{
 		return position;
 	}
 	
+	/**
+	 * Move hero right
+	 * 
+	 * @param MAP_SIZE
+	 * @return Position
+	 */
 	public Position moveRight(int MAP_SIZE)
 	{
 		Position temp =  new Position(position.getX(), position.getY(), position.getRepresentation());
@@ -65,6 +85,12 @@ public class Hero extends Character{
 		return temp;	
 	}
 	
+	/**
+	 * Move hero down
+	 * 
+	 * @param MAP_SIZE
+	 * @return Position
+	 */
 	public Position moveDown(int MAP_SIZE)
 	{
 		Position temp =  new Position(position.getX(), position.getY(), position.getRepresentation());
@@ -73,6 +99,12 @@ public class Hero extends Character{
 		return temp;	
 	}
 	
+	/**
+	 * Move hero left
+	 * 
+	 * @param MAP_SIZE
+	 * @return Position
+	 */
 	public Position moveLeft(int MAP_SIZE)
 	{
 		Position temp =  new Position(position.getX(), position.getY(), position.getRepresentation());
@@ -81,6 +113,12 @@ public class Hero extends Character{
 		return temp;	
 	}
 	
+	/**
+	 * Move hero up
+	 * 
+	 * @param MAP_SIZE
+	 * @return Position
+	 */
 	public Position moveUp(int MAP_SIZE)
 	{
 		Position temp =  new Position(position.getX(), position.getY(), position.getRepresentation());
@@ -129,12 +167,20 @@ public class Hero extends Character{
 		return is_armed;
 	}
 	
+	/**
+	 * Refines if hero has or has not a key
+	 * 
+	 * @param armed - true or false
+	 */
 	public void setWeapon(boolean armed)
 	{
 		this.is_armed=armed;
 		
 	}
 	
+	/**
+	 * Set the representation to draw the front of the character 
+	 */
 	protected void setFront()
 	{
 			if (!is_armed && !has_key)
@@ -147,6 +193,9 @@ public class Hero extends Character{
 
 	}
 	
+	/**
+	 * Set the representation to draw the back of the character 
+	 */
 	protected void setBack()
 	{
 			if (!is_armed)

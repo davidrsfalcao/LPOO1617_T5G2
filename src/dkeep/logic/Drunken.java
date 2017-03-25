@@ -2,6 +2,18 @@ package dkeep.logic;
 
 import java.util.Random;
 
+/**
+ * 
+ * There is the "Drunken", a tormented pour soul that finds in liquor, 
+ * refuge from its troubled life, and that, while patrolling might fall asleep 
+ * (randomly, stops and stays at same position for a while, changing his
+ *  representation to lowercase "g", and that might reverse his patrolling 
+ *  direction when he wakes up. While asleep, hero can move next to the 
+ *  guard and not loose the game).
+ * 
+ * @author davidfalcao
+ *
+ */
 public class Drunken extends Guard{
 
 	/**
@@ -10,6 +22,7 @@ public class Drunken extends Guard{
 	private static final long serialVersionUID = 1L;
 	private int counter; // Counter of sleepy rounds and awake rounds
 	private Random rand = new Random(); 
+	
 	/**
 	 * Constructor of Drunk Guard
 	 * @param posX parameter x of the position
@@ -28,6 +41,12 @@ public class Drunken extends Guard{
 		last_position = new Position(posX, posY, position.getRepresentation());
 
 	}
+	
+	/**
+	 * Test if the guard is playing and move him
+	 * 
+	 * @return position
+	 */
 	public Position moveCharacter(int MAP_SIZE) {
 		if (playing)
 			if (counter == 0)
@@ -38,6 +57,10 @@ public class Drunken extends Guard{
 		return position;
 	}
 
+	/**
+	 * Restart the counter of sleping or awaking rounds
+	 * 
+	 */
 	private void restartCounter() {
 		awake = !awake;
 
@@ -50,6 +73,10 @@ public class Drunken extends Guard{
 		}
 	}
 
+	/**
+	 * Move the guard if him isn't sleeping
+	 * 
+	 */
 	private void move()
 	{
 		if (awake) {

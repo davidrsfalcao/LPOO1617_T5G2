@@ -81,6 +81,7 @@ public abstract class Character implements Serializable  {
 	{
 		last_position.copy(position);
 	}
+	
 	/**
 	 * Update the Direction of the movement
 	 * 
@@ -91,6 +92,7 @@ public abstract class Character implements Serializable  {
 			return;
 		else direction_mov = position.getDirection(last_position);
 	}
+	
 	/**
 	 * Returns the Direction of the movement
 	 * 
@@ -105,6 +107,7 @@ public abstract class Character implements Serializable  {
 	 * Set the representation to draw the front of the character 
 	 */
 	protected abstract void setFront();
+	
 	/**
 	 * Set the representation to draw the back of the character 
 	 */

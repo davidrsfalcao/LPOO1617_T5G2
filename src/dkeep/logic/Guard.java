@@ -1,5 +1,14 @@
 package dkeep.logic;
 
+/**
+ * The Dungeon's Guard Militia is composed of 
+ * several guards that take turns at patrolling 
+ * the dungeon. Each guard has its own "personality.
+ * 
+ * 
+ * @author davidfalcao
+ *
+ */
 public abstract class Guard extends Character {
 
 	/**
@@ -52,11 +61,21 @@ public abstract class Guard extends Character {
 		return awake;
 	}
 
+	/**
+	 * Redefines the path of movement
+	 * 
+	 * @param path
+	 */
 	public void setPath (int[][] path)
 	{
 		this.path = path;
 	}
 	
+	/**
+	 * Changes the representation of the guard for 
+	 * front representations
+	 * 
+	 */
 	protected void setFront()
 	{
 		if (awake)
@@ -65,6 +84,11 @@ public abstract class Guard extends Character {
 		
 	}
 	
+	/**
+	 * Changes the representation of the guard for
+	 * back representations
+	 * 
+	 */
 	protected void setBack()
 	{
 		if (awake)

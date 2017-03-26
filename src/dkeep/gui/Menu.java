@@ -1,7 +1,6 @@
 package dkeep.gui;
 
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JDialog;
@@ -53,7 +52,7 @@ public class Menu extends JFrame{
 		pack();
 		BufferedImage myImage = null;
 		try {
-			myImage = ImageIO.read(new File("src/dkeep/gui/res/Menu.png"));
+			myImage = ImageIO.read(this.getClass().getResource("res/Menu.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

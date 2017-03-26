@@ -204,6 +204,7 @@ public class Menu extends JFrame{
 		setVisible(false);
 		GameFrame game = new GameFrame(new Menu(), guardType, nOgres);
 		game.start();
+		this.dispose();
 	}
 	
 	/**

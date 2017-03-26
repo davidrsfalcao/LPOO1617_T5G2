@@ -116,37 +116,37 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 	void Elements() {
 		
 		try {
-			floor = ImageIO.read(new File("res/creator/Floor.png"));
+			floor = ImageIO.read(new File("src/dkeep/gui/res/creator/Floor.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			wall = ImageIO.read(new File("res/creator/Wall.png"));
+			wall = ImageIO.read(new File("src/dkeep/gui/res/creator/Wall.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			keys = ImageIO.read(new File("res/creator/Key.png"));
+			keys = ImageIO.read(new File("src/dkeep/gui/res/creator/Key.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			hero = ImageIO.read(new File("res/creator/Hero.png"));
+			hero = ImageIO.read(new File("src/dkeep/gui/res/creator/Hero.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			ogre= ImageIO.read(new File("res/creator/Ogre.png"));
+			ogre= ImageIO.read(new File("src/dkeep/gui/res/creator/Ogre.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			door = ImageIO.read(new File("res/creator/Door.png"));
+			door = ImageIO.read(new File("src/dkeep/gui/res/creator/Door.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -53,7 +53,7 @@ public class Menu extends JFrame{
 		pack();
 		BufferedImage myImage = null;
 		try {
-			myImage = ImageIO.read(new File("res/Menu.png"));
+			myImage = ImageIO.read(new File("src/dkeep/gui/res/Menu.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

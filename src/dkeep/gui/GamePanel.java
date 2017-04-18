@@ -2,7 +2,6 @@ package dkeep.gui;
 
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -117,37 +116,37 @@ public class GamePanel extends JPanel {
 		 * 
 		 */
 		try {
-			hero_front = ImageIO.read(new File("res/hero/Hero.png"));
+			hero_front = ImageIO.read(this.getClass().getResource("res/hero/Hero.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			hero_back = ImageIO.read(new File("res/hero/HeroBack.png"));
+			hero_back = ImageIO.read(this.getClass().getResource("res/hero/HeroBack.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			heroArmed_back = ImageIO.read(new File("res/hero/HeroBackArmed.png"));
+			heroArmed_back = ImageIO.read(this.getClass().getResource("res/hero/HeroBackArmed.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			heroArmed_front = ImageIO.read(new File("res/hero/HeroArmed.png"));
+			heroArmed_front = ImageIO.read(this.getClass().getResource("res/hero/HeroArmed.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			heroKeyArmed_front = ImageIO.read(new File("res/hero/HeroArmedWithKey.png"));
+			heroKeyArmed_front = ImageIO.read(this.getClass().getResource("res/hero/HeroArmedWithKey.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			 club = ImageIO.read(new File("res/ogre/Club.png"));
+			 club = ImageIO.read(this.getClass().getResource("res/ogre/Club.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -158,25 +157,25 @@ public class GamePanel extends JPanel {
 		 * 
 		 */
 		try {
-			ogre_front = ImageIO.read(new File("res/ogre/Ogre.png"));
+			ogre_front = ImageIO.read(this.getClass().getResource("res/ogre/Ogre.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			ogre_back = ImageIO.read(new File("res/ogre/OgreBack.png"));
+			ogre_back = ImageIO.read(this.getClass().getResource("res/ogre/OgreBack.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			ogreStunned_front = ImageIO.read(new File("res/ogre/OgreStunned.png"));
+			ogreStunned_front = ImageIO.read(this.getClass().getResource("res/ogre/OgreStunned.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			ogreStunned_front = ImageIO.read(new File("res/ogre/OgreStunned.png"));
+			ogreStunned_front = ImageIO.read(this.getClass().getResource("res/ogre/OgreStunned.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -193,50 +192,50 @@ public class GamePanel extends JPanel {
 		 */
 		
 		try {
-			wall00 = ImageIO.read(new File("res/walls/Wall00.png"));
+			wall00 = ImageIO.read(this.getClass().getResource("res/walls/Wall00.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			wall01 = ImageIO.read(new File("res/walls/Wall01.png"));
+			wall01 = ImageIO.read(this.getClass().getResource("res/walls/Wall01.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			wall02 = ImageIO.read(new File("res/walls/Wall02.png"));
+			wall02 = ImageIO.read(this.getClass().getResource("res/walls/Wall02.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			wall03 = ImageIO.read(new File("res/walls/Wall03.png"));
+			wall03 = ImageIO.read(this.getClass().getResource("res/walls/Wall03.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 				
 		try {
-			wall06 = ImageIO.read(new File("res/walls/Wall06.png"));
+			wall06 = ImageIO.read(this.getClass().getResource("res/walls/Wall06.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		
 		try {
-			wall07 = ImageIO.read(new File("res/walls/Wall07.png"));
+			wall07 = ImageIO.read(this.getClass().getResource("res/walls/Wall07.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			wallC = ImageIO.read(new File("res/walls/WallC.png"));
+			wallC = ImageIO.read(this.getClass().getResource("res/walls/WallC.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			wallC1 = ImageIO.read(new File("res/walls/WallC1.png"));
+			wallC1 = ImageIO.read(this.getClass().getResource("res/walls/WallC1.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -247,19 +246,19 @@ public class GamePanel extends JPanel {
 		 * 
 		 */
 		try {
-			guard_front = ImageIO.read(new File("res/guard/Guard.png"));
+			guard_front = ImageIO.read(this.getClass().getResource("res/guard/Guard.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			guard_back = ImageIO.read(new File("res/guard/GuardB.png"));
+			guard_back = ImageIO.read(this.getClass().getResource("res/guard/GuardB.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			guard_sleep = ImageIO.read(new File("res/guard/GuardS.png"));
+			guard_sleep = ImageIO.read(this.getClass().getResource("res/guard/GuardS.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -273,13 +272,13 @@ public class GamePanel extends JPanel {
 		
 		
 		try {
-			floor = ImageIO.read(new File("res/floor/Grass.png"));
+			floor = ImageIO.read(this.getClass().getResource("res/floor/Grass.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			floors = ImageIO.read(new File("res/floor/Grass1.png"));
+			floors = ImageIO.read(this.getClass().getResource("res/floor/Grass1.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -291,99 +290,99 @@ public class GamePanel extends JPanel {
 		 */
 		
 		try {
-			doorClosed = ImageIO.read(new File("res/objectives/Closed.png"));
+			doorClosed = ImageIO.read(this.getClass().getResource("res/objectives/Closed.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			key = ImageIO.read(new File("res/objectives/Key.png"));
+			key = ImageIO.read(this.getClass().getResource("res/objectives/Key.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			leverUp = ImageIO.read(new File("res/objectives/Lever.png"));
+			leverUp = ImageIO.read(this.getClass().getResource("res/objectives/Lever.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			leverDown = ImageIO.read(new File("res/objectives/Lever1.png"));
+			leverDown = ImageIO.read(this.getClass().getResource("res/objectives/Lever1.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			key = ImageIO.read(new File("res/objectives/Key.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
-		try {
-			lose_img = ImageIO.read(new File("res/Lose.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		try {
-			win_img = ImageIO.read(new File("res/Win.png"));
+			key = ImageIO.read(this.getClass().getResource("res/objectives/Key.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		
 		try {
-			light1 = ImageIO.read(new File("res/luz/Luz_01.png"));
+			lose_img = ImageIO.read(this.getClass().getResource("res/Lose.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			light2 = ImageIO.read(new File("res/luz/Luz_02.png"));
+			win_img = ImageIO.read(this.getClass().getResource("res/Win.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			light1 = ImageIO.read(this.getClass().getResource("res/luz/Luz_01.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			light3 = ImageIO.read(new File("res/luz/Luz_03.png"));
+			light2 = ImageIO.read(this.getClass().getResource("res/luz/Luz_02.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			light4 = ImageIO.read(new File("res/luz/Luz_04.png"));
+			light3 = ImageIO.read(this.getClass().getResource("res/luz/Luz_03.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			light5 = ImageIO.read(new File("res/luz/Luz_05.png"));
+			light4 = ImageIO.read(this.getClass().getResource("res/luz/Luz_04.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			light6 = ImageIO.read(new File("res/luz/Luz_06.png"));
+			light5 = ImageIO.read(this.getClass().getResource("res/luz/Luz_05.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			light7 = ImageIO.read(new File("res/luz/Luz_07.png"));
+			light6 = ImageIO.read(this.getClass().getResource("res/luz/Luz_06.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			light8 = ImageIO.read(new File("res/luz/Luz_08.png"));
+			light7 = ImageIO.read(this.getClass().getResource("res/luz/Luz_07.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			light9 = ImageIO.read(new File("res/luz/Luz_09.png"));
+			light8 = ImageIO.read(this.getClass().getResource("res/luz/Luz_08.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			light9 = ImageIO.read(this.getClass().getResource("res/luz/Luz_09.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

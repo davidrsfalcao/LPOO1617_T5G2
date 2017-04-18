@@ -14,7 +14,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -116,37 +115,37 @@ public class CreateMaze extends JPanel implements MouseListener,MouseMotionListe
 	void Elements() {
 		
 		try {
-			floor = ImageIO.read(new File("res/creator/Floor.png"));
+			floor = ImageIO.read(this.getClass().getResource("res/creator/Floor.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			wall = ImageIO.read(new File("res/creator/Wall.png"));
+			wall = ImageIO.read(this.getClass().getResource("res/creator/Wall.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			keys = ImageIO.read(new File("res/creator/Key.png"));
+			keys = ImageIO.read(this.getClass().getResource("res/creator/Key.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			hero = ImageIO.read(new File("res/creator/Hero.png"));
+			hero = ImageIO.read(this.getClass().getResource("res/creator/Hero.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			ogre= ImageIO.read(new File("res/creator/Ogre.png"));
+			ogre= ImageIO.read(this.getClass().getResource("res/creator/Ogre.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			door = ImageIO.read(new File("res/creator/Door.png"));
+			door = ImageIO.read(this.getClass().getResource("res/creator/Door.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

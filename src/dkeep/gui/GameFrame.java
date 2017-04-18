@@ -606,7 +606,7 @@ public class GameFrame extends JFrame{
 	{
 		boolean n = nsew[0], s = nsew[1], e = nsew[2], w = nsew[3];
 		
-		if (!n && !s && !e && w)
+		if ((!n && !s && !e && w) || (!n && !s && !e && !w) )
 		{
 			return "X01";
 		}

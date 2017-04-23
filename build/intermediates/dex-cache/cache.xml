@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/davidfalcao/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-android/1.9.6/57c2831c870743712b808384187ea856e541878f/gdx-backend-android-1.9.6.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="57c2831c870743712b808384187ea856e541878f">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/Projeto2/android/build/intermediates/pre-dexed/debug/gdx-backend-android-1.9.6_efb94c6df7dcdf6e41310de1210ffdc9d73f7bac.jar" />
+    </item>
+    <item
+        jar="/Users/davidfalcao/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-freetype/1.9.6/69187cc3c8062f191df435b43671b0e5ffcbf353/gdx-freetype-1.9.6.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="69187cc3c8062f191df435b43671b0e5ffcbf353">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/Projeto2/android/build/intermediates/pre-dexed/debug/gdx-freetype-1.9.6_de1783dc38df61e50f895e1f280f8f57b56b6a6c.jar" />
+    </item>
+    <item
+        jar="/Users/davidfalcao/GitHub/LPOO1617_T5G2/Projeto2/core/build/libs/core-1.0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="fcf8ecfd9a55b7447001a8c9a1e288c4416aa50c">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/Projeto2/android/build/intermediates/pre-dexed/debug/core-1.0_c7b230f41cff2905f3533b0a0ff5e7c7301e7307.jar" />
+    </item>
+    <item
+        jar="/Users/davidfalcao/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.9.6/47d1e9b890e364ec28f128e9bb3b9a12a94c164/gdx-1.9.6.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="047d1e9b890e364ec28f128e9bb3b9a12a94c164">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/Projeto2/android/build/intermediates/pre-dexed/debug/gdx-1.9.6_134a408a377f5a778a7268fc3178ab5a5a6831f4.jar" />
+    </item>
+    <item
+        jar="/Users/davidfalcao/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-box2d/1.9.6/c249ef4060a4fada952f278455c8f7b9cba3c18a/gdx-box2d-1.9.6.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="c249ef4060a4fada952f278455c8f7b9cba3c18a">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/Projeto2/android/build/intermediates/pre-dexed/debug/gdx-box2d-1.9.6_12d5a40a98c03c7a914816ed9002fbe427f36daa.jar" />
+    </item>
+
+</items>

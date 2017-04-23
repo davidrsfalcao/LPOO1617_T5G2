@@ -1,12 +1,12 @@
-package com.logic.desktop;
+package com.jetpoo.game.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.logic.MainGame;
+import com.jetpoo.game.JetPoo;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new MainGame(), config);
+		new LwjglApplication(new JetPoo(), config);
 	}
 }

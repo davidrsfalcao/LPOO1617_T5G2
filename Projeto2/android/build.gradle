@@ -18,7 +18,7 @@ android {
         exclude 'META-INF/robovm/ios/robovm.xml'
     }
     defaultConfig {
-        applicationId "com.logic"
+        applicationId "com.jetpoo.game"
         minSdkVersion 9
         targetSdkVersion 25
     }
@@ -71,7 +71,7 @@ task run(type: Exec) {
     }
 
     def adb = path + "/platform-tools/adb"
-    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.logic/com.logic.AndroidLauncher'
+    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.jetpoo.game/com.jetpoo.game.AndroidLauncher'
 }
 
 // sets up the Android Eclipse project, using the old Ant based build.

@@ -8,15 +8,15 @@
 
 **Test Design**
 
-1-Personagem move com sucesso.
+1-Character moves successfully.
 
-2-Jogo termina quando a personagem bate contra obstáculo.
+2-Character moves into an obstacle and the game ends with defeat.
 
-3-Personagem não ultrapassa o limite inferior.
+3-Character doesn´t exceed the Bottom limit .
 
-4-Personagem não ultrapassa o limite superior.
+4-Character doesn´t exceed the Upper limit .
 
-5-Comportamento Random dos obstáculos.
+5-Obstacles appear Rondomly.
 
-6-Personagem apanha power-up com sucesso.
+6-Character gets a power-up successfully.
 

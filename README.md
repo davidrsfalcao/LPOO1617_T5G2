@@ -1,6 +1,7 @@
 # Final Project Intermediate Check-Point
 
 **Architecture Design**
+* [UML](https://github.com/davidrsfalcao/LPOO1617_T5G2/blob/final-project/Intermediate%20Check-Point/JetPoo.pdf) 
 * [Behavioural Aspect](https://github.com/davidrsfalcao/LPOO1617_T5G2/blob/final-project/Intermediate%20Check-Point/Behavioural%20Automaton.pdf)
 
 **GUI Design**

@@ -9,6 +9,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import static com.jetpoo.game.view.GameView.PIXEL_TO_METER;
 
 /**
+ * A abstract view capable of holding a sprite with a certain
+ * position and rotation.
+ *
+ * This view is able to update its data based on a entity model.
+ *
  * Created by davidfalcao on 28/05/17.
  */
 

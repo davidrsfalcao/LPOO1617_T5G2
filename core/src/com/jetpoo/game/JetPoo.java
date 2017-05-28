@@ -1,12 +1,9 @@
 package com.jetpoo.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jetpoo.game.view.GameView;
 
 public class JetPoo extends Game {
 	private SpriteBatch batch;
@@ -28,9 +25,9 @@ public class JetPoo extends Game {
 	 * Starts the game.
 	 */
 	private void startGame() {
-	/*	GameModel model = new GameModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2, 100);
 
-		setScreen(new GameView(this, model, new GameController(model)));*/
+
+		setScreen(new GameView(this));
 	}
 
 

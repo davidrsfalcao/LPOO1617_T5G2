@@ -75,6 +75,17 @@ public class GameController implements ContactListener {
         world.setContactListener(this);
     }
 
+    /**
+     * Returns a singleton instance of a game controller
+     *
+     * @return the singleton instance
+     */
+    public static GameController getInstance() {
+        if (instance == null)
+            instance = new GameController();
+        return instance;
+    }
+
     @Override
     public void beginContact(Contact contact) {
 

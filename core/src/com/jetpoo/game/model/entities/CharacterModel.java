@@ -48,7 +48,7 @@ public class CharacterModel extends EntityModel {
     }
 
     /**
-     * Set the accelerating flag for this ship
+     * Set the accelerating flag for this character
      *
      * @param accelerating the accelerating tag
      */

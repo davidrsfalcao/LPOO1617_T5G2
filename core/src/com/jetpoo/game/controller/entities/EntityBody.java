@@ -31,6 +31,7 @@ public class EntityBody {
 
         body = world.createBody(bodyDef);
         body.setUserData(model);
+
     }
 
 

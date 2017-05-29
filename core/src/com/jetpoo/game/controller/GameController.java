@@ -86,6 +86,8 @@ public class GameController implements ContactListener {
         return instance;
     }
 
+
+
     @Override
     public void beginContact(Contact contact) {
 

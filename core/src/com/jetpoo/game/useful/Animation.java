@@ -1,4 +1,4 @@
-package com.jetpoo.game.actors;
+package com.jetpoo.game.useful;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;

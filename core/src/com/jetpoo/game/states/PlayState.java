@@ -18,7 +18,6 @@ public class PlayState extends State {
     private static final int GROUND_Y_OFFSET = -50;
 
     private Bird bird;
-    private Texture character_txt;
     private Texture bg;
     private Texture ground;
     private Vector2 groundPos1, groundPos2;

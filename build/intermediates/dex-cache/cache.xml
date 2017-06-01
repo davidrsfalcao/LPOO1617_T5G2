@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/davidfalcao/GitHub/JetPoo/core/build/libs/core-1.0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="3b3c0c144956c3767f1fe015b611b4b987b8202d">
+        <dex dex="/Users/davidfalcao/GitHub/JetPoo/android/build/intermediates/pre-dexed/debug/core-1.0_f0c66a062dd676e912fbdd3b78aa5de58e2e246c.jar" />
+    </item>
+
+</items>

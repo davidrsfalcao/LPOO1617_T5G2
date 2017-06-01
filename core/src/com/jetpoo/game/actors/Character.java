@@ -23,8 +23,8 @@ public abstract class Character {
 
         if(position.y < 0)
             position.y = 0;
-        if (position.y > 360)
-            position.y = 360;
+        if (position.y > 440)
+            position.y = 440;
 
         velocity.scl(1/dt);
         bounds.setPosition(position.x, position.y);

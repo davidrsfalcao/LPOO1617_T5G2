@@ -40,8 +40,8 @@ public class Bird {
         position.add(MOVEMENT * dt, velocity.y);
         if(position.y < 0)
             position.y = 0;
-        if (position.y > 360)
-            position.y = 360;
+        if (position.y > 460)
+            position.y = 460;
 
         velocity.scl(1/dt);
         bounds.setPosition(position.x, position.y);

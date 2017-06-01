@@ -16,8 +16,8 @@ public class JetPoo extends ApplicationAdapter {
 
 	private static JetPoo instance;
 
-	public static final int WIDTH = 480;
-	public static final int HEIGHT = 800;
+	public static final int WIDTH = 768;
+	public static final int HEIGHT = 1024;
 
 	public static final String TITLE = "JetPoo";
 	private GameStateManager gsm;

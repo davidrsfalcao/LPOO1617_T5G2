@@ -99,7 +99,7 @@ public class PlayState extends State {
 
     private void updateGround(){
         if(cam.position.x - (cam.viewportWidth / 2) > groundPos1.x + ground.getWidth())
-            groundPos1.add(ground.getWidth() * 2, 0);
+            groundPos1.add(ground.getWidth(), 0);
         if(cam.position.x - (cam.viewportWidth / 2) > groundPos2.x + ground.getWidth())
             groundPos2.add(ground.getWidth() * 2, 0);
     }

@@ -34,5 +34,14 @@ public abstract class Character {
         return position;
     }
 
-    protected 
+    protected abstract void jump();
+
+    public Rectangle getBounds(){
+        return bounds;
+    }
+
+    public Character(int x, int y){
+        position = new Vector2(x, y);
+        velocity = new Vector2(0, 0);
+    }
 }

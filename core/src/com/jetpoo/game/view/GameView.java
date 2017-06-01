@@ -32,7 +32,7 @@ public class GameView extends ScreenAdapter{
     /**
      * Used to debug the position of the physics fixtures
      */
-    private static final boolean DEBUG_PHYSICS = false;
+    private static final boolean DEBUG_PHYSICS = true;
 
     /**
      * How much meters does a pixel represent.
@@ -43,7 +43,7 @@ public class GameView extends ScreenAdapter{
      * The width of the viewport in meters. The height is
      * automatically calculated using the screen ratio.
      */
-    private static final float VIEWPORT_WIDTH = 20;
+    private static final float VIEWPORT_WIDTH = 50;
 
     /**
      * The game this screen belongs to.
@@ -136,7 +136,7 @@ public class GameView extends ScreenAdapter{
 
         //GameController.getInstance().update(delta);
 
-        //camera.position.set(GameModel.getInstance().getShip().getX() / PIXEL_TO_METER, GameModel.getInstance().getShip().getY() / PIXEL_TO_METER, 0);
+        camera.position.set(GameModel.getInstance().getCharacter().getX() / PIXEL_TO_METER, GameModel.getInstance().getCharacter().getY() / PIXEL_TO_METER, 0);
         camera.update();
         game.getBatch().setProjectionMatrix(camera.combined);
 

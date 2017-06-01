@@ -22,7 +22,7 @@ public class CharacterView extends EntityView{
     /**
      * The time between the animation frames
      */
-    private static final float FRAME_TIME = 0.05f;
+    private static final float FRAME_TIME = 0.09f;
 
     /**
      * The animation used when the ship is accelerating
@@ -84,11 +84,11 @@ public class CharacterView extends EntityView{
      * @return the animation used when the character is running
      */
     private Animation<TextureRegion> createRunningAnimation(JetPoo game) {
-        Texture thrustTexture = game.getAssetManager().get("Character-acelerating.png");
-        TextureRegion[][] thrustRegion = TextureRegion.split(thrustTexture, thrustTexture.getWidth() / 6, thrustTexture.getHeight());
+        Texture runTexture = game.getAssetManager().get("Character-run.png");
+        TextureRegion[][] runRegion = TextureRegion.split(runTexture, runTexture.getWidth() / 6, runTexture.getHeight());
 
         TextureRegion[] frames = new TextureRegion[6];
-        System.arraycopy(thrustRegion[0], 0, frames, 0, 6);
+        System.arraycopy(runRegion[0], 0, frames, 0, 6);
 
         return new Animation<TextureRegion>(FRAME_TIME, frames);
     }
@@ -104,6 +104,8 @@ public class CharacterView extends EntityView{
         Texture noThrustTexture = game.getAssetManager().get("Character-static.png");
         return new TextureRegion(noThrustTexture, noThrustTexture.getWidth(), noThrustTexture.getHeight());
     }
+
+
 
 
     /**

@@ -9,11 +9,9 @@ import com.jetpoo.game.JetPoo;
 import com.jetpoo.game.actors.Bird;
 import com.jetpoo.game.actors.Tube;
 
-/**
- * Created by Brent on 7/5/2015.
- */
+
 public class PlayState extends State {
-    private static final int TUBE_SPACING = 125;
+    private static final int TUBE_SPACING = 300;
     private static final int TUBE_COUNT = 4;
     private static final int GROUND_Y_OFFSET = -50;
 

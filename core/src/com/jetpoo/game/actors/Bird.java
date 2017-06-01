@@ -5,10 +5,10 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.Vector2;
 
 import com.jetpoo.game.JetPoo;
+import com.jetpoo.game.useful.Animation;
 
 
 public class Bird {
@@ -18,7 +18,7 @@ public class Bird {
     private Vector2 position;
     private Vector2 velocity;
     private Rectangle bounds;
-    private com.jetpoo.game.useful.Animation birdAnimation;
+    private Animation birdAnimation;
     private Texture texture;
     private Sound flap;
 
@@ -40,6 +40,8 @@ public class Bird {
         position.add(MOVEMENT * dt, velocity.y);
         if(position.y < 0)
             position.y = 0;
+        if (position.y > 360)
+            position.y = 360;
 
         velocity.scl(1/dt);
         bounds.setPosition(position.x, position.y);

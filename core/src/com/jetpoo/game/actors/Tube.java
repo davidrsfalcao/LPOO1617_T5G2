@@ -6,9 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.Random;
 
-/**
- * Created by brentaureli on 7/15/15.
- */
+
 public class Tube{
     public static final int TUBE_WIDTH = 52;
 

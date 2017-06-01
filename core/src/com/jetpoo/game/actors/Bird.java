@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.math.Vector2;
 
 import com.jetpoo.game.JetPoo;
 
@@ -14,8 +15,8 @@ public class Bird {
     private JetPoo game;
     private static final int GRAVITY = -10;
     private static final int MOVEMENT = 100;
-    private Vector3 position;
-    private Vector3 velocity;
+    private Vector2 position;
+    private Vector2 velocity;
     private Rectangle bounds;
     private com.jetpoo.game.useful.Animation birdAnimation;
     private Texture texture;
@@ -23,8 +24,8 @@ public class Bird {
 
     public Bird(JetPoo game,int x, int y){
         this.game = game;
-        position = new Vector3(x, y, 0);
-        velocity = new Vector3(0, 0, 0);
+        position = new Vector2(x, y);
+        velocity = new Vector2(0, 0);
         texture = game.getAssetManager().get("birdanimation.png", Texture.class);
         birdAnimation = new com.jetpoo.game.useful.Animation(new TextureRegion(texture), 3, 0.5f);
         bounds = new Rectangle(x, y, texture.getWidth() / 3, texture.getHeight());
@@ -34,9 +35,9 @@ public class Bird {
     public void update(float dt){
         birdAnimation.update(dt);
         if(position.y > 0)
-            velocity.add(0, GRAVITY, 0);
+            velocity.add(0, GRAVITY);
         velocity.scl(dt);
-        position.add(MOVEMENT * dt, velocity.y, 0);
+        position.add(MOVEMENT * dt, velocity.y);
         if(position.y < 0)
             position.y = 0;
 
@@ -44,7 +45,7 @@ public class Bird {
         bounds.setPosition(position.x, position.y);
     }
 
-    public Vector3 getPosition() {
+    public Vector2 getPosition() {
         return position;
     }
 

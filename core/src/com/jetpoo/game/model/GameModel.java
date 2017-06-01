@@ -1,6 +1,7 @@
 package com.jetpoo.game.model;
 
 import com.jetpoo.game.model.entities.CharacterModel;
+import com.jetpoo.game.controller.GameController;
 
 /**
  * Created by davidfalcao on 23/04/17.
@@ -19,6 +20,17 @@ public class GameModel {
      */
     private CharacterModel character;
 
+    /**
+     * Constructs a game with a.space ship in the middle of the
+     * arena and a certain number of asteroids in different sizes.
+     */
+    private GameModel() {
+
+        character = new CharacterModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2, 0);
+
+    }
+
+
     /*
      * Returns a singleton instance of the game model
      *
@@ -30,5 +42,11 @@ public class GameModel {
         return instance;
     }
 
+    public CharacterModel getCharacter() {
+        return character;
+    }
 
+    public void update(float delta) {
+
+    }
 }

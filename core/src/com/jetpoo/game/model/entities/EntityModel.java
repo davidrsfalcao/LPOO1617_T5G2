@@ -8,6 +8,9 @@ package com.jetpoo.game.model.entities;
  * An abstract model representing an entity belonging to a game model.
  */
 public abstract class EntityModel {
+
+    public enum ModelType {CHARACTER, OBTSTACLE, POWERUP};
+
     /**
      * The x-coordinate of this model in meters.
      */
@@ -82,4 +85,6 @@ public abstract class EntityModel {
     public void setRotation(float rotation) {
         this.rotation = rotation;
     }
+
+    public abstract ModelType getType();
 }

@@ -55,4 +55,9 @@ public class CharacterModel extends EntityModel {
     public void setAccelerating(boolean accelerating) {
         this.accelerating = accelerating;
     }
+
+    @Override
+    public ModelType getType() {
+        return ModelType.CHARACTER;
+    }
 }

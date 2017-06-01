@@ -32,7 +32,12 @@ public class CharacterView extends EntityView{
     /**
      * The texture used when the ship is not accelerating
      */
-    private Animation<TextureRegion> notAcceleratingRegion;
+    private TextureRegion notAcceleratingRegion;
+
+    /**
+     * The texture used when the ship is not accelerating
+     */
+    private Animation<TextureRegion> runningAnimation;
 
     /**
      * Time since the character started the game. Used
@@ -52,19 +57,87 @@ public class CharacterView extends EntityView{
     private boolean onTheGround;
 
 
-
-
-
-
-
-
-
    public CharacterView(JetPoo game) {
         super(game);
     }
 
+    /**
+     * Creates a sprite representing this space ship.
+     *
+     * @param game the game this view belongs to. Needed to access the
+     *             asset manager to get textures.
+     * @return the sprite representing this space ship
+     */
     @Override
     public Sprite createSprite(JetPoo game) {
-        return null;
+        runningAnimation = createRunningAnimation(game);
+        notAcceleratingRegion = createNotAcceleratingRegion(game);
+
+        return new Sprite(notAcceleratingRegion);
     }
+
+    /**
+     * Creates the animation used when the character is running
+     *
+     * @param game the game this view belongs to. Needed to access the
+     *             asset manager to get textures.
+     * @return the animation used when the character is running
+     */
+    private Animation<TextureRegion> createRunningAnimation(JetPoo game) {
+        Texture thrustTexture = game.getAssetManager().get("Character-acelerating.png");
+        TextureRegion[][] thrustRegion = TextureRegion.split(thrustTexture, thrustTexture.getWidth() / 6, thrustTexture.getHeight());
+
+        TextureRegion[] frames = new TextureRegion[6];
+        System.arraycopy(thrustRegion[0], 0, frames, 0, 6);
+
+        return new Animation<TextureRegion>(FRAME_TIME, frames);
+    }
+
+    /**
+     * Creates the texture used when the ship is not accelerating
+     *
+     * @param game the game this view belongs to. Needed to access the
+     *             asset manager to get textures.
+     * @return the texture used when the ship is not accelerating
+     */
+    private TextureRegion createNotAcceleratingRegion(JetPoo game) {
+        Texture noThrustTexture = game.getAssetManager().get("Character-static.png");
+        return new TextureRegion(noThrustTexture, noThrustTexture.getWidth(), noThrustTexture.getHeight());
+    }
+
+
+    /**
+     * Updates this ship model. Also save and resets
+     * the accelerating flag from the model.
+     *
+     * @param model the model used to update this view
+     */
+    @Override
+    public void update(EntityModel model) {
+        super.update(model);
+
+        accelerating = ((CharacterModel) model).isAccelerating();
+        ((CharacterModel) model).setAccelerating(false);
+
+        onTheGround= ((CharacterModel)model).isOnTheGround();
+    }
+
+    /**
+     * Draws the sprite from this view using a sprite batch.
+     * Chooses the correct texture or animation to be used
+     * depending on the accelerating flag.
+     *
+     * @param batch The sprite batch to be used for drawing.
+     */
+    @Override
+    public void draw(SpriteBatch batch) {
+        stateTime += Gdx.graphics.getDeltaTime();
+
+        if (onTheGround)
+            sprite.setRegion(runningAnimation.getKeyFrame(stateTime, true));
+        else sprite.setRegion(notAcceleratingRegion);
+
+        sprite.draw(batch);
+    }
+
 }

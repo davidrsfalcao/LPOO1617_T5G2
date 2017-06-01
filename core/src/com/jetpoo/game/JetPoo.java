@@ -26,7 +26,6 @@ public class JetPoo extends Game {
 	 */
 	private void startGame() {
 
-
 		setScreen(new GameView(this));
 	}
 

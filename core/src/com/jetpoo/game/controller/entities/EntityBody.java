@@ -18,6 +18,9 @@ import static com.jetpoo.game.view.GameView.PIXEL_TO_METER;
 
 public class EntityBody {
 
+    final static short OBSTACLE_BODY = 0x0001;
+    final static short CHARACTER_BODY = 0x0002;
+    final static short POWERUP_BODY = 0x0004;
     /**
      * The Box2D body that supports this body.
      */

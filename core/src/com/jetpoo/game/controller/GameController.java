@@ -13,6 +13,10 @@ import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jetpoo.game.model.entities.EntityModel;
+import com.jetpoo.game.controller.entities.CharacterBody;
+import com.jetpoo.game.model.GameModel;
+
 import static java.lang.Math.PI;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
@@ -49,17 +53,20 @@ public class GameController implements ContactListener {
      */
     private static final float ACCELERATION_FORCE = 1000f;
 
-
     /**
      * The physics world controlled by this controller.
      */
     private final World world;
 
-
     /**
      * The spaceship body.
      */
-    //private final ShipBody shipBody;
+    private final CharacterBody characterBody;
+
+    /**
+     * Accumulator used to calculate the simulation step.
+     */
+    private float accumulator;
 
 
     /**
@@ -69,6 +76,7 @@ public class GameController implements ContactListener {
     private GameController() {
         world = new World(new Vector2(0, 0), true);
 
+        characterBody = new CharacterBody(world, GameModel.getInstance().getCharacter());
 
 
 
@@ -86,6 +94,32 @@ public class GameController implements ContactListener {
         return instance;
     }
 
+
+    /**
+     * Calculates the next physics step of duration delta (in seconds).
+     *
+     * @param delta The size of this physics step in seconds.
+     */
+    public void update(float delta) {
+        GameModel.getInstance().update(delta);
+
+
+        float frameTime = Math.min(delta, 0.25f);
+        accumulator += frameTime;
+        while (accumulator >= 1/60f) {
+            world.step(1/60f, 6, 2);
+            accumulator -= 1/60f;
+        }
+
+        Array<Body> bodies = new Array<Body>();
+        world.getBodies(bodies);
+
+        for (Body body : bodies) {
+            verifyBounds(body);
+            ((EntityModel) body.getUserData()).setPosition(body.getPosition().x, body.getPosition().y);
+            ((EntityModel) body.getUserData()).setRotation(body.getAngle());
+        }
+    }
 
 
     @Override
@@ -106,5 +140,19 @@ public class GameController implements ContactListener {
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
+    }
+
+
+    private void verifyBounds(Body body) {
+
+    }
+
+    /**
+     * Returns the world controlled by this controller. Needed for debugging purposes only.
+     *
+     * @return The world controlled by this controller.
+     */
+    public World getWorld() {
+        return world;
     }
 }

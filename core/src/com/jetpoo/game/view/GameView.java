@@ -10,7 +10,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 
+
+import com.jetpoo.game.model.GameModel;
 import com.jetpoo.game.controller.GameController;
+import com.jetpoo.game.model.entities.CharacterModel;
+import com.jetpoo.game.view.entities.EntityView;
+import com.jetpoo.game.view.entities.ViewFactory;
 
 
 import sun.rmi.runtime.Log;
@@ -98,8 +103,9 @@ public class GameView extends ScreenAdapter{
      * Loads the assets needed by this screen.
      */
     private void loadAssets() {
-        //this.game.getAssetManager().load( "spaceship-no-thrust.png" , Texture.class);
-        //this.game.getAssetManager().load( "spaceship-thrust.png" , Texture.class);
+        this.game.getAssetManager().load( "Character-acelerating.png" , Texture.class);
+        this.game.getAssetManager().load( "Character-run.png" , Texture.class);
+        this.game.getAssetManager().load( "Character-static.png" , Texture.class);
 
         //this.game.getAssetManager().load( "asteroid-big.png" , Texture.class);
         //this.game.getAssetManager().load( "asteroid-medium.png" , Texture.class);
@@ -139,16 +145,16 @@ public class GameView extends ScreenAdapter{
 
         game.getBatch().begin();
         drawBackground();
-        //drawEntities();
+        drawEntities();
         game.getBatch().end();
 
-        /*
+
         if (DEBUG_PHYSICS) {
             debugCamera = camera.combined.cpy();
             debugCamera.scl(1 / PIXEL_TO_METER);
             debugRenderer.render(GameController.getInstance().getWorld(), debugCamera);
         }
-        */
+
     }
 
 
@@ -177,6 +183,11 @@ public class GameView extends ScreenAdapter{
      * Draws the entities to the screen.
      */
     private void drawEntities() {
+
+        CharacterModel ship = GameModel.getInstance().getCharacter();
+        EntityView view = ViewFactory.makeView(game, ship);
+        view.update(ship);
+        view.draw(game.getBatch());
     }
 
     /**

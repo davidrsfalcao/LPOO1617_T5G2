@@ -28,7 +28,7 @@ public class Bird {
         velocity = new Vector2(0, 0);
         texture = game.getAssetManager().get("birdanimation.png", Texture.class);
         birdAnimation = new com.jetpoo.game.useful.Animation(new TextureRegion(texture), 3, 0.5f);
-        bounds = new Rectangle(x, y, texture.getWidth() / 3, texture.getHeight());
+        bounds = new Rectangle(x, y, 34, 36);
         flap = Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
     }
 

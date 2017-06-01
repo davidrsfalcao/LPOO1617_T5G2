@@ -43,5 +43,6 @@ public abstract class Character {
     public Character(int x, int y){
         position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
+        bounds = new Rectangle(x, y, 128, 128);
     }
 }

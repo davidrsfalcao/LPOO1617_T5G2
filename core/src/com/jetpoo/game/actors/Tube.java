@@ -1,4 +1,4 @@
-package com.jetpoo.game.sprites;
+package com.jetpoo.game.actors;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;

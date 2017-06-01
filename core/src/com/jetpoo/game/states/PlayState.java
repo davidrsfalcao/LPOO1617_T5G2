@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.jetpoo.game.JetPoo;
-import com.jetpoo.game.sprites.Bird;
-import com.jetpoo.game.sprites.Tube;
+import com.jetpoo.game.actors.Bird;
+import com.jetpoo.game.actors.Tube;
 
 /**
  * Created by Brent on 7/5/2015.

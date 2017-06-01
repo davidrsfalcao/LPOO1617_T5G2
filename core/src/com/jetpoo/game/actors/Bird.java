@@ -1,4 +1,4 @@
-package com.jetpoo.game.sprites;
+package com.jetpoo.game.actors;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 import com.jetpoo.game.JetPoo;
-
 
 
 public class Bird {

@@ -9,11 +9,11 @@ import com.badlogic.gdx.math.Vector2;
 
 public abstract class Character {
 
-    private Vector2 position;
-    private Vector2 velocity;
-    private Rectangle bounds;
-    private static final int GRAVITY = -10;
-    private static final int MOVEMENT = 100;
+    protected Vector2 position;
+    protected Vector2 velocity;
+    protected Rectangle bounds;
+    protected static final int GRAVITY = -10;
+    protected static final int MOVEMENT = 100;
 
     public void update(float dt){
         if(position.y > 0)

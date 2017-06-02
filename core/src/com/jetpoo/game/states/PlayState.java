@@ -61,11 +61,11 @@ public class PlayState extends State {
             }
 
             if(tube.collides(bird.getBounds()))
-                gsm.set(new MenuState(gsm));
+                gsm.set(new GameOverState(gsm));
         }
 
         if(bird.getPosition().y <= ground.getHeight() + GROUND_Y_OFFSET)
-            gsm.set(new MenuState(gsm));
+            gsm.set(new GameOverState(gsm));
         cam.update();
 
     }

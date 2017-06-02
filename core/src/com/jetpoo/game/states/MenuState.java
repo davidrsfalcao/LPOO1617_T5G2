@@ -5,23 +5,29 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jetpoo.game.JetPoo;
 
-/**
- * Created by Brent on 6/26/2015.
- */
 public class MenuState extends State{
     private Texture background;
     private Texture playBtn;
+    private Texture loginBtn;
+    private Texture leaderboardBtn;
     public MenuState(GameStateManager gsm) {
         super(gsm);
-        cam.setToOrtho(false, JetPoo.WIDTH / 2, JetPoo.HEIGHT / 2);
-        background = new Texture("bg.png");
+        cam.setToOrtho(false, JetPoo.WIDTH, JetPoo.HEIGHT/2);
+        background = new Texture("background.png");
         playBtn = new Texture("playbtn.png");
+        leaderboardBtn=new Texture("leaderboard.png");
+        loginBtn=new Texture("login.png");
+
+
     }
 
     @Override
     public void handleInput() {
-        if(Gdx.input.justTouched()){
+        if(Gdx.input.getX() < cam.position.x+150 && Gdx.input.getX() > cam.position.x+10 && Gdx.input.getY() < cam.position.y-60 && Gdx.input.getY() > cam.position.y-160){
             gsm.set(new PlayState(gsm));
+        }
+        if(Gdx.input.getX() < cam.position.x+120 && Gdx.input.getX() > cam.position.x+50 && Gdx.input.getY() < cam.position.y+100 && Gdx.input.getY() > cam.position.y+40){
+            gsm.set(new LeaderBoardState(gsm));
         }
     }
 
@@ -35,7 +41,9 @@ public class MenuState extends State{
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
         sb.draw(background, 0,0);
-        sb.draw(playBtn, cam.position.x - playBtn.getWidth() / 2, cam.position.y);
+        sb.draw(playBtn, cam.position.x - playBtn.getWidth()/ 2, cam.position.y+90);
+        sb.draw(leaderboardBtn,cam.position.x - leaderboardBtn.getWidth()/2,cam.position.y-50);
+        sb.draw(loginBtn,10,cam.position.y-200);
         sb.end();
     }
 
@@ -43,6 +51,8 @@ public class MenuState extends State{
     public void dispose() {
         background.dispose();
         playBtn.dispose();
+        leaderboardBtn.dispose();
+        loginBtn.dispose();
         System.out.println("Menu State Disposed");
     }
 }

@@ -13,7 +13,7 @@ public class MenuState extends State{
     public MenuState(GameStateManager gsm) {
         super(gsm);
         cam.setToOrtho(false, JetPoo.WIDTH, JetPoo.HEIGHT/2);
-        background = new Texture("background.png");
+        background = new Texture("bg.png");
         playBtn = new Texture("playbtn.png");
         leaderboardBtn=new Texture("leaderboard.png");
         loginBtn=new Texture("login.png");
@@ -23,10 +23,10 @@ public class MenuState extends State{
 
     @Override
     public void handleInput() {
-        if(Gdx.input.getX() < cam.position.x+150 && Gdx.input.getX() > cam.position.x+10 && Gdx.input.getY() < cam.position.y-60 && Gdx.input.getY() > cam.position.y-160){
+        if(Gdx.input.getX() < cam.position.x-20 && Gdx.input.getX() > cam.position.x-100 && Gdx.input.getY() < cam.position.y-100 && Gdx.input.getY() > cam.position.y-160){
             gsm.set(new PlayState(gsm));
         }
-        if(Gdx.input.getX() < cam.position.x+120 && Gdx.input.getX() > cam.position.x+50 && Gdx.input.getY() < cam.position.y+100 && Gdx.input.getY() > cam.position.y+40){
+        if(Gdx.input.getX() < cam.position.x-20 && Gdx.input.getX() > cam.position.x-80 && Gdx.input.getY() < cam.position.y+40 && Gdx.input.getY() > cam.position.y-40){
             gsm.set(new LeaderBoardState(gsm));
         }
     }

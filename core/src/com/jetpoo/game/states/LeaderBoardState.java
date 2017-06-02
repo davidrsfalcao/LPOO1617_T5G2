@@ -17,7 +17,7 @@ public class LeaderBoardState extends State{
     public LeaderBoardState(GameStateManager gsm) {
         super(gsm);
         cam.setToOrtho(false, JetPoo.WIDTH, JetPoo.HEIGHT/2);
-        background = new Texture("background.png");
+        background = new Texture("bg.png");
 
         okBtn = new Texture("ok.png");
 
@@ -26,7 +26,7 @@ public class LeaderBoardState extends State{
 
     @Override
     public void handleInput() {
-        if(Gdx.input.getX() < cam.position.x+120 && Gdx.input.getX() > cam.position.x + 40 && Gdx.input.getY() < cam.position.y+40 && Gdx.input.getY() > cam.position.y-50){
+        if(Gdx.input.getX() < cam.position.x-30 && Gdx.input.getX() > cam.position.x - 80 && Gdx.input.getY() > cam.position.y-80 && Gdx.input.getY() < cam.position.y-20){
             gsm.set(new MenuState(gsm));
         }
 

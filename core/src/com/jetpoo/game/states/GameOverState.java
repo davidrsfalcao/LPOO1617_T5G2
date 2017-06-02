@@ -17,7 +17,7 @@ public class GameOverState extends State{
     public GameOverState(GameStateManager gsm) {
         super(gsm);
         cam.setToOrtho(false, JetPoo.WIDTH, JetPoo.HEIGHT/2);
-        background = new Texture("background.png");
+        background = new Texture("bg.png");
         replayBtn = new Texture("playbtn.png");
         menuBtn = new Texture ("x.png");
 

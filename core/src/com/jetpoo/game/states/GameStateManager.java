@@ -5,9 +5,6 @@ import com.jetpoo.game.JetPoo;
 
 import java.util.Stack;
 
-/**
- * Created by Brent on 6/26/2015.
- */
 public class GameStateManager {
 
     private JetPoo game;

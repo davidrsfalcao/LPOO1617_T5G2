@@ -31,7 +31,7 @@ public class JetPoo extends ApplicationAdapter {
 	public void create () {
 		assetManager = new AssetManager();
 		batch = new SpriteBatch();
-		gsm = new GameStateManager(this);
+		gsm = new GameStateManager();
 		startGame();
 
 	}
@@ -40,8 +40,6 @@ public class JetPoo extends ApplicationAdapter {
 	 * Starts the game.
 	 */
 	private void startGame() {
-		assetManager.load("birdanimation.png", Texture.class);
-		assetManager.finishLoading();
 		music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
 		music.setLooping(true);
 		music.setVolume(0.1f);

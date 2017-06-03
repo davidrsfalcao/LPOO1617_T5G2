@@ -24,7 +24,7 @@ public class PlayState extends State {
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
-        bird = new Bird(gsm.getGame(), 50, 300);
+        bird = new Bird(50, 300);
         cam.setToOrtho(false, JetPoo.WIDTH / 2, JetPoo.HEIGHT / 2);
         bg = new Texture("bg.png");
         ground = new Texture("ground.png");
@@ -40,7 +40,7 @@ public class PlayState extends State {
 
     }
 
-    @Override
+    //@Override
     protected void handleInput() {
         if(Gdx.input.isTouched())
             bird.jump();
@@ -94,7 +94,6 @@ public class PlayState extends State {
         for(Tube tube : tubes)
             tube.dispose();
 
-        System.out.println("Play State Disposed");
     }
 
     private void updateGround(){

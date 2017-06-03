@@ -24,7 +24,7 @@ public class LeaderBoardState extends State{
 
     }
 
-    @Override
+    //@Override
     public void handleInput() {
         if(Gdx.input.getX() < cam.position.x-30 && Gdx.input.getX() > cam.position.x - 80 && Gdx.input.getY() > cam.position.y-80 && Gdx.input.getY() < cam.position.y-20){
             gsm.set(new MenuState(gsm));

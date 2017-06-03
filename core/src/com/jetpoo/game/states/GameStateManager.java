@@ -1,17 +1,14 @@
 package com.jetpoo.game.states;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.jetpoo.game.JetPoo;
 
 import java.util.Stack;
 
 public class GameStateManager {
 
-    private JetPoo game;
     private Stack<State> states;
 
-    public GameStateManager(JetPoo game){
-        this.game = game;
+    public GameStateManager(){
         states = new Stack<State>();
     }
 
@@ -36,7 +33,4 @@ public class GameStateManager {
         states.peek().render(sb);
     }
 
-    public JetPoo getGame() {
-        return game;
-    }
 }

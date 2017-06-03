@@ -12,7 +12,6 @@ import com.jetpoo.game.useful.Animation;
 
 
 public class Bird {
-    private JetPoo game;
     private static final int GRAVITY = -10;
     private static final int MOVEMENT = 100;
     private Vector2 position;
@@ -22,12 +21,11 @@ public class Bird {
     private Texture texture;
     private Sound flap;
 
-    public Bird(JetPoo game,int x, int y){
-        this.game = game;
+    public Bird(int x, int y){
         position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
-        texture = game.getAssetManager().get("birdanimation.png", Texture.class);
-        birdAnimation = new com.jetpoo.game.useful.Animation(new TextureRegion(texture), 3, 0.5f);
+        texture = new Texture("birdanimation.png");
+        birdAnimation = new Animation(new TextureRegion(texture), 3, 0.5f);
         bounds = new Rectangle(x, y, 34, 36);
         flap = Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
     }

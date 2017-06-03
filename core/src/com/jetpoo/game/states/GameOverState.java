@@ -24,7 +24,7 @@ public class GameOverState extends State{
 
     }
 
-    @Override
+    //@Override
     public void handleInput() {
         if(Gdx.input.getX() < cam.position.x+20 && Gdx.input.getX() > cam.position.x - 130 && Gdx.input.getY() < cam.position.y+50 && Gdx.input.getY() > cam.position.y-50){
             gsm.set(new PlayState(gsm));
@@ -57,6 +57,5 @@ public class GameOverState extends State{
         background.dispose();
         replayBtn.dispose();
         menuBtn.dispose();
-        System.out.println("GameOver State Disposed");
     }
 }

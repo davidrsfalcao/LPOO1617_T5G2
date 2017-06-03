@@ -32,10 +32,10 @@ public class MenuState extends State{
         background = game.getAssetManager().get("Menu_bg.png", Texture.class);
 
         playBtn = new Sprite(game.getAssetManager().get("button_play.png", Texture.class));
-        playBtn.setBounds(7/screenWidth_con , 7/screenHeight_con, 297/screenWidth_con , 100/screenHeight_con);
+        playBtn.setBounds(7/screenWidth_con , 7/screenHeight_con, 300/screenWidth_con , 100/screenHeight_con);
 
         leaderboardBtn= new Sprite(game.getAssetManager().get("button_leaderboard.png", Texture.class));
-        leaderboardBtn.setBounds(7/screenWidth_con , 127/screenHeight_con  , 297/screenWidth_con, 100/screenHeight_con );
+        leaderboardBtn.setBounds(7/screenWidth_con , 127/screenHeight_con  , 300/screenWidth_con, 100/screenHeight_con );
 
 
         creditsBtn = new Sprite(new Texture("button_credits.png"));
@@ -52,7 +52,6 @@ public class MenuState extends State{
                 if(playBtn.getBoundingRectangle().contains(screenX, screenY)){
                     gsm.set(new PlayState(gsm, game));
                 }
-
 
                 if(leaderboardBtn.getBoundingRectangle().contains(screenX, screenY)){
                     gsm.set(new LeaderBoardState(gsm, game));

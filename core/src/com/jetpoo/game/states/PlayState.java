@@ -22,11 +22,11 @@ public class PlayState extends State {
 
     private Array<Tube> tubes;
 
-    public PlayState(GameStateManager gsm) {
-        super(gsm);
+    public PlayState(GameStateManager gsm, JetPoo game) {
+        super(gsm, game);
         bird = new Bird(50, 300);
-        cam.setToOrtho(false, JetPoo.WIDTH / 2, JetPoo.HEIGHT / 2);
-        bg = new Texture("bg.png");
+        cam.setToOrtho(false, JetPoo.WIDTH, JetPoo.HEIGHT);
+        bg = game.getAssetManager().get("bg.png", Texture.class);
         ground = new Texture("ground.png");
         groundPos1 = new Vector2(cam.position.x - cam.viewportWidth / 2, GROUND_Y_OFFSET);
         groundPos2 = new Vector2((cam.position.x - cam.viewportWidth / 2) + ground.getWidth(), GROUND_Y_OFFSET);
@@ -61,11 +61,11 @@ public class PlayState extends State {
             }
 
             if(tube.collides(bird.getBounds()))
-                gsm.set(new GameOverState(gsm));
+                gsm.set(new GameOverState(gsm, game));
         }
 
         if(bird.getPosition().y <= ground.getHeight() + GROUND_Y_OFFSET)
-            gsm.set(new GameOverState(gsm));
+            gsm.set(new GameOverState(gsm, game));
         cam.update();
 
     }

@@ -8,16 +8,16 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jetpoo.game.states.GameStateManager;
+import com.jetpoo.game.states.LoadingState;
 import com.jetpoo.game.states.MenuState;
 
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Text;
 
 public class JetPoo extends ApplicationAdapter {
 
-	private static JetPoo instance;
 
-	public static final int WIDTH = 768;
-	public static final int HEIGHT = 1024;
+	public static final int WIDTH = 1024;
+	public static final int HEIGHT = 768;
 
 	public static final String TITLE = "JetPoo";
 	private GameStateManager gsm;
@@ -45,7 +45,7 @@ public class JetPoo extends ApplicationAdapter {
 		music.setVolume(0.1f);
 		music.play();
 		Gdx.gl.glClearColor(1, 0, 0, 1);
-		gsm.push(new MenuState(gsm));
+		gsm.push(new LoadingState(gsm, this));
 	}
 
 
@@ -68,7 +68,4 @@ public class JetPoo extends ApplicationAdapter {
 		return assetManager;
 	}
 
-	public static JetPoo getInstance(){
-		return instance;
-	}
 }

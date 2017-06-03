@@ -15,26 +15,26 @@ public class MenuState extends State{
     private Sprite leaderboardBtn;
     private Sprite creditsBtn;
 
-    private GameStateManager gsm;
+    private final GameStateManager gsm;
     private float screenWidth_con;
     private float screenHeight_con;
-    private int resX = 1024;
-    private int resY = 768;
+    private int resX = JetPoo.WIDTH;
+    private int resY = JetPoo.HEIGHT;
 
-    public MenuState(final GameStateManager gsm) {
-        super(gsm);
-        this.gsm = gsm;
+    public MenuState(GameStateManager stateManager, final JetPoo game) {
+        super(stateManager, game);
+        this.gsm = stateManager;
         this.screenWidth_con = (float) resX / (float) Gdx.graphics.getWidth();
         this.screenHeight_con =  (float) resY/ (float) Gdx.graphics.getHeight();
 
         cam.setToOrtho(false, resX, resY);
 
-        background = new Texture("Menu_bg.png");
+        background = game.getAssetManager().get("Menu_bg.png", Texture.class);
 
-        playBtn = new Sprite(new Texture("button_play.png"));
+        playBtn = new Sprite(game.getAssetManager().get("button_play.png", Texture.class));
         playBtn.setBounds(7/screenWidth_con , 7/screenHeight_con, 297/screenWidth_con , 100/screenHeight_con);
 
-        leaderboardBtn= new Sprite(new Texture("button_leaderboard.png"));
+        leaderboardBtn= new Sprite(game.getAssetManager().get("button_leaderboard.png", Texture.class));
         leaderboardBtn.setBounds(7/screenWidth_con , 127/screenHeight_con  , 297/screenWidth_con, 100/screenHeight_con );
 
 
@@ -50,16 +50,16 @@ public class MenuState extends State{
 
 
                 if(playBtn.getBoundingRectangle().contains(screenX, screenY)){
-                    gsm.set(new PlayState(gsm));
+                    gsm.set(new PlayState(gsm, game));
                 }
 
 
                 if(leaderboardBtn.getBoundingRectangle().contains(screenX, screenY)){
-                    gsm.set(new LeaderBoardState(gsm));
+                    gsm.set(new LeaderBoardState(gsm, game));
                 }
 
                 if(creditsBtn.getBoundingRectangle().contains(screenX, screenY)){
-                    //gsm.set(new LeaderBoardState(gsm));
+                    //gsm.set(new LeaderBoardState(gsm, game));
                     System.out.println("Creditos");
                 }
 
@@ -72,19 +72,7 @@ public class MenuState extends State{
 
     }
 
-    /*
-    @Override
-    public void handleInput() {
 
-        if (Gdx.input.getX() < cam.position.x - 20 && Gdx.input.getX() > cam.position.x - 100 && Gdx.input.getY() < cam.position.y - 100 && Gdx.input.getY() > cam.position.y - 160) {
-            gsm.set(new PlayState(gsm));
-        }
-        if (Gdx.input.getX() < cam.position.x - 20 && Gdx.input.getX() > cam.position.x - 80 && Gdx.input.getY() < cam.position.y + 40 && Gdx.input.getY() > cam.position.y - 40) {
-            gsm.set(new LeaderBoardState(gsm));
-        }
-
-    }
-    */
 
     @Override
     public void update(float dt) {

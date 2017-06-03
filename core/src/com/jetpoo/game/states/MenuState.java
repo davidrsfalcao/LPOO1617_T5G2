@@ -32,14 +32,14 @@ public class MenuState extends State{
         background = game.getAssetManager().get("Menu_bg.png", Texture.class);
 
         playBtn = new Sprite(game.getAssetManager().get("button_play.png", Texture.class));
-        playBtn.setBounds(7/screenWidth_con , 7/screenHeight_con, 300/screenWidth_con , 100/screenHeight_con);
+        playBtn.setBounds(362/screenWidth_con , 257/screenHeight_con, 300/screenWidth_con , 100/screenHeight_con);
 
         leaderboardBtn= new Sprite(game.getAssetManager().get("button_leaderboard.png", Texture.class));
-        leaderboardBtn.setBounds(7/screenWidth_con , 127/screenHeight_con  , 300/screenWidth_con, 100/screenHeight_con );
+        leaderboardBtn.setBounds(362/screenWidth_con , 377/screenHeight_con  , 300/screenWidth_con, 100/screenHeight_con );
 
 
         creditsBtn = new Sprite(new Texture("button_credits.png"));
-        creditsBtn.setBounds(7/screenWidth_con , 247/screenHeight_con  , 297/screenWidth_con, 100 /screenHeight_con);
+        creditsBtn.setBounds(362/screenWidth_con , 497/screenHeight_con  , 300/screenWidth_con, 100 /screenHeight_con);
 
         loginBtn=new Texture("login.png");
 
@@ -83,9 +83,9 @@ public class MenuState extends State{
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
         sb.draw(background, 0,0, resX, resY);
-        sb.draw(playBtn, 7 , resY-(107), 297  , 100);
-        sb.draw(leaderboardBtn, 7 , resY-(227), 297  , 100);
-        sb.draw(creditsBtn, 7 , resY-(347), 297  , 100);
+        sb.draw(playBtn, 362 , resY-(357), 297  , 100);
+        sb.draw(leaderboardBtn, 362 , resY-(477), 297  , 100);
+        sb.draw(creditsBtn, 362 , resY-(597), 297  , 100);
 
         //sb.draw(loginBtn,10,cam.position.y-200);
         sb.end();

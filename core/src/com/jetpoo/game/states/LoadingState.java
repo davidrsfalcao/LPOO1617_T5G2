@@ -65,7 +65,7 @@ public class LoadingState extends State {
 
         sb.begin();
         sb.draw(this.game.getAssetManager().get("Loading.png", Texture.class), 0,0, JetPoo.WIDTH, JetPoo.HEIGHT);
-        sb.draw(this.game.getAssetManager().get("Loading_bar.png", Texture.class), 130,360,(770 / 10)*mult,47 );
+        sb.draw(this.game.getAssetManager().get("Loading_bar.png", Texture.class), 129,360,(770 / 10)*mult,47 );
         sb.end();
 
     }

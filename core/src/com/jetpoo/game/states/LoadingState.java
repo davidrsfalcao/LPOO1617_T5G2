@@ -13,7 +13,7 @@ import com.jetpoo.game.useful.LoadThread;
 
 public class LoadingState extends State {
 
-    private float time = 5; //segundos
+    private float time = 3; //segundos
     private float elapsed = 1;
     private int mult = 0;
     private LoadThread thread;
@@ -40,7 +40,7 @@ public class LoadingState extends State {
         if (mult < 10){
             elapsed += dt;
 
-            mult = (int) (elapsed / 0.5);
+            mult = (int) (elapsed / 0.3);
 
         }
         else {
@@ -62,6 +62,7 @@ public class LoadingState extends State {
 
         Gdx.gl.glClearColor( 1, 1, 1, 1 );
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
+
 
         sb.begin();
         sb.draw(this.game.getAssetManager().get("Loading.png", Texture.class), 0,0, JetPoo.WIDTH, JetPoo.HEIGHT);

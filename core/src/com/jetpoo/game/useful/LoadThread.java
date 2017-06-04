@@ -29,12 +29,7 @@ public class LoadThread extends Thread{
         this.game.getAssetManager().load("ceiling.png", Texture.class);
 
 
-
-
-
-
         finished = true;
-
 
     }
 }

@@ -131,6 +131,5 @@ public class MenuState extends State{
         background.dispose();
 
         loginBtn.dispose();
-        Gdx.input.setInputProcessor(null);
     }
 }

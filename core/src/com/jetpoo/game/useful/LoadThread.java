@@ -19,11 +19,12 @@ public class LoadThread extends Thread{
     @Override
     public void run() {
         super.run();
-        System.out.println("Here");
         this.game.getAssetManager().load("bg.png", Texture.class);
         this.game.getAssetManager().load("Menu_bg.png", Texture.class);
+        this.game.getAssetManager().load("Menu_bg1.png", Texture.class);
         this.game.getAssetManager().load("button_play.png", Texture.class);
         this.game.getAssetManager().load("button_leaderboard.png", Texture.class);
+
 
 
 

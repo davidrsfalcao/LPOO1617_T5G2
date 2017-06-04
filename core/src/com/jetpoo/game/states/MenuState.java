@@ -3,9 +3,11 @@ package com.jetpoo.game.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.jetpoo.game.JetPoo;
 
 public class MenuState extends State{
@@ -14,6 +16,8 @@ public class MenuState extends State{
     private Texture loginBtn;
     private Sprite leaderboardBtn;
     private Sprite creditsBtn;
+    private Texture bottom;
+    private Vector2 bottomPos1, bottomPos2;
 
     private final GameStateManager gsm;
     private float screenWidth_con;
@@ -30,6 +34,9 @@ public class MenuState extends State{
         cam.setToOrtho(false, resX, resY);
 
         background = game.getAssetManager().get("Menu_bg.png", Texture.class);
+        bottom = game.getAssetManager().get("Menu_bg1.png", Texture.class);
+        bottomPos1 = new Vector2(0,0);
+        bottomPos2 = new Vector2(bottom.getWidth(),0);
 
         playBtn = new Sprite(game.getAssetManager().get("button_play.png", Texture.class));
         playBtn.setBounds(362/screenWidth_con , 257/screenHeight_con, 300/screenWidth_con , 100/screenHeight_con);
@@ -75,19 +82,42 @@ public class MenuState extends State{
 
     @Override
     public void update(float dt) {
-        //Do nothing
+
+        if (bottomPos1.x <= - bottom.getWidth())
+        {
+            bottomPos1.x = bottom.getWidth()-4;
+        }
+        else {
+            bottomPos1.x -= 2;
+        }
+
+        if (bottomPos2.x <= - bottom.getWidth())
+        {
+            bottomPos2.x = bottom.getWidth()-4;
+        }
+        else {
+            bottomPos2.x -= 2;
+        }
+
+
     }
 
     @Override
     public void render(SpriteBatch sb) {
         sb.setProjectionMatrix(cam.combined);
+
+        Gdx.gl.glClearColor( 1, 1, 1, 1 );
+        Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
+
         sb.begin();
+        sb.draw(bottom, bottomPos1.x, bottomPos1.y);
+        sb.draw(bottom, bottomPos2.x, bottomPos2.y);
         sb.draw(background, 0,0, resX, resY);
         sb.draw(playBtn, 362 , resY-(357), 297  , 100);
         sb.draw(leaderboardBtn, 362 , resY-(477), 297  , 100);
         sb.draw(creditsBtn, 362 , resY-(597), 297  , 100);
 
-        //sb.draw(loginBtn,10,cam.position.y-200);
+
         sb.end();
     }
 

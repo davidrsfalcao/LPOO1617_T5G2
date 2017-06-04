@@ -59,7 +59,7 @@ public class JetPoo extends ApplicationAdapter {
 	@Override
 	public void dispose() {
 		super.dispose();
-		music.dispose();
+		//music.dispose();
 		assetManager.dispose();
 	}
 

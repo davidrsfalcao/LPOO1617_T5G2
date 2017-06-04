@@ -25,6 +25,10 @@ public class LoadThread extends Thread{
         this.game.getAssetManager().load("button_play.png", Texture.class);
         this.game.getAssetManager().load("button_leaderboard.png", Texture.class);
 
+        this.game.getAssetManager().load("ground.png", Texture.class);
+        this.game.getAssetManager().load("ceiling.png", Texture.class);
+
+
 
 
 

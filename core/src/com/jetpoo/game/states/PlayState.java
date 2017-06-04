@@ -32,6 +32,8 @@ public class PlayState extends State{
 
     private int speed;
 
+    private boolean screenTouched;
+
 
     //Textures
     private Texture ground;
@@ -44,20 +46,7 @@ public class PlayState extends State{
 
     public PlayState(GameStateManager gsm, JetPoo game) {
         super(gsm, game);
-        System.out.println("here");
-        Gdx.input.setInputProcessor(new InputAdapter(){
 
-            @Override
-            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-
-                hero.jump();
-
-
-
-                return true;
-            }
-
-        });
         start();
     }
 
@@ -81,7 +70,9 @@ public class PlayState extends State{
         cam.setToOrtho(false, JetPoo.WIDTH, JetPoo.HEIGHT);
 
         speed = 100;
-        hero = new NormalGuy(50,JetPoo.HEIGHT - ground.getHeight() - 100);
+        hero = new NormalGuy(100,0);
+        screenTouched = false;
+
 
         bird = new Bird(50, 300);
         groundPos1 = new Vector2(0, 0);
@@ -101,20 +92,41 @@ public class PlayState extends State{
 
 
     private void initTouchListener(){
+        Gdx.input.setInputProcessor(new InputAdapter(){
 
+            @Override
+            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                screenTouched = true;
+                return true;
+            }
+
+            @Override
+            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+                screenTouched = false;
+                return true;
+            }
+
+        });
+
+    }
+
+    public void handleInput(){
+        if (screenTouched){
+            hero.jump();
+        }
+        else hero.setAcelerating(false);
     }
 
 
     @Override
     public void update(float dt) {
+
+        handleInput();
         updateScene(dt);
 
-        
-        //hero.update(dt);
+        hero.updatePosition(dt);
         runningAnimation.update(dt);
 
-        //bird.update(dt);
-        //cam.position.x = bird.getPosition().x + 80;
 
         for(int i = 0; i < tubes.size; i++){
             Tube tube = tubes.get(i);
@@ -141,19 +153,13 @@ public class PlayState extends State{
         sb.draw(bottom, bottomPos1.x, bottomPos1.y);
         sb.draw(bottom, bottomPos2.x, bottomPos2.y);
 
-        //sb.draw(bg, cam.position.x - (cam.viewportWidth / 2), 0);
-        for(Tube tube : tubes) {
-            sb.draw(tube.getTopTube(), tube.getPosTopTube().x, tube.getPosTopTube().y);
-            sb.draw(tube.getBottomTube(), tube.getPosBotTube().x, tube.getPosBotTube().y);
-        }
-
         sb.draw(ground, groundPos1.x, 0);
         sb.draw(ground, groundPos2.x, 0);
         sb.draw(ceiling, groundPos1.x, JetPoo.HEIGHT-ceiling.getHeight());
         sb.draw(ceiling, groundPos2.x, JetPoo.HEIGHT-ceiling.getHeight());
 
 
-        sb.draw(runningAnimation.getFrame(), hero.getX(),(JetPoo.HEIGHT - hero.getY() - 100), 100, 100);
+        sb.draw(runningAnimation.getFrame(), hero.getX(), hero.getY() + ground.getHeight(), 100, 100);
 
 
         sb.end();

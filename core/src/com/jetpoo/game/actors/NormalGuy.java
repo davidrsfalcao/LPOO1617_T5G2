@@ -12,6 +12,13 @@ public class NormalGuy extends Hero{
 
     @Override
     public void jump() {
-        velocity.y = 250;
+        if (velocity.y == 0)
+        {
+            velocity.y = 150;
+        }
+        else velocity.y += 25;
+
+        ontheGround = false;
+        acelerating = true;
     }
 }

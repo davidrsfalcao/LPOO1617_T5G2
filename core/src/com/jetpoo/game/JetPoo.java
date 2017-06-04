@@ -40,11 +40,11 @@ public class JetPoo extends ApplicationAdapter {
 	 * Starts the game.
 	 */
 	private void startGame() {
-		music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
-		music.setLooping(true);
-		music.setVolume(0.1f);
-		music.play();
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		//music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+		//music.setLooping(true);
+		//music.setVolume(0.1f);
+		//music.play();
+		//Gdx.gl.glClearColor(1, 0, 0, 1);
 		gsm.push(new LoadingState(gsm, this));
 	}
 

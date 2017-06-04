@@ -110,9 +110,15 @@ public class MenuState extends State{
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 
         sb.begin();
+
+        // Moving botton
         sb.draw(bottom, bottomPos1.x, bottomPos1.y);
         sb.draw(bottom, bottomPos2.x, bottomPos2.y);
+
+        // Background
         sb.draw(background, 0,0, resX, resY);
+
+        //Buttons
         sb.draw(playBtn, 362 , resY-(357), 297  , 100);
         sb.draw(leaderboardBtn, 362 , resY-(477), 297  , 100);
         sb.draw(creditsBtn, 362 , resY-(597), 297  , 100);
@@ -124,8 +130,7 @@ public class MenuState extends State{
     @Override
     public void dispose() {
         background.dispose();
-        //playBtn.dispose();
-        //leaderboardBtn.dispose();
+
         loginBtn.dispose();
         Gdx.input.setInputProcessor(null);
     }

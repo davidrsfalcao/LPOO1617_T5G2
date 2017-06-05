@@ -23,12 +23,17 @@ public class PlayState extends State{
     private static final int TUBE_COUNT = 4;
     public static final int GRAVITY = 10;
 
-
+    private enum Condition {
+        running, falling, acelerating;
+    }
     //Character
     private Hero hero;
     private Animation runningAnimation;
     private Animation aceleratingAnimation;
     private Texture fallingAnimation;
+    private TextureRegion actual;
+    private Condition condition;
+
 
 
     private int speed;
@@ -64,7 +69,10 @@ public class PlayState extends State{
         bottom = game.getAssetManager().get("Menu_bg1.png", Texture.class);
         ceiling = game.getAssetManager().get("ceiling.png", Texture.class);
         Texture tmp = game.getAssetManager().get("Character-run.png", Texture.class);
-        runningAnimation = new Animation(new TextureRegion(tmp), 6, 0.5f );
+        runningAnimation = new Animation(new TextureRegion(tmp), 6, 0.9f);
+        tmp = game.getAssetManager().get("Character-acelerating.png", Texture.class);
+        aceleratingAnimation = new Animation(new TextureRegion(tmp), 7, 0.5f );
+        fallingAnimation = game.getAssetManager().get("Character-falling.png", Texture.class);
 
     }
 
@@ -74,6 +82,7 @@ public class PlayState extends State{
         speed = 100;
         hero = new NormalGuy(100,64);
         screenTouched = false;
+        condition = Condition.running;
 
 
         float con_x = hero.getScreenWidth_con();
@@ -81,7 +90,6 @@ public class PlayState extends State{
 
         ceiling_bounds = new Rectangle(0,JetPoo.WIDTH, (ceiling.getWidth()/2)*con_x, ceiling.getHeight()*con_y);
         ground_bounds = new Rectangle(0,0, (ground.getWidth()/2)*con_x, (ground.getHeight()/2)*con_y);
-        System.out.println(hero.getBounds() + "   " + ground_bounds);
         groundPos1 = new Vector2(0, 0);
         groundPos2 = new Vector2(ground.getWidth(), 0);
 
@@ -123,6 +131,51 @@ public class PlayState extends State{
         hero.colideCeiling(ceiling_bounds);
     }
 
+    void updateHeroTexture(float dt){
+        Condition a;
+
+        if (hero.isOntheGround()){
+            a = Condition.running;
+        }
+        else if (hero.isAcelerating()){
+            a = Condition.acelerating;
+        }
+        else a = Condition.falling;
+
+        switch (a){
+            case running:
+                if (condition == a)
+                {
+                    runningAnimation.update(dt);
+                    actual = runningAnimation.getFrame();
+                }
+                else {
+                    runningAnimation.reset();
+                    actual = runningAnimation.getFrame();
+                }
+                break;
+
+            case falling:
+                actual = new TextureRegion(fallingAnimation);
+                break;
+
+            case acelerating:
+                if (condition == a)
+                {
+                    aceleratingAnimation.update(dt);
+                    actual = aceleratingAnimation.getFrame();
+                }
+                else {
+                    aceleratingAnimation.reset();
+                    actual = aceleratingAnimation.getFrame();
+                }
+                break;
+        }
+
+        condition = a;
+
+    }
+
     @Override
     public void update(float dt) {
 
@@ -134,9 +187,7 @@ public class PlayState extends State{
         runningAnimation.update(dt);
         hero.updateBounds();
         testColisions();
-
-
-
+        updateHeroTexture(dt);
 
 
     }
@@ -154,7 +205,7 @@ public class PlayState extends State{
         sb.draw(ceiling, groundPos1.x, JetPoo.HEIGHT-ceiling.getHeight());
         sb.draw(ceiling, groundPos2.x, JetPoo.HEIGHT-ceiling.getHeight());
 
-        sb.draw(runningAnimation.getFrame(), hero.getX(), hero.getY(), 100, 100);
+        sb.draw(actual, hero.getX(), hero.getY(), 100, 100);
 
 
         sb.end();

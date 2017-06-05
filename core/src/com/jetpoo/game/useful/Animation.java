@@ -38,4 +38,8 @@ public class Animation {
     public TextureRegion getFrame(){
         return frames.get(frame);
     }
+
+    public void reset(){
+        frame = 0;
+    }
 }

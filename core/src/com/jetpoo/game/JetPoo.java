@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jetpoo.game.states.GameStateManager;
 import com.jetpoo.game.states.LoadingState;
 import com.jetpoo.game.states.MenuState;
+import com.jetpoo.game.Server.PlayServices;
 
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Text;
 
@@ -18,6 +19,7 @@ public class JetPoo extends ApplicationAdapter {
 
 	public static final int WIDTH = 1024;
 	public static final int HEIGHT = 768;
+	public static PlayServices playServices;
 
 	public static final String TITLE = "JetPoo";
 	private GameStateManager gsm;
@@ -61,6 +63,11 @@ public class JetPoo extends ApplicationAdapter {
 		super.dispose();
 		//music.dispose();
 		assetManager.dispose();
+	}
+
+	public JetPoo(PlayServices playServices)
+	{
+		this.playServices = playServices;
 	}
 
 

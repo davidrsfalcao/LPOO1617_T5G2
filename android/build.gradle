@@ -21,6 +21,8 @@ android {
         applicationId "com.jetpoo.game"
         minSdkVersion 9
         targetSdkVersion 25
+
+        multiDexEnabled true
     }
 }
 
@@ -126,4 +128,9 @@ idea {
             }
         }
     }
+}
+
+dependencies {
+
+    compile 'com.android.support:multidex:1.0.0'
 }

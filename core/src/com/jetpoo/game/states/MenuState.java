@@ -13,7 +13,7 @@ import com.jetpoo.game.JetPoo;
 public class MenuState extends State{
     private Texture background;
     private Sprite playBtn;
-    private Texture loginBtn;
+    private Sprite loginBtn;
     private Sprite leaderboardBtn;
     private Sprite creditsBtn;
     private Texture bottom;
@@ -24,12 +24,15 @@ public class MenuState extends State{
     private float screenHeight_con;
     private int resX = JetPoo.WIDTH;
     private int resY = JetPoo.HEIGHT;
+    private JetPoo gm;
+
 
     public MenuState(GameStateManager stateManager, final JetPoo game) {
         super(stateManager, game);
         this.gsm = stateManager;
         this.screenWidth_con = (float) resX / (float) Gdx.graphics.getWidth();
         this.screenHeight_con =  (float) resY/ (float) Gdx.graphics.getHeight();
+        this.gm=game;
 
         cam.setToOrtho(false, resX, resY);
 
@@ -48,7 +51,8 @@ public class MenuState extends State{
         creditsBtn = new Sprite(new Texture("button_credits.png"));
         creditsBtn.setBounds(362/screenWidth_con , 497/screenHeight_con  , 300/screenWidth_con, 100 /screenHeight_con);
 
-        loginBtn=new Texture("login.png");
+        loginBtn = new Sprite(new Texture("login.png"));
+        loginBtn.setBounds(362/screenWidth_con ,617/screenHeight_con,300/screenWidth_con,100/screenHeight_con);
 
         Gdx.input.setInputProcessor(new InputAdapter(){
 
@@ -67,6 +71,9 @@ public class MenuState extends State{
                 if(creditsBtn.getBoundingRectangle().contains(screenX, screenY)){
                     //gsm.set(new LeaderBoardState(gsm, game));
                     System.out.println("Creditos");
+                }
+                if(loginBtn.getBoundingRectangle().contains(screenX,screenY)){
+                    gm.playServices.signIn();
                 }
 
 
@@ -130,6 +137,6 @@ public class MenuState extends State{
     public void dispose() {
         background.dispose();
 
-        loginBtn.dispose();
+
     }
 }

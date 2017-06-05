@@ -124,6 +124,7 @@ public class PlayState extends State{
         handleInput();
         updateScene(dt);
 
+
         hero.updatePosition(dt);
         runningAnimation.update(dt);
 
@@ -153,13 +154,13 @@ public class PlayState extends State{
         sb.draw(bottom, bottomPos1.x, bottomPos1.y);
         sb.draw(bottom, bottomPos2.x, bottomPos2.y);
 
-        sb.draw(ground, groundPos1.x, 0);
-        sb.draw(ground, groundPos2.x, 0);
+        sb.draw(ground, groundPos1.x, - ground.getHeight()/2);
+        sb.draw(ground, groundPos2.x, - ground.getHeight()/2);
         sb.draw(ceiling, groundPos1.x, JetPoo.HEIGHT-ceiling.getHeight());
         sb.draw(ceiling, groundPos2.x, JetPoo.HEIGHT-ceiling.getHeight());
 
 
-        sb.draw(runningAnimation.getFrame(), hero.getX(), hero.getY() + ground.getHeight(), 100, 100);
+        sb.draw(runningAnimation.getFrame(), hero.getX(), hero.getY() + ground.getHeight()/2, 100, 100);
 
 
         sb.end();

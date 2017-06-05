@@ -81,4 +81,7 @@ public abstract class Hero {
         return (int) position.y;
     }
 
+    public Vector2 getVelocity() {
+        return velocity;
+    }
 }

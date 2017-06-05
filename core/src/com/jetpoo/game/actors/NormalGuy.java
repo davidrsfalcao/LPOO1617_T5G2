@@ -16,7 +16,9 @@ public class NormalGuy extends Hero{
         {
             velocity.y = 150;
         }
-        else velocity.y += 25;
+        else if (velocity.y < 700 ){
+            velocity.y += 25;
+        }
 
         ontheGround = false;
         acelerating = true;

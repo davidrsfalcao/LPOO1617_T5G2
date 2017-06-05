@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.jetpoo.game.JetPoo;
-import com.jetpoo.game.actors.Bird;
 import com.jetpoo.game.actors.Hero;
 import com.jetpoo.game.actors.NormalGuy;
 import com.jetpoo.game.actors.Tube;
@@ -22,7 +21,6 @@ public class PlayState extends State{
 
 
     //Character
-    private Bird bird;
     private Hero hero;
     private Animation runningAnimation;
     private Animation aceleratingAnimation;
@@ -73,8 +71,6 @@ public class PlayState extends State{
         hero = new NormalGuy(100,0);
         screenTouched = false;
 
-
-        bird = new Bird(50, 300);
         groundPos1 = new Vector2(0, 0);
         groundPos2 = new Vector2(ground.getWidth(), 0);
 
@@ -128,7 +124,7 @@ public class PlayState extends State{
         hero.updatePosition(dt);
         runningAnimation.update(dt);
 
-
+        /*
         for(int i = 0; i < tubes.size; i++){
             Tube tube = tubes.get(i);
 
@@ -143,6 +139,7 @@ public class PlayState extends State{
         if(bird.getPosition().y <= ground.getHeight() + 0)
             gsm.set(new GameOverState(gsm, game));
         cam.update();
+        */
 
     }
 
@@ -159,7 +156,6 @@ public class PlayState extends State{
         sb.draw(ceiling, groundPos1.x, JetPoo.HEIGHT-ceiling.getHeight());
         sb.draw(ceiling, groundPos2.x, JetPoo.HEIGHT-ceiling.getHeight());
 
-
         sb.draw(runningAnimation.getFrame(), hero.getX(), hero.getY() + ground.getHeight()/2, 100, 100);
 
 
@@ -168,7 +164,6 @@ public class PlayState extends State{
 
     @Override
     public void dispose() {
-        bird.dispose();
         ground.dispose();
         for(Tube tube : tubes)
             tube.dispose();

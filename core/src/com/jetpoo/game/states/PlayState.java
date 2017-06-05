@@ -183,11 +183,11 @@ public class PlayState extends State{
 
         if (v1.x <= - text.getWidth())
         {
-            v1.x = v2.x + text.getWidth();
+            v1.x = v2.x + text.getWidth()/2;
         }
         else if (v2.x <= - text.getWidth())
         {
-            v2.x =v1.x+ text.getWidth();
+            v2.x =v1.x+ text.getWidth()/2;
         }
 
         v1.x -= speed * dt;

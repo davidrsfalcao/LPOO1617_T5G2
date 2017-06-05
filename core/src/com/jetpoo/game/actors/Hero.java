@@ -28,19 +28,16 @@ public abstract class Hero {
 
         position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
-        bounds = new Rectangle(x*screenHeight_con,y*screenHeight_con, 100*screenHeight_con, 100*screenHeight_con);
+        bounds = new Rectangle(x*screenWidth_con,y*screenWidth_con, 100*screenHeight_con, 100*screenWidth_con);
 
     }
 
     public void updatePosition(float dt){
-        if(position.y > 0)
+        if(!ontheGround)
             velocity.add(0, -PlayState.GRAVITY);
         velocity.scl(dt);
         position.add(0 , velocity.y);
         velocity.scl(1/dt);
-
-        if (position.y < 0)
-            position.y = 0;
 
     }
 
@@ -84,9 +81,23 @@ public abstract class Hero {
 
     public boolean colideGround(Rectangle ground){
 
-        if (bounds.overlaps(ground))
+        if (bounds.overlaps(ground)){
+            ontheGround = true;
+            position.y = (ground.getY()+ground.getHeight())/screenHeight_con;
+            velocity = new Vector2(0, 0);
             return true;
+        }
 
+        return false;
+    }
+
+    public boolean colideCeiling(Rectangle ceiling){
+
+        if (bounds.overlaps(ceiling)){
+            position.y = ceiling.getY()/screenHeight_con - 100;
+            velocity = new Vector2(0, PlayState.GRAVITY);
+            return true;
+        }
 
         return false;
     }

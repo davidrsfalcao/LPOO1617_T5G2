@@ -3,16 +3,19 @@ package com.jetpoo.game.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.jetpoo.game.JetPoo;
 import com.jetpoo.game.actors.Hero;
 import com.jetpoo.game.actors.NormalGuy;
 import com.jetpoo.game.actors.Tube;
 import com.jetpoo.game.useful.Animation;
+
+import org.w3c.dom.css.Rect;
 
 
 public class PlayState extends State{
@@ -28,17 +31,18 @@ public class PlayState extends State{
     private Texture fallingAnimation;
 
 
-
     private int speed;
 
     private boolean screenTouched;
 
 
     //Textures
-    private Sprite ground;
-    private Sprite ceiling;
+    private Texture ground;
+    private Rectangle ground_bounds;
+    private Texture ceiling;
+    private Rectangle ceiling_bounds;
     private Vector2 groundPos1, groundPos2;
-    private Sprite bottom;
+    private Texture bottom;
     private Vector2 bottomPos1, bottomPos2;
 
 
@@ -56,9 +60,9 @@ public class PlayState extends State{
     }
 
     private void getAssets(){
-        ground = new Sprite(game.getAssetManager().get("ground.png", Texture.class));
-        bottom = new Sprite(game.getAssetManager().get("Menu_bg1.png", Texture.class));
-        ceiling = new Sprite(game.getAssetManager().get("ceiling.png", Texture.class));
+        ground = game.getAssetManager().get("ground.png", Texture.class);
+        bottom = game.getAssetManager().get("Menu_bg1.png", Texture.class);
+        ceiling = game.getAssetManager().get("ceiling.png", Texture.class);
         Texture tmp = game.getAssetManager().get("Character-run.png", Texture.class);
         runningAnimation = new Animation(new TextureRegion(tmp), 6, 0.5f );
 
@@ -68,9 +72,16 @@ public class PlayState extends State{
         cam.setToOrtho(false, JetPoo.WIDTH, JetPoo.HEIGHT);
 
         speed = 100;
-        hero = new NormalGuy(100,0);
+        hero = new NormalGuy(100,64);
         screenTouched = false;
 
+
+        float con_x = hero.getScreenWidth_con();
+        float con_y = hero.getScreenHeight_con();
+
+        ceiling_bounds = new Rectangle(0,JetPoo.WIDTH, (ceiling.getWidth()/2)*con_x, ceiling.getHeight()*con_y);
+        ground_bounds = new Rectangle(0,0, (ground.getWidth()/2)*con_x, (ground.getHeight()/2)*con_y);
+        System.out.println(hero.getBounds() + "   " + ground_bounds);
         groundPos1 = new Vector2(0, 0);
         groundPos2 = new Vector2(ground.getWidth(), 0);
 
@@ -107,6 +118,10 @@ public class PlayState extends State{
         else hero.setAcelerating(false);
     }
 
+    public void testColisions(){
+        hero.colideGround(ground_bounds);
+        hero.colideCeiling(ceiling_bounds);
+    }
 
     @Override
     public void update(float dt) {
@@ -118,8 +133,11 @@ public class PlayState extends State{
         hero.updatePosition(dt);
         runningAnimation.update(dt);
         hero.updateBounds();
+        testColisions();
 
-        System.out.println(hero.getBounds());
+
+
+
 
     }
 
@@ -136,7 +154,7 @@ public class PlayState extends State{
         sb.draw(ceiling, groundPos1.x, JetPoo.HEIGHT-ceiling.getHeight());
         sb.draw(ceiling, groundPos2.x, JetPoo.HEIGHT-ceiling.getHeight());
 
-        sb.draw(runningAnimation.getFrame(), hero.getX(), hero.getY() + ground.getHeight()/2, 100, 100);
+        sb.draw(runningAnimation.getFrame(), hero.getX(), hero.getY(), 100, 100);
 
 
         sb.end();
@@ -144,7 +162,9 @@ public class PlayState extends State{
 
     @Override
     public void dispose() {
-
+        ground.dispose();
+        ceiling.dispose();
+        bottom.dispose();
 
     }
 
@@ -153,7 +173,7 @@ public class PlayState extends State{
         moveSceen(dt, bottom, bottomPos1, bottomPos2);
     }
 
-    private void moveSceen(float dt, Sprite text, Vector2 v1, Vector2 v2){
+    private void moveSceen(float dt, Texture text, Vector2 v1, Vector2 v2){
 
         if (v1.x <= - text.getWidth())
         {

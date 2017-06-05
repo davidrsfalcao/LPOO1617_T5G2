@@ -1,7 +1,5 @@
 package com.jetpoo.game.useful;
 
-import java.util.*;
-
 /**
  * Created by pedromiranda on 04/06/17.
  */

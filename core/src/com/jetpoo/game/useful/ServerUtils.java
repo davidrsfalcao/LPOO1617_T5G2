@@ -1,7 +1,10 @@
 package com.jetpoo.game.useful;
 
-import java.util.*;
+
 import com.jetpoo.game.useful.Score;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pedromiranda on 04/06/17.

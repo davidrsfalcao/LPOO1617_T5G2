@@ -46,15 +46,7 @@ public abstract class Hero {
     }
 
     public abstract void jump();
-
-    public Rectangle getBounds(){
-        return bounds;
-    }
-
-    public void setBounds(Rectangle bounds) {
-        this.bounds = bounds;
-    }
-
+    
     public boolean isAcelerating() {
         return acelerating;
     }

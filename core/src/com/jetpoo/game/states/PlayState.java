@@ -205,7 +205,12 @@ public class PlayState extends State{
         sb.draw(ceiling, groundPos1.x, JetPoo.HEIGHT-ceiling.getHeight());
         sb.draw(ceiling, groundPos2.x, JetPoo.HEIGHT-ceiling.getHeight());
 
-        sb.draw(actual, hero.getX(), hero.getY(), 100, 100);
+
+        if (condition == Condition.acelerating){
+            sb.draw(actual, hero.getX()-10, hero.getY()-5, 120, 110);
+
+        }
+        else sb.draw(actual, hero.getX(), hero.getY(), 100, 100);
 
 
         sb.end();

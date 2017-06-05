@@ -12,6 +12,8 @@ import com.jetpoo.game.states.PlayState;
 
 public abstract class Hero {
 
+
+
     protected Vector2 position;
     protected Vector2 velocity;
     protected Rectangle bounds;
@@ -118,5 +120,14 @@ public abstract class Hero {
 
     public float getScreenHeight_con() {
         return screenHeight_con;
+    }
+
+    public void setPosition(Vector2 position) {
+        this.position = position;
+    }
+
+    public void setVelocity(Vector2 velocity) {
+        this.velocity = velocity;
+
     }
 }

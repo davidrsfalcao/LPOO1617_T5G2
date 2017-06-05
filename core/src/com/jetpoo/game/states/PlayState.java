@@ -34,7 +34,7 @@ public class PlayState extends State{
     private TextureRegion actual;
     private Condition condition;
 
-
+    private boolean game_pause = false;
 
     private int speed;
 
@@ -88,7 +88,7 @@ public class PlayState extends State{
         float con_x = hero.getScreenWidth_con();
         float con_y = hero.getScreenHeight_con();
 
-        ceiling_bounds = new Rectangle(0,JetPoo.WIDTH, (ceiling.getWidth()/2)*con_x, ceiling.getHeight()*con_y);
+        ceiling_bounds = new Rectangle(0,(JetPoo.HEIGHT-ceiling.getHeight())*con_y, (ceiling.getWidth()/2)*con_x, ceiling.getHeight()*con_y);
         ground_bounds = new Rectangle(0,0, (ground.getWidth()/2)*con_x, (ground.getHeight()/2)*con_y);
         groundPos1 = new Vector2(0, 0);
         groundPos2 = new Vector2(ground.getWidth(), 0);
@@ -179,15 +179,18 @@ public class PlayState extends State{
     @Override
     public void update(float dt) {
 
-        handleInput();
-        updateScene(dt);
+        if(!game_pause) {
+            handleInput();
+            updateScene(dt);
 
 
-        hero.updatePosition(dt);
-        runningAnimation.update(dt);
-        hero.updateBounds();
-        testColisions();
-        updateHeroTexture(dt);
+            hero.updatePosition(dt);
+            runningAnimation.update(dt);
+            hero.updateBounds();
+            testColisions();
+            updateHeroTexture(dt);
+            fixBug();
+        }
 
 
     }
@@ -207,7 +210,7 @@ public class PlayState extends State{
 
 
         if (condition == Condition.acelerating){
-            sb.draw(actual, hero.getX()-10, hero.getY()-5, 120, 110);
+            sb.draw(actual, hero.getX()-10, hero.getY()-8, 120, 110);
 
         }
         else sb.draw(actual, hero.getX(), hero.getY(), 100, 100);
@@ -222,6 +225,25 @@ public class PlayState extends State{
         ceiling.dispose();
         bottom.dispose();
 
+    }
+
+    @Override
+    public void pause(){
+        game_pause = true;
+
+    }
+
+    @Override
+    public void resume(){
+        game_pause = false;
+
+    }
+
+    private void fixBug(){
+        if (hero.getY()< 64){
+            hero.setPosition(new Vector2(100, 64));
+            hero.setVelocity(new Vector2(0, 0));
+        }
     }
 
     private void updateScene(float dt){

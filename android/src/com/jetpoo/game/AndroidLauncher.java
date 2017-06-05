@@ -20,7 +20,7 @@ public class AndroidLauncher extends AndroidApplication implements PlayServices 
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		initialize(new JetPoo(), config);
+		initialize(new JetPoo(this), config);
 		gameHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
 		gameHelper.enableDebugLog(false);
 
@@ -114,7 +114,7 @@ public class AndroidLauncher extends AndroidApplication implements PlayServices 
 		if (isSignedIn() == true)
 		{
 			Games.Leaderboards.submitScore(gameHelper.getApiClient(),
-					getString(R.string.LeaderBoard), highScore);
+					getString(R.string.leaderboard_leaderboard), highScore);
 		}
 	}
 
@@ -129,8 +129,7 @@ public class AndroidLauncher extends AndroidApplication implements PlayServices 
 	{
 		if (isSignedIn() == true)
 		{
-			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(gameHelper.getApiClient(),
-					getString(R.string.LeaderBoard)), requestCode);
+			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(gameHelper.getApiClient(), getString(R.string.leaderboard_leaderboard)), requestCode);
 		}
 		else
 		{

@@ -65,6 +65,10 @@ public class JetPoo extends ApplicationAdapter {
 		assetManager.dispose();
 	}
 
+	public JetPoo(){
+
+	}
+
 	public JetPoo(PlayServices playServices)
 	{
 		this.playServices = playServices;

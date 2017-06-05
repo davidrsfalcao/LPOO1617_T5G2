@@ -46,7 +46,7 @@ public abstract class Hero {
     }
 
     public abstract void jump();
-    
+
     public boolean isAcelerating() {
         return acelerating;
     }

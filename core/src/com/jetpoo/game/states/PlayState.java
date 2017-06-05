@@ -3,6 +3,7 @@ package com.jetpoo.game.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -34,13 +35,12 @@ public class PlayState extends State{
 
 
     //Textures
-    private Texture ground;
-    private Texture ceiling;
+    private Sprite ground;
+    private Sprite ceiling;
     private Vector2 groundPos1, groundPos2;
-    private Texture bottom;
+    private Sprite bottom;
     private Vector2 bottomPos1, bottomPos2;
 
-    private Array<Tube> tubes;
 
     public PlayState(GameStateManager gsm, JetPoo game) {
         super(gsm, game);
@@ -56,9 +56,9 @@ public class PlayState extends State{
     }
 
     private void getAssets(){
-        ground = game.getAssetManager().get("ground.png", Texture.class);
-        bottom = game.getAssetManager().get("Menu_bg1.png", Texture.class);
-        ceiling = game.getAssetManager().get("ceiling.png", Texture.class);
+        ground = new Sprite(game.getAssetManager().get("ground.png", Texture.class));
+        bottom = new Sprite(game.getAssetManager().get("Menu_bg1.png", Texture.class));
+        ceiling = new Sprite(game.getAssetManager().get("ceiling.png", Texture.class));
         Texture tmp = game.getAssetManager().get("Character-run.png", Texture.class);
         runningAnimation = new Animation(new TextureRegion(tmp), 6, 0.5f );
 
@@ -77,12 +77,6 @@ public class PlayState extends State{
         bottomPos1 = new Vector2(0,0);
         bottomPos2 = new Vector2(bottom.getWidth(),0);
 
-
-        tubes = new Array<Tube>();
-
-        for(int i = 1; i <= TUBE_COUNT; i++){
-            tubes.add(new Tube(i * (TUBE_SPACING + Tube.TUBE_WIDTH)));
-        }
 
     }
 
@@ -123,23 +117,9 @@ public class PlayState extends State{
 
         hero.updatePosition(dt);
         runningAnimation.update(dt);
+        hero.updateBounds();
 
-        /*
-        for(int i = 0; i < tubes.size; i++){
-            Tube tube = tubes.get(i);
-
-            if(cam.position.x - (cam.viewportWidth / 2) > tube.getPosTopTube().x + tube.getTopTube().getWidth()){
-                tube.reposition(tube.getPosTopTube().x  + ((Tube.TUBE_WIDTH + TUBE_SPACING) * TUBE_COUNT));
-            }
-
-            if(tube.collides(bird.getBounds()))
-                gsm.set(new GameOverState(gsm, game));
-        }
-
-        if(bird.getPosition().y <= ground.getHeight() + 0)
-            gsm.set(new GameOverState(gsm, game));
-        cam.update();
-        */
+        System.out.println(hero.getBounds());
 
     }
 
@@ -164,9 +144,7 @@ public class PlayState extends State{
 
     @Override
     public void dispose() {
-        ground.dispose();
-        for(Tube tube : tubes)
-            tube.dispose();
+
 
     }
 
@@ -175,7 +153,7 @@ public class PlayState extends State{
         moveSceen(dt, bottom, bottomPos1, bottomPos2);
     }
 
-    private void moveSceen(float dt, Texture text, Vector2 v1, Vector2 v2){
+    private void moveSceen(float dt, Sprite text, Vector2 v1, Vector2 v2){
 
         if (v1.x <= - text.getWidth())
         {

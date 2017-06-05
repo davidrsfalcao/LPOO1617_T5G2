@@ -17,6 +17,7 @@ public abstract class Hero {
     protected Rectangle bounds;
     protected boolean acelerating = false;
     protected boolean ontheGround = true;
+
     private float screenWidth_con;
     private float screenHeight_con;
 
@@ -44,7 +45,7 @@ public abstract class Hero {
     }
 
     public void updateBounds(){
-        bounds.setPosition(position.x*screenHeight_con, position.y*screenHeight_con);
+        bounds.setPosition(position.x*screenWidth_con, position.y*screenHeight_con);
     }
 
     public abstract void jump();
@@ -81,7 +82,20 @@ public abstract class Hero {
         return (int) position.y;
     }
 
-    public Vector2 getVelocity() {
-        return velocity;
+    public boolean colideGround(Rectangle ground){
+
+        if (bounds.overlaps(ground))
+            return true;
+
+
+        return false;
+    }
+
+    public float getScreenWidth_con() {
+        return screenWidth_con;
+    }
+
+    public float getScreenHeight_con() {
+        return screenHeight_con;
     }
 }

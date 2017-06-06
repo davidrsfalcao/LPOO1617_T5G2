@@ -45,6 +45,7 @@ public class PlayState extends State{
 
     private int speed;
     private int counter = 0;
+    private int score;
 
     private boolean screenTouched;
 
@@ -94,6 +95,7 @@ public class PlayState extends State{
         cam.setToOrtho(false, JetPoo.WIDTH, JetPoo.HEIGHT);
 
         speed = 100;
+        score = 0;
         hero = new NormalGuy(100,64);
         screenTouched = false;
         condition = Condition.running;
@@ -193,19 +195,16 @@ public class PlayState extends State{
     @Override
     public void update(float dt) {
 
-        if(!game_pause) {
+        if(!game_pause && dt < 1) {
             handleInput();
             updateScene(dt);
 
 
-            hero.updatePosition(dt);
-            hero.updateBounds();
+            hero.update(dt);
             runningAnimation.update(dt);
-            obstaclesFactory(dt);
             testColisions();
-            hero.updateBounds();
+            obstaclesFactory(dt);
             updateHeroTexture(dt);
-            fixBug();
 
         }
 
@@ -229,7 +228,7 @@ public class PlayState extends State{
         for(int i=0; i < lasers.size(); i++){
             sb.draw(laserAnimation.getFrame(), lasers.get(i).getX(),lasers.get(i).getY(), 160, lasers.get(i).getHeight());
         }
-        //sb.draw(laserAnimation.getFrame(),0,0, 160, 100);
+
 
         if (condition == Condition.acelerating){
             sb.draw(actual, hero.getX()-10, hero.getY()-8, 120, 110);
@@ -261,13 +260,6 @@ public class PlayState extends State{
 
     }
 
-    private void fixBug(){
-        if (hero.getY()< 64){
-            hero.setPosition(new Vector2(100, 64));
-            hero.setVelocity(new Vector2(0, 0));
-        }
-    }
-
     private void updateScene(float dt){
         moveSceen(dt, ground, groundPos1, groundPos2);
         moveSceen(dt, bottom, bottomPos1, bottomPos2);
@@ -292,25 +284,29 @@ public class PlayState extends State{
 
     private void obstaclesFactory(float dt){
 
+        boolean increase = false;
         for (int i= 0; i < lasers.size(); i++){
             if (lasers.get(i).getX() < -100){
                 lasers.remove(i);
+                score += 1;
+                increase = true;
             }
             else {
                 lasers.get(i).update(speed * dt);
                 if (hero.colideLaser(lasers.get(i))){
                     gsm.set(new GameOverState(gsm, game));
                 }
-
-
-
             }
         }
-        
-        if (counter % 500 == 0){
+
+        if (counter > 500){
             lasers.add(new Obstacle(game, JetPoo.WIDTH + 10));
+            counter = 0;
         }
 
+        if (increase)
+            speed += 10;
         laserAnimation.update(dt);
     }
+
 }

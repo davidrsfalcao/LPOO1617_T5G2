@@ -32,16 +32,9 @@ public abstract class Hero {
 
     }
 
-    public void updatePosition(float dt){
-        if(!ontheGround)
-            velocity.add(0, -PlayState.GRAVITY);
-        velocity.scl(dt);
-        position.add(0 , velocity.y);
-        velocity.scl(1/dt);
+    public abstract void update(float dt);
 
-    }
-
-    public void updateBounds(){
+    protected void updateBounds(){
         bounds.setPosition(position.x*screenWidth_con, position.y*screenHeight_con);
     }
 
@@ -79,11 +72,13 @@ public abstract class Hero {
                 ontheGround = true;
                 position.y = (ground.getY()+ground.getHeight())/screenHeight_con;
                 velocity = new Vector2(0, 0);
+                updateBounds();
                 return true;
             }
             else{ //ressalto
                 position.y = (ground.getY()+ground.getHeight())/screenHeight_con;
                 velocity = new Vector2(0, -velocity.y/5);
+                updateBounds();
                 return true;
             }
 
@@ -99,11 +94,13 @@ public abstract class Hero {
             if (velocity.y < 10){
                 position.y = ceiling.getY()/screenHeight_con - 100;
                 velocity = new Vector2(0, PlayState.GRAVITY);
+                updateBounds();
                 return true;
             }
             else { //ressalto
                 position.y = ceiling.getY()/screenHeight_con - 100;
                 velocity = new Vector2(0, -velocity.y/2);
+                updateBounds();
                 return true;
             }
 
@@ -130,14 +127,6 @@ public abstract class Hero {
         return screenHeight_con;
     }
 
-    public void setPosition(Vector2 position) {
-        this.position = position;
-    }
-
-    public void setVelocity(Vector2 velocity) {
-        this.velocity = velocity;
-
-    }
 
     public Rectangle getBounds() {
         return bounds;

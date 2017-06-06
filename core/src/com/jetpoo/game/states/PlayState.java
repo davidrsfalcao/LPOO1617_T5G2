@@ -7,18 +7,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.Array;
 import com.jetpoo.game.JetPoo;
 import com.jetpoo.game.actors.Hero;
 import com.jetpoo.game.actors.NormalGuy;
 import com.jetpoo.game.actors.Obstacle;
-import com.jetpoo.game.actors.Tube;
 import com.jetpoo.game.useful.Animation;
 
-import org.w3c.dom.css.Rect;
-
-import java.util.List;
 import java.util.Vector;
 
 
@@ -199,13 +193,11 @@ public class PlayState extends State{
             handleInput();
             updateScene(dt);
 
-
             hero.update(dt);
             runningAnimation.update(dt);
             testColisions();
             obstaclesFactory(dt);
             updateHeroTexture(dt);
-
         }
 
 

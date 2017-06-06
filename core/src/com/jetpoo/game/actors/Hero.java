@@ -12,8 +12,6 @@ import com.jetpoo.game.states.PlayState;
 
 public abstract class Hero {
 
-
-
     protected Vector2 position;
     protected Vector2 velocity;
     protected Rectangle bounds;
@@ -30,7 +28,7 @@ public abstract class Hero {
 
         position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
-        bounds = new Rectangle(x*screenWidth_con,y*screenWidth_con, 100*screenHeight_con, 100*screenWidth_con);
+        bounds = new Rectangle(x*screenWidth_con,y*screenWidth_con, 10*screenWidth_con, 100*screenHeight_con);
 
     }
 
@@ -114,6 +112,16 @@ public abstract class Hero {
         return false;
     }
 
+    public boolean colideLaser(Obstacle laser){
+
+        if (bounds.overlaps(laser.getBounds())){
+            return true;
+        }
+
+        return false;
+
+    }
+
     public float getScreenWidth_con() {
         return screenWidth_con;
     }
@@ -129,5 +137,9 @@ public abstract class Hero {
     public void setVelocity(Vector2 velocity) {
         this.velocity = velocity;
 
+    }
+
+    public Rectangle getBounds() {
+        return bounds;
     }
 }

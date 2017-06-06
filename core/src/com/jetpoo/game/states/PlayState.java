@@ -12,20 +12,27 @@ import com.badlogic.gdx.utils.Array;
 import com.jetpoo.game.JetPoo;
 import com.jetpoo.game.actors.Hero;
 import com.jetpoo.game.actors.NormalGuy;
+import com.jetpoo.game.actors.Obstacle;
 import com.jetpoo.game.actors.Tube;
 import com.jetpoo.game.useful.Animation;
 
 import org.w3c.dom.css.Rect;
 
+import java.util.List;
+import java.util.Vector;
+
 
 public class PlayState extends State{
-    private static final int TUBE_SPACING = 300;
-    private static final int TUBE_COUNT = 4;
-    public static final int GRAVITY = 10;
 
     private enum Condition {
         running, falling, acelerating;
     }
+
+    private static final int TUBE_SPACING = 300;
+    private static final int TUBE_COUNT = 4;
+    public static final int GRAVITY = 10;
+
+
     //Character
     private Hero hero;
     private Animation runningAnimation;
@@ -37,8 +44,13 @@ public class PlayState extends State{
     private boolean game_pause = false;
 
     private int speed;
+    private int counter = 0;
 
     private boolean screenTouched;
+
+    private Vector<Obstacle> lasers;
+    private Animation laserAnimation;
+
 
 
     //Textures
@@ -73,6 +85,8 @@ public class PlayState extends State{
         tmp = game.getAssetManager().get("Character-acelerating.png", Texture.class);
         aceleratingAnimation = new Animation(new TextureRegion(tmp), 7, 0.5f );
         fallingAnimation = game.getAssetManager().get("Character-falling.png", Texture.class);
+        tmp = game.getAssetManager().get("laser.png", Texture.class);
+        laserAnimation = new Animation(new TextureRegion(tmp), 7, 1 );
 
     }
 
@@ -83,6 +97,7 @@ public class PlayState extends State{
         hero = new NormalGuy(100,64);
         screenTouched = false;
         condition = Condition.running;
+        lasers = new Vector<Obstacle>();
 
 
         float con_x = hero.getScreenWidth_con();
@@ -98,7 +113,6 @@ public class PlayState extends State{
 
 
     }
-
 
     private void initTouchListener(){
         Gdx.input.setInputProcessor(new InputAdapter(){
@@ -185,11 +199,14 @@ public class PlayState extends State{
 
 
             hero.updatePosition(dt);
-            runningAnimation.update(dt);
             hero.updateBounds();
+            runningAnimation.update(dt);
+            obstaclesFactory(dt);
             testColisions();
+            hero.updateBounds();
             updateHeroTexture(dt);
             fixBug();
+
         }
 
 
@@ -208,6 +225,11 @@ public class PlayState extends State{
         sb.draw(ceiling, groundPos1.x, JetPoo.HEIGHT-ceiling.getHeight());
         sb.draw(ceiling, groundPos2.x, JetPoo.HEIGHT-ceiling.getHeight());
 
+
+        for(int i=0; i < lasers.size(); i++){
+            sb.draw(laserAnimation.getFrame(), lasers.get(i).getX(),lasers.get(i).getY(), 160, lasers.get(i).getHeight());
+        }
+        //sb.draw(laserAnimation.getFrame(),0,0, 160, 100);
 
         if (condition == Condition.acelerating){
             sb.draw(actual, hero.getX()-10, hero.getY()-8, 120, 110);
@@ -249,6 +271,7 @@ public class PlayState extends State{
     private void updateScene(float dt){
         moveSceen(dt, ground, groundPos1, groundPos2);
         moveSceen(dt, bottom, bottomPos1, bottomPos2);
+        counter += speed * dt;
     }
 
     private void moveSceen(float dt, Texture text, Vector2 v1, Vector2 v2){
@@ -265,5 +288,29 @@ public class PlayState extends State{
         v1.x -= speed * dt;
         v2.x -= speed*dt;
 
+    }
+
+    private void obstaclesFactory(float dt){
+
+        for (int i= 0; i < lasers.size(); i++){
+            if (lasers.get(i).getX() < -100){
+                lasers.remove(i);
+            }
+            else {
+                lasers.get(i).update(speed * dt);
+                if (hero.colideLaser(lasers.get(i))){
+                    gsm.set(new GameOverState(gsm, game));
+                }
+
+
+
+            }
+        }
+        
+        if (counter % 500 == 0){
+            lasers.add(new Obstacle(game, JetPoo.WIDTH + 10));
+        }
+
+        laserAnimation.update(dt);
     }
 }

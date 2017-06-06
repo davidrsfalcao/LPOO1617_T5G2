@@ -31,6 +31,8 @@ public class LoadThread extends Thread{
         this.game.getAssetManager().load("Character-acelerating.png", Texture.class);
         this.game.getAssetManager().load("Character-falling.png", Texture.class);
 
+        this.game.getAssetManager().load("laser.png", Texture.class);
+
 
 
 

@@ -127,7 +127,6 @@ public abstract class Hero {
         return screenHeight_con;
     }
 
-
     public Rectangle getBounds() {
         return bounds;
     }

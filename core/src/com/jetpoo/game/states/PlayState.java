@@ -28,30 +28,41 @@ public class PlayState extends State{
     private int score;
     private boolean game_pause;
     private boolean screenTouched;
+    private Condition condition;
 
-    //Character
+    /*
+    * ACTORS
+    * */
     private Hero hero;
+    private Vector<Obstacle> lasers;
+
+    /*
+    * TEXTURES
+    * */
     private Animation runningAnimation;
     private Animation aceleratingAnimation;
     private Texture fallingAnimation;
     private TextureRegion actual;
-    private Condition condition;
-
-
-
-
-    private Vector<Obstacle> lasers;
+    private Texture ground;
+    private Texture ceiling;
+    private Texture bottom;
     private Animation laserAnimation;
+    private Animation numbers;
+    private Texture score_board;
+
+
+
+
 
 
 
     //Textures
-    private Texture ground;
+
     private Rectangle ground_bounds;
-    private Texture ceiling;
+
     private Rectangle ceiling_bounds;
     private Vector2 groundPos1, groundPos2;
-    private Texture bottom;
+
     private Vector2 bottomPos1, bottomPos2;
 
 
@@ -79,7 +90,9 @@ public class PlayState extends State{
         fallingAnimation = game.getAssetManager().get("Character-falling.png", Texture.class);
         tmp = game.getAssetManager().get("laser.png", Texture.class);
         laserAnimation = new Animation(new TextureRegion(tmp), 7, 1 );
-        tmp.dispose();
+        tmp = game.getAssetManager().get("numbers.png", Texture.class);
+        numbers = new Animation(new TextureRegion(tmp), 10, 1 );
+        score_board = game.getAssetManager().get("score_board.png", Texture.class);
 
     }
 
@@ -215,6 +228,8 @@ public class PlayState extends State{
         sb.draw(ceiling, groundPos1.x, JetPoo.HEIGHT-ceiling.getHeight());
         sb.draw(ceiling, groundPos2.x, JetPoo.HEIGHT-ceiling.getHeight());
 
+        displayScore(sb);
+
 
         for(int i=0; i < lasers.size(); i++){
             sb.draw(laserAnimation.getFrame(), lasers.get(i).getX(),lasers.get(i).getY(), 160, lasers.get(i).getHeight());
@@ -298,6 +313,57 @@ public class PlayState extends State{
         if (increase)
             speed += 10;
         laserAnimation.update(dt);
+    }
+
+    private void displayScore(SpriteBatch sb){
+
+        /*
+        * Mostra números de até 4 digitos
+        * */
+        int space = 10;
+        int number = score;
+
+        sb.draw(score_board, 14 , JetPoo.HEIGHT - 102, 242, 100);
+
+        for(int i=0; i < 4; i++ ){
+
+            switch (number % 10){
+                case 0:
+                    sb.draw(numbers.getFrame(0), 20 +(3-i)*(space+50) , JetPoo.HEIGHT - 90, 50, 80);
+                    break;
+                case 1:
+                    sb.draw(numbers.getFrame(1), 20 + (3-i)*(space+50) , JetPoo.HEIGHT - 90, 50, 80);
+                    break;
+                case 2:
+                    sb.draw(numbers.getFrame(2), 20 + (3-i)*(space+50) , JetPoo.HEIGHT - 90, 50, 80);
+                    break;
+                case 3:
+                    sb.draw(numbers.getFrame(3), 20 + (3-i)*(space+50) , JetPoo.HEIGHT - 90, 50, 80);
+                    break;
+                case 4:
+                    sb.draw(numbers.getFrame(4), 20 + (3-i)*(space+50) , JetPoo.HEIGHT - 90, 50, 80);
+                    break;
+                case 5:
+                    sb.draw(numbers.getFrame(5), 20 + (3-i)*(space+50) , JetPoo.HEIGHT - 90, 50, 80);
+                    break;
+                case 6:
+                    sb.draw(numbers.getFrame(6), 20 + (3-i)*(space+50) , JetPoo.HEIGHT - 90, 50, 80);
+                    break;
+                case 7:
+                    sb.draw(numbers.getFrame(7), 20 + (3-i)*(space+50) , JetPoo.HEIGHT - 90, 50, 80);
+                    break;
+                case 8:
+                    sb.draw(numbers.getFrame(8), 20 + (3-i)*(space+50) , JetPoo.HEIGHT - 90, 50, 80);
+                    break;
+                case 9:
+                    sb.draw(numbers.getFrame(9), 20 + (3-i)*(space+50) , JetPoo.HEIGHT - 90, 50, 80);
+                    break;
+            }
+            number /= 10;
+
+        }
+
+
     }
 
 }

@@ -65,7 +65,7 @@ public class MenuState extends State{
                 }
 
                 if(leaderboardBtn.getBoundingRectangle().contains(screenX, screenY)){
-                    gsm.set(new LeaderBoardState(gsm, game));
+                    gm.playServices.showScore();
                 }
 
                 if(creditsBtn.getBoundingRectangle().contains(screenX, screenY)){

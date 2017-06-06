@@ -22,10 +22,12 @@ public class PlayState extends State{
         running, falling, acelerating;
     }
 
-    private static final int TUBE_SPACING = 300;
-    private static final int TUBE_COUNT = 4;
     public static final int GRAVITY = 10;
-
+    private int speed;
+    private int counter = 0;
+    private int score;
+    private boolean game_pause;
+    private boolean screenTouched;
 
     //Character
     private Hero hero;
@@ -35,13 +37,8 @@ public class PlayState extends State{
     private TextureRegion actual;
     private Condition condition;
 
-    private boolean game_pause = false;
 
-    private int speed;
-    private int counter = 0;
-    private int score;
 
-    private boolean screenTouched;
 
     private Vector<Obstacle> lasers;
     private Animation laserAnimation;
@@ -82,6 +79,7 @@ public class PlayState extends State{
         fallingAnimation = game.getAssetManager().get("Character-falling.png", Texture.class);
         tmp = game.getAssetManager().get("laser.png", Texture.class);
         laserAnimation = new Animation(new TextureRegion(tmp), 7, 1 );
+        tmp.dispose();
 
     }
 
@@ -90,6 +88,7 @@ public class PlayState extends State{
 
         speed = 100;
         score = 0;
+        game_pause = false;
         hero = new NormalGuy(100,64);
         screenTouched = false;
         condition = Condition.running;

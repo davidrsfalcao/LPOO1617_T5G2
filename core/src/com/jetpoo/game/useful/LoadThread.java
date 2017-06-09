@@ -40,6 +40,9 @@ public class LoadThread extends Thread{
 
         this.game.getAssetManager().load("sounds/sound.ogg", Music.class);
 
+        this.game.getAssetManager().load("PowerUp.png", Texture.class);
+
+
         finished = true;
 
     }

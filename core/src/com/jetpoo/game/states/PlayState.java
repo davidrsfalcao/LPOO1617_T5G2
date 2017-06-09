@@ -13,8 +13,10 @@ import com.jetpoo.game.JetPoo;
 import com.jetpoo.game.actors.Hero;
 import com.jetpoo.game.actors.NormalGuy;
 import com.jetpoo.game.actors.Obstacle;
+import com.jetpoo.game.actors.PowerUp;
 import com.jetpoo.game.useful.Animation;
 
+import java.util.Random;
 import java.util.Vector;
 
 
@@ -31,12 +33,13 @@ public class PlayState extends State{
     private boolean game_pause;
     private boolean screenTouched;
     private Condition condition;
+    private Random randomGenerator;
 
     /*
     * ACTORS
     * */
     private Hero hero;
-    private Music aceleratingSound;
+    private Vector<PowerUp> powerUps;
     private Vector<Obstacle> lasers;
 
     /*
@@ -52,9 +55,11 @@ public class PlayState extends State{
     private Animation laserAnimation;
     private Animation numbers;
     private Texture score_board;
+    private Texture powerup;
 
 
 
+    private Music aceleratingSound;
 
 
 
@@ -97,6 +102,7 @@ public class PlayState extends State{
         numbers = new Animation(new TextureRegion(tmp), 10, 1 );
         score_board = game.getAssetManager().get("score_board.png", Texture.class);
         aceleratingSound = game.getAssetManager().get("sounds/sound.ogg", Music.class);
+        powerup = game.getAssetManager().get("PowerUp.png", Texture.class);
 
     }
 
@@ -119,8 +125,9 @@ public class PlayState extends State{
         bottomPos1 = new Vector2(0,0);
         bottomPos2 = new Vector2(bottom.getWidth(),0);
 
-        Obstacle a = new Obstacle(game, 200);
-        System.out.println(a.getBounds());
+        powerUps = new Vector<PowerUp>();
+        randomGenerator = new Random();
+
 
 
     }
@@ -220,7 +227,6 @@ public class PlayState extends State{
             hero.update(dt);
             runningAnimation.update(dt);
             testColisions();
-            obstaclesFactory(dt);
             updateHeroTexture(dt);
         }
 
@@ -254,6 +260,9 @@ public class PlayState extends State{
         }
         else sb.draw(actual, hero.getX(), hero.getY(), 100, 100);
 
+        for (int i = 0; i < powerUps.size(); i++){
+            sb.draw(powerup, powerUps.get(i).getX(), powerUps.get(i).getY(), 50, 50);
+        }
 
         sb.end();
     }
@@ -280,9 +289,12 @@ public class PlayState extends State{
     }
 
     private void updateScene(float dt){
+        counter += speed * dt;
         moveSceen(dt, ground, groundPos1, groundPos2);
         moveSceen(dt, bottom, bottomPos1, bottomPos2);
-        counter += speed * dt;
+        obstaclesFactory(dt);
+        powerUpFactory(dt);
+
     }
 
     private void moveSceen(float dt, Texture text, Vector2 v1, Vector2 v2){
@@ -319,13 +331,27 @@ public class PlayState extends State{
         }
 
         if (counter > 500){
-            lasers.add(new Obstacle(game, JetPoo.WIDTH + 10));
+            lasers.add(new Obstacle(JetPoo.WIDTH + 10));
             counter = 0;
         }
 
         if (increase)
             speed += 10;
         laserAnimation.update(dt);
+    }
+
+    private void powerUpFactory(float dt){
+
+        for(int i=0; i < powerUps.size(); i++)
+            powerUps.get(i).update(speed * dt);
+
+        int rand1 = randomGenerator.nextInt(2000);
+
+        if (rand1 == 0){
+            PowerUp a = new PowerUp();
+            powerUps.add(a);
+        }
+
     }
 
     private void displayScore(SpriteBatch sb){

@@ -14,27 +14,27 @@ public class Obstacle {
     private Vector2 position;
     private int height;
     private int width;
-    protected Rectangle bounds;
+    private Rectangle bounds;
     private Random randomGenerator;
 
-    public Obstacle(JetPoo game, int x) {
+    public Obstacle(int x) {
         randomGenerator = new Random();
         position = new Vector2();
         position.x = x;
-        initPosition(game);
-        initHeight(game);
+        initPosition();
+        initHeight();
         initBounds();
 
     }
 
-    public void initPosition(JetPoo game){
+    public void initPosition(){
         int ground = 64;
         int ceiling = 128;
 
         position.y = randomGenerator.nextInt(JetPoo.HEIGHT-ceiling-ground) + ground;
     }
 
-    public void initHeight(JetPoo game){
+    public void initHeight(){
         int ground = 64;
         int ceiling = 128;
 

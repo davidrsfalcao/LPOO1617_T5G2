@@ -24,8 +24,8 @@ public class LoadingState extends State {
         cam.setToOrtho(false, JetPoo.WIDTH, JetPoo.HEIGHT);
 
 
-        this.game.getAssetManager().load("Loading.png", Texture.class);
-        this.game.getAssetManager().load("Loading_bar.png", Texture.class);
+        this.game.getAssetManager().load("background/Loading.png", Texture.class);
+        this.game.getAssetManager().load("background/Loading_bar.png", Texture.class);
         this.game.getAssetManager().finishLoading();
 
         this.thread = new LoadThread(game);

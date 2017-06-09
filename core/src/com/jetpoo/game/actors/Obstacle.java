@@ -33,15 +33,15 @@ public class Obstacle {
     }
 
     public void initPosition(JetPoo game){
-        int ground = game.getAssetManager().get("ground.png", Texture.class).getHeight()/2;
-        int ceiling = game.getAssetManager().get("ceiling.png", Texture.class).getHeight();
+        int ground = game.getAssetManager().get("background/ground.png", Texture.class).getHeight()/2;
+        int ceiling = game.getAssetManager().get("background/ceiling.png", Texture.class).getHeight();
 
         position.y = randomGenerator.nextInt(JetPoo.HEIGHT-ceiling-ground) + ground;
     }
 
     public void initHeight(JetPoo game){
-        int ground = game.getAssetManager().get("ground.png", Texture.class).getHeight()/2;
-        int ceiling = game.getAssetManager().get("ceiling.png", Texture.class).getHeight();
+        int ground = game.getAssetManager().get("background/ground.png", Texture.class).getHeight()/2;
+        int ceiling = game.getAssetManager().get("background/ceiling.png", Texture.class).getHeight();
 
         height = randomGenerator.nextInt(JetPoo.HEIGHT-ceiling-ground-200)/2 +100;
 

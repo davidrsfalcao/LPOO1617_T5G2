@@ -13,7 +13,6 @@ import com.jetpoo.game.JetPoo;
 public class MenuState extends State{
     private Texture background;
     private Sprite playBtn;
-    private Sprite loginBtn;
     private Sprite leaderboardBtn;
     private Sprite creditsBtn;
     private Texture bottom;
@@ -36,23 +35,21 @@ public class MenuState extends State{
 
         cam.setToOrtho(false, resX, resY);
 
-        background = game.getAssetManager().get("Menu_bg.png", Texture.class);
-        bottom = game.getAssetManager().get("Menu_bg1.png", Texture.class);
+        background = game.getAssetManager().get("background/Menu_bg.png", Texture.class);
+        bottom = game.getAssetManager().get("background/Menu_bg1.png", Texture.class);
         bottomPos1 = new Vector2(0,0);
         bottomPos2 = new Vector2(bottom.getWidth(),0);
 
-        playBtn = new Sprite(game.getAssetManager().get("button_play.png", Texture.class));
+        playBtn = new Sprite(game.getAssetManager().get("buttons/button_play.png", Texture.class));
         playBtn.setBounds(362/screenWidth_con , 257/screenHeight_con, 300/screenWidth_con , 100/screenHeight_con);
 
-        leaderboardBtn= new Sprite(game.getAssetManager().get("button_leaderboard.png", Texture.class));
+        leaderboardBtn= new Sprite(game.getAssetManager().get("buttons/button_leaderboard.png", Texture.class));
         leaderboardBtn.setBounds(362/screenWidth_con , 377/screenHeight_con  , 300/screenWidth_con, 100/screenHeight_con );
 
 
-        creditsBtn = new Sprite(new Texture("button_credits.png"));
+        creditsBtn = new Sprite(game.getAssetManager().get("buttons/button_credits.png", Texture.class));
         creditsBtn.setBounds(362/screenWidth_con , 497/screenHeight_con  , 300/screenWidth_con, 100 /screenHeight_con);
 
-        loginBtn = new Sprite(new Texture("login.png"));
-        loginBtn.setBounds(362/screenWidth_con ,617/screenHeight_con,300/screenWidth_con,100/screenHeight_con);
 
         Gdx.input.setInputProcessor(new InputAdapter(){
 
@@ -71,9 +68,6 @@ public class MenuState extends State{
                 if(creditsBtn.getBoundingRectangle().contains(screenX, screenY)){
                     //gsm.set(new LeaderBoardState(gsm, game));
                     System.out.println("Creditos");
-                }
-                if(loginBtn.getBoundingRectangle().contains(screenX,screenY)){
-                    gm.playServices.signIn();
                 }
 
 

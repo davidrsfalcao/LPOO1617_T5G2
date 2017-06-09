@@ -80,14 +80,14 @@ public class PlayState extends State{
     }
 
     private void getAssets(){
-        ground = game.getAssetManager().get("ground.png", Texture.class);
-        bottom = game.getAssetManager().get("Menu_bg1.png", Texture.class);
-        ceiling = game.getAssetManager().get("ceiling.png", Texture.class);
-        Texture tmp = game.getAssetManager().get("Character-run.png", Texture.class);
+        ground = game.getAssetManager().get("background/ground.png", Texture.class);
+        bottom = game.getAssetManager().get("background/Menu_bg1.png", Texture.class);
+        ceiling = game.getAssetManager().get("background/ceiling.png", Texture.class);
+        Texture tmp = game.getAssetManager().get("character/Character-run.png", Texture.class);
         runningAnimation = new Animation(new TextureRegion(tmp), 6, 0.9f);
-        tmp = game.getAssetManager().get("Character-acelerating.png", Texture.class);
+        tmp = game.getAssetManager().get("character/Character-acelerating.png", Texture.class);
         aceleratingAnimation = new Animation(new TextureRegion(tmp), 7, 0.5f );
-        fallingAnimation = game.getAssetManager().get("Character-falling.png", Texture.class);
+        fallingAnimation = game.getAssetManager().get("character/Character-falling.png", Texture.class);
         tmp = game.getAssetManager().get("laser.png", Texture.class);
         laserAnimation = new Animation(new TextureRegion(tmp), 7, 1 );
         tmp = game.getAssetManager().get("numbers.png", Texture.class);

@@ -1,5 +1,7 @@
 package com.jetpoo.game.useful;
 
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.jetpoo.game.JetPoo;
 
@@ -35,6 +37,8 @@ public class LoadThread extends Thread{
         this.game.getAssetManager().load("laser.png", Texture.class);
         this.game.getAssetManager().load("numbers.png", Texture.class);
         this.game.getAssetManager().load("score_board.png", Texture.class);
+
+        this.game.getAssetManager().load("sounds/sound.ogg", Music.class);
 
         finished = true;
 

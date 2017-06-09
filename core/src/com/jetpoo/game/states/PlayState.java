@@ -2,6 +2,8 @@ package com.jetpoo.game.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -34,6 +36,7 @@ public class PlayState extends State{
     * ACTORS
     * */
     private Hero hero;
+    private Music aceleratingSound;
     private Vector<Obstacle> lasers;
 
     /*
@@ -93,6 +96,7 @@ public class PlayState extends State{
         tmp = game.getAssetManager().get("numbers.png", Texture.class);
         numbers = new Animation(new TextureRegion(tmp), 10, 1 );
         score_board = game.getAssetManager().get("score_board.png", Texture.class);
+        aceleratingSound = game.getAssetManager().get("sounds/sound.ogg", Music.class);
 
     }
 
@@ -143,8 +147,17 @@ public class PlayState extends State{
     public void handleInput(){
         if (screenTouched){
             hero.jump();
+            if (!aceleratingSound.isPlaying()){
+                aceleratingSound.play();
+                aceleratingSound.setLooping(true);
+            }
+
         }
-        else hero.setAcelerating(false);
+        else {
+            hero.setAcelerating(false);
+            aceleratingSound.stop();
+
+        }
     }
 
     public void testColisions(){
@@ -250,6 +263,7 @@ public class PlayState extends State{
         ground.dispose();
         ceiling.dispose();
         bottom.dispose();
+        aceleratingSound.dispose();
 
     }
 

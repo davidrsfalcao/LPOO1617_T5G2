@@ -18,24 +18,18 @@ public abstract class Hero {
     protected boolean acelerating = false;
     protected boolean ontheGround = true;
 
-    private float screenWidth_con;
-    private float screenHeight_con;
-
 
     public Hero(int x, int y){
-        screenWidth_con = (float) JetPoo.WIDTH / (float) Gdx.graphics.getWidth();
-        screenHeight_con = (float) JetPoo.HEIGHT / (float) Gdx.graphics.getHeight();
-
         position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
-        bounds = new Rectangle(x*screenWidth_con,y*screenWidth_con, 10*screenWidth_con, 100*screenHeight_con);
+        bounds = new Rectangle(x,y, 80, 100);
 
     }
 
     public abstract void update(float dt);
 
     protected void updateBounds(){
-        bounds.setPosition(position.x*screenWidth_con, position.y*screenHeight_con);
+        bounds.setPosition(position.x, position.y);
     }
 
     public abstract void jump();
@@ -70,13 +64,13 @@ public abstract class Hero {
 
             if (velocity.y > -50){
                 ontheGround = true;
-                position.y = (ground.getY()+ground.getHeight())/screenHeight_con;
+                position.y = ground.getY()+ground.getHeight();
                 velocity = new Vector2(0, 0);
                 updateBounds();
                 return true;
             }
             else{ //ressalto
-                position.y = (ground.getY()+ground.getHeight())/screenHeight_con;
+                position.y = ground.getY()+ground.getHeight();
                 velocity = new Vector2(0, -velocity.y/5);
                 updateBounds();
                 return true;
@@ -92,13 +86,13 @@ public abstract class Hero {
         if (bounds.overlaps(ceiling)){
 
             if (velocity.y < 10){
-                position.y = ceiling.getY()/screenHeight_con - 100;
+                position.y = ceiling.getY() - 100;
                 velocity = new Vector2(0, PlayState.GRAVITY);
                 updateBounds();
                 return true;
             }
             else { //ressalto
-                position.y = ceiling.getY()/screenHeight_con - 100;
+                position.y = ceiling.getY() - 100;
                 velocity = new Vector2(0, -velocity.y/2);
                 updateBounds();
                 return true;
@@ -117,14 +111,6 @@ public abstract class Hero {
 
         return false;
 
-    }
-
-    public float getScreenWidth_con() {
-        return screenWidth_con;
-    }
-
-    public float getScreenHeight_con() {
-        return screenHeight_con;
     }
 
     public Rectangle getBounds() {

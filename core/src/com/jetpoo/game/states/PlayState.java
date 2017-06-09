@@ -107,17 +107,16 @@ public class PlayState extends State{
         condition = Condition.running;
         lasers = new Vector<Obstacle>();
 
-
-        float con_x = hero.getScreenWidth_con();
-        float con_y = hero.getScreenHeight_con();
-
-        ceiling_bounds = new Rectangle(0,(JetPoo.HEIGHT-ceiling.getHeight())*con_y, (ceiling.getWidth()/2)*con_x, ceiling.getHeight()*con_y);
-        ground_bounds = new Rectangle(0,0, (ground.getWidth()/2)*con_x, (ground.getHeight()/2)*con_y);
+        ceiling_bounds = new Rectangle(0,(JetPoo.HEIGHT-128), JetPoo.WIDTH, 128);
+        ground_bounds = new Rectangle(0,0, JetPoo.WIDTH, 64);
         groundPos1 = new Vector2(0, 0);
         groundPos2 = new Vector2(ground.getWidth(), 0);
 
         bottomPos1 = new Vector2(0,0);
         bottomPos2 = new Vector2(bottom.getWidth(),0);
+
+        Obstacle a = new Obstacle(game, 200);
+        System.out.println(a.getBounds());
 
 
     }
@@ -232,7 +231,7 @@ public class PlayState extends State{
 
 
         for(int i=0; i < lasers.size(); i++){
-            sb.draw(laserAnimation.getFrame(), lasers.get(i).getX(),lasers.get(i).getY(), 160, lasers.get(i).getHeight());
+            sb.draw(laserAnimation.getFrame(), lasers.get(i).getX(),lasers.get(i).getY(), lasers.get(i).getWidth(), lasers.get(i).getHeight());
         }
 
 

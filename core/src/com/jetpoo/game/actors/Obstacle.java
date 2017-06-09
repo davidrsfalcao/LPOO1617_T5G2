@@ -1,7 +1,5 @@
 package com.jetpoo.game.actors;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.jetpoo.game.JetPoo;
@@ -15,15 +13,12 @@ import java.util.Random;
 public class Obstacle {
     private Vector2 position;
     private int height;
+    private int width;
     protected Rectangle bounds;
-    private float con_x; // converter unidades ecrã em unidades do jogo
-    private float con_y; // converter unidades ecrã em unidades do jogo
     private Random randomGenerator;
 
     public Obstacle(JetPoo game, int x) {
         randomGenerator = new Random();
-        con_x = (float) JetPoo.WIDTH / (float) Gdx.graphics.getWidth();
-        con_y = (float) JetPoo.HEIGHT / (float) Gdx.graphics.getHeight();
         position = new Vector2();
         position.x = x;
         initPosition(game);
@@ -33,15 +28,15 @@ public class Obstacle {
     }
 
     public void initPosition(JetPoo game){
-        int ground = game.getAssetManager().get("background/ground.png", Texture.class).getHeight()/2;
-        int ceiling = game.getAssetManager().get("background/ceiling.png", Texture.class).getHeight();
+        int ground = 64;
+        int ceiling = 128;
 
         position.y = randomGenerator.nextInt(JetPoo.HEIGHT-ceiling-ground) + ground;
     }
 
     public void initHeight(JetPoo game){
-        int ground = game.getAssetManager().get("background/ground.png", Texture.class).getHeight()/2;
-        int ceiling = game.getAssetManager().get("background/ceiling.png", Texture.class).getHeight();
+        int ground = 64;
+        int ceiling = 128;
 
         height = randomGenerator.nextInt(JetPoo.HEIGHT-ceiling-ground-200)/2 +100;
 
@@ -49,16 +44,18 @@ public class Obstacle {
             position.y -= height;
         }
 
+        width = height/2;
+
     }
 
     public void initBounds(){
-        bounds = new Rectangle((position.x-20)*con_x, position.y*con_y, 40*con_x, height*con_y);
+        bounds = new Rectangle((position.x+width/4), position.y, width/3, height);
 
     }
 
     public void update(float delta){
         position.x -= delta;
-        bounds.setPosition((position.x-40)*con_x,position.y*con_y );
+        bounds.setPosition((position.x+width/4),position.y);
 
     }
 
@@ -72,6 +69,10 @@ public class Obstacle {
 
     public int getHeight(){
         return height;
+    }
+
+    public int getWidth(){
+        return width;
     }
 
     public Rectangle getBounds() {

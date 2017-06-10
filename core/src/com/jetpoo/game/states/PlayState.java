@@ -102,15 +102,15 @@ public class PlayState extends State{
         tmp = game.getAssetManager().get("character/Character-acelerating.png", Texture.class);
         aceleratingAnimation = new Animation(new TextureRegion(tmp), 7, 0.5f );
         fallingAnimation = game.getAssetManager().get("character/Character-falling.png", Texture.class);
-        tmp = game.getAssetManager().get("laser.png", Texture.class);
+        tmp = game.getAssetManager().get("others/laser.png", Texture.class);
         laserAnimation = new Animation(new TextureRegion(tmp), 7, 1 );
-        tmp = game.getAssetManager().get("numbers.png", Texture.class);
+        tmp = game.getAssetManager().get("others/numbers.png", Texture.class);
         numbers = new Animation(new TextureRegion(tmp), 10, 1 );
-        score_board = game.getAssetManager().get("score_board.png", Texture.class);
+        score_board = game.getAssetManager().get("others/score_board.png", Texture.class);
         aceleratingSound = game.getAssetManager().get("sounds/sound.ogg", Music.class);
         powerUpSound = game.getAssetManager().get("sounds/powerup.ogg", Sound.class);
         music = game.getAssetManager().get("sounds/music_level.ogg", Music.class);
-        tmp = game.getAssetManager().get("coin.png", Texture.class);
+        tmp = game.getAssetManager().get("others/coin.png", Texture.class);
         powerup = new Animation(new TextureRegion(tmp), 4, 1 );
         msg_heavy = game.getAssetManager().get("messages/msg_heavy.png", Texture.class);
         msg_score = game.getAssetManager().get("messages/msg_score.png", Texture.class);
@@ -120,7 +120,6 @@ public class PlayState extends State{
 
     private void initVariables(){
         cam.setToOrtho(false, JetPoo.WIDTH, JetPoo.HEIGHT);
-
         speed = 100;
         score = 0;
         game_pause = false;
@@ -352,7 +351,7 @@ public class PlayState extends State{
             else {
                 lasers.get(i).update(speed * dt);
                 if (hero.colideLaser(lasers.get(i))){
-                    gsm.set(new GameOverState(gsm, game));
+                    gsm.set(new GameOverState(gsm, game, score));
                 }
             }
         }
@@ -386,7 +385,8 @@ public class PlayState extends State{
                         msg = msg_score;
                         break;
                     case 2:
-                        speed -= 20;
+                        if (speed > 30)
+                            speed -= 20;
                         msg = msg_speed;
                         break;
                 }

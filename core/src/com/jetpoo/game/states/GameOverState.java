@@ -1,5 +1,6 @@
 package com.jetpoo.game.states;
 
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,51 +12,48 @@ import com.jetpoo.game.JetPoo;
 
 public class GameOverState extends State{
 
-    private Texture background;
-    private Texture replayBtn;
-    private Texture menuBtn;
-    public GameOverState(GameStateManager gsm, JetPoo game) {
+
+    public GameOverState(GameStateManager gsm, JetPoo game, int score) {
         super(gsm, game);
-        cam.setToOrtho(false, JetPoo.WIDTH, JetPoo.HEIGHT/2);
+        cam.setToOrtho(false, JetPoo.WIDTH, JetPoo.HEIGHT);
 
-        replayBtn = new Texture("playbtn.png");
-        menuBtn = new Texture ("x.png");
-
+        initTouchListener();
 
     }
 
-    //@Override
-    public void handleInput() {
-        if(Gdx.input.getX() < cam.position.x+20 && Gdx.input.getX() > cam.position.x - 130 && Gdx.input.getY() < cam.position.y+50 && Gdx.input.getY() > cam.position.y-50){
-            gsm.set(new PlayState(gsm, game));
-        }
-        if(Gdx.input.getX() > cam.position.x+90 && Gdx.input.getX() < cam.position.x + 170 && Gdx.input.getY() < cam.position.y+50 && Gdx.input.getY() > cam.position.y-50){
-            gsm.set(new MenuState(gsm, game));
-        }
+    private void initTouchListener(){
+        Gdx.input.setInputProcessor(new InputAdapter(){
 
+            @Override
+            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                gsm.set(new MenuState(gsm, game));
+                return true;
+            }
+
+        });
 
     }
+
+
 
     @Override
     public void update(float dt) {
-        handleInput();
+        //do nothing
     }
 
     @Override
     public void render(SpriteBatch sb) {
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
+        Texture background =  game.getAssetManager().get("background/Game_Over_bg.png", Texture.class);
         sb.draw(background, 0,0);
-        sb.draw(replayBtn, cam.position.x - replayBtn.getWidth()-90/ 2, cam.position.y);
-        sb.draw(menuBtn,cam.position.x - menuBtn.getWidth()+150/2,cam.position.y);
 
         sb.end();
     }
 
     @Override
     public void dispose() {
-        background.dispose();
-        replayBtn.dispose();
-        menuBtn.dispose();
+        //nothing to dispose
+
     }
 }

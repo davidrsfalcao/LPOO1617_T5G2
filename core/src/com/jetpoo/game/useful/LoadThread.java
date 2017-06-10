@@ -21,7 +21,6 @@ public class LoadThread extends Thread{
     @Override
     public void run() {
         super.run();
-        this.game.getAssetManager().load("bg.png", Texture.class);
         this.game.getAssetManager().load("background/Menu_bg.png", Texture.class);
         this.game.getAssetManager().load("background/Menu_bg1.png", Texture.class);
         this.game.getAssetManager().load("buttons/button_play.png", Texture.class);
@@ -42,7 +41,7 @@ public class LoadThread extends Thread{
         this.game.getAssetManager().load("sounds/powerup.ogg", Sound.class);
         this.game.getAssetManager().load("sounds/music_level.ogg", Music.class);
 
-        this.game.getAssetManager().load("PowerUp.png", Texture.class);
+        this.game.getAssetManager().load("coin.png", Texture.class);
 
         this.game.getAssetManager().load("messages/msg_heavy.png", Texture.class);
         this.game.getAssetManager().load("messages/msg_speed.png", Texture.class);

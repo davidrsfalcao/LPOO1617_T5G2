@@ -57,7 +57,7 @@ public class PlayState extends State{
     private Animation laserAnimation;
     private Animation numbers;
     private Texture score_board;
-    private Texture powerup;
+    private Animation powerup;
     private Texture msg;
     private Texture msg_heavy;
     private Texture msg_score;
@@ -110,7 +110,8 @@ public class PlayState extends State{
         aceleratingSound = game.getAssetManager().get("sounds/sound.ogg", Music.class);
         powerUpSound = game.getAssetManager().get("sounds/powerup.ogg", Sound.class);
         music = game.getAssetManager().get("sounds/music_level.ogg", Music.class);
-        powerup = game.getAssetManager().get("PowerUp.png", Texture.class);
+        tmp = game.getAssetManager().get("coin.png", Texture.class);
+        powerup = new Animation(new TextureRegion(tmp), 4, 1 );
         msg_heavy = game.getAssetManager().get("messages/msg_heavy.png", Texture.class);
         msg_score = game.getAssetManager().get("messages/msg_score.png", Texture.class);
         msg_speed = game.getAssetManager().get("messages/msg_speed.png", Texture.class);
@@ -142,8 +143,7 @@ public class PlayState extends State{
 
         music.setLooping(true);
         music.play();
-
-
+        music.setVolume(0.30f);
 
     }
 
@@ -282,7 +282,7 @@ public class PlayState extends State{
         else sb.draw(actual, hero.getX(), hero.getY(), 100, 100);
 
         for (int i = 0; i < powerUps.size(); i++){
-            sb.draw(powerup, powerUps.get(i).getX(), powerUps.get(i).getY(), 50, 50);
+            sb.draw(powerup.getFrame(), powerUps.get(i).getX(), powerUps.get(i).getY(), 50, 50);
         }
 
         if (msg_time > 0){
@@ -371,6 +371,7 @@ public class PlayState extends State{
 
         for(int i=0; i < powerUps.size(); i++){
             powerUps.get(i).update(speed * dt);
+
             if (hero.catchPowerUp( powerUps.get(i)))
             {
                 int type = powerUps.get(i).getType();
@@ -411,6 +412,8 @@ public class PlayState extends State{
             if (powerUps.size() < 1)
                 powerUps.add(a);
         }
+
+        powerup.update(dt);
 
     }
 

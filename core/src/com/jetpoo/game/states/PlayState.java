@@ -63,8 +63,11 @@ public class PlayState extends State{
     private Texture msg_score;
     private Texture msg_speed;
 
-
+    /**
+     * Sounds
+     */
     private Music aceleratingSound;
+    private Sound powerUpSound;
 
 
     /*
@@ -104,6 +107,7 @@ public class PlayState extends State{
         numbers = new Animation(new TextureRegion(tmp), 10, 1 );
         score_board = game.getAssetManager().get("score_board.png", Texture.class);
         aceleratingSound = game.getAssetManager().get("sounds/sound.ogg", Music.class);
+        powerUpSound = game.getAssetManager().get("sounds/powerup.ogg", Sound.class);
         powerup = game.getAssetManager().get("PowerUp.png", Texture.class);
         msg_heavy = game.getAssetManager().get("messages/msg_heavy.png", Texture.class);
         msg_score = game.getAssetManager().get("messages/msg_score.png", Texture.class);
@@ -380,6 +384,7 @@ public class PlayState extends State{
                         break;
                 }
                 msg_time = 3;
+                powerUpSound.play();
 
                 powerUps.remove(i);
             }

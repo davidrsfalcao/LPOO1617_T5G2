@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.jetpoo.game.JetPoo;
+import com.jetpoo.game.actors.HeavyGuy;
 import com.jetpoo.game.actors.Hero;
 import com.jetpoo.game.actors.NormalGuy;
 import com.jetpoo.game.actors.Obstacle;
@@ -34,6 +35,7 @@ public class PlayState extends State{
     private boolean screenTouched;
     private Condition condition;
     private Random randomGenerator;
+    private float msg_time = 0;
 
     /*
     * ACTORS
@@ -56,21 +58,21 @@ public class PlayState extends State{
     private Animation numbers;
     private Texture score_board;
     private Texture powerup;
-
+    private Texture msg;
+    private Texture msg_heavy;
+    private Texture msg_score;
+    private Texture msg_speed;
 
 
     private Music aceleratingSound;
 
 
-
-
-    //Textures
-
+    /*
+    * Ground, ceiling and bottom
+    **/
     private Rectangle ground_bounds;
-
     private Rectangle ceiling_bounds;
     private Vector2 groundPos1, groundPos2;
-
     private Vector2 bottomPos1, bottomPos2;
 
 
@@ -103,6 +105,7 @@ public class PlayState extends State{
         score_board = game.getAssetManager().get("score_board.png", Texture.class);
         aceleratingSound = game.getAssetManager().get("sounds/sound.ogg", Music.class);
         powerup = game.getAssetManager().get("PowerUp.png", Texture.class);
+        msg_heavy = game.getAssetManager().get("messages/msg_heavy.png", Texture.class);
 
     }
 
@@ -116,6 +119,7 @@ public class PlayState extends State{
         screenTouched = false;
         condition = Condition.running;
         lasers = new Vector<Obstacle>();
+        actual = runningAnimation.getFrame(0);
 
         ceiling_bounds = new Rectangle(0,(JetPoo.HEIGHT-128), JetPoo.WIDTH, 128);
         ground_bounds = new Rectangle(0,0, JetPoo.WIDTH, 64);
@@ -225,6 +229,11 @@ public class PlayState extends State{
             updateScene(dt);
 
             hero.update(dt);
+            if (hero instanceof HeavyGuy){
+                if (hero.getCounter() <= 0){
+                    hero = new NormalGuy(hero.getX(), hero.getY());
+                }
+            }
             runningAnimation.update(dt);
             testColisions();
             updateHeroTexture(dt);
@@ -264,14 +273,16 @@ public class PlayState extends State{
             sb.draw(powerup, powerUps.get(i).getX(), powerUps.get(i).getY(), 50, 50);
         }
 
+        sb.draw(msg_heavy, 350, JetPoo.HEIGHT - 130, 450, 150);
+
         sb.end();
     }
 
     @Override
     public void dispose() {
-        ground.dispose();
-        ceiling.dispose();
-        bottom.dispose();
+        //ground.dispose();
+        //ceiling.dispose();
+        //bottom.dispose();
         aceleratingSound.dispose();
 
     }
@@ -342,14 +353,42 @@ public class PlayState extends State{
 
     private void powerUpFactory(float dt){
 
-        for(int i=0; i < powerUps.size(); i++)
+        for(int i=0; i < powerUps.size(); i++){
             powerUps.get(i).update(speed * dt);
+            if (hero.catchPowerUp( powerUps.get(i)))
+            {
+                int type = powerUps.get(i).getType();
 
-        int rand1 = randomGenerator.nextInt(2000);
+                switch (type){
+                    case 0:
+                        hero = new HeavyGuy(hero.getX(), hero.getY());
+                        break;
+                    case 1:
+                        score += 10;
+                        break;
+                    case 2:
+                        speed -= 20;
+                        break;
+                }
+
+                powerUps.remove(i);
+            }
+            else if (powerUps.get(i).getX() < 100){
+                powerUps.remove(i);
+            }
+
+        }
+        int rand1;
+
+        if (counter > 400){
+            rand1 = randomGenerator.nextInt(100);
+        }
+        else rand1 = randomGenerator.nextInt(2000);
 
         if (rand1 == 0){
             PowerUp a = new PowerUp();
-            powerUps.add(a);
+            if (powerUps.size() < 1)
+                powerUps.add(a);
         }
 
     }

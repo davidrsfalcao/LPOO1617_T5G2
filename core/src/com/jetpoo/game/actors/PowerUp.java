@@ -12,6 +12,12 @@ import java.util.Random;
 
 public class PowerUp {
     private Vector2 position;
+
+    /*
+    * Type 0: Change Hero to heavyGuy
+    * Type 1: increase score by 10
+    * Type 2: decrease velocity by 20
+    **/
     private int type;
     private Circle bounds;
     private Random randomGenerator;
@@ -19,7 +25,7 @@ public class PowerUp {
 
     public PowerUp() {
         randomGenerator = new Random();
-        type = randomGenerator.nextInt(2);
+        type = randomGenerator.nextInt(3);
         initPosition();
         bounds = new Circle(position.x, position.y, 25);
     }

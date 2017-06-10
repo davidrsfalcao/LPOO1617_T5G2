@@ -3,22 +3,26 @@ package com.jetpoo.game.actors;
 import com.jetpoo.game.states.PlayState;
 
 /**
- * Created by davidfalcao on 01/06/17.
+ * Created by davidfalcao on 10/06/17.
  */
 
-public class NormalGuy extends Hero{
+public class HeavyGuy extends Hero{
 
-    public NormalGuy(int x, int y) {
+    private float counter = 15;
+
+    public HeavyGuy(int x, int y) {
         super(x, y);
     }
 
     @Override
     public void update(float dt){
         if(!ontheGround)
-            velocity.add(0, -PlayState.GRAVITY);
+            velocity.add(0, -3*PlayState.GRAVITY);
         velocity.scl(dt);
         position.add(0 , velocity.y);
         velocity.scl(1/dt);
+
+        counter -= dt;
 
         updateBounds();
     }
@@ -27,10 +31,10 @@ public class NormalGuy extends Hero{
     public void jump() {
         if (velocity.y == 0)
         {
-            velocity.y = 150;
+            velocity.y = 100;
         }
         else if (velocity.y < 500 ){
-            velocity.y += 25;
+            velocity.y += 50;
         }
 
         ontheGround = false;
@@ -39,6 +43,6 @@ public class NormalGuy extends Hero{
 
     @Override
     public float getCounter() {
-        return 0;
+        return counter;
     }
 }

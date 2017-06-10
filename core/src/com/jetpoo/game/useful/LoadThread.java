@@ -42,6 +42,8 @@ public class LoadThread extends Thread{
 
         this.game.getAssetManager().load("PowerUp.png", Texture.class);
 
+        this.game.getAssetManager().load("messages/msg_heavy.png", Texture.class);
+
 
         finished = true;
 

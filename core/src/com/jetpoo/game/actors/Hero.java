@@ -1,6 +1,7 @@
 package com.jetpoo.game.actors;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.jetpoo.game.JetPoo;
@@ -22,17 +23,19 @@ public abstract class Hero {
     public Hero(int x, int y){
         position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
-        bounds = new Rectangle(x,y, 80, 100);
+        bounds = new Rectangle(x+20,y, 60, 100);
 
     }
 
     public abstract void update(float dt);
 
     protected void updateBounds(){
-        bounds.setPosition(position.x, position.y);
+        bounds.setPosition(position.x+20, position.y);
     }
 
     public abstract void jump();
+
+    public abstract float getCounter();
 
     public boolean isAcelerating() {
         return acelerating;
@@ -109,8 +112,20 @@ public abstract class Hero {
             return true;
         }
 
+
         return false;
 
+    }
+
+    public boolean catchPowerUp(PowerUp pw) {
+        for (int i = 0; i < 80; i++){
+            for(int k = 0; k < 100; k++){
+                if (pw.getBounds().contains(position.x+20 + i, position.y+k))
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     public Rectangle getBounds() {

@@ -17,13 +17,17 @@ public abstract class Hero {
     protected Vector2 velocity;
     protected Rectangle bounds;
     protected boolean acelerating = false;
-    protected boolean ontheGround = true;
+    protected boolean ontheGround;
 
 
     public Hero(int x, int y){
         position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
         bounds = new Rectangle(x+20,y, 60, 100);
+
+        if (y == 64)
+            ontheGround = true;
+        else ontheGround = false;
 
     }
 

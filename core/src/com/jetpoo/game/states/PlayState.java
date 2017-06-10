@@ -106,6 +106,8 @@ public class PlayState extends State{
         aceleratingSound = game.getAssetManager().get("sounds/sound.ogg", Music.class);
         powerup = game.getAssetManager().get("PowerUp.png", Texture.class);
         msg_heavy = game.getAssetManager().get("messages/msg_heavy.png", Texture.class);
+        msg_score = game.getAssetManager().get("messages/msg_score.png", Texture.class);
+        msg_speed = game.getAssetManager().get("messages/msg_speed.png", Texture.class);
 
     }
 
@@ -237,6 +239,7 @@ public class PlayState extends State{
             runningAnimation.update(dt);
             testColisions();
             updateHeroTexture(dt);
+            msg_time -= dt;
         }
 
 
@@ -273,7 +276,10 @@ public class PlayState extends State{
             sb.draw(powerup, powerUps.get(i).getX(), powerUps.get(i).getY(), 50, 50);
         }
 
-        sb.draw(msg_heavy, 350, JetPoo.HEIGHT - 130, 450, 150);
+        if (msg_time > 0){
+            sb.draw(msg, 350, JetPoo.HEIGHT - 130, 450, 150);
+        }
+
 
         sb.end();
     }
@@ -362,14 +368,18 @@ public class PlayState extends State{
                 switch (type){
                     case 0:
                         hero = new HeavyGuy(hero.getX(), hero.getY());
+                        msg = msg_heavy;
                         break;
                     case 1:
                         score += 10;
+                        msg = msg_score;
                         break;
                     case 2:
                         speed -= 20;
+                        msg = msg_speed;
                         break;
                 }
+                msg_time = 3;
 
                 powerUps.remove(i);
             }

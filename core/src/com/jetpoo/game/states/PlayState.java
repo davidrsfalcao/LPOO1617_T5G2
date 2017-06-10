@@ -68,6 +68,7 @@ public class PlayState extends State{
      */
     private Music aceleratingSound;
     private Sound powerUpSound;
+    private Music music;
 
 
     /*
@@ -108,6 +109,7 @@ public class PlayState extends State{
         score_board = game.getAssetManager().get("score_board.png", Texture.class);
         aceleratingSound = game.getAssetManager().get("sounds/sound.ogg", Music.class);
         powerUpSound = game.getAssetManager().get("sounds/powerup.ogg", Sound.class);
+        music = game.getAssetManager().get("sounds/music_level.ogg", Music.class);
         powerup = game.getAssetManager().get("PowerUp.png", Texture.class);
         msg_heavy = game.getAssetManager().get("messages/msg_heavy.png", Texture.class);
         msg_score = game.getAssetManager().get("messages/msg_score.png", Texture.class);
@@ -137,6 +139,9 @@ public class PlayState extends State{
 
         powerUps = new Vector<PowerUp>();
         randomGenerator = new Random();
+
+        music.setLooping(true);
+        music.play();
 
 
 
@@ -294,6 +299,7 @@ public class PlayState extends State{
         //ceiling.dispose();
         //bottom.dispose();
         aceleratingSound.dispose();
+        music.dispose();
 
     }
 

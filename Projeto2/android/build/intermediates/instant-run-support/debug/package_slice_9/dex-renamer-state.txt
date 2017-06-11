@@ -1,4 +1,0 @@
-#Mon Jun 05 22:10:45 WEST 2017
-base.0=/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/5/slice_9
-renamed.0=classes.dex
-file.0=/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/5/slice_9/classes.dex

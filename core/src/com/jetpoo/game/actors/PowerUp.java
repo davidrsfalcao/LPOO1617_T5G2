@@ -80,5 +80,9 @@ public class PowerUp {
         return position.y - 25;
     }
 
+    public void setPosition(int x, int y){
+        position.x = x;
+        position.y = y;
+    }
 
 }

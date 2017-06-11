@@ -132,5 +132,50 @@ public class GameTests {
         assertEquals(hero.getVelocity(), new Vector2(0, 330/5));
     }
 
+    @Test
+    /**
+     * Hero colides with ceiling
+     */
+    public void testColisionHeroCeiling(){
+        Rectangle ceiling = new Rectangle(0,648, 1024, 128);
+        Hero hero;
+
+        /**
+         * No colision
+         *
+         */
+        hero = new NormalGuy(100, 100);
+        assertEquals(hero.colideCeiling(ceiling), false);
+
+        /**
+         * Without bounce
+         */
+        hero = new NormalGuy(100, 650);
+        assertEquals(hero.colideCeiling(ceiling), true);
+        assertEquals(hero.getVelocity(), new Vector2(0, 10));
+
+        /**
+         * With bounce
+         */
+        hero = new NormalGuy(100, 650);
+        hero.jump();
+        assertEquals(hero.colideCeiling(ceiling), true);
+        assertEquals(hero.getVelocity(), new Vector2(0, -75));
+
+    }
+
+    @Test
+    /**
+     * Hero catch powerUp
+     */
+    public void testHeroCatchPowerUp(){
+        Hero hero = new NormalGuy(100, 64);
+        PowerUp pw = new PowerUp();
+
+        assertEquals(hero.catchPowerUp(pw), false);
+
+
+
+    }
 
 }

@@ -78,6 +78,7 @@ public class Obstacle {
     }
 
     /**
+     * @brief returns the x position of the obstacle
      *
      * @return obstacle's x position
      */
@@ -85,6 +86,7 @@ public class Obstacle {
         return position.x;
     }
     /**
+     * @brief returns the y position of the obstacle
      *
      * @return obstacle's y position
      */
@@ -92,6 +94,7 @@ public class Obstacle {
         return position.y;
     }
     /**
+     * @brief returns the height of the obstacle
      *
      * @return obstacle's height
      */
@@ -99,6 +102,7 @@ public class Obstacle {
         return height;
     }
     /**
+     * @brief returns the width of the obstacle
      *
      * @return obstacle's width
      */
@@ -107,6 +111,7 @@ public class Obstacle {
     }
 
     /**
+     * @brief returns the obstacle's bounds
      *
      * @return bounds of the obstacle
      */

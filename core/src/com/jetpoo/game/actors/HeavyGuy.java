@@ -57,7 +57,9 @@ public class HeavyGuy extends Hero{
 
     @Override
     /**
-     * @return returns the counter of the time that the character is able to be on HeavyMode
+     * @brief returns the counter of the time that the character is able to be on HeavyMode
+     *
+     * @return the counter
      */
     public float getCounter() {
         return counter;

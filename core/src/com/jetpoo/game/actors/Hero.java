@@ -56,11 +56,14 @@ public abstract class Hero {
     public abstract void jump();
 
     /**
-     * @return returns the counter of the time that the character is able to be on a Mode
+     * @brief returns the counter of the time that the character is able to be on a Mode
+     *
+     * @return the counter
      */
     public abstract float getCounter();
 
     /**
+     * @brief Return a value that tells if the hero is flying or not
      *
      * @return True of Hero is flying,False if not
      */
@@ -76,7 +79,7 @@ public abstract class Hero {
         this.acelerating = acelerating;
     }
     /**
-     *
+     * @brief Return a value that tells if the hero is running or not
      * @return True of Hero is running,False if not
      */
     public boolean isOntheGround() {
@@ -84,6 +87,7 @@ public abstract class Hero {
     }
 
     /**
+     * @brief returns the x position of the hero
      *
      * @return Hero's x position
      */
@@ -91,6 +95,7 @@ public abstract class Hero {
         return (int) position.x;
     }
     /**
+     *@brief returns the y position of the hero
      *
      * @return Hero's y position
      */
@@ -184,6 +189,7 @@ public abstract class Hero {
     }
 
     /**
+     * @brief returns the Hero's bounds
      *
      * @return bounds of the Hero
      */
@@ -191,6 +197,7 @@ public abstract class Hero {
         return bounds;
     }
     /**
+     *@brief returns the Hero's velocity
      *
      * @return velocity of the Hero
      */

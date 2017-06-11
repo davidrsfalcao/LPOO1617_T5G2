@@ -53,7 +53,9 @@ public class NormalGuy extends Hero{
 
     @Override
     /**
-     * @return returns the counter of the time that the character is able to be on HeavyMode
+     * @brief returns the counter of the time that the character is able to be on NormalMode
+     *
+     * @return the counter
      */
     public float getCounter() {
         return 0;

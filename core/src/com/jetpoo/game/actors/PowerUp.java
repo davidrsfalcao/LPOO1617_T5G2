@@ -52,6 +52,7 @@ public class PowerUp {
     }
 
     /**
+     * @brief returns the PowerUp's bounds
      *
      * @return PowerUp's Bounds
      */
@@ -59,6 +60,7 @@ public class PowerUp {
         return bounds;
     }
     /**
+     * @brief returns the PowerUp's type
      *
      * @return PowerUp's Type
      */
@@ -66,14 +68,14 @@ public class PowerUp {
         return type;
     }
     /**
-     *
+     * @brief returns the PowerUp's x position
      * @return PowerUp's x position
      */
     public float getX(){
         return position.x - 25;
     }
     /**
-     *
+     * @brief returns the PowerUp's y position
      * @return PowerUp's y position
      */
     public float getY(){

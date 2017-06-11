@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/.android/build-cache/86fe14a750b7d820432ba2689274e82c89558c09/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b36f30ac5ee5d5214f4b1e2ac49f11889d58e71a">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10/classes_cc8f95ebfad5eff556090e549b4b7213086d2f43/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="2973d150c0dc1fefe998f834810d68f278ea58ec">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10/junit-4.12_520ed13d8d44af23ef353356dfc6f82ce16a5cef/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-box2d/1.9.6/c249ef4060a4fada952f278455c8f7b9cba3c18a/gdx-box2d-1.9.6.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c249ef4060a4fada952f278455c8f7b9cba3c18a">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10/gdx-box2d-1.9.6_12d5a40a98c03c7a914816ed9002fbe427f36daa/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/.android/build-cache/25a3c7a2b5168d96cfbaaec6cd4b421abc6a2785/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="1a78298e7724d5440d210bcb946b3493250d354d">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2c70a01abdb05fc56411fa933b449bbf4325130d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/.android/build-cache/c7ff5be4214086650c9846468579bf0a3757e459/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10/classes_647b310d028d2fbc1cabd8a29ab95db6a657d626/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.9.6/47d1e9b890e364ec28f128e9bb3b9a12a94c164/gdx-1.9.6.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="047d1e9b890e364ec28f128e9bb3b9a12a94c164">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10/gdx-1.9.6_134a408a377f5a778a7268fc3178ab5a5a6831f4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/.android/build-cache/baba543ce185a8f7268da841fefd2afaee2c9cef/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e79923d4ff40e0eccc7a49c1f0973f08b7589a7b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/.android/build-cache/2746363410bb60f5c4d5ce7b95542eb2bd69ec4c/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3613faf8a6c4f39778aac67db9cefd9ffe94ec0c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="42a25dc3219429f0e5d060061f71acb49bf010a0">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10/hamcrest-core-1.3_474db7a7a85215abc41120b3bb5ad833a92fbd2f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/.android/build-cache/9fb6ec52998c6d46e5a6afe7370110bb0bd8c359/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6666dd525c3da197e7d07f4f23ef5fc7881a697b">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10/classes_daeeca41150d5dcebaeb259c28535c0e683c1e19/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/.android/build-cache/baba543ce185a8f7268da841fefd2afaee2c9cef/output/jars/libs/internal_impl-23.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.0.0_78195b1d8a685b3f091e51e510fe4cec8efbd09a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/.android/build-cache/eff72e0ea22f50d9b2cb748be14711b7498f077d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ea9f6e44e7ff14135f28732ebaa417cd1052064a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_e075acc6d1a7b4f1aa92fbed9ea4f2a47ac769a2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-android/1.9.6/57c2831c870743712b808384187ea856e541878f/gdx-backend-android-1.9.6.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="57c2831c870743712b808384187ea856e541878f">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10/gdx-backend-android-1.9.6_efb94c6df7dcdf6e41310de1210ffdc9d73f7bac/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="de46b424db327cc64abccb711f9257b8d0eaed14">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_2b113952ce55e9f5d3cc86c56fc3bda3a11cfcd0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/.android/build-cache/3483d540d4586cb637410687d0617d19b2bd1ac5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="3a364cc6b698d1b3b2d284f64618daaa7fe77ddf">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6dded7c30c8a1c9e9e5a81b8a2d818de2c18e437/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidfalcao/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.0/support-annotations-23.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
+        <dex dex="/Users/davidfalcao/GitHub/LPOO1617_T5G2/android/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.0.0_4f7ae05276a5519d1808820200487de6ffc9df86/classes.dex" />
+    </item>
+
+</items>

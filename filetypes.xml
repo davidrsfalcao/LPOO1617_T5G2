@@ -1,8 +1,0 @@
-<application>
-  <component name="FileTypeManager" version="17">
-    <extensionMap>
-      <mapping pattern="ids" type="DTD" />
-      <mapping pattern="Values XML File" type="XML" />
-    </extensionMap>
-  </component>
-</application>

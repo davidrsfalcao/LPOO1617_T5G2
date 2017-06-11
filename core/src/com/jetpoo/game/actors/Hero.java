@@ -135,4 +135,8 @@ public abstract class Hero {
     public Rectangle getBounds() {
         return bounds;
     }
+
+    public Vector2 getVelocity() {
+        return velocity;
+    }
 }

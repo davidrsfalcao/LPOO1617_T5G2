@@ -98,5 +98,39 @@ public class GameTests {
 
     }
 
+    @Test
+    /**
+     * Hero colides with ground
+     */
+    public void testColisionHeroGround(){
+        Rectangle ground = new Rectangle(0,0, 1024, 64);
+        Hero hero;
+
+        /**
+         * Without bounce
+         */
+        hero = new NormalGuy(100, 70);
+        assertEquals(hero.colideGround(ground), false);
+        hero.update(1f);
+        assertEquals(hero.colideGround(ground), true);
+        assertEquals(hero.isOntheGround(), true);
+
+        /**
+         * With bounce
+         */
+        hero = new NormalGuy(100, 600);
+        assertEquals(hero.colideGround(ground), false);
+        for(int i = 0; i< 33; i++){
+            hero.update(0.1f);
+        }
+
+        /**
+         * Hits the ground with velocity -330
+         */
+        assertEquals(hero.colideGround(ground), true);
+        assertEquals(hero.isOntheGround(), false);
+        assertEquals(hero.getVelocity(), new Vector2(0, 330/5));
+    }
+
 
 }

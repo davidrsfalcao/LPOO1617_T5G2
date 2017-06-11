@@ -121,7 +121,7 @@ public class MenuState extends State{
         //Buttons
         sb.draw(playBtn, 362 , resY-(357), 297  , 100);
         sb.draw(leaderboardBtn, 362 , resY-(477), 297  , 100);
-        sb.draw(creditsBtn, 362 , resY-(597), 297  , 100);
+        //sb.draw(creditsBtn, 362 , resY-(597), 297  , 100);
 
 
         sb.end();

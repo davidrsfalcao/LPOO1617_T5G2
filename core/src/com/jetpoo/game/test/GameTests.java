@@ -25,10 +25,10 @@ public class GameTests {
         assertEquals(hero.isOntheGround(), false);
         assertEquals(hero.isAcelerating(), false);
         assertEquals(hero.getVelocity(), new Vector2(0,0));
+        assertEquals(hero.getCounter(), 0, 0.001);
 
         int x = hero.getX();
         int y = hero.getY();
-
         assertEquals(hero.getBounds(), new Rectangle(x+20, y, 60, 100));
 
         hero = new HeavyGuy(100, 64);
@@ -36,7 +36,11 @@ public class GameTests {
         assertEquals(hero.isOntheGround(), true);
     }
 
+
     @Test
+    /**
+     * Test hero jump
+     */
     public void testHeroJump(){
         Hero hero = new NormalGuy(100, 64);
         assertEquals(hero.isOntheGround(), true);
@@ -57,4 +61,26 @@ public class GameTests {
         assertEquals(hero.getVelocity(), new Vector2(0,150));
 
     }
+
+    @Test
+    /**
+     * Test hero update
+     */
+    public void testHeroUpdate(){
+        Hero hero = new NormalGuy(100, 64);
+        assertEquals(hero.isOntheGround(), true);
+
+        int x = hero.getX();
+        int y = hero.getY();
+        assertEquals(hero.getBounds(), new Rectangle(x+20, y, 60, 100));
+        hero.jump();
+        hero.update(1.0f);
+        assertEquals(hero.getVelocity(), new Vector2(0,140));
+        assertEquals(hero.getX(), x);
+        assertEquals(hero.getY(), y + 140);
+        assertEquals(hero.getBounds(), new Rectangle(x+20, y+140, 60, 100));
+        
+    }
+
+
 }

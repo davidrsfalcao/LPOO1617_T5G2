@@ -1,6 +1,7 @@
-# Final Project Intermediate Check-Point
+# Final Project 
 
-**Architecture Design**
+<img src='https://bettercodehub.com/edge/badge/davidrsfalcao/LPOO1617_T5G2?branch=master&token=8d61e5eb1031cb8f3c6d7bad3bc8c771fe6f5aab'>
+
 * [UML](https://github.com/davidrsfalcao/LPOO1617_T5G2/blob/final-project/Intermediate%20Check-Point/JetPoo.pdf) 
 * [Behavioural Aspect](https://github.com/davidrsfalcao/LPOO1617_T5G2/blob/final-project/Intermediate%20Check-Point/Behavioural%20Automaton.pdf)
 

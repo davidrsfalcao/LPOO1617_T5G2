@@ -166,12 +166,32 @@ public class GameTests {
 
     @Test
     /**
+     * Obstacle initialization
+     */
+    public void testCreatObstacle(){
+
+        Obstacle laser;
+        for (int i = 0; i < 100; i++) {
+            laser = new Obstacle(100);
+            assertEquals(laser.getX(), 100, 0.1);
+            assertTrue(laser.getHeight() >= 100 && laser.getHeight() <= 289);
+            assertEquals(laser.getWidth(), laser.getHeight() / 2);
+        }
+
+    }
+
+    @Test
+    /**
      * Hero colides obstacle
      */
     public void testHeroColideObstacle(){
-        Hero hero = new NormalGuy(100, 64);
-
-
+        Hero hero = new NormalGuy(100, 100);
+        Obstacle laser = new Obstacle(150);
+        assertEquals(hero.colideLaser(laser), false);
+        laser.setY(100);
+        assertEquals(laser.getY(), 100, 0.001f);
+        laser.update(30);
+        assertEquals(hero.colideLaser(laser), true);
     }
 
     @Test

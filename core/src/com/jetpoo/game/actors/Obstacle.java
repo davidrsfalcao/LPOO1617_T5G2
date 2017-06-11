@@ -85,6 +85,7 @@ public class Obstacle {
     public float getX(){
         return position.x;
     }
+
     /**
      * @brief returns the y position of the obstacle
      *
@@ -93,6 +94,7 @@ public class Obstacle {
     public float getY(){
         return position.y;
     }
+
     /**
      * @brief returns the height of the obstacle
      *
@@ -101,6 +103,7 @@ public class Obstacle {
     public int getHeight(){
         return height;
     }
+
     /**
      * @brief returns the width of the obstacle
      *
@@ -117,5 +120,14 @@ public class Obstacle {
      */
     public Rectangle getBounds() {
         return bounds;
+    }
+
+    /**
+     * @brief sets the obstacles's Position (only for testing)
+     * @param y obstacles's Position
+     *
+     **/
+    public void setY(int y){
+        position.y = y;
     }
 }

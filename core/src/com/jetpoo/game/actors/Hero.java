@@ -8,6 +8,8 @@ import com.jetpoo.game.JetPoo;
 import com.jetpoo.game.states.PlayState;
 
 /**
+ * Abstract class that represents the hero. That's the only actor controlled by user
+ *
  * Created by davidfalcao on 01/06/17.
  */
 

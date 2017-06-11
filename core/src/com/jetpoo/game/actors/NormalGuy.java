@@ -3,6 +3,8 @@ package com.jetpoo.game.actors;
 import com.jetpoo.game.states.PlayState;
 
 /**
+ * Represents the hero with normal weight. He is the initial hero
+ *
  * Created by davidfalcao on 01/06/17.
  */
 

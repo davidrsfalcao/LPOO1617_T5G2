@@ -7,6 +7,8 @@ import com.jetpoo.game.JetPoo;
 import java.util.Random;
 
 /**
+ * Represents a bonus for the hero. Can be other hero, an increase on score or a decrease on speed of the sceene
+ *
  * Created by davidfalcao on 09/06/17.
  */
 

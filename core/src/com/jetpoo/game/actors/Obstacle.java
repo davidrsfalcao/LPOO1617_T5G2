@@ -7,9 +7,10 @@ import com.jetpoo.game.JetPoo;
 import java.util.Random;
 
 /**
+ * Represents an obstacle. It comes randomly.
+ *
  * Created by davidfalcao on 03/06/17.
  */
-
 public class Obstacle {
     private Vector2 position;
     private int height;

@@ -3,6 +3,8 @@ package com.jetpoo.game.actors;
 import com.jetpoo.game.states.PlayState;
 
 /**
+ * Represents the hero overweight. The user can use this after catch a powerUp. He falls 3x more quickly
+ *
  * Created by davidfalcao on 10/06/17.
  */
 

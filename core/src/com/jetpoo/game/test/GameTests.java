@@ -34,6 +34,11 @@ public class GameTests {
         hero = new HeavyGuy(100, 64);
         assertEquals(hero.getCounter(), 15, 0.001);
         assertEquals(hero.isOntheGround(), true);
+
+        hero = new NormalGuy(100, 100);
+        assertEquals(hero.isAcelerating(), false);
+        hero.setAcelerating(true);
+        assertEquals(hero.isAcelerating(), true);
     }
 
 
@@ -69,7 +74,6 @@ public class GameTests {
     public void testHeroUpdate(){
         Hero hero = new NormalGuy(100, 64);
         assertEquals(hero.isOntheGround(), true);
-
         int x = hero.getX();
         int y = hero.getY();
         assertEquals(hero.getBounds(), new Rectangle(x+20, y, 60, 100));
@@ -79,7 +83,19 @@ public class GameTests {
         assertEquals(hero.getX(), x);
         assertEquals(hero.getY(), y + 140);
         assertEquals(hero.getBounds(), new Rectangle(x+20, y+140, 60, 100));
-        
+
+        hero = new HeavyGuy(100, 64);
+        assertEquals(hero.isOntheGround(), true);
+        x = hero.getX();
+        y = hero.getY();
+        assertEquals(hero.getBounds(), new Rectangle(x+20, y, 60, 100));
+        hero.jump();
+        hero.update(1.0f);
+        assertEquals(hero.getVelocity(), new Vector2(0,70));
+        assertEquals(hero.getX(), x);
+        assertEquals(hero.getY(), y + 70);
+        assertEquals(hero.getBounds(), new Rectangle(x+20, y+70, 60, 100));
+
     }
 
 

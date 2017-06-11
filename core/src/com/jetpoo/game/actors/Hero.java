@@ -53,10 +53,6 @@ public abstract class Hero {
         return ontheGround;
     }
 
-    public void setOntheGround(boolean ontheGround) {
-        this.ontheGround = ontheGround;
-    }
-
     public int getX(){
         return (int) position.x;
     }

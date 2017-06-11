@@ -166,6 +166,16 @@ public class GameTests {
 
     @Test
     /**
+     * Hero colides obstacle
+     */
+    public void testHeroColideObstacle(){
+        Hero hero = new NormalGuy(100, 64);
+
+
+    }
+
+    @Test
+    /**
      * Hero catch powerUp
      */
     public void testHeroCatchPowerUp(){
@@ -173,9 +183,16 @@ public class GameTests {
         PowerUp pw = new PowerUp();
 
         assertEquals(hero.catchPowerUp(pw), false);
+        pw.setPosition(110, 80);
+        pw.update(0f);
+        assertEquals(hero.catchPowerUp(pw), true);
+        assertEquals(pw.getX(), 85, 0.1);
+        assertEquals(pw.getY(), 55, 0.1);
 
-
+        int type = pw.getType();
+        assertFalse(type >2 && type < 0);
 
     }
+
 
 }

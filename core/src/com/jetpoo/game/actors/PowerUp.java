@@ -82,6 +82,11 @@ public class PowerUp {
         return position.y - 25;
     }
 
+    /**
+     * @brief sets the PowerUp's Position
+     * @param x PowerUp's Position
+     * @param y PowerUp's Position
+     */
     public void setPosition(int x, int y){
         position.x = x;
         position.y = y;

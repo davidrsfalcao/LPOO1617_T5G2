@@ -17,3 +17,8 @@ Link: [https://github.com/davidrsfalcao/LPOO1617_T5G2/blob/final-project/Final-D
 
 * [Menu](https://github.com/davidrsfalcao/LPOO1617_T5G2/blob/final-project/Final-Delivery/menu.png)
 * [Game](https://github.com/davidrsfalcao/LPOO1617_T5G2/blob/final-project/Final-Delivery/game.png)
+
+**Design Patterns Used:**
+**-Strategy**
+**-State**
+

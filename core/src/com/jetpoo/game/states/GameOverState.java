@@ -16,6 +16,7 @@ public class GameOverState extends State{
     public GameOverState(GameStateManager gsm, JetPoo game, int score) {
         super(gsm, game);
         cam.setToOrtho(false, JetPoo.WIDTH, JetPoo.HEIGHT);
+        game.playServices.submitScore(score);
 
         initTouchListener();
 

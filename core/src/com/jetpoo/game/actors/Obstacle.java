@@ -17,6 +17,11 @@ public class Obstacle {
     private Rectangle bounds;
     private Random randomGenerator;
 
+    /**
+     * @brief Obstacle Constructor
+     * @param x position of the obstacle
+     *
+     */
     public Obstacle(int x) {
         randomGenerator = new Random();
         position = new Vector2();
@@ -27,6 +32,9 @@ public class Obstacle {
 
     }
 
+    /**
+     * @brief inits the position of the obstacle
+     */
     public void initPosition(){
         int ground = 64;
         int ceiling = 128;
@@ -34,6 +42,9 @@ public class Obstacle {
         position.y = randomGenerator.nextInt(JetPoo.HEIGHT-ceiling-ground) + ground;
     }
 
+    /**
+     * @brief inits Height of the obstacle
+     */
     public void initHeight(){
         int ground = 64;
         int ceiling = 128;
@@ -48,33 +59,57 @@ public class Obstacle {
 
     }
 
+    /**
+     * @brief inits the Bounds of the obstacle
+     */
     public void initBounds(){
         bounds = new Rectangle((position.x+width/4), position.y, width/3, height);
 
     }
 
+    /**
+     * @brief updates obstacle position
+     * @param delta update difference
+     */
     public void update(float delta){
         position.x -= delta;
         bounds.setPosition((position.x+width/4),position.y);
 
     }
 
+    /**
+     *
+     * @return obstacle's x position
+     */
     public float getX(){
         return position.x;
     }
-
+    /**
+     *
+     * @return obstacle's y position
+     */
     public float getY(){
         return position.y;
     }
-
+    /**
+     *
+     * @return obstacle's height
+     */
     public int getHeight(){
         return height;
     }
-
+    /**
+     *
+     * @return obstacle's width
+     */
     public int getWidth(){
         return width;
     }
 
+    /**
+     *
+     * @return bounds of the obstacle
+     */
     public Rectangle getBounds() {
         return bounds;
     }

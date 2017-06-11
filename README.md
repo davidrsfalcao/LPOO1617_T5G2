@@ -11,4 +11,4 @@ Link: [https://github.com/davidrsfalcao/LPOO1617_T5G2/blob/final-project/Final-D
 
 **To play this game in your smartphone download:**
 
-Link: [https://github.com/davidrsfalcao/LPOO1617_T5G2/blob/final-project/Final-Delivery/Projeto2.zip](https://github.com/davidrsfalcao/LPOO1617_T5G2/blob/final-project/Final-Delivery/android-release.apk)
+Link: [https://github.com/davidrsfalcao/LPOO1617_T5G2/blob/final-project/Final-Delivery/android-release.apk](https://github.com/davidrsfalcao/LPOO1617_T5G2/blob/final-project/Final-Delivery/android-release.apk)

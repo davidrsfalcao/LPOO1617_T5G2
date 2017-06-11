@@ -7,3 +7,8 @@
 **To continuous developing this game download and extract the follow .zip and open the project in Android Studio:**
 
 Link: [https://github.com/davidrsfalcao/LPOO1617_T5G2/blob/final-project/Final-Delivery/Projeto2.zip](https://github.com/davidrsfalcao/LPOO1617_T5G2/blob/final-project/Final-Delivery/Projeto2.zip)
+
+
+**To play this game in your smartphone download:**
+
+Link: [https://github.com/davidrsfalcao/LPOO1617_T5G2/blob/final-project/Final-Delivery/Projeto2.zip](https://github.com/davidrsfalcao/LPOO1617_T5G2/blob/final-project/Final-Delivery/android-release.apk)

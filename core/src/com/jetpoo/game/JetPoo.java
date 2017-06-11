@@ -3,19 +3,14 @@ package com.jetpoo.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jetpoo.game.states.GameStateManager;
 import com.jetpoo.game.states.LoadingState;
-import com.jetpoo.game.states.MenuState;
 import com.jetpoo.game.Server.PlayServices;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Text;
 
 public class JetPoo extends ApplicationAdapter {
-
 
 	public static final int WIDTH = 1024;
 	public static final int HEIGHT = 768;
@@ -25,9 +20,6 @@ public class JetPoo extends ApplicationAdapter {
 	private GameStateManager gsm;
 	private SpriteBatch batch;
 	private AssetManager assetManager;
-
-	private Music music;
-
 
 	@Override
 	public void create () {
@@ -42,11 +34,6 @@ public class JetPoo extends ApplicationAdapter {
 	 * Starts the game.
 	 */
 	private void startGame() {
-		//music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
-		//music.setLooping(true);
-		//music.setVolume(0.1f);
-		//music.play();
-		//Gdx.gl.glClearColor(1, 0, 0, 1);
 		gsm.push(new LoadingState(gsm, this));
 	}
 
@@ -61,12 +48,10 @@ public class JetPoo extends ApplicationAdapter {
 	@Override
 	public void dispose() {
 		super.dispose();
-		//music.dispose();
 		assetManager.dispose();
 	}
 
 	public JetPoo(){
-
 	}
 
 	public JetPoo(PlayServices playServices)
@@ -78,5 +63,6 @@ public class JetPoo extends ApplicationAdapter {
 	public AssetManager getAssetManager(){
 		return assetManager;
 	}
+
 
 }

@@ -35,7 +35,7 @@ public class NormalGuy extends Hero{
 
     @Override
     /**
-     * @brief makes the character jump ans switches the animation
+     * @brief makes the character jump and switches the animation
      *
      */
     public void jump() {

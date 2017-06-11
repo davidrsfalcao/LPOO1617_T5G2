@@ -5,7 +5,6 @@ exclude:
 - /Projeto2/core/src/com/jetpoo/game/JetPoo.java
 - /Projeto2/core/src/com/jetpoo/game/Server/PlayServices.java
 - /Projeto2/core/src/com/jetpoo/game/states/.*
-- /Projeto2/core/src/com/jetpoo/game/test/GameTests.java
 - /Projeto2/core/src/com/jetpoo/game/useful/.*
 - /Projeto2/desktop/src/com/jetpoo/game/desktop/DesktopLauncher.java
 component_depth: 1

@@ -1,6 +1,7 @@
 exclude:
 - /Projeto1/.*
 - /Projeto2/BaseGameUtils/src/main/java/com/google/example/games/basegameutils/.*
+- /Projeto2/android/build/generated/source/.*
 - /Projeto2/android/src/com/jetpoo/game/AndroidLauncher.java
 - /Projeto2/core/src/com/jetpoo/game/JetPoo.java
 - /Projeto2/core/src/com/jetpoo/game/Server/PlayServices.java

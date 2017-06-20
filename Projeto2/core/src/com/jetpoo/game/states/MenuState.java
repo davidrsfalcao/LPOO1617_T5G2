@@ -127,10 +127,4 @@ public class MenuState extends State{
         sb.end();
     }
 
-    @Override
-    public void dispose() {
-        //background.dispose();
-
-
-    }
 }

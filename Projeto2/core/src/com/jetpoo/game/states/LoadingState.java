@@ -39,8 +39,7 @@ public class LoadingState extends State {
 
         if (mult < 10){
             elapsed += dt;
-
-            mult = (int) (elapsed / 0.3);
+            mult = (int) (elapsed / (time/10));
 
         }
         else {
@@ -69,17 +68,6 @@ public class LoadingState extends State {
         sb.draw(this.game.getAssetManager().get("background/Loading_bar.png", Texture.class), 129,360,(770 / 10)*mult,47 );
         sb.end();
 
-    }
-
-    @Override
-    public void dispose() {
-
-    }
-
-
-    private JetPoo getGame()
-    {
-        return game;
     }
 
 }

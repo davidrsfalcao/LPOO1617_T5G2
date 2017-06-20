@@ -28,6 +28,5 @@ public abstract class State extends ApplicationAdapter{
 
     public abstract void render(SpriteBatch sb);
 
-    public abstract void dispose();
 }
 

@@ -292,15 +292,6 @@ public class PlayState extends State{
         sb.end();
     }
 
-    @Override
-    public void dispose() {
-        //ground.dispose();
-        //ceiling.dispose();
-        //bottom.dispose();
-        aceleratingSound.dispose();
-        music.dispose();
-
-    }
 
     @Override
     public void pause(){

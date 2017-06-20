@@ -13,6 +13,10 @@
 
 [**DOWNLOAD**](https://github.com/davidrsfalcao/LPOO1617_T5G2/raw/master/Projeto2/Final-Delivery/android-release.apk)
 
+# Developers :busts_in_silhouette:
+- David Falcão [@davidrsfalcao](https://github.com/davidrsfalcao)
+- Pedro Miranda [@pmiranda07](https://github.com/pmiranda07)
+
 
 
 

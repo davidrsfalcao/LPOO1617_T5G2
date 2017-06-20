@@ -79,13 +79,21 @@ public class PlayState extends State{
     private Vector2 groundPos1, groundPos2;
     private Vector2 bottomPos1, bottomPos2;
 
-
+    /**
+     * PlayState contructor
+     *
+     * @param gsm game state manager
+     * @param game the actual game
+     */
     public PlayState(GameStateManager gsm, JetPoo game) {
         super(gsm, game);
 
         start();
     }
 
+    /**
+     * Start the play state
+     */
     private void start(){
         getAssets();
         initVariables();
@@ -93,6 +101,9 @@ public class PlayState extends State{
 
     }
 
+    /**
+     * Get all assets needed from Asset Manager
+     */
     private void getAssets(){
         ground = game.getAssetManager().get("background/ground.png", Texture.class);
         bottom = game.getAssetManager().get("background/Menu_bg1.png", Texture.class);
@@ -118,6 +129,9 @@ public class PlayState extends State{
 
     }
 
+    /**
+     * Init all variables from PlayState
+     */
     private void initVariables(){
         cam.setToOrtho(false, JetPoo.WIDTH, JetPoo.HEIGHT);
         speed = 100;
@@ -146,6 +160,9 @@ public class PlayState extends State{
 
     }
 
+    /**
+     * Init Input adapter
+     */
     private void initTouchListener(){
         Gdx.input.setInputProcessor(new InputAdapter(){
 
@@ -165,6 +182,9 @@ public class PlayState extends State{
 
     }
 
+    /**
+     * Handle input
+     */
     public void handleInput(){
         if (screenTouched){
             hero.jump();
@@ -181,11 +201,18 @@ public class PlayState extends State{
         }
     }
 
-    public void testColisions(){
-        hero.colideGround(ground_bounds);
-        hero.colideCeiling(ceiling_bounds);
+    /**
+     * Test collisions
+     */
+    public void testCollisions(){
+        hero.collideGround(ground_bounds);
+        hero.collideCeiling(ceiling_bounds);
     }
 
+    /**
+     * Update Hero animation texture
+     * @param dt time since last update
+     */
     void updateHeroTexture(float dt){
         Condition a;
 
@@ -231,6 +258,11 @@ public class PlayState extends State{
 
     }
 
+    /**
+     * Update PlayState
+     *
+     * @param dt time since last update
+     */
     @Override
     public void update(float dt) {
 
@@ -239,13 +271,14 @@ public class PlayState extends State{
             updateScene(dt);
 
             hero.update(dt);
+            fixbug();
             if (hero instanceof HeavyGuy){
                 if (hero.getCounter() <= 0){
                     hero = new NormalGuy(hero.getX(), hero.getY());
                 }
             }
             runningAnimation.update(dt);
-            testColisions();
+            testCollisions();
             updateHeroTexture(dt);
             msg_time -= dt;
         }
@@ -291,20 +324,7 @@ public class PlayState extends State{
 
         sb.end();
     }
-
-
-    @Override
-    public void pause(){
-        game_pause = true;
-
-    }
-
-    @Override
-    public void resume(){
-        game_pause = false;
-
-    }
-
+    
     private void updateScene(float dt){
         counter += speed * dt;
         moveSceen(dt, ground, groundPos1, groundPos2);
@@ -341,7 +361,7 @@ public class PlayState extends State{
             }
             else {
                 lasers.get(i).update(speed * dt);
-                if (hero.colideLaser(lasers.get(i))){
+                if (hero.collideLaser(lasers.get(i))){
                     gsm.set(new GameOverState(gsm, game, score));
                 }
             }
@@ -459,4 +479,12 @@ public class PlayState extends State{
 
     }
 
+    private void fixbug(){
+        if (hero.getY() < 60){
+            hero.setPosition(new Vector2(100, 63));
+            hero.setVelocity(new Vector2(0, 0));
+
+        }
+
+    }
 }

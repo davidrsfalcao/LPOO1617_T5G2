@@ -37,6 +37,7 @@ public abstract class Hero {
         else ontheGround = false;
 
     }
+
     /**
      * @brief updates the state of the character
      *
@@ -80,6 +81,7 @@ public abstract class Hero {
     public void setAcelerating(boolean acelerating) {
         this.acelerating = acelerating;
     }
+
     /**
      * @brief Return a value that tells if the hero is running or not
      * @return True of Hero is running,False if not
@@ -96,6 +98,7 @@ public abstract class Hero {
     public int getX(){
         return (int) position.x;
     }
+
     /**
      *@brief returns the y position of the hero
      *
@@ -110,7 +113,7 @@ public abstract class Hero {
      * @param ground ground area to test
      * @return True if touches,False if not
      */
-    public boolean colideGround(Rectangle ground){
+    public boolean collideGround(Rectangle ground){
 
         if (bounds.overlaps(ground)){
 
@@ -132,12 +135,13 @@ public abstract class Hero {
 
         return false;
     }
+
     /**
      * @brief tests if Hero touches the ceiling
      * @param ceiling ceiling area to test
      * @return True if touches,False if not
      */
-    public boolean colideCeiling(Rectangle ceiling){
+    public boolean collideCeiling(Rectangle ceiling){
 
         if (bounds.overlaps(ceiling)){
 
@@ -158,12 +162,13 @@ public abstract class Hero {
 
         return false;
     }
+
     /**
      * @brief tests if Hero touches the lasers
      * @param laser ceiling area to test
      * @return True if touches,False if not
      */
-    public boolean colideLaser(Obstacle laser){
+    public boolean collideLaser(Obstacle laser){
 
         if (bounds.overlaps(laser.getBounds())){
             return true;
@@ -198,6 +203,7 @@ public abstract class Hero {
     public Rectangle getBounds() {
         return bounds;
     }
+
     /**
      *@brief returns the Hero's velocity
      *
@@ -205,5 +211,23 @@ public abstract class Hero {
      */
     public Vector2 getVelocity() {
         return velocity;
+    }
+
+    /**
+     * Redefine poition
+     *
+     * @param position
+     */
+    public void setPosition(Vector2 position) {
+        this.position = position;
+    }
+
+    /**
+     * Redefine velocity
+     *
+     * @param velocity
+     */
+    public void setVelocity(Vector2 velocity) {
+        this.velocity = velocity;
     }
 }

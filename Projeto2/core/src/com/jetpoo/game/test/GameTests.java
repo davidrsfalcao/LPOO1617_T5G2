@@ -100,7 +100,7 @@ public class GameTests {
 
     @Test
     /**
-     * Hero colides with ground
+     * Hero colildes with ground
      */
     public void testColisionHeroGround(){
         Rectangle ground = new Rectangle(0,0, 1024, 64);
@@ -110,16 +110,16 @@ public class GameTests {
          * Without bounce
          */
         hero = new NormalGuy(100, 70);
-        assertEquals(hero.colideGround(ground), false);
+        assertEquals(hero.collideGround(ground), false);
         hero.update(1f);
-        assertEquals(hero.colideGround(ground), true);
+        assertEquals(hero.collideGround(ground), true);
         assertEquals(hero.isOntheGround(), true);
 
         /**
          * With bounce
          */
         hero = new NormalGuy(100, 600);
-        assertEquals(hero.colideGround(ground), false);
+        assertEquals(hero.collideGround(ground), false);
         for(int i = 0; i< 33; i++){
             hero.update(0.1f);
         }
@@ -127,14 +127,14 @@ public class GameTests {
         /**
          * Hits the ground with velocity -330
          */
-        assertEquals(hero.colideGround(ground), true);
+        assertEquals(hero.collideGround(ground), true);
         assertEquals(hero.isOntheGround(), false);
         assertEquals(hero.getVelocity(), new Vector2(0, 330/5));
     }
 
     @Test
     /**
-     * Hero colides with ceiling
+     * Hero collides with ceiling
      */
     public void testColisionHeroCeiling(){
         Rectangle ceiling = new Rectangle(0,648, 1024, 128);
@@ -145,13 +145,13 @@ public class GameTests {
          *
          */
         hero = new NormalGuy(100, 100);
-        assertEquals(hero.colideCeiling(ceiling), false);
+        assertEquals(hero.collideCeiling(ceiling), false);
 
         /**
          * Without bounce
          */
         hero = new NormalGuy(100, 650);
-        assertEquals(hero.colideCeiling(ceiling), true);
+        assertEquals(hero.collideCeiling(ceiling), true);
         assertEquals(hero.getVelocity(), new Vector2(0, 10));
 
         /**
@@ -159,7 +159,7 @@ public class GameTests {
          */
         hero = new NormalGuy(100, 650);
         hero.jump();
-        assertEquals(hero.colideCeiling(ceiling), true);
+        assertEquals(hero.collideCeiling(ceiling), true);
         assertEquals(hero.getVelocity(), new Vector2(0, -75));
 
     }
@@ -182,16 +182,16 @@ public class GameTests {
 
     @Test
     /**
-     * Hero colides obstacle
+     * Hero collides obstacle
      */
-    public void testHeroColideObstacle(){
+    public void testHeroCollideObstacle(){
         Hero hero = new NormalGuy(100, 100);
         Obstacle laser = new Obstacle(150);
-        assertEquals(hero.colideLaser(laser), false);
+        assertEquals(hero.collideLaser(laser), false);
         laser.setY(100);
         assertEquals(laser.getY(), 100, 0.001f);
         laser.update(30);
-        assertEquals(hero.colideLaser(laser), true);
+        assertEquals(hero.collideLaser(laser), true);
     }
 
     @Test

@@ -1,0 +1,7 @@
+#Tue Jun 20 08:54:13 WEST 2017
+base.0=/Users/davidfalcao/GitHub/LPOO1617_T5G2/Projeto2/android/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_015a8ba0db668af4ebe92327cd41b73a9e5e730e
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/Users/davidfalcao/GitHub/LPOO1617_T5G2/Projeto2/android/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_d52688b393627f3942d0da59b02d099a94342b35/classes.dex
+base.1=/Users/davidfalcao/GitHub/LPOO1617_T5G2/Projeto2/android/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_d52688b393627f3942d0da59b02d099a94342b35
+file.0=/Users/davidfalcao/GitHub/LPOO1617_T5G2/Projeto2/android/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_015a8ba0db668af4ebe92327cd41b73a9e5e730e/classes.dex

@@ -1,0 +1,45 @@
+[
+    {
+        "outputFile": "/Users/davidfalcao/GitHub/LPOO1617_T5G2/Projeto2/android/build/intermediates/incremental/mergeDebugResources/merged.dir/values-large-v14/values-large-v14.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 107,
+                    "endOffset": 158
+                },
+                "from": {
+                    "file": "/Users/davidfalcao/.android/build-cache/2746363410bb60f5c4d5ce7b95542eb2bd69ec4c/output/res/values-large-v14/values.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 56,
+                        "endColumn": 108,
+                        "endOffset": 160
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 163,
+                    "endColumn": 119,
+                    "endOffset": 278
+                },
+                "from": {
+                    "file": "/Users/davidfalcao/.android/build-cache/2746363410bb60f5c4d5ce7b95542eb2bd69ec4c/output/res/values-large-v14/values.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 166,
+                        "endColumn": 120,
+                        "endOffset": 282
+                    }
+                }
+            }
+        ]
+    }
+]

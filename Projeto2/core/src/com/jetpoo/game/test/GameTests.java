@@ -186,8 +186,9 @@ public class GameTests {
      */
     public void testHeroCollideObstacle(){
         Hero hero = new NormalGuy(100, 100);
-        Obstacle laser = new Obstacle(150);
+        Obstacle laser = new Obstacle(200);
         assertEquals(hero.collideLaser(laser), false);
+        laser = new Obstacle(100);
         laser.setY(100);
         assertEquals(laser.getY(), 100, 0.001f);
         laser.update(30);
